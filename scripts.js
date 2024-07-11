@@ -155,9 +155,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Save the game state to localStorage
     function saveGameState() {
         const state = {
-            generatedNumbers
+            generatedNumbers,
+            markedCells: Array.from(document.querySelectorAll('.bingoCell.marked')).map(cell => cell.dataset.number)
         };
         localStorage.setItem('bingoState', JSON.stringify(state));
+    }
+
+    // Restore the game state from localStorage
+    function restoreGameState() {
+        const savedState = JSON.parse(localStorage.getItem('bingoState'));
+        if (savedState) {
+            generatedNumbers = savedState.generatedNumbers || [];
+            const markedCells = savedState.markedCells || [];
+            markedCells.forEach(number => {
+                document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
+                    cell.classList.add('marked');
+                });
+            });
+        }
     }
 
     // Clear all marks without resetting numbers
@@ -195,4 +210,5 @@ document.addEventListener('DOMContentLoaded', () => {
     clearMarksBtn.addEventListener('click', clearMarks);
     createMasterBoard();
     createBingoBoards();
+    restoreGameState(); // Restore the game state when the page loads
 });
