@@ -41,15 +41,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             board.appendChild(header);
 
+            const columns = document.createElement('div');
+            columns.style.display = 'grid';
+            columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
+            columns.style.gap = '5px'; // Ajusta el espacio entre las columnas
+
             const bColumn = createBingoColumn(1, 15);
             const iColumn = createBingoColumn(16, 30);
             const nColumn = createBingoColumn(31, 45, true); // Middle cell is free
             const gColumn = createBingoColumn(46, 60);
             const oColumn = createBingoColumn(61, 75);
 
-            const columns = document.createElement('div');
-            columns.style.display = 'flex';
-            columns.style.gap = '10px';
             columns.appendChild(bColumn);
             columns.appendChild(iColumn);
             columns.appendChild(nColumn);
@@ -105,16 +107,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Filter boards based on search input
     searchBox.addEventListener('input', () => {
         const query = searchBox.value.trim();
-        document.querySelectorAll('.bingoBoard').forEach(board => {
-            if (!query || board.dataset.boardNumber.includes(query)) {
-                board.style.display = '';
-            } else {
-                board.style.display = 'none';
-            }
-        });
-    });
-
-    generateNumberBtn.addEventListener('click', generateNumber);
-    resetGameBtn.addEventListener('click', resetGame);
-    createBingoBoards();
-});
+        document.querySelectorAll('.bingoBoard').for
