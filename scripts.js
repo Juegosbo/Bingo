@@ -41,29 +41,40 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             board.appendChild(header);
 
-            const cellContainer = document.createElement('div');
-            cellContainer.classList.add('bingoCellContainer');
+            const bColumn = createBingoColumn(1, 15);
+            const iColumn = createBingoColumn(16, 30);
+            const nColumn = createBingoColumn(31, 45, true); // Middle cell is free
+            const gColumn = createBingoColumn(46, 60);
+            const oColumn = createBingoColumn(61, 75);
 
-            const bNumbers = getRandomNumbers(1, 15, 5);
-            const iNumbers = getRandomNumbers(16, 30, 5);
-            const nNumbers = getRandomNumbers(31, 45, 4); // Middle cell is free
-            const gNumbers = getRandomNumbers(46, 60, 5);
-            const oNumbers = getRandomNumbers(61, 75, 5);
+            const columns = document.createElement('div');
+            columns.style.display = 'flex';
+            columns.appendChild(bColumn);
+            columns.appendChild(iColumn);
+            columns.appendChild(nColumn);
+            columns.appendChild(gColumn);
+            columns.appendChild(oColumn);
 
-            [...bNumbers, ...iNumbers, ...nNumbers.slice(0, 2), 'FREE', ...nNumbers.slice(2), ...gNumbers, ...oNumbers].forEach((num, index) => {
-                const cell = document.createElement('div');
-                cell.classList.add('bingoCell');
-                cell.textContent = num === 'FREE' ? 'FREE' : num;
-                cell.dataset.number = num;
-                if (num === 'FREE') {
-                    cell.classList.add('marked');
-                }
-                cellContainer.appendChild(cell);
-            });
-
-            board.appendChild(cellContainer);
+            board.appendChild(columns);
             bingoBoardsContainer.appendChild(board);
         }
+    }
+
+    function createBingoColumn(min, max, hasFreeCell = false) {
+        const column = document.createElement('div');
+        column.classList.add('bingoColumn');
+        const numbers = getRandomNumbers(min, max, 5);
+        numbers.forEach((num, index) => {
+            const cell = document.createElement('div');
+            cell.classList.add('bingoCell');
+            cell.textContent = hasFreeCell && index === 2 ? 'FREE' : num;
+            cell.dataset.number = hasFreeCell && index === 2 ? 'FREE' : num;
+            if (cell.textContent === 'FREE') {
+                cell.classList.add('marked');
+            }
+            column.appendChild(cell);
+        });
+        return column;
     }
 
     // Generate a random Bingo number
