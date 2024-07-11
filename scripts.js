@@ -39,6 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             board.appendChild(header);
 
+            const cellContainer = document.createElement('div');
+            cellContainer.classList.add('bingoCellContainer');
+
             const bNumbers = getRandomNumbers(1, 15, 5);
             const iNumbers = getRandomNumbers(16, 30, 5);
             const nNumbers = getRandomNumbers(31, 45, 4); // Middle cell is free
@@ -53,9 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (num === 'FREE') {
                     cell.classList.add('marked');
                 }
-                board.appendChild(cell);
+                cellContainer.appendChild(cell);
             });
 
+            board.appendChild(cellContainer);
             bingoBoardsContainer.appendChild(board);
         }
     }
