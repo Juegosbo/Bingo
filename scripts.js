@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const columns = document.createElement('div');
             columns.style.display = 'flex';
+            columns.style.gap = '10px';
             columns.appendChild(bColumn);
             columns.appendChild(iColumn);
             columns.appendChild(nColumn);
