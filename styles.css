@@ -81,8 +81,7 @@ h2 {
     padding: 5px;
     border-radius: 8px;
     background-color: #f9f9f9;
-    width: 200px; /* Ajusta el ancho del cartón maestro */
-    margin-left: 20px; /* Espacio al lado del botón de búsqueda */
+    width: auto;
 }
 
 #bingoBoardsContainer {
