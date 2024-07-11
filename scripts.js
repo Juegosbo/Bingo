@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchBox = document.getElementById('searchBox');
     let generatedNumbers = [];
 
-    // Helper function to generate numbers for the master board
+    // Helper function to generate numbers for the master board.
     function createMasterBoard() {
         const board = document.createElement('div');
         board.classList.add('bingoBoard');
