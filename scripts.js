@@ -9,32 +9,35 @@ document.addEventListener('DOMContentLoaded', () => {
     function createMasterBoard() {
         const board = document.createElement('div');
         board.classList.add('bingoBoard');
-        board.innerHTML = `<div class="bingoHeader">
-                                <div>B</div><div>I</div><div>N</div><div>G</div><div>O</div>
-                           </div>`;
         
-        const columns = document.createElement('div');
-        columns.classList.add('bingoColumns');
-        columns.style.display = 'grid';
-        columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
-        columns.style.gap = '5px';
+        const header = document.createElement('div');
+        header.classList.add('bingoHeader');
+        ['B', 'I', 'N', 'G', 'O'].forEach(letter => {
+            const cell = document.createElement('div');
+            cell.textContent = letter;
+            header.appendChild(cell);
+        });
+        board.appendChild(header);
+        
+        const rows = document.createElement('div');
+        rows.classList.add('bingoRows');
+        rows.style.display = 'grid';
+        rows.style.gridTemplateColumns = 'repeat(5, 1fr)';
+        rows.style.gap = '5px';
 
-        for (let i = 0; i < 5; i++) {
-            const column = document.createElement('div');
-            column.classList.add('bingoColumn');
-            for (let j = 0; j < 15; j++) {
-                const cell = document.createElement('div');
-                cell.classList.add('bingoCell');
-                const num = j + 1 + (i * 15);
-                cell.textContent = num;
-                cell.dataset.number = num;
-                cell.addEventListener('click', () => markNumber(num));
-                column.appendChild(cell);
-            }
-            columns.appendChild(column);
-        }
+        const bRow = createBingoRow(1, 15);
+        const iRow = createBingoRow(16, 30);
+        const nRow = createBingoRow(31, 45);
+        const gRow = createBingoRow(46, 60);
+        const oRow = createBingoRow(61, 75);
 
-        board.appendChild(columns);
+        rows.appendChild(bRow);
+        rows.appendChild(iRow);
+        rows.appendChild(nRow);
+        rows.appendChild(gRow);
+        rows.appendChild(oRow);
+
+        board.appendChild(rows);
         masterBoardContainer.appendChild(board);
     }
 
@@ -110,6 +113,20 @@ document.addEventListener('DOMContentLoaded', () => {
             column.appendChild(cell);
         });
         return column;
+    }
+
+    function createBingoRow(min, max) {
+        const row = document.createElement('div');
+        row.classList.add('bingoRow');
+        for (let i = min; i <= max; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('bingoCell');
+            cell.textContent = i;
+            cell.dataset.number = i;
+            cell.addEventListener('click', () => markNumber(i));
+            row.appendChild(cell);
+        }
+        return row;
     }
 
     // Mark a number across all boards
