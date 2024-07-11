@@ -39,11 +39,29 @@ h2 {
     margin-bottom: 20px;
 }
 
+.search-container {
+    display: flex;
+    gap: 5px;
+}
+
 #searchBox {
     padding: 10px;
     width: 200px;
     border: 1px solid #ddd;
     border-radius: 4px;
+}
+
+#searchButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#searchButton:hover {
+    background-color: #0056b3;
 }
 
 #bingo {
@@ -54,7 +72,9 @@ h2 {
 
 #masterBoardContainer {
     margin-bottom: 20px;
-    display: flex; /* Asegura que esté en forma horizontales */
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    gap: 10px;
 }
 
 #bingoBoardsContainer {
@@ -95,7 +115,7 @@ h2 {
 
 .bingoRow { 
     display: grid;
-    grid-template-columns: repeat(15, 1fr); /* Asegura que los números estén alineados horizontalmente */
+    grid-template-columns: repeat(5, 1fr); /* Asegura que los números estén alineados horizontalmente */
     gap: 5px;
 }
 
