@@ -118,3 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     generateNumberBtn.addEventListener('click', generateNumber);
     resetGameBtn.addEventListener('click', resetGame);
+    createBingoBoards();
+});
+``
