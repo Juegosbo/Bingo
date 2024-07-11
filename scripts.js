@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const bingoBoardsContainer = document.getElementById('bingoBoardsContainer');
     const generateNumberBtn = document.getElementById('generateNumber');
+    const resetGameBtn = document.getElementById('resetGame');
     const generatedNumberDiv = document.getElementById('generatedNumber');
     const searchBox = document.getElementById('searchBox');
-    const numbers = Array.from({ length: 75 }, (_, i) => i + 1);
+    let numbers = Array.from({ length: 75 }, (_, i) => i + 1);
     let generatedNumbers = [];
 
     // Helper function to generate a random number in a range
@@ -80,6 +81,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Reset the game
+    function resetGame() {
+        numbers = Array.from({ length: 75 }, (_, i) => i + 1);
+        generatedNumbers = [];
+        generatedNumberDiv.textContent = '';
+        document.querySelectorAll('.bingoCell').forEach(cell => {
+            cell.classList.remove('marked');
+        });
+    }
+
     // Filter boards based on search input
     searchBox.addEventListener('input', () => {
         const query = searchBox.value.trim();
@@ -93,5 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     generateNumberBtn.addEventListener('click', generateNumber);
+    resetGameBtn.addEventListener('click', resetGame);
     createBingoBoards();
 });
