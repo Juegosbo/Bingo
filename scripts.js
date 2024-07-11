@@ -20,30 +20,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         board.appendChild(header);
 
-        const columns = [
-            Array.from({ length: 15 }, (_, i) => i + 1),
-            Array.from({ length: 15 }, (_, i) => i + 16),
-            Array.from({ length: 15 }, (_, i) => i + 31),
-            Array.from({ length: 15 }, (_, i) => i + 46),
-            Array.from({ length: 15 }, (_, i) => i + 61),
-        ];
+        const bColumn = createFixedBingoColumn(1, 15);
+        const iColumn = createFixedBingoColumn(16, 30);
+        const nColumn = createFixedBingoColumn(31, 45);
+        const gColumn = createFixedBingoColumn(46, 60);
+        const oColumn = createFixedBingoColumn(61, 75);
 
-        for (let i = 0; i < 5; i++) {
-            const column = document.createElement('div');
-            column.classList.add('bingoColumn');
-            for (let j = 0; j < 5; j++) {
-                const cell = document.createElement('div');
-                cell.classList.add('bingoCell');
-                const num = columns[i][j];
-                cell.textContent = num;
-                cell.dataset.number = num;
-                cell.addEventListener('click', () => markNumber(num));
-                column.appendChild(cell);
-            }
-            board.appendChild(column);
-        }
+        board.appendChild(bColumn);
+        board.appendChild(iColumn);
+        board.appendChild(nColumn);
+        board.appendChild(gColumn);
+        board.appendChild(oColumn);
 
         masterBoardContainer.appendChild(board);
+    }
+
+    function createFixedBingoColumn(min, max) {
+        const column = document.createElement('div');
+        column.classList.add('bingoColumn');
+        for (let i = min; i <= max; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('bingoCell');
+            cell.textContent = i;
+            cell.dataset.number = i;
+            cell.addEventListener('click', () => markNumber(i));
+            column.appendChild(cell);
+        }
+        return column;
     }
 
     // Helper function to generate a random number in a range
