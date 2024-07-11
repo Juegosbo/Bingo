@@ -59,6 +59,9 @@ h2 {
     border-radius: 8px;
     background-color: #f9f9f9;
     position: relative;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 10px;
 }
 
 .bingoBoardNumber {
@@ -72,7 +75,6 @@ h2 {
 .bingoHeader {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    margin-bottom: 10px;
     text-align: center;
     font-weight: bold;
     font-size: 18px;
