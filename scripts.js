@@ -1,50 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const nombresData = [
-        ["1 CARTON Nº 1", null, null, null, null, "Diagonales"],
-        ["2 CARTON Nº 2", null, null, null, null, "Letra M"],
-        ["3 CARTON Nº 3", null, null, null, null, "Cruz en la Mitad"],
-        ["4 CARTON Nº 4", null, null, null, null, "O Grande"],
-        ["5 CARTON Nº 5", null, null, null, null, "Diamante"]
-    ];
-    const jugadoresData = [
-        ["POS", "LISTA DE JUGADORES"],
-        [1, "CARTON Nº 1"],
-        [2, "CARTON Nº 2"],
-        [3, "CARTON Nº 3"],
-        [4, "CARTON Nº 4"],
-        [5, "CARTON Nº 5"]
-    ];
-    const bingoData = [
-        ["TIPO DE JUEGO", "CARTON Nº", "B", "I", "N", "G", "O"],
-        ["Cuatro Esquinas", 1, null, null, null, null, null],
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
-        ["1 CARTON Nº 1", "", "B", "I", "N", "G", "O"],
-        ["2 CARTON Nº 2", "", "B", "I", "N", "G", "O"]
-    ];
-    const hoja1Data = [
-        ["SOFIA BERMUDEZ"],
-        ["RAQUEL MENDOZA"],
-        ["ISMAEL AGUILAR"],
-        ["IRENE MENDEZ"],
-        ["BENITO ESTEBAN"]
-    ];
+    const bingoBoard = document.getElementById('bingoBoard');
+    const generateNumberBtn = document.getElementById('generateNumber');
+    const generatedNumberDiv = document.getElementById('generatedNumber');
+    const numbers = Array.from({ length: 75 }, (_, i) => i + 1);
+    let generatedNumbers = [];
 
-    function populateTable(tableId, data) {
-        const table = document.getElementById(tableId);
-        data.forEach(rowData => {
-            const row = document.createElement('tr');
-            rowData.forEach(cellData => {
-                const cell = document.createElement('td');
-                cell.textContent = cellData === null ? '' : cellData;
-                row.appendChild(cell);
+    // Create Bingo Board
+    function createBingoBoard() {
+        const bingoLetters = ['B', 'I', 'N', 'G', 'O'];
+        for (let i = 0; i < 25; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('bingoCell');
+            cell.textContent = i === 12 ? 'FREE' : bingoLetters[Math.floor(i / 5)] + (i + 1);
+            cell.dataset.number = i + 1;
+            if (i === 12) {
+                cell.classList.add('marked');
+            }
+            cell.addEventListener('click', () => {
+                cell.classList.toggle('marked');
             });
-            table.appendChild(row);
-        });
+            bingoBoard.appendChild(cell);
+        }
     }
 
-    populateTable('nombresTable', nombresData);
-    populateTable('jugadoresTable', jugadoresData);
-    populateTable('bingoTable', bingoData);
-    populateTable('hoja1Table', hoja1Data);
+    // Generate a random Bingo number
+    function generateNumber() {
+        if (numbers.length === 0) {
+            alert('Todos los números han sido generados.');
+            return;
+        }
+        const randomIndex = Math.floor(Math.random() * numbers.length);
+        const number = numbers.splice(randomIndex, 1)[0];
+        generatedNumbers.push(number);
+        generatedNumberDiv.textContent = number;
+    }
+
+    generateNumberBtn.addEventListener('click', generateNumber);
+    createBingoBoard();
 });
