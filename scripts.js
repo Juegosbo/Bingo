@@ -112,6 +112,13 @@ document.addEventListener('DOMContentLoaded', () => {
             board.appendChild(columns);
             bingoBoardsContainer.appendChild(board);
         }
+
+        // Restore marked cells from localStorage
+        const savedState = JSON.parse(localStorage.getItem('bingoState'));
+        if (savedState) {
+            generatedNumbers = savedState.generatedNumbers;
+            generatedNumbers.forEach(number => markNumber(number, false));
+        }
     }
 
     function createBingoColumn(min, max, hasFreeCell = false) {
@@ -132,13 +139,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Mark a number across all boards
-    function markNumber(number) {
+    function markNumber(number, saveState = true) {
         if (!generatedNumbers.includes(number)) {
             generatedNumbers.push(number);
             document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
                 cell.classList.add('marked');
             });
+
+            if (saveState) {
+                saveGameState();
+            }
         }
+    }
+
+    // Save the game state to localStorage
+    function saveGameState() {
+        const state = {
+            generatedNumbers
+        };
+        localStorage.setItem('bingoState', JSON.stringify(state));
     }
 
     // Clear all marks without resetting numbers
@@ -146,6 +165,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.bingoCell').forEach(cell => {
             cell.classList.remove('marked');
         });
+        generatedNumbers = [];
+        saveGameState();
     }
 
     // Reset the game
@@ -155,6 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
         masterBoardContainer.innerHTML = ''; // Limpia el contenedor del cartón maestro
         createBingoBoards();
         createMasterBoard();
+        localStorage.removeItem('bingoState');
     }
 
     // Filter boards based on search input
