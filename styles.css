@@ -30,9 +30,18 @@ h2 {
     color: #666;
 }
 
+#searchBox {
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
 #bingoBoardsContainer {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 10px;
     margin: 20px 0;
 }
@@ -42,6 +51,15 @@ h2 {
     padding: 10px;
     border-radius: 8px;
     background-color: #f9f9f9;
+    position: relative;
+}
+
+.bingoBoardNumber {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    color: #888;
 }
 
 .bingoHeader {
@@ -51,15 +69,16 @@ h2 {
 }
 
 .bingoCell {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid #ddd;
     background-color: #fff;
-    font-size: 16px;
+    font-size: 12px;
     cursor: pointer;
+    margin: 1px;
 }
 
 .bingoCell.marked {
