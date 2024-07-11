@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             board.appendChild(header);
 
             const columns = document.createElement('div');
+            columns.classList.add('bingoColumns'); // Añadimos una clase para los estilos
             columns.style.display = 'grid';
             columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
             columns.style.gap = '5px'; // Ajusta el espacio entre las columnas
@@ -106,4 +107,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Filter boards based on search input
     searchBox.addEventListener('input', () => {
-        const query = searchBox.value
+        const query = searchBox.value.trim();
+        document.querySelectorAll('.bingoBoard').forEach(board => {
+            if (!query || board.dataset.boardNumber.includes(query)) {
+                board.style.display = '';
+            } else {
+                board.style.display = 'none';
+            }
+        });
+    });
+
+    generateNumberBtn.addEventListener('click', generateNumber);
+    resetGameBtn.addEventListener('click', resetGame);
+    createBingoBoards();
+});
