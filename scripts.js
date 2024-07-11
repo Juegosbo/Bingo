@@ -20,19 +20,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         board.appendChild(header);
 
-        for (let col = 0; col < 5; col++) {
-            const bingoColumn = document.createElement('div');
-            bingoColumn.classList.add('bingoColumn');
-            for (let row = 0; row < 15; row++) {
+        for (let row = 0; row < 5; row++) {
+            const bingoRow = document.createElement('div');
+            bingoRow.classList.add('bingoRow');
+            for (let col = 0; col < 5; col++) {
                 const cell = document.createElement('div');
                 cell.classList.add('bingoCell');
                 const num = row + 1 + (col * 15);
                 cell.textContent = num;
                 cell.dataset.number = num;
                 cell.addEventListener('click', () => markNumber(num));
-                bingoColumn.appendChild(cell);
+                bingoRow.appendChild(cell);
             }
-            board.appendChild(bingoColumn);
+            board.appendChild(bingoRow);
         }
 
         masterBoardContainer.appendChild(board);
