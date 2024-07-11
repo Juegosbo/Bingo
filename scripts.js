@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchBox = document.getElementById('searchBox');
     const searchButton = document.getElementById('searchButton');
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
-    let bingoBoardsState = JSON.parse(localStorage.getItem('bingoBoardsState')) || [];
+    let bingoBoardsState = JSON.parse(localStorage.getItem('bingoBoardsState')) || {};
 
     // Helper function to generate numbers for the master board
     function createMasterBoard() {
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             columns.classList.add('bingoColumns');
             columns.style.display = 'grid';
             columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
-            columns.style.gap = '5px'; // Ajusta el espacio entre las columnas
+            columns.style.gap = '5px';
 
             const bColumn = createBingoColumn(1, 15, i);
             const iColumn = createBingoColumn(16, 30, i);
@@ -127,19 +127,30 @@ document.addEventListener('DOMContentLoaded', () => {
     function createBingoColumn(min, max, boardNumber, hasFreeCell = false) {
         const column = document.createElement('div');
         column.classList.add('bingoColumn');
-        const numbers = getRandomNumbers(min, max, 5);
-        const boardState = bingoBoardsState[boardNumber - 1] || {};
+        const numbers = bingoBoardsState[boardNumber] && bingoBoardsState[boardNumber][`col${min}-${max}`] ?
+            bingoBoardsState[boardNumber][`col${min}-${max}`] :
+            getRandomNumbers(min, max, 5);
+
+        const boardState = bingoBoardsState[boardNumber] || {};
         numbers.forEach((num, index) => {
             const cell = document.createElement('div');
             cell.classList.add('bingoCell');
-            const cellNumber = boardState[`col${min}-${index}`] !== undefined ? boardState[`col${min}-${index}`] : (hasFreeCell && index === 2 ? 'FREE' : num);
+            const cellNumber = hasFreeCell && index === 2 ? 'FREE' : num;
             cell.textContent = cellNumber;
             cell.dataset.number = cellNumber;
             if (cellNumber === 'FREE' || generatedNumbers.includes(Number(cellNumber))) {
                 cell.classList.add('marked');
             }
             column.appendChild(cell);
+
+            // Save number to board state
+            if (!boardState[`col${min}-${max}`]) {
+                boardState[`col${min}-${max}`] = numbers;
+            }
         });
+
+        bingoBoardsState[boardNumber] = boardState;
+        saveState();
         return column;
     }
 
@@ -157,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Reset the game
     function resetGame() {
         generatedNumbers = [];
-        bingoBoardsState = [];
+        bingoBoardsState = {};
         saveState();
         document.querySelectorAll('.bingoCell').forEach(cell => {
             cell.classList.remove('marked');
@@ -170,17 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Save generated numbers and boards state to localStorage
     function saveState() {
         localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
-        const boards = [];
-        document.querySelectorAll('.bingoBoard').forEach((board, boardIndex) => {
-            const boardState = {};
-            board.querySelectorAll('.bingoColumn').forEach((col, colIndex) => {
-                col.querySelectorAll('.bingoCell').forEach((cell, cellIndex) => {
-                    boardState[`col${colIndex}-${cellIndex}`] = cell.textContent;
-                });
-            });
-            boards.push(boardState);
-        });
-        localStorage.setItem('bingoBoardsState', JSON.stringify(boards));
+        localStorage.setItem('bingoBoardsState', JSON.stringify(bingoBoardsState));
     }
 
     // Filter boards based on search input
