@@ -98,4 +98,53 @@ document.addEventListener('DOMContentLoaded', () => {
     function createBingoColumn(min, max, hasFreeCell = false) {
         const column = document.createElement('div');
         column.classList.add('bingoColumn');
-        const numbers = getRandomNumbers(min, max, 5
+        const numbers = getRandomNumbers(min, max, 5);
+        numbers.forEach((num, index) => {
+            const cell = document.createElement('div');
+            cell.classList.add('bingoCell');
+            cell.textContent = hasFreeCell && index === 2 ? 'FREE' : num;
+            cell.dataset.number = hasFreeCell && index === 2 ? 'FREE' : num;
+            if (cell.textContent === 'FREE') {
+                cell.classList.add('marked');
+            }
+            column.appendChild(cell);
+        });
+        return column;
+    }
+
+    // Mark a number across all boards
+    function markNumber(number) {
+        if (!generatedNumbers.includes(number)) {
+            generatedNumbers.push(number);
+            document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
+                cell.classList.add('marked');
+            });
+        }
+    }
+
+    // Reset the game
+    function resetGame() {
+        generatedNumbers = [];
+        document.querySelectorAll('.bingoCell').forEach(cell => {
+            cell.classList.remove('marked');
+        });
+        createBingoBoards();
+        createMasterBoard();
+    }
+
+    // Filter boards based on search input
+    searchBox.addEventListener('input', () => {
+        const query = searchBox.value.trim();
+        document.querySelectorAll('.bingoBoard').forEach(board => {
+            if (!query || board.dataset.boardNumber.includes(query)) {
+                board.style.display = '';
+            } else {
+                board.style.display = 'none';
+            }
+        });
+    });
+
+    resetGameBtn.addEventListener('click', resetGame);
+    createMasterBoard();
+    createBingoBoards();
+});
