@@ -54,6 +54,7 @@ h2 {
 
 #masterBoardContainer {
     margin-bottom: 20px;
+    display: flex; /* Asegura que esté en forma horizontal */
 }
 
 #bingoBoardsContainer {
