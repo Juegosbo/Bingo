@@ -59,6 +59,10 @@ h2 {
     border-radius: 8px;
     background-color: #f9f9f9;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
 .bingoBoardNumber {
@@ -75,6 +79,8 @@ h2 {
     text-align: center;
     font-weight: bold;
     font-size: 18px;
+    letter-spacing: 0; /* Ajusta el espacio entre las letras */
+    margin-bottom: 10px; /* Espacio entre letras y números */
 }
 
 .bingoColumn {
