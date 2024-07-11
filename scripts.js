@@ -107,4 +107,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Filter boards based on search input
     searchBox.addEventListener('input', () => {
         const query = searchBox.value.trim();
-        document.querySelectorAll('.bingoBoard').for
+        document.querySelectorAll('.bingoBoard').forEach(board => {
+            if (!query || board.dataset.boardNumber.includes(query)) {
+                board.style.display = '';
+            } else {
+                board.style.display = 'none';
+            }
+        });
+    });
+
+    generateNumberBtn.addEventListener('click', generateNumber);
+    resetGameBtn.addEventListener('click', resetGame);
