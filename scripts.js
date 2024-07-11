@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bingoBoardsContainer = document.getElementById('bingoBoardsContainer');
     const generateNumberBtn = document.getElementById('generateNumber');
     const generatedNumberDiv = document.getElementById('generatedNumber');
+    const searchBox = document.getElementById('searchBox');
     const numbers = Array.from({ length: 75 }, (_, i) => i + 1);
     let generatedNumbers = [];
 
@@ -19,9 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Create Bingo Boards
     function createBingoBoards() {
-        for (let i = 0; i < 100; i++) {
+        for (let i = 1; i <= 100; i++) {
             const board = document.createElement('div');
             board.classList.add('bingoBoard');
+            board.dataset.boardNumber = i;
+
+            const boardNumber = document.createElement('div');
+            boardNumber.classList.add('bingoBoardNumber');
+            boardNumber.textContent = `Cartón Nº ${i}`;
+            board.appendChild(boardNumber);
 
             const header = document.createElement('div');
             header.classList.add('bingoHeader');
@@ -68,6 +75,18 @@ document.addEventListener('DOMContentLoaded', () => {
             cell.classList.add('marked');
         });
     }
+
+    // Filter boards based on search input
+    searchBox.addEventListener('input', () => {
+        const query = searchBox.value.trim();
+        document.querySelectorAll('.bingoBoard').forEach(board => {
+            if (!query || board.dataset.boardNumber.includes(query)) {
+                board.style.display = '';
+            } else {
+                board.style.display = 'none';
+            }
+        });
+    });
 
     generateNumberBtn.addEventListener('click', generateNumber);
     createBingoBoards();
