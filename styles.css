@@ -82,7 +82,7 @@ h2 {
     padding: 10px;
     border-radius: 8px;
     background-color: #f9f9f9;
-    width: 150px;
+    width: 100px;
 }
 
 #bingoBoardsContainer {
@@ -116,21 +116,15 @@ h2 {
     grid-template-columns: repeat(5, 1fr); /* Asegura que las letras estén correctamente alineadas con las columnas */
     text-align: center;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 14px;
     letter-spacing: 0; /* Ajusta el espacio entre las letras */
-    margin-bottom: 10px; /* Espacio entre letras y números */
-}
-
-.bingoRow { 
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Asegura que los números estén alineados horizontalmente */
-    gap: 5px;
+    margin-bottom: 5px; /* Espacio entre letras y números */
 }
 
 .bingoColumn {
     display: grid;
-    grid-template-rows: repeat(5, 1fr);
-    gap: 5px;
+    grid-template-rows: repeat(15, 1fr); /* 15 filas para los números */
+    gap: 1px;
 }
 
 .bingoCell {
@@ -141,7 +135,7 @@ h2 {
     align-items: center;
     border: 1px solid #ddd;
     background-color: #fff;
-    font-size: 14px; /* Ajusta el tamaño de la fuente */
+    font-size: 10px; /* Ajusta el tamaño de la fuente */
     cursor: pointer;
 }
 
