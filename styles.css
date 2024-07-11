@@ -93,6 +93,12 @@ h2 {
     margin-bottom: 10px; /* Espacio entre letras y números */
 }
 
+.bingoRow { 
+    display: grid;
+    grid-template-columns: repeat(15, 1fr); /* Asegura que los números estén alineados horizontalmente */
+    gap: 5px;
+}
+
 .bingoColumn {
     display: grid;
     grid-template-rows: repeat(5, 1fr);
