@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const randomIndex = Math.floor(Math.random() * numbers.length);
         const number = numbers.splice(randomIndex, 1)[0];
         generatedNumbers.push(number);
-        generatedNumberDiv.textContent = number;
+        generatedNumberDiv.textContent = `Número Generado: ${number}`;
 
         document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
             cell.classList.add('marked');
