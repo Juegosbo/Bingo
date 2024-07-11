@@ -1,11 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const masterBoardContainer = document.getElementById('masterBoardContainer');
     const bingoBoardsContainer = document.getElementById('bingoBoardsContainer');
-    const generateNumberBtn = document.getElementById('generateNumber');
     const resetGameBtn = document.getElementById('resetGame');
-    const generatedNumberDiv = document.getElementById('generatedNumber');
     const searchBox = document.getElementById('searchBox');
-    let numbers = Array.from({ length: 75 }, (_, i) => i + 1);
     let generatedNumbers = [];
+
+    // Helper function to generate numbers for the master board
+    function createMasterBoard() {
+        const board = document.createElement('div');
+        board.classList.add('bingoBoard');
+        board.innerHTML = `<div class="bingoHeader">
+                                <div>B</div><div>I</div><div>N</div><div>G</div><div>O</div>
+                           </div>`;
+        
+        const columns = document.createElement('div');
+        columns.classList.add('bingoColumns');
+        columns.style.display = 'grid';
+        columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
+        columns.style.gap = '5px';
+
+        for (let i = 0; i < 5; i++) {
+            const column = document.createElement('div');
+            column.classList.add('bingoColumn');
+            for (let j = 0; j < 15; j++) {
+                const cell = document.createElement('div');
+                cell.classList.add('bingoCell');
+                const num = j + 1 + (i * 15);
+                cell.textContent = num;
+                cell.dataset.number = num;
+                cell.addEventListener('click', () => markNumber(num));
+                column.appendChild(cell);
+            }
+            columns.appendChild(column);
+        }
+
+        board.appendChild(columns);
+        masterBoardContainer.appendChild(board);
+    }
 
     // Helper function to generate a random number in a range
     function getRandomNumbers(min, max, count) {
@@ -42,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
             board.appendChild(header);
 
             const columns = document.createElement('div');
-            columns.classList.add('bingoColumns'); // Añadimos una clase para los estilos
+            columns.classList.add('bingoColumns');
             columns.style.display = 'grid';
             columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
             columns.style.gap = '5px'; // Ajusta el espacio entre las columnas
@@ -67,57 +98,4 @@ document.addEventListener('DOMContentLoaded', () => {
     function createBingoColumn(min, max, hasFreeCell = false) {
         const column = document.createElement('div');
         column.classList.add('bingoColumn');
-        const numbers = getRandomNumbers(min, max, 5);
-        numbers.forEach((num, index) => {
-            const cell = document.createElement('div');
-            cell.classList.add('bingoCell');
-            cell.textContent = hasFreeCell && index === 2 ? 'FREE' : num;
-            cell.dataset.number = hasFreeCell && index === 2 ? 'FREE' : num;
-            if (cell.textContent === 'FREE') {
-                cell.classList.add('marked');
-            }
-            column.appendChild(cell);
-        });
-        return column;
-    }
-
-    // Generate a random Bingo number
-    function generateNumber() {
-        if (numbers.length === 0) {
-            alert('Todos los números han sido generados.');
-            return;
-        }
-        const randomIndex = Math.floor(Math.random() * numbers.length);
-        const number = numbers.splice(randomIndex, 1)[0];
-        generatedNumbers.push(number);
-        generatedNumberDiv.textContent = `Número Generado: ${number}`;
-
-        document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
-            cell.classList.add('marked');
-        });
-    }
-
-    // Reset the game
-    function resetGame() {
-        numbers = Array.from({ length: 75 }, (_, i) => i + 1);
-        generatedNumbers = [];
-        generatedNumberDiv.textContent = '';
-        createBingoBoards();
-    }
-
-    // Filter boards based on search input
-    searchBox.addEventListener('input', () => {
-        const query = searchBox.value.trim();
-        document.querySelectorAll('.bingoBoard').forEach(board => {
-            if (!query || board.dataset.boardNumber.includes(query)) {
-                board.style.display = '';
-            } else {
-                board.style.display = 'none';
-            }
-        });
-    });
-
-    generateNumberBtn.addEventListener('click', generateNumber);
-    resetGameBtn.addEventListener('click', resetGame);
-    createBingoBoards();
-});
+        const numbers = getRandomNumbers(min, max, 5
