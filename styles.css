@@ -82,7 +82,7 @@ h2 {
     padding: 10px;
     border-radius: 8px;
     background-color: #f9f9f9;
-    width: 150px; /* Ajusta el ancho del cartón maestro */
+    width: 120px; /* Ajusta el ancho del cartón maestro */
 }
 
 #bingoBoardsContainer {
@@ -129,13 +129,13 @@ h2 {
 
 .bingoCell {
     width: 100%;
-    height: 30px; /* Ajusta el tamaño de la celda para mayor visibilidad */
+    height: 50px; /* Ajusta el tamaño de la celda para mayor visibilidad */
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid #ddd;
     background-color: #fff;
-    font-size: 12px; /* Ajusta el tamaño de la fuente */
+    font-size: 20px; /* Ajusta el tamaño de la fuente */
     cursor: pointer;
 }
 
