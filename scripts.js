@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchBox = document.getElementById('searchBox');
     const searchButton = document.getElementById('searchButton');
     let generatedNumbers = [];
+    let boardNumbers = [];
 
     // Helper function to generate numbers for the master board
     function createMasterBoard() {
@@ -97,11 +98,11 @@ document.addEventListener('DOMContentLoaded', () => {
             columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
             columns.style.gap = '5px'; // Ajusta el espacio entre las columnas
 
-            const bColumn = createBingoColumn(1, 15);
-            const iColumn = createBingoColumn(16, 30);
-            const nColumn = createBingoColumn(31, 45, true); // Middle cell is free
-            const gColumn = createBingoColumn(46, 60);
-            const oColumn = createBingoColumn(61, 75);
+            const bColumn = createBingoColumn(1, 15, false, i);
+            const iColumn = createBingoColumn(16, 30, false, i);
+            const nColumn = createBingoColumn(31, 45, true, i); // Middle cell is free
+            const gColumn = createBingoColumn(46, 60, false, i);
+            const oColumn = createBingoColumn(61, 75, false, i);
 
             columns.appendChild(bColumn);
             columns.appendChild(iColumn);
@@ -113,18 +114,22 @@ document.addEventListener('DOMContentLoaded', () => {
             bingoBoardsContainer.appendChild(board);
         }
 
-        // Restore marked cells from localStorage
-        const savedState = JSON.parse(localStorage.getItem('bingoState'));
-        if (savedState) {
-            generatedNumbers = savedState.generatedNumbers;
-            generatedNumbers.forEach(number => markNumber(number, false));
-        }
+        // Restore marked cells and board numbers from localStorage
+        restoreGameState();
     }
 
-    function createBingoColumn(min, max, hasFreeCell = false) {
+    function createBingoColumn(min, max, hasFreeCell = false, boardIndex) {
         const column = document.createElement('div');
         column.classList.add('bingoColumn');
-        const numbers = getRandomNumbers(min, max, 5);
+        let numbers;
+
+        if (boardNumbers[boardIndex - 1]) {
+            numbers = boardNumbers[boardIndex - 1].splice(0, 5);
+        } else {
+            numbers = getRandomNumbers(min, max, 5);
+            boardNumbers[boardIndex - 1] = (boardNumbers[boardIndex - 1] || []).concat(numbers);
+        }
+
         numbers.forEach((num, index) => {
             const cell = document.createElement('div');
             cell.classList.add('bingoCell');
@@ -156,7 +161,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function saveGameState() {
         const state = {
             generatedNumbers,
-            markedCells: Array.from(document.querySelectorAll('.bingoCell.marked')).map(cell => cell.dataset.number)
+            markedCells: Array.from(document.querySelectorAll('.bingoCell.marked')).map(cell => ({
+                number: cell.dataset.number,
+                boardNumber: cell.closest('.bingoBoard').dataset.boardNumber
+            })),
+            boardNumbers
         };
         localStorage.setItem('bingoState', JSON.stringify(state));
     }
@@ -166,12 +175,62 @@ document.addEventListener('DOMContentLoaded', () => {
         const savedState = JSON.parse(localStorage.getItem('bingoState'));
         if (savedState) {
             generatedNumbers = savedState.generatedNumbers || [];
+            boardNumbers = savedState.boardNumbers || [];
             const markedCells = savedState.markedCells || [];
-            markedCells.forEach(number => {
-                document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
-                    cell.classList.add('marked');
-                });
+
+            createBingoBoardsFromSavedState();
+
+            markedCells.forEach(({ number, boardNumber }) => {
+                document.querySelector(`.bingoBoard[data-board-number="${boardNumber}"] [data-number="${number}"]`).classList.add('marked');
             });
+
+            generatedNumbers.forEach(number => markNumber(number, false));
+        } else {
+            createBingoBoards();
+        }
+    }
+
+    function createBingoBoardsFromSavedState() {
+        bingoBoardsContainer.innerHTML = '';
+        for (let i = 1; i <= 100; i++) {
+            const board = document.createElement('div');
+            board.classList.add('bingoBoard');
+            board.dataset.boardNumber = i;
+
+            const boardNumber = document.createElement('div');
+            boardNumber.classList.add('bingoBoardNumber');
+            boardNumber.textContent = `Cartón Nº ${i}`;
+            board.appendChild(boardNumber);
+
+            const header = document.createElement('div');
+            header.classList.add('bingoHeader');
+            ['B', 'I', 'N', 'G', 'O'].forEach(letter => {
+                const cell = document.createElement('div');
+                cell.textContent = letter;
+                header.appendChild(cell);
+            });
+            board.appendChild(header);
+
+            const columns = document.createElement('div');
+            columns.classList.add('bingoColumns');
+            columns.style.display = 'grid';
+            columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
+            columns.style.gap = '5px'; // Ajusta el espacio entre las columnas
+
+            const bColumn = createBingoColumn(1, 15, false, i);
+            const iColumn = createBingoColumn(16, 30, false, i);
+            const nColumn = createBingoColumn(31, 45, true, i); // Middle cell is free
+            const gColumn = createBingoColumn(46, 60, false, i);
+            const oColumn = createBingoColumn(61, 75, false, i);
+
+            columns.appendChild(bColumn);
+            columns.appendChild(iColumn);
+            columns.appendChild(nColumn);
+            columns.appendChild(gColumn);
+            columns.appendChild(oColumn);
+
+            board.appendChild(columns);
+            bingoBoardsContainer.appendChild(board);
         }
     }
 
@@ -189,6 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
         generatedNumbers = [];
         clearMarks();
         masterBoardContainer.innerHTML = ''; // Limpia el contenedor del cartón maestro
+        boardNumbers = [];
         createBingoBoards();
         createMasterBoard();
         localStorage.removeItem('bingoState');
@@ -209,6 +269,5 @@ document.addEventListener('DOMContentLoaded', () => {
     resetGameBtn.addEventListener('click', resetGame);
     clearMarksBtn.addEventListener('click', clearMarks);
     createMasterBoard();
-    createBingoBoards();
     restoreGameState(); // Restore the game state when the page loads
 });
