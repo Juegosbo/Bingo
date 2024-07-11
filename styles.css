@@ -32,6 +32,7 @@ h2 {
 
 #controls {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -113,7 +114,8 @@ button:hover {
 }
 
 #generatedNumber {
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 24px;
     font-weight: bold;
+    color: #007bff;
 }
