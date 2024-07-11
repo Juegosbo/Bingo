@@ -1,25 +1,55 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const bingoBoard = document.getElementById('bingoBoard');
+    const bingoBoardsContainer = document.getElementById('bingoBoardsContainer');
     const generateNumberBtn = document.getElementById('generateNumber');
     const generatedNumberDiv = document.getElementById('generatedNumber');
     const numbers = Array.from({ length: 75 }, (_, i) => i + 1);
     let generatedNumbers = [];
 
-    // Create Bingo Board
-    function createBingoBoard() {
-        const bingoLetters = ['B', 'I', 'N', 'G', 'O'];
-        for (let i = 0; i < 25; i++) {
-            const cell = document.createElement('div');
-            cell.classList.add('bingoCell');
-            cell.textContent = i === 12 ? 'FREE' : bingoLetters[Math.floor(i / 5)] + (i + 1);
-            cell.dataset.number = i + 1;
-            if (i === 12) {
-                cell.classList.add('marked');
+    // Helper function to generate a random number in a range
+    function getRandomNumbers(min, max, count) {
+        const numbers = [];
+        while (numbers.length < count) {
+            const num = Math.floor(Math.random() * (max - min + 1)) + min;
+            if (!numbers.includes(num)) {
+                numbers.push(num);
             }
-            cell.addEventListener('click', () => {
-                cell.classList.toggle('marked');
+        }
+        return numbers;
+    }
+
+    // Create Bingo Boards
+    function createBingoBoards() {
+        for (let i = 0; i < 100; i++) {
+            const board = document.createElement('div');
+            board.classList.add('bingoBoard');
+
+            const header = document.createElement('div');
+            header.classList.add('bingoHeader');
+            ['B', 'I', 'N', 'G', 'O'].forEach(letter => {
+                const cell = document.createElement('div');
+                cell.textContent = letter;
+                header.appendChild(cell);
             });
-            bingoBoard.appendChild(cell);
+            board.appendChild(header);
+
+            const bNumbers = getRandomNumbers(1, 15, 5);
+            const iNumbers = getRandomNumbers(16, 30, 5);
+            const nNumbers = getRandomNumbers(31, 45, 4); // Middle cell is free
+            const gNumbers = getRandomNumbers(46, 60, 5);
+            const oNumbers = getRandomNumbers(61, 75, 5);
+
+            [...bNumbers, ...iNumbers, ...nNumbers.slice(0, 2), 'FREE', ...nNumbers.slice(2), ...gNumbers, ...oNumbers].forEach((num, index) => {
+                const cell = document.createElement('div');
+                cell.classList.add('bingoCell');
+                cell.textContent = num === 'FREE' ? 'FREE' : num;
+                cell.dataset.number = num;
+                if (num === 'FREE') {
+                    cell.classList.add('marked');
+                }
+                board.appendChild(cell);
+            });
+
+            bingoBoardsContainer.appendChild(board);
         }
     }
 
@@ -33,8 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const number = numbers.splice(randomIndex, 1)[0];
         generatedNumbers.push(number);
         generatedNumberDiv.textContent = number;
+
+        document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
+            cell.classList.add('marked');
+        });
     }
 
     generateNumberBtn.addEventListener('click', generateNumber);
-    createBingoBoard();
+    createBingoBoards();
 });
