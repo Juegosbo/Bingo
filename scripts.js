@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function createMasterBoard() {
         const board = document.createElement('div');
         board.classList.add('bingoBoard');
-        
+
         const header = document.createElement('div');
         header.classList.add('bingoHeader');
         ['B', 'I', 'N', 'G', 'O'].forEach(letter => {
@@ -20,18 +20,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         board.appendChild(header);
 
+        const columns = document.createElement('div');
+        columns.classList.add('bingoColumns');
+        columns.style.display = 'grid';
+        columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
+        columns.style.gap = '5px';
+
         const bColumn = createFixedBingoColumn(1, 15);
         const iColumn = createFixedBingoColumn(16, 30);
         const nColumn = createFixedBingoColumn(31, 45);
         const gColumn = createFixedBingoColumn(46, 60);
         const oColumn = createFixedBingoColumn(61, 75);
 
-        board.appendChild(bColumn);
-        board.appendChild(iColumn);
-        board.appendChild(nColumn);
-        board.appendChild(gColumn);
-        board.appendChild(oColumn);
+        columns.appendChild(bColumn);
+        columns.appendChild(iColumn);
+        columns.appendChild(nColumn);
+        columns.appendChild(gColumn);
+        columns.appendChild(oColumn);
 
+        board.appendChild(columns);
         masterBoardContainer.appendChild(board);
     }
 
