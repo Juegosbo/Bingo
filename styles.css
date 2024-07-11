@@ -16,8 +16,9 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 80%;
-    max-width: 800px;
+    width: 90%;
+    max-width: 1200px;
+    overflow-y: scroll;
 }
 
 h1 {
@@ -29,22 +30,35 @@ h2 {
     color: #666;
 }
 
-#bingoBoard {
+#bingoBoardsContainer {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
     margin: 20px 0;
 }
 
+.bingoBoard {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.bingoHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
 .bingoCell {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid #ddd;
-    background-color: #f9f9f9;
-    font-size: 20px;
+    background-color: #fff;
+    font-size: 16px;
     cursor: pointer;
 }
 
