@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Create Bingo Boards
     function createBingoBoards() {
+        bingoBoardsContainer.innerHTML = '';
         for (let i = 1; i <= 100; i++) {
             const board = document.createElement('div');
             board.classList.add('bingoBoard');
@@ -86,9 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         numbers = Array.from({ length: 75 }, (_, i) => i + 1);
         generatedNumbers = [];
         generatedNumberDiv.textContent = '';
-        document.querySelectorAll('.bingoCell').forEach(cell => {
-            cell.classList.remove('marked');
-        });
+        createBingoBoards();
     }
 
     // Filter boards based on search input
