@@ -59,9 +59,9 @@ h2 {
     border-radius: 8px;
     background-color: #f9f9f9;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-rows: auto 1fr; /* Asegura que las letras y los números estén alineados verticalmente */
+    gap: 10px;
 }
 
 .bingoBoardNumber {
