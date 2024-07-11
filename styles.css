@@ -63,14 +63,22 @@ h2 {
 }
 
 .bingoHeader {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.bingoCellContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
 }
 
 .bingoCell {
-    width: 30px;
-    height: 30px;
+    width: 100%;
+    padding: 10px 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,7 +86,6 @@ h2 {
     background-color: #fff;
     font-size: 12px;
     cursor: pointer;
-    margin: 1px;
 }
 
 .bingoCell.marked {
