@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const masterBoardContainer = document.getElementById('masterBoardContainer');
     const bingoBoardsContainer = document.getElementById('bingoBoardsContainer');
     const resetGameBtn = document.getElementById('resetGame');
+    const clearMarksBtn = document.getElementById('clearMarks');
     const searchBox = document.getElementById('searchBox');
     const searchButton = document.getElementById('searchButton');
     let generatedNumbers = [];
@@ -140,12 +141,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Reset the game
-    function resetGame() {
-        generatedNumbers = [];
+    // Clear all marks without resetting numbers
+    function clearMarks() {
         document.querySelectorAll('.bingoCell').forEach(cell => {
             cell.classList.remove('marked');
         });
+    }
+
+    // Reset the game
+    function resetGame() {
+        generatedNumbers = [];
+        clearMarks();
         masterBoardContainer.innerHTML = ''; // Limpia el contenedor del cartón maestro
         createBingoBoards();
         createMasterBoard();
@@ -164,6 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     resetGameBtn.addEventListener('click', resetGame);
+    clearMarksBtn.addEventListener('click', clearMarks);
     createMasterBoard();
     createBingoBoards();
 });
