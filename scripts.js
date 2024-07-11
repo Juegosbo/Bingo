@@ -2,11 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const masterBoardContainer = document.getElementById('masterBoardContainer');
     const bingoBoardsContainer = document.getElementById('bingoBoardsContainer');
     const resetGameBtn = document.getElementById('resetGame');
-    const clearMarksBtn = document.getElementById('clearMarks');
     const searchBox = document.getElementById('searchBox');
     const searchButton = document.getElementById('searchButton');
-    let generatedNumbers = [];
-    let boardNumbers = [];
+    let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
+    let bingoBoardsState = JSON.parse(localStorage.getItem('bingoBoardsState')) || [];
 
     // Helper function to generate numbers for the master board
     function createMasterBoard() {
@@ -42,6 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         board.appendChild(columns);
         masterBoardContainer.appendChild(board);
+
+        // Mark previously generated numbers
+        generatedNumbers.forEach(number => {
+            markNumber(number);
+        });
     }
 
     function createFixedBingoColumn(min, max) {
@@ -98,11 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
             columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
             columns.style.gap = '5px'; // Ajusta el espacio entre las columnas
 
-            const bColumn = createBingoColumn(1, 15, false, i);
-            const iColumn = createBingoColumn(16, 30, false, i);
-            const nColumn = createBingoColumn(31, 45, true, i); // Middle cell is free
-            const gColumn = createBingoColumn(46, 60, false, i);
-            const oColumn = createBingoColumn(61, 75, false, i);
+            const bColumn = createBingoColumn(1, 15, i);
+            const iColumn = createBingoColumn(16, 30, i);
+            const nColumn = createBingoColumn(31, 45, i, true); // Middle cell is free
+            const gColumn = createBingoColumn(46, 60, i);
+            const oColumn = createBingoColumn(61, 75, i);
 
             columns.appendChild(bColumn);
             columns.appendChild(iColumn);
@@ -113,31 +117,25 @@ document.addEventListener('DOMContentLoaded', () => {
             board.appendChild(columns);
             bingoBoardsContainer.appendChild(board);
         }
+
+        // Mark previously generated numbers
+        generatedNumbers.forEach(number => {
+            markNumber(number);
+        });
     }
 
-    function createBingoColumn(min, max, hasFreeCell = false, boardIndex) {
+    function createBingoColumn(min, max, boardNumber, hasFreeCell = false) {
         const column = document.createElement('div');
         column.classList.add('bingoColumn');
-        let numbers;
-
-        // Check if there are saved numbers for this board
-        const savedState = JSON.parse(localStorage.getItem('bingoState'));
-        if (savedState && savedState.boardNumbers && savedState.boardNumbers[boardIndex - 1]) {
-            numbers = savedState.boardNumbers[boardIndex - 1];
-        } else {
-            numbers = getRandomNumbers(min, max, 5);
-            if (!boardNumbers[boardIndex - 1]) {
-                boardNumbers[boardIndex - 1] = [];
-            }
-            boardNumbers[boardIndex - 1] = numbers;
-        }
-
+        const numbers = getRandomNumbers(min, max, 5);
+        const boardState = bingoBoardsState[boardNumber - 1] || {};
         numbers.forEach((num, index) => {
             const cell = document.createElement('div');
             cell.classList.add('bingoCell');
-            cell.textContent = hasFreeCell && index === 2 ? 'FREE' : num;
-            cell.dataset.number = hasFreeCell && index === 2 ? 'FREE' : num;
-            if (cell.textContent === 'FREE') {
+            const cellNumber = boardState[`col${min}-${index}`] !== undefined ? boardState[`col${min}-${index}`] : (hasFreeCell && index === 2 ? 'FREE' : num);
+            cell.textContent = cellNumber;
+            cell.dataset.number = cellNumber;
+            if (cellNumber === 'FREE' || generatedNumbers.includes(Number(cellNumber))) {
                 cell.classList.add('marked');
             }
             column.appendChild(cell);
@@ -146,74 +144,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Mark a number across all boards
-    function markNumber(number, saveState = true) {
+    function markNumber(number) {
         if (!generatedNumbers.includes(number)) {
             generatedNumbers.push(number);
-            document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
-                cell.classList.add('marked');
-            });
-
-            if (saveState) {
-                saveGameState();
-            }
+            saveState();
         }
-    }
-
-    // Save the game state to localStorage
-    function saveGameState() {
-        const state = {
-            generatedNumbers,
-            markedCells: Array.from(document.querySelectorAll('.bingoCell.marked')).map(cell => ({
-                number: cell.dataset.number,
-                boardNumber: cell.closest('.bingoBoard').dataset.boardNumber
-            })),
-            boardNumbers: Array.from(document.querySelectorAll('.bingoBoard')).map(board => {
-                return Array.from(board.querySelectorAll('.bingoColumn .bingoCell')).map(cell => cell.textContent);
-            })
-        };
-        localStorage.setItem('bingoState', JSON.stringify(state));
-    }
-
-    // Restore the game state from localStorage
-    function restoreGameState() {
-        const savedState = JSON.parse(localStorage.getItem('bingoState'));
-        if (savedState) {
-            generatedNumbers = savedState.generatedNumbers || [];
-            const markedCells = savedState.markedCells || [];
-            boardNumbers = savedState.boardNumbers || [];
-
-            createBingoBoards(); // Create boards with the saved numbers
-
-            // Restore the marked cells
-            markedCells.forEach(({ number, boardNumber }) => {
-                document.querySelector(`.bingoBoard[data-board-number="${boardNumber}"] [data-number="${number}"]`).classList.add('marked');
-            });
-
-            // Restore the generated numbers
-            generatedNumbers.forEach(number => markNumber(number, false));
-        } else {
-            createBingoBoards();
-        }
-    }
-
-    // Clear all marks without resetting numbers
-    function clearMarks() {
-        document.querySelectorAll('.bingoCell').forEach(cell => {
-            cell.classList.remove('marked');
+        document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
+            cell.classList.add('marked');
         });
-        generatedNumbers = [];
-        saveGameState();
     }
 
     // Reset the game
     function resetGame() {
         generatedNumbers = [];
-        clearMarks();
+        bingoBoardsState = [];
+        saveState();
+        document.querySelectorAll('.bingoCell').forEach(cell => {
+            cell.classList.remove('marked');
+        });
         masterBoardContainer.innerHTML = ''; // Limpia el contenedor del cartón maestro
-        boardNumbers = [];
         createBingoBoards();
         createMasterBoard();
-        localStorage.removeItem('bingoState');
+    }
+
+    // Save generated numbers and boards state to localStorage
+    function saveState() {
+        localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
+        const boards = [];
+        document.querySelectorAll('.bingoBoard').forEach((board, boardIndex) => {
+            const boardState = {};
+            board.querySelectorAll('.bingoColumn').forEach((col, colIndex) => {
+                col.querySelectorAll('.bingoCell').forEach((cell, cellIndex) => {
+                    boardState[`col${colIndex}-${cellIndex}`] = cell.textContent;
+                });
+            });
+            boards.push(boardState);
+        });
+        localStorage.setItem('bingoBoardsState', JSON.stringify(boards));
     }
 
     // Filter boards based on search input
@@ -229,10 +196,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     resetGameBtn.addEventListener('click', resetGame);
-    clearMarksBtn.addEventListener('click', clearMarks);
     createMasterBoard();
-    restoreGameState(); // Restore the game state when the page loads
-
-    // Save the game state before the page is unloaded
-    window.addEventListener('beforeunload', saveGameState);
+    createBingoBoards();
 });
