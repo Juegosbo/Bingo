@@ -3,9 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const bingoBoardsContainer = document.getElementById('bingoBoardsContainer');
     const resetGameBtn = document.getElementById('resetGame');
     const searchBox = document.getElementById('searchBox');
+    const searchButton = document.getElementById('searchButton');
     let generatedNumbers = [];
 
-    // Helper function to generate numbers for the master board.
+    // Helper function to generate numbers for the master board
     function createMasterBoard() {
         const board = document.createElement('div');
         board.classList.add('bingoBoard');
@@ -18,26 +19,22 @@ document.addEventListener('DOMContentLoaded', () => {
             header.appendChild(cell);
         });
         board.appendChild(header);
-        
-        const rows = document.createElement('div');
-        rows.classList.add('bingoRows');
-        rows.style.display = 'grid';
-        rows.style.gridTemplateColumns = 'repeat(5, 1fr)';
-        rows.style.gap = '5px';
 
-        const bRow = createBingoRow(1, 15);
-        const iRow = createBingoRow(16, 30);
-        const nRow = createBingoRow(31, 45);
-        const gRow = createBingoRow(46, 60);
-        const oRow = createBingoRow(61, 75);
+        for (let row = 0; row < 5; row++) {
+            const bingoRow = document.createElement('div');
+            bingoRow.classList.add('bingoRow');
+            for (let col = 0; col < 5; col++) {
+                const cell = document.createElement('div');
+                cell.classList.add('bingoCell');
+                const num = row + 1 + (col * 15);
+                cell.textContent = num;
+                cell.dataset.number = num;
+                cell.addEventListener('click', () => markNumber(num));
+                bingoRow.appendChild(cell);
+            }
+            board.appendChild(bingoRow);
+        }
 
-        rows.appendChild(bRow);
-        rows.appendChild(iRow);
-        rows.appendChild(nRow);
-        rows.appendChild(gRow);
-        rows.appendChild(oRow);
-
-        board.appendChild(rows);
         masterBoardContainer.appendChild(board);
     }
 
@@ -115,20 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return column;
     }
 
-    function createBingoRow(min, max) {
-        const row = document.createElement('div');
-        row.classList.add('bingoRow');
-        for (let i = min; i <= max; i++) {
-            const cell = document.createElement('div');
-            cell.classList.add('bingoCell');
-            cell.textContent = i;
-            cell.dataset.number = i;
-            cell.addEventListener('click', () => markNumber(i));
-            row.appendChild(cell);
-        }
-        return row;
-    }
-
     // Mark a number across all boards
     function markNumber(number) {
         if (!generatedNumbers.includes(number)) {
@@ -150,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Filter boards based on search input
-    searchBox.addEventListener('input', () => {
+    searchButton.addEventListener('click', () => {
         const query = searchBox.value.trim();
         document.querySelectorAll('.bingoBoard').forEach(board => {
             if (!query || board.dataset.boardNumber.includes(query)) {
