@@ -20,20 +20,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         board.appendChild(header);
 
-        ['B', 'I', 'N', 'G', 'O'].forEach((letter, index) => {
+        const columns = [
+            Array.from({ length: 15 }, (_, i) => i + 1),
+            Array.from({ length: 15 }, (_, i) => i + 16),
+            Array.from({ length: 15 }, (_, i) => i + 31),
+            Array.from({ length: 15 }, (_, i) => i + 46),
+            Array.from({ length: 15 }, (_, i) => i + 61),
+        ];
+
+        for (let i = 0; i < 5; i++) {
             const column = document.createElement('div');
             column.classList.add('bingoColumn');
-            for (let i = 1; i <= 15; i++) {
+            for (let j = 0; j < 5; j++) {
                 const cell = document.createElement('div');
                 cell.classList.add('bingoCell');
-                const num = i + (index * 15);
+                const num = columns[i][j];
                 cell.textContent = num;
                 cell.dataset.number = num;
                 cell.addEventListener('click', () => markNumber(num));
                 column.appendChild(cell);
             }
             board.appendChild(column);
-        });
+        }
 
         masterBoardContainer.appendChild(board);
     }
