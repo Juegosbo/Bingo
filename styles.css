@@ -77,8 +77,8 @@ h2 {
 
 #masterBoardContainer {
     position: fixed;
-    top: 80px; /* Ajusta la posición para que no cubra el botón de búsqueda */
-    right: 10px; /* Ajusta la posición a la derecha */
+    top: 50px; /* Mueve la posición más arriba */
+    right: 50px; /* Mueve la posición más a la izquierda */
     display: flex;
     flex-direction: column;
     align-items: center;
