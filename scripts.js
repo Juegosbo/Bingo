@@ -20,20 +20,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         board.appendChild(header);
 
-        for (let row = 0; row < 5; row++) {
-            const bingoRow = document.createElement('div');
-            bingoRow.classList.add('bingoRow');
-            for (let col = 0; col < 5; col++) {
+        ['B', 'I', 'N', 'G', 'O'].forEach((letter, index) => {
+            const column = document.createElement('div');
+            column.classList.add('bingoColumn');
+            for (let i = 1; i <= 15; i++) {
                 const cell = document.createElement('div');
                 cell.classList.add('bingoCell');
-                const num = row + 1 + (col * 15);
+                const num = i + (index * 15);
                 cell.textContent = num;
                 cell.dataset.number = num;
                 cell.addEventListener('click', () => markNumber(num));
-                bingoRow.appendChild(cell);
+                column.appendChild(cell);
             }
-            board.appendChild(bingoRow);
-        }
+            board.appendChild(column);
+        });
 
         masterBoardContainer.appendChild(board);
     }
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     searchButton.addEventListener('click', () => {
         const query = searchBox.value.trim();
         document.querySelectorAll('.bingoBoard').forEach(board => {
-            if (!query || board.dataset.boardNumber.includes(query)) {
+            if (!query || board.dataset.boardNumber === query) {
                 board.style.display = '';
             } else {
                 board.style.display = 'none';
