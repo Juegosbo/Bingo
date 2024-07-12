@@ -188,9 +188,9 @@ h1 img {
 }
 
 .bingoBoard.small {
-    width: 150px;
-    height: 150px;
-    font-size: 10px;
+    width: 60px; /* Ajusta el tamaño del cartón pequeño */
+    height: 60px; /* Ajusta el tamaño del cartón pequeño */
+    font-size: 6px; /* Ajusta el tamaño de la fuente del cartón pequeño */
 }
 
 .bingoBoardNumber {
@@ -313,7 +313,17 @@ input[type="text"] {
 
 /* Estilos para la vista previa de la figura */
 #figurePreviewContainer {
-    margin-top: 20px;
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    width: auto;
 }
 
 #figurePreview {
