@@ -9,7 +9,7 @@ body {
     justify-content: flex-start;
     align-items: center;
     height: 100vh;
-    background-image: url('fondo3.png'); /* Ruta de la imagen de fondo */
+    background-image: url('ruta_de_tu_imagen/fondo.jpg'); /* Ruta de la imagen de fondo */
     background-size: cover; /* Asegura que la imagen cubra toda la página */
     background-position: center; /* Centra la imagen de fondo */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
@@ -176,9 +176,12 @@ h1 img {
 
 .bingoBoardNumber {
     font-size: 14px;
-    color: #888;
+    color: #fff; /* Color de texto blanco para mayor contraste */
     font-family: "Times New Roman", Times, serif;
     font-weight: bold;
+    background-color: green; /* Fondo verde */
+    padding: 5px; /* Añadir algo de relleno alrededor del texto */
+    border-radius: 4px; /* Bordes redondeados para el fondo */
     margin-bottom: 5px; /* Espacio entre el número y el tablero */
 }
 
@@ -190,11 +193,13 @@ h1 img {
     font-size: 14px;
     letter-spacing: 0;
     margin-bottom: 5px;
-    background-color: #d4edda; /* Fondo verde claro */
+    background-color: green; /* Fondo verde */
+    color: #fff; /* Color de texto blanco */
 }
 
 .bingoHeader div {
-    background-color: #d4edda; /* Fondo verde claro para cada letra */
+    background-color: green; /* Fondo verde para cada letra */
+    color: #fff; /* Color de texto blanco */
 }
 
 .bingoColumn {
