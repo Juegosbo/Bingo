@@ -179,9 +179,9 @@ h1 img {
     color: #fff; /* Color de texto blanco para mayor contraste */
     font-family: "Times New Roman", Times, serif;
     font-weight: bold;
-    background-color: green; /* Fondo verde */
-    padding: 5px; /* Añadir algo de relleno alrededor del texto */
-    border-radius: 4px; /* Bordes redondeados para el fondo */
+    background-color: #41D23A; /* Fondo verde */
+    padding: 10px; /* Añadir algo de relleno alrededor del texto */
+    border-radius: 10px; /* Bordes redondeados para el fondo */
     margin-bottom: 5px; /* Espacio entre el número y el tablero */
 }
 
