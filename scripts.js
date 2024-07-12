@@ -192,9 +192,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function clearMarks() {
-        document.querySelectorAll('.bingoCell').forEach(cell => {
-            cell.classList.remove('marked');
+        // Clear marks from all boards in memory
+        Object.keys(bingoBoardsState).forEach(boardNumber => {
+            Object.keys(bingoBoardsState[boardNumber]).forEach(colKey => {
+                bingoBoardsState[boardNumber][colKey].forEach((number, index) => {
+                    if (number !== 'FREE') {
+                        const cell = document.querySelector(`[data-number="${number}"]`);
+                        if (cell) {
+                            cell.classList.remove('marked');
+                        }
+                    }
+                });
+            });
         });
+        // Update state and save
+        generatedNumbers = [];
+        saveState();
     }
 
     function saveState() {
