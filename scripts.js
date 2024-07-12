@@ -2,13 +2,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const masterBoardContainer = document.getElementById('masterBoardContainer');
     const bingoBoardsContainer = document.getElementById('bingoBoardsContainer');
     const resetGameBtn = document.getElementById('resetGame');
-    const clearMarksBtn = document.getElementById('clearMarks'); // Botón Limpiar
+    const clearMarksBtn = document.getElementById('clearMarks');
     const searchBox = document.getElementById('searchBox');
     const searchButton = document.getElementById('searchButton');
+    const prevPageBtn = document.getElementById('prevPage');
+    const nextPageBtn = document.getElementById('nextPage');
+    const currentPageSpan = document.getElementById('currentPage');
+    const totalPagesSpan = document.getElementById('totalPages');
+    
+    const boardsPerPage = 10;
+    let currentPage = 1;
+    let totalPages;
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
     let bingoBoardsState = JSON.parse(localStorage.getItem('bingoBoardsState')) || {};
+    const totalBoards = 1000;
 
-    // Helper function to generate numbers for the master boards
+    // Calculate total pages
+    totalPages = Math.ceil(totalBoards / boardsPerPage);
+    totalPagesSpan.textContent = totalPages;
+
     function createMasterBoard() {
         const board = document.createElement('div');
         board.classList.add('bingoBoard');
@@ -63,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return column;
     }
 
-    // Helper function to generate a random number in a range
     function getRandomNumbers(min, max, count) {
         const numbers = [];
         while (numbers.length < count) {
@@ -75,10 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return numbers;
     }
 
-    // Create Bingo Boards
-    function createBingoBoards() {
+    function createBingoBoards(page) {
         bingoBoardsContainer.innerHTML = '';
-        for (let i = 1; i <= 100; i++) {
+        const startBoard = (page - 1) * boardsPerPage + 1;
+        const endBoard = Math.min(startBoard + boardsPerPage - 1, totalBoards);
+
+        for (let i = startBoard; i <= endBoard; i++) {
             const board = document.createElement('div');
             board.classList.add('bingoBoard');
             board.dataset.boardNumber = i;
@@ -105,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const bColumn = createBingoColumn(1, 15, i);
             const iColumn = createBingoColumn(16, 30, i);
-            const nColumn = createBingoColumn(31, 45, i, true); // Middle cell is free
+            const nColumn = createBingoColumn(31, 45, i, true);
             const gColumn = createBingoColumn(46, 60, i);
             const oColumn = createBingoColumn(61, 75, i);
 
@@ -119,10 +132,11 @@ document.addEventListener('DOMContentLoaded', () => {
             bingoBoardsContainer.appendChild(board);
         }
 
-        // Mark previously generated numbers
         generatedNumbers.forEach(number => {
             markNumber(number);
         });
+
+        currentPageSpan.textContent = currentPage;
     }
 
     function createBingoColumn(min, max, boardNumber, hasFreeCell = false) {
@@ -144,7 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             column.appendChild(cell);
 
-            // Save number to board state
             if (!boardState[`col${min}-${max}`]) {
                 boardState[`col${min}-${max}`] = numbers;
             }
@@ -155,7 +168,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return column;
     }
 
-    // Mark a number across all boards
     function markNumber(number) {
         if (!generatedNumbers.includes(number)) {
             generatedNumbers.push(number);
@@ -166,7 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Reset the game
     function resetGame() {
         generatedNumbers = [];
         bingoBoardsState = {};
@@ -174,26 +185,24 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.bingoCell').forEach(cell => {
             cell.classList.remove('marked');
         });
-        masterBoardContainer.innerHTML = ''; // Limpia el contenedor del cartón maestro
-        createBingoBoards();
+        masterBoardContainer.innerHTML = '';
+        currentPage = 1;
+        createBingoBoards(currentPage);
         createMasterBoard();
     }
 
-    // Clear marks without resetting the boards
     function clearMarks() {
         document.querySelectorAll('.bingoCell').forEach(cell => {
             cell.classList.remove('marked');
         });
     }
 
-    // Save generated numbers and boards state to localStorage
     function saveState() {
         localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
         localStorage.setItem('bingoBoardsState', JSON.stringify(bingoBoardsState));
     }
 
-    // Filter boards based on search input
-    searchButton.addEventListener('click', () => {
+    function filterBoards() {
         const query = searchBox.value.trim();
         document.querySelectorAll('.bingoBoard').forEach(board => {
             if (!query || board.dataset.boardNumber === query) {
@@ -202,10 +211,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 board.style.display = 'none';
             }
         });
-    });
+    }
 
+    function changePage(newPage) {
+        if (newPage < 1 || newPage > totalPages) return;
+        currentPage = newPage;
+        createBingoBoards(currentPage);
+    }
+
+    searchButton.addEventListener('click', filterBoards);
     resetGameBtn.addEventListener('click', resetGame);
-    clearMarksBtn.addEventListener('click', clearMarks); // Evento del botón Limpiar
+    clearMarksBtn.addEventListener('click', clearMarks);
+    prevPageBtn.addEventListener('click', () => changePage(currentPage - 1));
+    nextPageBtn.addEventListener('click', () => changePage(currentPage + 1));
+
     createMasterBoard();
-    createBingoBoards();
+    createBingoBoards(currentPage);
 });
