@@ -175,6 +175,8 @@ h1 img {
     right: 10px; /* Ajuste para mantener margen derecho */
     font-size: 14px;
     color: #888;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
 }
 
 .bingoHeader {
@@ -185,6 +187,11 @@ h1 img {
     font-size: 14px;
     letter-spacing: 0;
     margin-bottom: 5px;
+    background-color: #d4edda; /* Fondo verde claro */
+}
+
+.bingoHeader div {
+    background-color: #d4edda; /* Fondo verde claro para cada letra */
 }
 
 .bingoColumn {
