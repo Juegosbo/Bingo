@@ -1,4 +1,3 @@
-/* Estilos existentes */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -25,10 +24,6 @@ body {
     max-width: 1200px;
     overflow-y: auto;
     position: relative;
-}
-
-.bingoCell.figure-marked {
-    background-color: orange;
 }
 
 header {
@@ -263,6 +258,10 @@ h1 img {
 .bingoCell.marked {
     background-color: #28a745;
     color: white;
+}
+
+.bingoCell.figure-marked {
+    background-color: orange;
 }
 
 button {
