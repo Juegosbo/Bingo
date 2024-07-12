@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
             columns.appendChild(bColumn);
             columns.appendChild(iColumn);
             columns.appendChild(nColumn);
-            columns.appendChild(gColumn);
+            columns.append.appendChild(gColumn);
             columns.appendChild(oColumn);
 
             board.appendChild(columns);
@@ -461,14 +461,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     false, false, true,  false, false,
                     false, true,  true,  true,  false,
                     true,  true, true,  true, true,
-                    false, false,  true,  false,  false,
+                    false, true, true,  true,  false,
                     false, false, true,  false, false
                 ];
                 break;
             case 'numberOne':
                 cells = [
                     false, false, true,  false, false,
-                    false, true,  true,  false, false,
+                    false, false, true,  false, false,
                     false, false, true,  false, false,
                     false, false, true,  false, false,
                     true,  true,  true,  true,  true
