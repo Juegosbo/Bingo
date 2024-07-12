@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
     const totalBoards = 1000;
 
-    // Calculate total pages
+    // Calculate total pagess
     totalPages = Math.ceil(totalBoards / boardsPerPage);
     totalPagesSpan.textContent = totalPages;
 
