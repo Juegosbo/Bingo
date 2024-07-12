@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
     let bingoBoardsState = JSON.parse(localStorage.getItem('bingoBoardsState')) || {};
 
-    // Helper function to generate numbers for the master board
+    // Helper function to generate numbers for the master boards
     function createMasterBoard() {
         const board = document.createElement('div');
         board.classList.add('bingoBoard');
