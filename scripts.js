@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bingoBoardsContainer = document.getElementById('bingoBoardsContainer');
     const resetGameBtn = document.getElementById('resetGame');
     const clearMarksBtn = document.getElementById('clearMarks');
+    const nameCardsBtn = document.getElementById('nameCards'); // Botón Nombrar Cartón
     const searchBox = document.getElementById('searchBox');
     const searchButton = document.getElementById('searchButton');
     const prevPageBtn = document.getElementById('prevPage');
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let totalPages;
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
     let bingoBoardsState = JSON.parse(localStorage.getItem('bingoBoardsState')) || {};
+    let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
     const totalBoards = 1000;
 
     // Calculate total pages
@@ -98,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const boardNumber = document.createElement('div');
             boardNumber.classList.add('bingoBoardNumber');
-            boardNumber.textContent = `Cartón Nº ${i}`;
+            boardNumber.textContent = `Cartón Nº ${i} (${playerNames[i] || 'Sin nombre'})`;
             board.appendChild(boardNumber);
 
             const header = document.createElement('div');
@@ -219,6 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function saveState() {
         localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
         localStorage.setItem('bingoBoardsState', JSON.stringify(bingoBoardsState));
+        localStorage.setItem('playerNames', JSON.stringify(playerNames));
     }
 
     function filterBoards() {
@@ -252,6 +255,9 @@ document.addEventListener('DOMContentLoaded', () => {
     searchButton.addEventListener('click', filterBoards);
     resetGameBtn.addEventListener('click', resetGame);
     clearMarksBtn.addEventListener('click', clearMarks);
+    nameCardsBtn.addEventListener('click', () => {
+        window.location.href = 'naming.html';
+    });
     prevPageBtn.addEventListener('click', () => changePage(currentPage - 1));
     nextPageBtn.addEventListener('click', () => changePage(currentPage + 1));
 
