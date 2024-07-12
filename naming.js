@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const namingTableBody = document.querySelector('#namingTable tbody');
     const backToGameBtn = document.getElementById('backToGame');
 
-    // Cargar nombres de localStorage
+    // Cargar nombres de localStorages
     let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
 
     // Crear filas para cada cartón
