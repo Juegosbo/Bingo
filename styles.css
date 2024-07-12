@@ -193,13 +193,13 @@ h1 img {
     font-size: 14px;
     letter-spacing: 0;
     margin-bottom: 5px;
-    background-color: green; /* Fondo verde */
-    color: #fff; /* Color de texto blanco */
+    background-color: #41D23A; /* Fondo verde */
+    color: #070807; /* Color de texto blanco */
 }
 
 .bingoHeader div {
     background-color: green; /* Fondo verde para cada letra */
-    color: #fff; /* Color de texto blanco */
+    color: #070807; /* Color de texto blanco */
 }
 
 .bingoColumn {
