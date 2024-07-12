@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameCardsBtn = document.getElementById('nameCards'); // Botón Nombrar Cartón
     const searchBox = document.getElementById('searchBox');
     const searchButton = document.getElementById('searchButton');
+    const winnerButton = document.getElementById('winnerButton');
+    const winnerVideoContainer = document.getElementById('winnerVideoContainer');
+    const winnerVideo = document.getElementById('winnerVideo');
     const prevPageBtn = document.getElementById('prevPage');
     const nextPageBtn = document.getElementById('nextPage');
     const currentPageSpan = document.getElementById('currentPage');
@@ -208,13 +211,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         });
-        
-        // Clear marks from the master board
-        document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
+
+        // Clear marks from master board
+        document.querySelectorAll('.bingoCell.marked').forEach(cell => {
             cell.classList.remove('marked');
         });
 
-        // Update state and save
         generatedNumbers = [];
         saveState();
     }
@@ -222,29 +224,20 @@ document.addEventListener('DOMContentLoaded', () => {
     function saveState() {
         localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
         localStorage.setItem('bingoBoardsState', JSON.stringify(bingoBoardsState));
-        localStorage.setItem('playerNames', JSON.stringify(playerNames));
+        localStorage.setItem('playerNames', JSON.stringify(playerNames)); // Guardar los nombres de los jugadores
     }
 
     function filterBoards() {
         const query = searchBox.value.trim();
-        const boardNumber = parseInt(query, 10);
-        if (isNaN(boardNumber) || boardNumber < 1 || boardNumber > totalBoards) {
-            alert("Número de cartón no válido");
-            return;
-        }
-        const page = Math.ceil(boardNumber / boardsPerPage);
-        changePage(page);
-        setTimeout(() => {
-            document.querySelectorAll('.bingoBoard').forEach(board => {
-                if (board.dataset.boardNumber == query) {
-                    board.scrollIntoView({ behavior: 'smooth' });
-                    board.style.border = '2px solid red';
-                    setTimeout(() => {
-                        board.style.border = '1px solid #ddd';
-                    }, 2000);
-                }
-            });
-        }, 300);
+        document.querySelectorAll('.bingoBoard').forEach(board => {
+            if (board.dataset.boardNumber.includes(query)) {
+                board.scrollIntoView({ behavior: 'smooth' });
+                board.style.border = '2px solid red';
+                setTimeout(() => {
+                    board.style.border = '1px solid #ddd';
+                }, 2000);
+            }
+        });
     }
 
     function changePage(newPage) {
@@ -258,6 +251,10 @@ document.addEventListener('DOMContentLoaded', () => {
     clearMarksBtn.addEventListener('click', clearMarks);
     nameCardsBtn.addEventListener('click', () => {
         window.location.href = 'naming.html';
+    });
+    winnerButton.addEventListener('click', () => {
+        winnerVideoContainer.style.display = 'block';
+        winnerVideo.play();
     });
     prevPageBtn.addEventListener('click', () => changePage(currentPage - 1));
     nextPageBtn.addEventListener('click', () => changePage(currentPage + 1));
