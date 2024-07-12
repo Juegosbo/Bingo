@@ -228,9 +228,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function filterBoards() {
-        const query = searchBox.value.trim();
+        const query = searchBox.value.trim().toLowerCase();
         document.querySelectorAll('.bingoBoard').forEach(board => {
-            if (board.dataset.boardNumber.includes(query)) {
+            const boardNumber = board.dataset.boardNumber;
+            const playerName = playerNames[boardNumber] ? playerNames[boardNumber].toLowerCase() : '';
+            if (boardNumber.includes(query) || playerName.includes(query)) {
                 board.scrollIntoView({ behavior: 'smooth' });
                 board.style.border = '2px solid red';
                 setTimeout(() => {
