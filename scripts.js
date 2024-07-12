@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
     const totalBoards = 1000;
 
-    // Calculate total pagess
+    // Calculate total pages
     totalPages = Math.ceil(totalBoards / boardsPerPage);
     totalPagesSpan.textContent = totalPages;
 
@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         columns.appendChild(bColumn);
         columns.appendChild(iColumn);
-        columns.appendChild(nColumn);
-        columns.appendChild(gColumn);
-        columns.appendChild(oColumn);
+        columns.append.appendChild(nColumn);
+        columns.append.appendChild(gColumn);
+        columns.append.appendChild(oColumn);
 
         board.appendChild(columns);
         masterBoardContainer.appendChild(board);
@@ -183,6 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function resetGame() {
         generatedNumbers = [];
         bingoBoardsState = {};
+        playerNames = {}; // Borrar los nombres de los jugadores
         saveState();
         document.querySelectorAll('.bingoCell').forEach(cell => {
             cell.classList.remove('marked');
