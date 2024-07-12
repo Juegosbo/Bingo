@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         columns.appendChild(bColumn);
         columns.appendChild(iColumn);
-        columns.append.appendChild(nColumn);
-        columns.append.appendChild(gColumn);
-        columns.append.appendChild(oColumn);
+        columns.appendChild(nColumn);
+        columns.appendChild(gColumn);
+        columns.appendChild(oColumn);
 
         board.appendChild(columns);
         masterBoardContainer.appendChild(board);
@@ -188,10 +188,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.bingoCell').forEach(cell => {
             cell.classList.remove('marked');
         });
-        masterBoardContainer.innerHTML = '';
+        masterBoardContainer.innerHTML = ''; // Limpia el contenedor del cartón maestro
+        createMasterBoard(); // Crea el cartón maestro nuevamente
         currentPage = 1;
         createBingoBoards(currentPage);
-        createMasterBoard();
     }
 
     function clearMarks() {
