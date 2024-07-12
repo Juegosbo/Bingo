@@ -27,6 +27,10 @@ body {
     position: relative;
 }
 
+.bingoCell.figure-marked {
+    background-color: orange;
+}
+
 header {
     display: flex;
     justify-content: space-between;
