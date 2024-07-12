@@ -7,8 +7,8 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    height: 100vh; 
-}   
+    height: 100vh;
+}
 
 .container {
     background: #fff;
@@ -94,6 +94,14 @@ h2 {
     gap: 20px;
     margin: 20px 0;
     width: calc(100% - 250px);
+}
+
+#paginationControls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
 }
 
 .bingoBoard {
