@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextPageBtn = document.getElementById('nextPage');
     const currentPageSpan = document.getElementById('currentPage');
     const totalPagesSpan = document.getElementById('totalPages');
+    const selectFigure = document.getElementById('selectFigure');
+    const figurePreviewContainer = document.getElementById('figurePreviewContainer');
+    const figurePreview = document.getElementById('figurePreview');
     
     const boardsPerPage = 10;
     let currentPage = 1;
@@ -270,6 +273,102 @@ document.addEventListener('DOMContentLoaded', () => {
         createBingoBoards(currentPage);
     }
 
+    function updateFigurePreview(figure) {
+        figurePreview.innerHTML = ''; // Clear previous preview
+        let cells = Array(25).fill(false); // 5x5 grid
+
+        switch (figure) {
+            case 'cross':
+                cells = [
+                    false, false, true,  false, false,
+                    false, false, true,  false, false,
+                    true,  true,  true,  true,  true,
+                    false, false, true,  false, false,
+                    false, false, true,  false, false
+                ];
+                break;
+            case 'bigO':
+                cells = [
+                    true,  true,  true,  true,  true,
+                    true,  false, false, false, true,
+                    true,  false, false, false, true,
+                    true,  false, false, false, true,
+                    true,  true,  true,  true,  true
+                ];
+                break;
+            case 'diamond':
+                cells = [
+                    false, false, true,  false, false,
+                    false, true,  false, true,  false,
+                    true,  false, false, false, true,
+                    false, true,  false, true,  false,
+                    false, false, true,  false, false
+                ];
+                break;
+            case 'fourCorners':
+                cells = [
+                    true,  false, false, false, true,
+                    false, false, false, false, false,
+                    false, false, false, false, false,
+                    false, false, false, false, false,
+                    true,  false, false, false, true
+                ];
+                break;
+            case 'letterH':
+                cells = [
+                    true,  false, false, false, true,
+                    true,  false, false, false, true,
+                    true,  true,  true,  true,  true,
+                    true,  false, false, false, true,
+                    true,  false, false, false, true
+                ];
+                break;
+            case 'tree':
+                cells = [
+                    false, false, true,  false, false,
+                    false, true,  true,  true,  false,
+                    true,  false, true,  false, true,
+                    false, false, true,  false, false,
+                    false, false, true,  false, false
+                ];
+                break;
+            case 'numberOne':
+                cells = [
+                    false, true,  false, false, false,
+                    true,  true,  false, false, false,
+                    false, true,  false, false, false,
+                    false, true,  false, false, false,
+                    true,  true,  true,  false, false
+                ];
+                break;
+            case 'chess':
+                cells = [
+                    true,  false, true,  false, true,
+                    false, true,  false, true,  false,
+                    true,  false, true,  false, true,
+                    false, true,  false, true,  false,
+                    true,  false, true,  false, true
+                ];
+                break;
+            default:
+                return;
+        }
+
+        cells.forEach((marked, index) => {
+            const cell = document.createElement('div');
+            cell.classList.add('bingoCell');
+            cell.textContent = marked ? 'X' : '';
+            cell.style.width = '20px';
+            cell.style.height = '20px';
+            if (marked) {
+                cell.classList.add('marked');
+            }
+            figurePreview.appendChild(cell);
+        });
+
+        figurePreviewContainer.classList.remove('hidden');
+    }
+
     searchButton.addEventListener('click', filterBoards);
     resetGameBtn.addEventListener('click', resetGame);
     clearMarksBtn.addEventListener('click', clearMarks);
@@ -282,6 +381,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     prevPageBtn.addEventListener('click', () => changePage(currentPage - 1));
     nextPageBtn.addEventListener('click', () => changePage(currentPage + 1));
+    selectFigure.addEventListener('change', (e) => {
+        const figure = e.target.value;
+        updateFigurePreview(figure);
+    });
 
     createMasterBoard();
     createBingoBoards(currentPage);
