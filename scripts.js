@@ -205,6 +205,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         });
+        
+        // Clear marks from the master board
+        document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
+            cell.classList.remove('marked');
+        });
+
         // Update state and save
         generatedNumbers = [];
         saveState();
