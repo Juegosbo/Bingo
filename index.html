@@ -20,6 +20,24 @@
                 <button id="nameCards">Nombrar Cartón</button>
                 <button id="winnerButton">GANADOR</button>
             </div>
+            <div class="figure-selection">
+                <label for="selectFigure">Seleccionar Figura:</label>
+                <select id="selectFigure">
+                    <option value="">Seleccione una figura</option>
+                    <option value="cross">Cruz en la mitad</option>
+                    <option value="bigO">O Grande</option>
+                    <option value="diamond">Diamante</option>
+                    <option value="fourCorners">Cuatro esquinas</option>
+                    <option value="letterH">Letra H</option>
+                    <option value="tree">Árbol</option>
+                    <option value="numberOne">Número 1</option>
+                    <option value="chess">Ajedrez</option>
+                </select>
+            </div>
+            <div id="figurePreviewContainer" class="hidden">
+                <h3>Vista previa de la figura</h3>
+                <div id="figurePreview" class="bingoBoard small"></div>
+            </div>
         </section>
         <section id="bingo">
             <h2>Tableros de Bingo</h2>
@@ -33,7 +51,7 @@
         </section>
         <div id="winnerVideoContainer" class="hidden">
             <video id="winnerVideo" controls>
-                <source src="video.mp4" type="video/mp4">
+                <source src="ruta_de_tu_video/video.mp4" type="video/mp4">
                 Tu navegador no soporta el video.
             </video>
         </div>
