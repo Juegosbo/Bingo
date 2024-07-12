@@ -204,13 +204,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function filterBoards() {
         const query = searchBox.value.trim();
-        document.querySelectorAll('.bingoBoard').forEach(board => {
-            if (!query || board.dataset.boardNumber === query) {
-                board.style.display = '';
-            } else {
-                board.style.display = 'none';
-            }
-        });
+        const boardNumber = parseInt(query, 10);
+        if (isNaN(boardNumber) || boardNumber < 1 || boardNumber > totalBoards) {
+            alert("Número de cartón no válido");
+            return;
+        }
+        const page = Math.ceil(boardNumber / boardsPerPage);
+        changePage(page);
+        setTimeout(() => {
+            document.querySelectorAll('.bingoBoard').forEach(board => {
+                if (board.dataset.boardNumber == query) {
+                    board.scrollIntoView({ behavior: 'smooth' });
+                    board.style.border = '2px solid red';
+                    setTimeout(() => {
+                        board.style.border = '1px solid #ddd';
+                    }, 2000);
+                }
+            });
+        }, 300);
     }
 
     function changePage(newPage) {
