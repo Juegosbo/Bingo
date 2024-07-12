@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bingoBoardsContainer = document.getElementById('bingoBoardsContainer');
     const resetGameBtn = document.getElementById('resetGame');
     const clearMarksBtn = document.getElementById('clearMarks');
-    const nameCardsBtn = document.getElementById('nameCards'); // Botón Nombrar Cartón
+    const nameCardsBtn = document.getElementById('nameCards');
     const searchBox = document.getElementById('searchBox');
     const searchButton = document.getElementById('searchButton');
     const winnerButton = document.getElementById('winnerButton');
@@ -229,17 +229,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function filterBoards() {
         const query = searchBox.value.trim().toLowerCase();
-        document.querySelectorAll('.bingoBoard').forEach(board => {
-            const boardNumber = board.dataset.boardNumber;
-            const playerName = playerNames[boardNumber] ? playerNames[boardNumber].toLowerCase() : '';
-            if (boardNumber.includes(query) || playerName.includes(query)) {
-                board.scrollIntoView({ behavior: 'smooth' });
-                board.style.border = '2px solid red';
-                setTimeout(() => {
-                    board.style.border = '1px solid #ddd';
-                }, 2000);
+        let found = false;
+
+        for (let page = 1; page <= totalPages; page++) {
+            const startBoard = (page - 1) * boardsPerPage + 1;
+            const endBoard = Math.min(startBoard + boardsPerPage - 1, totalBoards);
+
+            for (let i = startBoard; i <= endBoard; i++) {
+                const playerName = playerNames[i] ? playerNames[i].toLowerCase() : '';
+                if (i.toString().includes(query) || playerName.includes(query)) {
+                    found = true;
+                    changePage(page);
+                    setTimeout(() => {
+                        const board = document.querySelector(`.bingoBoard[data-board-number='${i}']`);
+                        if (board) {
+                            board.scrollIntoView({ behavior: 'smooth' });
+                            board.style.border = '2px solid red';
+                            setTimeout(() => {
+                                board.style.border = '1px solid #ddd';
+                            }, 2000);
+                        }
+                    }, 500);
+                    break;
+                }
             }
-        });
+
+            if (found) {
+                break;
+            }
+        }
+
+        if (!found) {
+            alert('No se encontró el cartón.');
+        }
     }
 
     function changePage(newPage) {
