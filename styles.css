@@ -188,7 +188,7 @@ h1 img {
 }
 
 .bingoBoardNumber {
-    font-size: 14px;
+    font-size: 18px;
     color: #000; /* Cambia el color del texto aquí */
     font-family: "Times New Roman", Times, serif;
     font-weight: bold;
@@ -203,7 +203,7 @@ h1 img {
     grid-template-columns: repeat(5, 1fr);
     text-align: center;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 20px;
     letter-spacing: 0;
     margin-bottom: 12px;
     background-color: #2FAF2F; /* Fondo verde */
