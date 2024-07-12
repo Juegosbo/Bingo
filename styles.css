@@ -171,8 +171,8 @@ h1 img {
 
 .bingoBoardNumber {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: -10px; /* Ajuste para mover más arriba */
+    right: 10px; /* Ajuste para mantener margen derecho */
     font-size: 14px;
     color: #888;
 }
