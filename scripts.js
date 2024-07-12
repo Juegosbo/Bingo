@@ -334,11 +334,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
             case 'numberOne':
                 cells = [
-                    false, true,  false, false, false,
-                    true,  true,  false, false, false,
-                    false, true,  false, false, false,
-                    false, true,  false, false, false,
-                    true,  true,  true,  false, false
+                    false, false, true,  false, false,
+                    false, true,  true,  false, false,
+                    false, false, true,  false, false,
+                    false, false, true,  false, false,
+                    true,  true,  true,  true,  true
                 ];
                 break;
             case 'chess':
@@ -350,6 +350,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     true,  false, true,  false, true
                 ];
                 break;
+            case 'diagonals':
+                cells = [
+                    true,  false, false, false, true,
+                    false, true,  false, true,  false,
+                    false, false, true,  false, false,
+                    false, true,  false, true,  false,
+                    true,  false, false, false, true
+                ];
+                break;
             default:
                 return;
         }
@@ -358,8 +367,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const cell = document.createElement('div');
             cell.classList.add('bingoCell');
             cell.textContent = marked ? 'X' : '';
-            cell.style.width = '20px';
-            cell.style.height = '20px';
+            cell.style.width = '10px';
+            cell.style.height = '10px';
             if (marked) {
                 cell.classList.add('marked');
             }
