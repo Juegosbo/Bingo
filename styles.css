@@ -1,3 +1,4 @@
+/* Estilos existentes */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -174,4 +175,30 @@ button:hover {
     font-size: 24px;
     font-weight: bold;
     color: #007bff;
+}
+
+/* Nuevos estilos para naming.html */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
 }
