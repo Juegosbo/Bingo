@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const masterBoardContainer = document.getElementById('masterBoardContainer');
     const bingoBoardsContainer = document.getElementById('bingoBoardsContainer');
     const resetGameBtn = document.getElementById('resetGame');
+    const clearMarksBtn = document.getElementById('clearMarks'); // Botón Limpiar
     const searchBox = document.getElementById('searchBox');
     const searchButton = document.getElementById('searchButton');
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
@@ -178,6 +179,13 @@ document.addEventListener('DOMContentLoaded', () => {
         createMasterBoard();
     }
 
+    // Clear marks without resetting the boards
+    function clearMarks() {
+        document.querySelectorAll('.bingoCell').forEach(cell => {
+            cell.classList.remove('marked');
+        });
+    }
+
     // Save generated numbers and boards state to localStorage
     function saveState() {
         localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
@@ -197,6 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     resetGameBtn.addEventListener('click', resetGame);
+    clearMarksBtn.addEventListener('click', clearMarks); // Evento del botón Limpiar
     createMasterBoard();
     createBingoBoards();
 });
