@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     false, false, true,  false, false,
                     false, true,  true,  true,  false,
                     true,  false, true,  false, true,
-                    false, false, true,  false, false,
+                    false, true,  true,  true,  false,
                     false, false, true,  false, false
                 ];
                 break;
