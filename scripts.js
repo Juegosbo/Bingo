@@ -253,12 +253,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         const board = document.querySelector(`.bingoBoard[data-board-number='${i}']`);
                         if (board) {
                             board.scrollIntoView({ behavior: 'smooth' });
-                            board.style.border = '2px solid red';
-                            board.classList.add('highlighted'); // Add highlighted class
-                            setTimeout(() => {
-                                board.style.border = '1px solid #ddd';
-                                board.classList.remove('highlighted'); // Remove highlighted class
-                            }, 2000);
+                            board.classList.add('highlighted-permanent'); // Add highlighted-permanent class
+
+                            // Add close button
+                            const closeButton = document.createElement('button');
+                            closeButton.textContent = 'X';
+                            closeButton.classList.add('closeButton');
+                            closeButton.addEventListener('click', () => {
+                                board.classList.remove('highlighted-permanent');
+                                board.querySelector('.closeButton').remove();
+                            });
+
+                            board.appendChild(closeButton);
                         }
                     }, 500);
                     break;
