@@ -35,6 +35,8 @@ header {
     position: relative;
 }
 
+
+
 h1 {
     margin: 0;
     flex-grow: 1;
@@ -202,6 +204,19 @@ h1 img {
     grid-template-rows: auto auto 1fr;
     gap: 10px;
     text-align: center; /* Asegurar que todo el contenido dentro de la tarjeta esté centrado */
+}
+
+.bingoBoard.highlighted {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: auto;
+    z-index: 1000;
+    background-color: white;
+    border: 2px solid red;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .bingoBoard.small {
