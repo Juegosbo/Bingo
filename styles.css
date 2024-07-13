@@ -189,6 +189,7 @@ h1 img {
     margin: 20px 0;
 }
 
+/* Modificación para tableros de bingo */
 .bingoBoard {
     border: 1px solid #ddd;
     padding: 10px;
@@ -199,7 +200,7 @@ h1 img {
     grid-template-rows: auto auto 1fr;
     gap: 10px;
     text-align: center; /* Asegurar que todo el contenido dentro de la tarjeta esté centrado */
-    width: 250px; /* Ajusta el ancho del cartón */
+    width: 180px; /* Ajusta el ancho del cartón */
     height: 320px; /* Ajusta la altura del cartón */
 }
 
