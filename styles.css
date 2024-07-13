@@ -176,7 +176,7 @@ h1 img {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
-    margin: 20px 0 20px 70px; /* Ajusta el valor de '50px' para mover más a la derecha */
+    margin: 20px 0;
     width: calc(100% - 250px);
 }
 
@@ -198,8 +198,6 @@ h1 img {
     grid-template-rows: auto auto 1fr;
     gap: 10px;
     text-align: center; /* Asegurar que todo el contenido dentro de la tarjeta esté centrado */
-    width: 900px; /* Ajusta el ancho del cartón */
-    height: 300px; /* Ajusta la altura del cartón */
 }
 
 .bingoBoard.small {
