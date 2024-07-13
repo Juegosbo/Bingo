@@ -329,6 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ];
                 break;
             case 'letterH':
+                // Corrección para la figura Letra H
                 cells = [
                     true,  false, false, false, true,
                     true,  false, false, false, true,
@@ -338,6 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ];
                 break;
             case 'tree':
+                // Corrección para la figura Árbol
                 cells = [
                     false, false, true,  false, false,
                     false, true,  true,  true,  false,
@@ -347,9 +349,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 ];
                 break;
             case 'numberOne':
+                // Corrección para la figura Número 1
                 cells = [
                     false, false, true,  false, false,
-                    false, true,  true,  false, false,
+                    false, false, true,  false, false,
                     false, false, true,  false, false,
                     false, false, true,  false, false,
                     true,  true,  true,  true,  true
@@ -456,6 +459,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ];
                 break;
             case 'letterH':
+                // Corrección para la figura Letra H
                 cells = [
                     true,  false, false, false, true,
                     true,  false, false, false, true,
@@ -465,6 +469,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ];
                 break;
             case 'tree':
+                // Corrección para la figura Árbol
                 cells = [
                     false, false, true,  false, false,
                     false, true,  true,  true,  false,
@@ -474,6 +479,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ];
                 break;
             case 'numberOne':
+                // Corrección para la figura Número 1
                 cells = [
                     false, false, true,  false, false,
                     false, false, true,  false, false,
