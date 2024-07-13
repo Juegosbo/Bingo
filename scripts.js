@@ -254,8 +254,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (board) {
                             board.scrollIntoView({ behavior: 'smooth' });
                             board.style.border = '2px solid red';
+                            board.classList.add('highlighted'); // Add highlighted class
                             setTimeout(() => {
                                 board.style.border = '1px solid #ddd';
+                                board.classList.remove('highlighted'); // Remove highlighted class
                             }, 2000);
                         }
                     }, 500);
