@@ -56,7 +56,7 @@ h1 img {
     cursor: pointer;
     position: absolute;
     left: 0;
-    top: 10px; /* Ajuste para mover el botón un poco más arriba */
+    top: 20px; /* Ajuste para mover el botón un poco más arriba */
 }
 
 #clearMarks {
@@ -68,7 +68,7 @@ h1 img {
     cursor: pointer;
     position: absolute;
     right: 0;
-    top: 10px; /* Ajuste para mover el botón un poco más arriba */
+    top: 20px; /* Ajuste para mover el botón un poco más arriba */
 }
 
 #controls {
