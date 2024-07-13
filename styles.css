@@ -158,6 +158,10 @@ h1 img {
     background-color: #f9f9f9;
 }
 
+#masterBoardContainer .bingoCell {
+    width: 50px; /* Ajusta el ancho de los números en la tabla maestra */
+}
+
 #figurePreviewContainer {
     position: fixed;
     top: 50px;
