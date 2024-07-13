@@ -35,8 +35,6 @@ header {
     position: relative;
 }
 
-
-
 h1 {
     margin: 0;
     flex-grow: 1;
@@ -48,6 +46,7 @@ h1 img {
     height: auto;
 }
 
+/* Ajustar los botones "Empezar de Nuevo" y "Limpiar" un poco más arriba */
 #resetGame {
     background-color: #007bff;
     color: white;
@@ -57,6 +56,7 @@ h1 img {
     cursor: pointer;
     position: absolute;
     left: 0;
+    top: -20px; /* Ajuste para mover el botón un poco más arriba */
 }
 
 #clearMarks {
@@ -68,6 +68,7 @@ h1 img {
     cursor: pointer;
     position: absolute;
     right: 0;
+    top: -20px; /* Ajuste para mover el botón un poco más arriba */
 }
 
 #controls {
