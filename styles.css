@@ -147,7 +147,7 @@ h1 img {
 
 #masterBoardContainer {
     position: fixed;
-    top: 50px;
+    top: 150px; /* Ajusta esta propiedad para mover el tablero más abajo */
     right: 50px;
     display: flex;
     flex-direction: column;
