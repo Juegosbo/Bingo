@@ -176,7 +176,7 @@ h1 img {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
-    margin: 20px 0 20px 50px; /* Ajusta el valor de '50px' para mover más a la derecha */
+    margin: 20px 0 20px 70px; /* Ajusta el valor de '50px' para mover más a la derecha */
     width: calc(100% - 250px);
 }
 
