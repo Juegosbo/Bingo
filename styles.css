@@ -199,7 +199,7 @@ h1 img {
     grid-template-rows: auto auto 1fr;
     gap: 10px;
     text-align: center; /* Asegurar que todo el contenido dentro de la tarjeta esté centrado */
-    width: 180px; /* Ajusta el ancho del cartón */
+    width: 250px; /* Ajusta el ancho del cartón */
     height: 320px; /* Ajusta la altura del cartón */
 }
 
