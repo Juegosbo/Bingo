@@ -461,11 +461,11 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'letterH':
                 // Corrección para la figura Letra H
                 cells = [
-                    true,  false, false, false, true,
-                    true,  false, false, false, true,
-                    true,  true,  true,  true,  true,
-                    true,  false, false, false, true,
-                    true,  false, false, false, true
+                    true,  true, true, true, true,
+                    true,  true, true, true, true,
+                    false,  false,  false,  false,  false,
+                    false,  false, false, false, false,
+                    false,  false, false, false, false
                 ];
                 break;
             case 'tree':
