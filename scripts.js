@@ -545,26 +545,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const doc = new jsPDF();
     const boards = document.querySelectorAll('.bingoBoard');
 
-    const scaleFactor = 0.25; // Factor de escala para reducir el tamaño del cartón
-    const cartonesPorPagina = 9; // Número de cartones por página
-    const filas = 4; // Número de filas por página
-    const columnas = 3; // Número de columnas por página
-    const margin = 10; // Margen entre los cartones
+    const startPageInput = document.getElementById('startPage');
+    const endPageInput = document.getElementById('endPage');
+    const startPage = parseInt(startPageInput.value);
+    const endPage = parseInt(endPageInput.value);
 
-    for (let i = 0; i < boards.length; i++) {
-        const canvas = await html2canvas(boards[i]);
-        const imgData = canvas.toDataURL('image/png');
-        const imgProps = doc.getImageProperties(imgData);
-        const pdfWidth = (doc.internal.pageSize.getWidth() - margin * (columnas + 1)) / columnas;
-        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    const boardsPerPage = 9; // Cantidad de cartones por página
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const boardWidth = pageWidth / 3; // Dividir el ancho de la página entre 3 columnas
+    const boardHeight = pageHeight / 4; // Dividir la altura de la página entre 4 filas
 
-        const x = margin + (i % columnas) * (pdfWidth + margin);
-        const y = margin + Math.floor(i % cartonesPorPagina / columnas) * (pdfHeight + margin);
+    for (let page = startPage; page <= endPage; page++) {
+        const startBoard = (page - 1) * boardsPerPage;
+        const endBoard = Math.min(startBoard + boardsPerPage, boards.length);
 
-        if (i % cartonesPorPagina === 0 && i > 0) {
+        if (page > startPage) {
             doc.addPage();
         }
-        doc.addImage(imgData, 'PNG', x, y, pdfWidth, pdfHeight);
+
+        for (let i = startBoard; i < endBoard; i++) {
+            const row = Math.floor((i - startBoard) / 3);
+            const col = (i - startBoard) % 3;
+            const canvas = await html2canvas(boards[i]);
+            const imgData = canvas.toDataURL('image/png');
+
+            doc.addImage(imgData, 'PNG', col * boardWidth, row * boardHeight, boardWidth, boardHeight);
+        }
     }
 
     doc.save('bingo_cartones.pdf');
