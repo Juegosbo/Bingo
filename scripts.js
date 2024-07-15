@@ -540,27 +540,28 @@ document.addEventListener('DOMContentLoaded', () => {
         updateFigurePreview(figure);
     });
 
-    printButton.addEventListener('click', async () => {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        const boards = document.querySelectorAll('.bingoBoard');
+   printButton.addEventListener('click', async () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    const boards = document.querySelectorAll('.bingoBoard');
 
-        for (let i = 0; i < boards.length; i++) {
-            const canvas = await html2canvas(boards[i]);
-            const imgData = canvas.toDataURL('image/png');
-            const imgProps = doc.getImageProperties(imgData);
-            const pdfWidth = doc.internal.pageSize.getWidth();
-            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    const scaleFactor = 0.5; // Factor de escala para reducir el tamaño del cartón
 
-            if (i > 0) {
-                doc.addPage();
-            }
-            doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+    for (let i = 0; i < boards.length; i++) {
+        const canvas = await html2canvas(boards[i]);
+        const imgData = canvas.toDataURL('image/png');
+        const imgProps = doc.getImageProperties(imgData);
+        const pdfWidth = doc.internal.pageSize.getWidth() * scaleFactor; // Ancho reducido
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+        if (i > 0) {
+            doc.addPage();
         }
+        doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+    }
 
-        doc.save('bingo_cartones.pdf');
-    });
-
+    doc.save('bingo_cartones.pdf');
+});
     createMasterBoard();
     createBingoBoards(currentPage);
 });
