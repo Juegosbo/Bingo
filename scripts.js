@@ -337,11 +337,11 @@ document.addEventListener('DOMContentLoaded', () => {
              case 'letterH':
                 // Corrección para la figura Letra H
                 cells = [
+                    true, false, false, false, true,
+                    true, false, false, false, true,
                     true, true, true, true, true,
-                    false, false, true, false, false,
-                    false, false, true, false, false,
-                    false, false, true, false, false,
-                    true, true, true, true, true
+                    true, false, false, false, true,
+                    true, false, false, false, true
                 ];
                 break;
             case 'tree':
@@ -350,18 +350,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     false, false, true,  false, false,
                     false, true,  true,  true,  false,
                     true,  true, true,  true, true,
-                    false, true,  true,  false,  false,
+                    false, false,  true,  false,  false,
                     false, false, true,  false, false
                 ];
                 break;
             case 'numberOne':
                 // Corrección para la figura Número 1
                 cells = [
-                    false, false, false,  false, true,
-                    false, true, false,  false, true,
-                    true, true, true,  true, true,
-                    false, false, false,  false, true,
-                    false,  false,  false,  false,  true
+                    false, false, true,  false, false,
+                    false, true, true,  false, false,
+                    false, false, true,  false, false,
+                    false, false, true,  false, false,
+                    false,  true,  true,  true,  false
                 ];
                 break;
             case 'chess':
@@ -479,18 +479,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     false, false, true,  false, false,
                     false, true,  true,  true,  false,
                     true,  true, true,  true, true,
-                    false, true,  true,  false,  false,
+                    false, false,  true,  false,  false,
                     false, false, true,  false, false
                 ];
                 break;
             case 'numberOne':
                 // Corrección para la figura Número 1
                 cells = [
-                    false, false, false,  false, true,
+                    false, false, false,  false, false,
                     false, true, false,  false, true,
                     true, true, true,  true, true,
                     false, false, false,  false, true,
-                    false,  false,  false,  false,  true
+                    false,  false,  false,  false,  false
                 ];
                 break;
             case 'chess':
