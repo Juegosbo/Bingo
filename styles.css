@@ -358,6 +358,11 @@ h1 img {
     cursor: pointer;
 }
 
+.blurry {
+    filter: blur(5px);
+    pointer-events: none; /* Para que no se pueda interactuar con los elementos borrosos */
+}
+
 button {
     padding: 10px 20px;
     background-color: #007bff;
