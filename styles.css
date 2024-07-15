@@ -307,6 +307,13 @@ h1 img {
     cursor: pointer;
 }
 
+.bingoCell.free {
+    background-image: url('free.png'); /* Ruta de la imagen */
+    background-size: cover;
+    background-position: center;
+    color: transparent; /* Para ocultar el texto 'FREE' */
+}
+
 .bingoCell.marked {
     background-color: #28a745;
     color: white;
