@@ -545,7 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const doc = new jsPDF();
     const boards = document.querySelectorAll('.bingoBoard');
 
-    const margin = 5; // Reduzco el margen a 5 unidades
+    const margin = 10; // Mantén el margen a 10 unidades
     const pdfWidth = doc.internal.pageSize.getWidth() - 2 * margin; // Ancho del PDF con margen
     const pdfHeight = doc.internal.pageSize.getHeight() - 2 * margin; // Alto del PDF con margen
 
@@ -553,7 +553,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const canvas = await html2canvas(boards[i]);
         const imgData = canvas.toDataURL('image/png');
         const imgProps = doc.getImageProperties(imgData);
-        const imgWidth = pdfWidth;
+
+        // Ajusta imgWidth para aumentar o reducir el tamaño del contenido
+        const imgWidth = pdfWidth * 0.9; // 90% del ancho disponible, ajustar según sea necesario
         const imgHeight = (imgProps.height * imgWidth) / imgProps.width;
 
         if (i > 0) {
