@@ -545,19 +545,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const doc = new jsPDF();
     const boards = document.querySelectorAll('.bingoBoard');
 
-    const scaleFactor = 0.5; // Factor de escala para reducir el tamaño del cartón
+    const scaleFactor = 0.25; // Factor de escala para reducir el tamaño del cartón
+    const cartonesPorPagina = 12; // Número de cartones por página
+    const filas = 4; // Número de filas por página
+    const columnas = 3; // Número de columnas por página
+    const margin = 10; // Margen entre los cartones
 
     for (let i = 0; i < boards.length; i++) {
         const canvas = await html2canvas(boards[i]);
         const imgData = canvas.toDataURL('image/png');
         const imgProps = doc.getImageProperties(imgData);
-        const pdfWidth = doc.internal.pageSize.getWidth() * scaleFactor; // Ancho reducido
+        const pdfWidth = (doc.internal.pageSize.getWidth() - margin * (columnas + 1)) / columnas;
         const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-        if (i > 0) {
+        const x = margin + (i % columnas) * (pdfWidth + margin);
+        const y = margin + Math.floor(i % cartonesPorPagina / columnas) * (pdfHeight + margin);
+
+        if (i % cartonesPorPagina === 0 && i > 0) {
             doc.addPage();
         }
-        doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        doc.addImage(imgData, 'PNG', x, y, pdfWidth, pdfHeight);
     }
 
     doc.save('bingo_cartones.pdf');
