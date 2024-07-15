@@ -330,7 +330,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ];
                 break;
              case 'letterH':
-                // Corrección para la figura Letra H
                 cells = [
                     true, true, true, true, true,
                     false, false, true, false, false,
