@@ -243,49 +243,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function filterBoards() {
-        const query = searchBox.value.trim().toLowerCase();
-        let found = false;
+    const query = searchBox.value.trim().toLowerCase();
+    let found = false;
 
-        for (let page = 1; page <= totalPages; page++) {
-            const startBoard = (page - 1) * boardsPerPage + 1;
-            const endBoard = Math.min(startBoard + boardsPerPage - 1, totalBoards);
+    for (let page = 1; page <= totalPages; page++) {
+        const startBoard = (page - 1) * boardsPerPage + 1;
+        const endBoard = Math.min(startBoard + boardsPerPage - 1, totalBoards);
 
-            for (let i = startBoard; i <= endBoard; i++) {
-                const playerName = playerNames[i] ? playerNames[i].toLowerCase() : '';
-                if (i.toString().includes(query) || playerName.includes(query)) {
-                    found = true;
-                    changePage(page);
-                    setTimeout(() => {
-                        const board = document.querySelector(`.bingoBoard[data-board-number='${i}']`);
-                        if (board) {
-                            board.scrollIntoView({ behavior: 'smooth' });
-                            board.classList.add('highlighted-permanent'); // Add highlighted-permanent class
+        for (let i = startBoard; i <= endBoard; i++) {
+            const playerName = playerNames[i] ? playerNames[i].toLowerCase() : '';
+            if (i.toString().includes(query) || playerName.includes(query)) {
+                found = true;
+                changePage(page);
+                setTimeout(() => {
+                    const board = document.querySelector(`.bingoBoard[data-board-number='${i}']`);
+                    if (board) {
+                        document.querySelectorAll('.bingoBoard').forEach(b => {
+                            if (b !== board) {
+                                b.classList.add('blurred');
+                            }
+                        });
+                        document.querySelector('#bingo').classList.add('portrait-mode');
+                        board.scrollIntoView({ behavior: 'smooth' });
+                        board.classList.add('highlighted-permanent'); // Add highlighted-permanent class
 
-                            // Add close button
-                            const closeButton = document.createElement('button');
-                            closeButton.textContent = 'X';
-                            closeButton.classList.add('closeButton');
-                            closeButton.addEventListener('click', () => {
-                                board.classList.remove('highlighted-permanent');
-                                board.querySelector('.closeButton').remove();
-                            });
+                        // Add close button
+                        const closeButton = document.createElement('button');
+                        closeButton.textContent = 'X';
+                        closeButton.classList.add('closeButton');
+                        closeButton.addEventListener('click', () => {
+                            board.classList.remove('highlighted-permanent');
+                            board.querySelector('.closeButton').remove();
+                            document.querySelectorAll('.bingoBoard').forEach(b => b.classList.remove('blurred'));
+                            document.querySelector('#bingo').classList.remove('portrait-mode');
+                        });
 
-                            board.appendChild(closeButton);
-                        }
-                    }, 500);
-                    break;
-                }
-            }
-
-            if (found) {
+                        board.appendChild(closeButton);
+                    }
+                }, 500);
                 break;
             }
         }
 
-        if (!found) {
-            alert('No se encontró el cartón.');
+        if (found) {
+            break;
         }
     }
+
+    if (!found) {
+        alert('No se encontró el cartón.');
+    }
+}
 
     function changePage(newPage) {
         if (newPage < 1 || newPage > totalPages) return;
