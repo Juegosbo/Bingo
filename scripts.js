@@ -538,7 +538,36 @@ document.addEventListener('DOMContentLoaded', () => {
         const figure = e.target.value;
         updateFigurePreview(figure);
     });
+const printButton = document.getElementById('printButton');
 
+    printButton.addEventListener('click', async () => {
+        const doc = new docx.Document();
+        const boards = document.querySelectorAll('.bingoBoard');
+
+        for (let i = 0; i < boards.length; i++) {
+            const canvas = await html2canvas(boards[i]);
+            const dataURL = canvas.toDataURL();
+            const imgData = dataURL.replace(/^data:image\/(png|jpeg);base64,/, "");
+
+            const image = new docx.ImageRun({
+                data: Uint8Array.from(atob(imgData), c => c.charCodeAt(0)),
+                transformation: {
+                    width: 600, // Ajusta el tamaño según sea necesario
+                    height: 600, // Ajusta el tamaño según sea necesario
+                },
+            });
+
+            const imageParagraph = new docx.Paragraph({
+                children: [image],
+            });
+
+            doc.addSection({ children: [imageParagraph] });
+        }
+
+        docx.Packer.toBlob(doc).then(blob => {
+            saveAs(blob, "bingo_cartones.docx");
+        });
+    });
     createMasterBoard();
     createBingoBoards(currentPage);
 });
