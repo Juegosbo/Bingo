@@ -246,11 +246,6 @@ function filterBoards() {
     const query = searchBox.value.trim().toLowerCase();
     let found = false;
 
-    // Primero, eliminamos la clase blurry de todos los elementos
-    document.querySelectorAll('.bingoBoard').forEach(board => {
-        board.classList.remove('blurry');
-    });
-
     for (let page = 1; page <= totalPages; page++) {
         const startBoard = (page - 1) * boardsPerPage + 1;
         const endBoard = Math.min(startBoard + boardsPerPage - 1, totalBoards);
@@ -263,16 +258,6 @@ function filterBoards() {
                 setTimeout(() => {
                     const board = document.querySelector(`.bingoBoard[data-board-number='${i}']`);
                     if (board) {
-                        // Aplicamos la clase blurry a todos los elementos menos el buscado y el cartón maestro
-                            document.querySelectorAll('.bingoBoard').forEach(b => {
-                            if (b !== board && !b.closest('#masterBoardContainer')) {
-                            b.classList.add('blurry');
-                            }
-                        });
-                        // Aseguramos que el cartón maestro no tenga la clase blurry
-                        document.getElementById('masterBoardContainer').classList.remove('blurry');
-                        
-                        board.classList.remove('blurry');
                         board.scrollIntoView({ behavior: 'smooth' });
                         board.classList.add('highlighted-permanent'); // Add highlighted-permanent class
 
@@ -282,14 +267,20 @@ function filterBoards() {
                         closeButton.classList.add('closeButton');
                         closeButton.addEventListener('click', () => {
                             board.classList.remove('highlighted-permanent');
-                            board.querySelector('.closeButton').remove();
-                            // Eliminar la clase blurry de todos los elementos al cerrar
                             document.querySelectorAll('.bingoBoard').forEach(b => {
                                 b.classList.remove('blurry');
                             });
+                            board.querySelector('.closeButton').remove();
                         });
 
                         board.appendChild(closeButton);
+
+                        // Aplicamos la clase blurry a todos los elementos menos el buscado y el cartón maestro
+                        document.querySelectorAll('.bingoBoard').forEach(b => {
+                            if (b !== board && !b.closest('#masterBoardContainer')) {
+                                b.classList.add('blurry');
+                            }
+                        });
                     }
                 }, 500);
                 break;
@@ -304,7 +295,6 @@ function filterBoards() {
     if (!found) {
         alert('No se encontró el cartón.');
     }
-}
 
     function changePage(newPage) {
         if (newPage < 1 || newPage > totalPages) return;
