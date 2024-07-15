@@ -39,12 +39,16 @@ h1 {
     margin: 0;
     flex-grow: 1;
     text-align: center;
+    display: flex; /* Añadido */
+    justify-content: center; /* Añadido */
+    align-items: center; /* Añadido */
 }
 
 h1 img {
     max-width: 100%;
     height: auto;
-    width: 50%; /* Añade esta línea para ajustar el tamaño */
+    width: 50%; /* Ajusta este valor según tus necesidades */
+    display: block; /* Asegura que la imagen sea un bloque para que se centre correctamente */
 }
 
 /* Ajustar los botones "Empezar de Nuevo" y "Limpiar" un poco más arriba */
