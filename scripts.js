@@ -330,6 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ];
                 break;
              case 'letterH':
+                // Corrección para la figura Letra H
                 cells = [
                     true, true, true, true, true,
                     false, false, true, false, false,
@@ -540,32 +541,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     printButton.addEventListener('click', async () => {
-        const doc = new docx.Document();
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
         const boards = document.querySelectorAll('.bingoBoard');
 
         for (let i = 0; i < boards.length; i++) {
             const canvas = await html2canvas(boards[i]);
-            const dataURL = canvas.toDataURL();
-            const imgData = dataURL.replace(/^data:image\/(png|jpeg);base64,/, "");
+            const imgData = canvas.toDataURL('image/png');
+            const imgProps = doc.getImageProperties(imgData);
+            const pdfWidth = doc.internal.pageSize.getWidth();
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-            const image = new docx.ImageRun({
-                data: Uint8Array.from(atob(imgData), c => c.charCodeAt(0)),
-                transformation: {
-                    width: 600, // Ajusta el tamaño según sea necesario
-                    height: 600, // Ajusta el tamaño según sea necesario
-                },
-            });
-
-            const imageParagraph = new docx.Paragraph({
-                children: [image],
-            });
-
-            doc.addSection({ children: [imageParagraph] });
+            if (i > 0) {
+                doc.addPage();
+            }
+            doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
         }
 
-        docx.Packer.toBlob(doc).then(blob => {
-            saveAs(blob, "bingo_cartones.docx");
-        });
+        doc.save('bingo_cartones.pdf');
     });
 
     createMasterBoard();
