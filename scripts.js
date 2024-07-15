@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('playerNames', JSON.stringify(playerNames)); // Guardar los nombres de los jugadores
     }
 
-  function filterBoards() {
+ function filterBoards() {
     const query = searchBox.value.trim().toLowerCase();
     let found = false;
 
@@ -250,7 +250,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.bingoBoard').forEach(board => {
         board.classList.remove('blurry');
     });
-    document.getElementById('masterBoardContainer').classList.remove('blurry');
+    document.querySelectorAll('#masterBoardContainer, .figure-preview').forEach(element => {
+        element.classList.remove('blurry');
+    });
 
     for (let page = 1; page <= totalPages; page++) {
         const startBoard = (page - 1) * boardsPerPage + 1;
@@ -270,7 +272,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 b.classList.add('blurry');
                             }
                         });
-                        document.getElementById('masterBoardContainer').classList.remove('blurry');
+                        document.querySelectorAll('#masterBoardContainer, .figure-preview').forEach(element => {
+                            element.classList.remove('blurry');
+                        });
                         board.classList.remove('blurry');
                         board.scrollIntoView({ behavior: 'smooth' });
                         board.classList.add('highlighted-permanent'); // Add highlighted-permanent class
