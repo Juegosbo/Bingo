@@ -546,7 +546,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const boards = document.querySelectorAll('.bingoBoard');
 
     const scaleFactor = 0.25; // Factor de escala para reducir el tamaño del cartón
-    const cartonesPorPagina = 12; // Número de cartones por página
+    const cartonesPorPagina = 9; // Número de cartones por página
     const filas = 4; // Número de filas por página
     const columnas = 3; // Número de columnas por página
     const margin = 10; // Margen entre los cartones
