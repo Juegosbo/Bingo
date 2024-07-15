@@ -1,30 +1,70 @@
-<section id="controls">
-    <div class="search-container">
-        <input type="text" id="searchBox" placeholder="Buscar cartón por número">
-        <button id="searchButton">Buscar Cartón</button>
-        <button id="nameCards">Nombrar Cartón</button>
-        <button id="winnerButton">GANADOR</button>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Bingo</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button id="resetGame">Empezar de Nuevo</button>
+            <h1><img src="fondo4.png" alt="Juego de Bingo"></h1>
+            <button id="clearMarks">Limpiar</button>
+        </header>
+        <section id="controls">
+            <div class="search-container">
+                <input type="text" id="searchBox" placeholder="Buscar cartón por número">
+                <button id="searchButton">Buscar Cartón</button>
+                <button id="nameCards">Nombrar Cartón</button>
+                <button id="winnerButton">GANADOR</button>
+            </div>
+            <div class="figure-selection">
+                <label for="selectFigure">Seleccionar Figura:</label>
+                <select id="selectFigure">
+                    <option value="">Seleccione una figura</option>
+                    <option value="cross">Cruz en la mitad</option>
+                    <option value="bigO">O Grande</option>
+                    <option value="diamond">Diamante</option>
+                    <option value="fourCorners">Cuatro esquinas</option>
+                    <option value="letterH">Letra H</option>
+                    <option value="tree">Árbol</option>
+                    <option value="numberOne">Número 1</option>
+                    <option value="chess">Ajedrez</option>
+                    <option value="diagonals">Diagonales</option>
+                </select>
+            </div>
+        </section>
+        <section id="bingo">
+            <h2>Tableros de Bingo</h2>
+            <div id="bingoBoardsContainer"></div>
+            <div id="paginationControls">
+                <button id="prevPage">Anterior</button>
+                <span id="currentPage">1</span> / <span id="totalPages"></span>
+                <button id="nextPage">Siguiente</button>
+            </div>
+            <div id="figurePreviewContainer" class="figure-preview">
+                <div id="figurePreview" class="bingoBoard small"></div>
+            </div>
+            <div id="masterBoardContainer"></div>
+        </section>
+        <div id="winnerVideoContainer" class="hidden">
+            <video id="winnerVideo" controls>
+                <source src="video.mp4" type="video/mp4">
+                Tu navegador no soporta el video.
+            </video>
+        </div>
     </div>
-    <div class="figure-selection">
-        <label for="selectFigure">Seleccionar Figura:</label>
-        <select id="selectFigure">
-            <option value="">Seleccione una figura</option>
-            <option value="cross">Cruz en la mitad</option>
-            <option value="bigO">O Grande</option>
-            <option value="diamond">Diamante</option>
-            <option value="fourCorners">Cuatro esquinas</option>
-            <option value="letterH">Letra H</option>
-            <option value="tree">Árbol</option>
-            <option value="numberOne">Número 1</option>
-            <option value="chess">Ajedrez</option>
-            <option value="diagonals">Diagonales</option>
-        </select>
-    </div>
-    <div class="print-range">
-        <label for="startPage">Desde la página:</label>
-        <input type="number" id="startPage" min="1" value="1">
-        <label for="endPage">Hasta la página:</label>
-        <input type="number" id="endPage" min="1" value="1">
+    <div class="print-controls">
+        <label for="startPage">Página de inicio:</label>
+        <input type="number" id="startPage" value="1" min="1">
+        <label for="endPage">Página de fin:</label>
+        <input type="number" id="endPage" value="1" min="1">
         <button id="printButton">Imprimir</button>
     </div>
-</section>
+    <script src="scripts.js"></script>
+</body>
+</html>
