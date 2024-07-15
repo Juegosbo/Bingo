@@ -546,7 +546,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const boards = document.querySelectorAll('.bingoBoard');
 
     const margin = 10; // Margen en el PDF
-    const pdfWidth = doc.internal.pageSize.getWidth() - 10 * margin; // Ancho del PDF con margen
+    const pdfWidth = doc.internal.pageSize.getWidth() - 2 * margin; // Ancho del PDF con margen
     const pdfHeight = doc.internal.pageSize.getHeight() - 2 * margin; // Alto del PDF con margen
 
     for (let i = 0; i < boards.length; i++) {
