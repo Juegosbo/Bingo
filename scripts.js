@@ -538,9 +538,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const figure = e.target.value;
         updateFigurePreview(figure);
     });
-const printButton = document.getElementById('printButton');
-
-    printButton.addEventListener('click', async () => {
+ printButton.addEventListener('click', async () => {
         const doc = new docx.Document();
         const boards = document.querySelectorAll('.bingoBoard');
 
@@ -568,6 +566,7 @@ const printButton = document.getElementById('printButton');
             saveAs(blob, "bingo_cartones.docx");
         });
     });
+
     createMasterBoard();
     createBingoBoards(currentPage);
-});
+    });
