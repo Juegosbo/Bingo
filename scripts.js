@@ -151,33 +151,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function createBingoColumn(min, max, boardNumber, hasFreeCell = false) {
-        const column = document.createElement('div');
-        column.classList.add('bingoColumn');
-        const numbers = bingoBoardsState[boardNumber] && bingoBoardsState[boardNumber][`col${min}-${max}`] ?
-            bingoBoardsState[boardNumber][`col${min}-${max}`] :
-            getRandomNumbers(min, max, 5);
+    const column = document.createElement('div');
+    column.classList.add('bingoColumn');
+    const numbers = bingoBoardsState[boardNumber] && bingoBoardsState[boardNumber][`col${min}-${max}`] ?
+        bingoBoardsState[boardNumber][`col${min}-${max}`] :
+        getRandomNumbers(min, max, 5);
 
-        const boardState = bingoBoardsState[boardNumber] || {};
-        numbers.forEach((num, index) => {
-            const cell = document.createElement('div');
-            cell.classList.add('bingoCell');
-            const cellNumber = hasFreeCell && index === 2 ? 'FREE' : num;
-            cell.textContent = cellNumber;
-            cell.dataset.number = cellNumber;
-            if (cellNumber === 'FREE' || generatedNumbers.includes(Number(cellNumber))) {
-                cell.classList.add('marked');
-            }
-            column.appendChild(cell);
+    const boardState = bingoBoardsState[boardNumber] || {};
+    numbers.forEach((num, index) => {
+        const cell = document.createElement('div');
+        cell.classList.add('bingoCell');
+        const cellNumber = hasFreeCell && index === 2 ? 'FREE' : num;
+        cell.textContent = cellNumber;
+        cell.dataset.number = cellNumber;
 
-            if (!boardState[`col${min}-${max}`]) {
-                boardState[`col${min}-${max}`] = numbers;
-            }
-        });
+        if (cellNumber === 'FREE') {
+            cell.classList.add('free');
+        }
 
-        bingoBoardsState[boardNumber] = boardState;
-        saveState();
-        return column;
-    }
+        if (cellNumber === 'FREE' || generatedNumbers.includes(Number(cellNumber))) {
+            cell.classList.add('marked');
+        }
+        column.appendChild(cell);
+
+        if (!boardState[`col${min}-${max}`]) {
+            boardState[`col${min}-${max}`] = numbers;
+        }
+    });
+
+    bingoBoardsState[boardNumber] = boardState;
+    saveState();
+    return column;
+}
 
     function markNumber(number) {
         if (!generatedNumbers.includes(number)) {
