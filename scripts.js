@@ -540,10 +540,9 @@ document.addEventListener('DOMContentLoaded', () => {
         updateFigurePreview(figure);
     });
 
-   printButton.addEventListener('click', async () => {
+  printButton.addEventListener('click', async () => {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
-    const boards = document.querySelectorAll('.bingoBoard');
     const startPageInput = document.getElementById('startPage');
     const endPageInput = document.getElementById('endPage');
     const startPage = parseInt(startPageInput.value);
@@ -553,28 +552,68 @@ document.addEventListener('DOMContentLoaded', () => {
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
     const boardWidth = pageWidth / 3; // Dividir el ancho de la página entre 3 columnas
-    const boardHeight = pageHeight / 4; // Dividir la altura de la página entre 4 filas
+    const boardHeight = pageHeight / 3; // Dividir la altura de la página entre 3 filas
 
-    for (let page = startPage; page <= endPage; page++) {
-        const startBoard = (page - 1) * boardsPerPage;
-        const endBoard = Math.min(startBoard + boardsPerPage, boards.length);
+    // Recalcular el rango de tableros basado en las páginas indicadas
+    const startBoard = (startPage - 1) * boardsPerPage;
+    const endBoard = Math.min(endPage * boardsPerPage, totalBoards);
 
-        if (page > startPage) {
+    for (let boardIndex = startBoard; boardIndex < endBoard; boardIndex++) {
+        if (boardIndex > startBoard && boardIndex % boardsPerPage === 0) {
             doc.addPage();
         }
 
-        for (let i = startBoard; i < endBoard; i++) {
-            const row = Math.floor((i - startBoard) / 3);
-            const col = (i - startBoard) % 3;
-            const canvas = await html2canvas(boards[i]);
-            const imgData = canvas.toDataURL('image/png');
+        const row = Math.floor((boardIndex % boardsPerPage) / 3);
+        const col = (boardIndex % boardsPerPage) % 3;
+        const board = document.createElement('div');
+        board.classList.add('bingoBoard');
+        createBingoBoardContent(board, boardIndex + 1); // Crear contenido del tablero de bingo
 
-            doc.addImage(imgData, 'PNG', col * boardWidth, row * boardHeight, boardWidth, boardHeight);
-        }
+        const canvas = await html2canvas(board);
+        const imgData = canvas.toDataURL('image/png');
+
+        doc.addImage(imgData, 'PNG', col * boardWidth, row * boardHeight, boardWidth, boardHeight);
     }
 
     doc.save('bingo_cartones.pdf');
 });
+
+// Función para crear el contenido del tablero de bingo
+function createBingoBoardContent(board, boardNumber) {
+    const boardNumberDiv = document.createElement('div');
+    boardNumberDiv.classList.add('bingoBoardNumber');
+    boardNumberDiv.textContent = `Cartón Nº ${boardNumber}`;
+    board.appendChild(boardNumberDiv);
+
+    const header = document.createElement('div');
+    header.classList.add('bingoHeader');
+    ['B', 'I', 'N', 'G', 'O'].forEach(letter => {
+        const cell = document.createElement('div');
+        cell.textContent = letter;
+        header.appendChild(cell);
+    });
+    board.appendChild(header);
+
+    const columns = document.createElement('div');
+    columns.classList.add('bingoColumns');
+    columns.style.display = 'grid';
+    columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
+    columns.style.gap = '5px';
+
+    const bColumn = createBingoColumn(1, 15, boardNumber);
+    const iColumn = createBingoColumn(16, 30, boardNumber);
+    const nColumn = createBingoColumn(31, 45, boardNumber, true);
+    const gColumn = createBingoColumn(46, 60, boardNumber);
+    const oColumn = createBingoColumn(61, 75, boardNumber);
+
+    columns.appendChild(bColumn);
+    columns.appendChild(iColumn);
+    columns.appendChild(nColumn);
+    columns.appendChild(gColumn);
+    columns.appendChild(oColumn);
+
+    board.appendChild(columns);
+}
     createMasterBoard();
     createBingoBoards(currentPage);
 });
