@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectFigure = document.getElementById('selectFigure');
     const figurePreviewContainer = document.getElementById('figurePreviewContainer');
     const figurePreview = document.getElementById('figurePreview');
+    const printButton = document.getElementById('printButton');
 
     const boardsPerPage = 10;
     let currentPage = 1;
@@ -538,7 +539,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const figure = e.target.value;
         updateFigurePreview(figure);
     });
- printButton.addEventListener('click', async () => {
+
+    printButton.addEventListener('click', async () => {
         const doc = new docx.Document();
         const boards = document.querySelectorAll('.bingoBoard');
 
@@ -569,4 +571,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createMasterBoard();
     createBingoBoards(currentPage);
-    });
+});
