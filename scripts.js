@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const boardNumber = document.createElement('div');
             boardNumber.classList.add('bingoBoardNumber');
-            boardNumber.textContent = `Cartón Nº ${i} (${playerNames[i] || 'Sin nombre'})`;
+            boardNumber.textContent = Cartón Nº ${i} (${playerNames[i] || 'Sin nombre'});
             board.appendChild(boardNumber);
 
             const header = document.createElement('div');
@@ -153,8 +153,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function createBingoColumn(min, max, boardNumber, hasFreeCell = false) {
         const column = document.createElement('div');
         column.classList.add('bingoColumn');
-        const numbers = bingoBoardsState[boardNumber] && bingoBoardsState[boardNumber][`col${min}-${max}`] ?
-            bingoBoardsState[boardNumber][`col${min}-${max}`] :
+        const numbers = bingoBoardsState[boardNumber] && bingoBoardsState[boardNumber][col${min}-${max}] ?
+            bingoBoardsState[boardNumber][col${min}-${max}] :
             getRandomNumbers(min, max, 5);
 
         const boardState = bingoBoardsState[boardNumber] || {};
@@ -169,8 +169,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             column.appendChild(cell);
 
-            if (!boardState[`col${min}-${max}`]) {
-                boardState[`col${min}-${max}`] = numbers;
+            if (!boardState[col${min}-${max}]) {
+                boardState[col${min}-${max}] = numbers;
             }
         });
 
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
             generatedNumbers.push(number);
             saveState();
         }
-        document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
+        document.querySelectorAll([data-number="${number}"]).forEach(cell => {
             cell.classList.add('marked');
         });
         markFigureNumbers(); // Llamar a la función para marcar los números de la figura en color naranja
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
             Object.keys(bingoBoardsState[boardNumber]).forEach(colKey => {
                 bingoBoardsState[boardNumber][colKey].forEach((number, index) => {
                     if (number !== 'FREE') {
-                        const cell = document.querySelector(`[data-number="${number}"]`);
+                        const cell = document.querySelector([data-number="${number}"]);
                         if (cell) {
                             cell.classList.remove('marked');
                             cell.classList.remove('figure-marked'); // Remove the figure-marked class
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     found = true;
                     changePage(page);
                     setTimeout(() => {
-                        const board = document.querySelector(`.bingoBoard[data-board-number='${i}']`);
+                        const board = document.querySelector(.bingoBoard[data-board-number='${i}']);
                         if (board) {
                             board.scrollIntoView({ behavior: 'smooth' });
                             board.classList.add('highlighted-permanent'); // Add highlighted-permanent class
@@ -541,26 +541,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     printButton.addEventListener('click', async () => {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    const boards = document.querySelectorAll('.bingoBoard');
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        const boards = document.querySelectorAll('.bingoBoard');
 
-    const margin = 10; // Margen en el PDF
-    const pdfWidth = doc.internal.pageSize.getWidth() - 2 * margin; // Ancho del PDF con margen
-    const pdfHeight = doc.internal.pageSize.getHeight() - 2 * margin; // Alto del PDF con margen
+        for (let i = 0; i < boards.length; i++) {
+            const canvas = await html2canvas(boards[i]);
+            const imgData = canvas.toDataURL('image/png');
+            const imgProps = doc.getImageProperties(imgData);
+            const pdfWidth = doc.internal.pageSize.getWidth();
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-    for (let i = 0; i < boards.length; i++) {
-        const canvas = await html2canvas(boards[i]);
-        const imgData = canvas.toDataURL('image/png');
-        const imgProps = doc.getImageProperties(imgData);
-        const imgWidth = pdfWidth;
-        const imgHeight = (imgProps.height * imgWidth) / imgProps.width;
-
-        if (i > 0) {
-            doc.addPage();
+            if (i > 0) {
+                doc.addPage();
+            }
+            doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
         }
-        doc.addImage(imgData, 'PNG', margin, margin, imgWidth, imgHeight);
-    }
 
-    doc.save('bingo_cartones.pdf');
+        doc.save('bingo_cartones.pdf');
+    });
+
+    createMasterBoard();
+    createBingoBoards(currentPage);
 });
