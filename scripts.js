@@ -541,26 +541,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     printButton.addEventListener('click', async () => {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        const boards = document.querySelectorAll('.bingoBoard');
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    const boards = document.querySelectorAll('.bingoBoard');
 
-        for (let i = 0; i < boards.length; i++) {
-            const canvas = await html2canvas(boards[i]);
-            const imgData = canvas.toDataURL('image/png');
-            const imgProps = doc.getImageProperties(imgData);
-            const pdfWidth = doc.internal.pageSize.getWidth();
-            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    const margin = 5; // Reduzco el margen a 5 unidades
+    const pdfWidth = doc.internal.pageSize.getWidth() - 2 * margin; // Ancho del PDF con margen
+    const pdfHeight = doc.internal.pageSize.getHeight() - 2 * margin; // Alto del PDF con margen
 
-            if (i > 0) {
-                doc.addPage();
-            }
-            doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+    for (let i = 0; i < boards.length; i++) {
+        const canvas = await html2canvas(boards[i]);
+        const imgData = canvas.toDataURL('image/png');
+        const imgProps = doc.getImageProperties(imgData);
+        const imgWidth = pdfWidth;
+        const imgHeight = (imgProps.height * imgWidth) / imgProps.width;
+
+        if (i > 0) {
+            doc.addPage();
         }
+        doc.addImage(imgData, 'PNG', margin, margin, imgWidth, imgHeight);
+    }
 
-        doc.save('bingo_cartones.pdf');
-    });
-
-    createMasterBoard();
-    createBingoBoards(currentPage);
+    doc.save('bingo_cartones.pdf');
 });
