@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
     let bingoBoardsState = JSON.parse(localStorage.getItem('bingoBoardsState')) || {};
     let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
-    const totalBoards = 5000;
+    const totalBoards = 10000;
 
     let selectedFigure = '';
 
