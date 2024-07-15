@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const figurePreview = document.getElementById('figurePreview');
     const printButton = document.getElementById('printButton');
 
-    const boardsPerPage = 12;
+    const boardsPerPage = 9;
     let currentPage = 1;
     let totalPages;
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
