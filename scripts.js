@@ -544,7 +544,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     const boards = document.querySelectorAll('.bingoBoard');
-
     const startPageInput = document.getElementById('startPage');
     const endPageInput = document.getElementById('endPage');
     const startPage = parseInt(startPageInput.value);
