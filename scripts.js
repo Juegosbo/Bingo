@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     numbers.forEach((num, index) => {
         const cell = document.createElement('div');
         cell.classList.add('bingoCell');
-        const cellNumber = hasFreeCell && index === 2 ? 'E' : num;
+        const cellNumber = hasFreeCell && index === 2 ? 'FREE' : num;
         cell.textContent = cellNumber;
         cell.dataset.number = cellNumber;
 
