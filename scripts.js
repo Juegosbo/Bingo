@@ -98,57 +98,67 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function createBingoBoards(page) {
-        bingoBoardsContainer.innerHTML = '';
-        const startBoard = (page - 1) * boardsPerPage + 1;
-        const endBoard = Math.min(startBoard + boardsPerPage - 1, totalBoards);
+    bingoBoardsContainer.innerHTML = '';
+    const startBoard = (page - 1) * boardsPerPage + 1;
+    const endBoard = Math.min(startBoard + boardsPerPage - 1, totalBoards);
 
-        for (let i = startBoard; i <= endBoard; i++) {
-            const board = document.createElement('div');
-            board.classList.add('bingoBoard');
-            board.dataset.boardNumber = i;
+    for (let i = startBoard; i <= endBoard; i++) {
+        const board = document.createElement('div');
+        board.classList.add('bingoBoard');
+        board.dataset.boardNumber = i;
 
-            const boardNumber = document.createElement('div');
-            boardNumber.classList.add('bingoBoardNumber');
-            boardNumber.textContent = `Cartón Nº ${i} (${playerNames[i] || 'Sin nombre'})`;
-            board.appendChild(boardNumber);
+        const boardNumberContainer = document.createElement('div');
+        boardNumberContainer.classList.add('boardNumberContainer');
+        
+        const boardNumber = document.createElement('div');
+        boardNumber.classList.add('bingoBoardNumber');
+        boardNumber.textContent = `Cartón Nº ${i}`;
 
-            const header = document.createElement('div');
-            header.classList.add('bingoHeader');
-            ['B', 'I', 'N', 'G', 'O'].forEach(letter => {
-                const cell = document.createElement('div');
-                cell.textContent = letter;
-                header.appendChild(cell);
-            });
-            board.appendChild(header);
+        const playerName = document.createElement('div');
+        playerName.classList.add('playerName');
+        playerName.textContent = playerNames[i] || 'Sin nombre';
+        
+        boardNumberContainer.appendChild(boardNumber);
+        boardNumberContainer.appendChild(playerName);
+        board.appendChild(boardNumberContainer);
 
-            const columns = document.createElement('div');
-            columns.classList.add('bingoColumns');
-            columns.style.display = 'grid';
-            columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
-            columns.style.gap = '5px';
-
-            const bColumn = createBingoColumn(1, 15, i);
-            const iColumn = createBingoColumn(16, 30, i);
-            const nColumn = createBingoColumn(31, 45, i, true);
-            const gColumn = createBingoColumn(46, 60, i);
-            const oColumn = createBingoColumn(61, 75, i);
-
-            columns.appendChild(bColumn);
-            columns.appendChild(iColumn);
-            columns.appendChild(nColumn);
-            columns.appendChild(gColumn);
-            columns.appendChild(oColumn);
-
-            board.appendChild(columns);
-            bingoBoardsContainer.appendChild(board);
-        }
-
-        generatedNumbers.forEach(number => {
-            markNumber(number);
+        const header = document.createElement('div');
+        header.classList.add('bingoHeader');
+        ['B', 'I', 'N', 'G', 'O'].forEach(letter => {
+            const cell = document.createElement('div');
+            cell.textContent = letter;
+            header.appendChild(cell);
         });
+        board.appendChild(header);
 
-        currentPageSpan.textContent = currentPage;
+        const columns = document.createElement('div');
+        columns.classList.add('bingoColumns');
+        columns.style.display = 'grid';
+        columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
+        columns.style.gap = '5px';
+
+        const bColumn = createBingoColumn(1, 15, i);
+        const iColumn = createBingoColumn(16, 30, i);
+        const nColumn = createBingoColumn(31, 45, i, true);
+        const gColumn = createBingoColumn(46, 60, i);
+        const oColumn = createBingoColumn(61, 75, i);
+
+        columns.appendChild(bColumn);
+        columns.appendChild(iColumn);
+        columns.appendChild(nColumn);
+        columns.appendChild(gColumn);
+        columns.appendChild(oColumn);
+
+        board.appendChild(columns);
+        bingoBoardsContainer.appendChild(board);
     }
+
+    generatedNumbers.forEach(number => {
+        markNumber(number);
+    });
+
+    currentPageSpan.textContent = currentPage;
+}
 
     function createBingoColumn(min, max, boardNumber, hasFreeCell = false) {
     const column = document.createElement('div');
