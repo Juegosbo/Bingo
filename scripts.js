@@ -242,9 +242,15 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('playerNames', JSON.stringify(playerNames)); // Guardar los nombres de los jugadores
     }
 
-    function filterBoards() {
+  function filterBoards() {
     const query = searchBox.value.trim().toLowerCase();
     let found = false;
+
+    // Primero, eliminamos la clase blurry de todos los elementos
+    document.querySelectorAll('.bingoBoard').forEach(board => {
+        board.classList.remove('blurry');
+    });
+    document.getElementById('masterBoardContainer').classList.remove('blurry');
 
     for (let page = 1; page <= totalPages; page++) {
         const startBoard = (page - 1) * boardsPerPage + 1;
@@ -258,12 +264,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     const board = document.querySelector(`.bingoBoard[data-board-number='${i}']`);
                     if (board) {
+                        // Aplicamos la clase blurry a todos los elementos menos el buscado y el tablero maestro
                         document.querySelectorAll('.bingoBoard').forEach(b => {
                             if (b !== board) {
-                                b.classList.add('blurred');
+                                b.classList.add('blurry');
                             }
                         });
-                        document.querySelector('#bingo').classList.add('portrait-mode');
+                        document.getElementById('masterBoardContainer').classList.remove('blurry');
+                        board.classList.remove('blurry');
                         board.scrollIntoView({ behavior: 'smooth' });
                         board.classList.add('highlighted-permanent'); // Add highlighted-permanent class
 
@@ -274,8 +282,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         closeButton.addEventListener('click', () => {
                             board.classList.remove('highlighted-permanent');
                             board.querySelector('.closeButton').remove();
-                            document.querySelectorAll('.bingoBoard').forEach(b => b.classList.remove('blurred'));
-                            document.querySelector('#bingo').classList.remove('portrait-mode');
+                            // Eliminar la clase blurry de todos los elementos al cerrar
+                            document.querySelectorAll('.bingoBoard').forEach(b => {
+                                b.classList.remove('blurry');
+                            });
                         });
 
                         board.appendChild(closeButton);
