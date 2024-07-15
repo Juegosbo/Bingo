@@ -192,6 +192,31 @@ h1 img {
     width: calc(100% - 250px);
 }
 
+.boardNumberContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bingoBoardNumber {
+    font-size: 18px; /* Ajusta el tamaño de la fuente aquí */
+    color: #000; /* Cambia el color del texto aquí */
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
+    background-color: #2FAF2F; /* Fondo verde */
+    padding: 5px; /* Añadir algo de relleno alrededor del texto */
+    border-radius: 4px; /* Bordes redondeados para el fondo */
+    margin-bottom: 5px; /* Espacio entre el número y el nombre */
+}
+
+.playerName {
+    font-size: 16px; /* Ajusta el tamaño de la fuente aquí */
+    color: #000; /* Cambia el color del texto aquí */
+    font-family: "Arial", sans-serif;
+    font-weight: normal;
+    margin-top: -5px; /* Ajusta el margen superior si es necesario */
+}
+
 #paginationControls {
     display: flex;
     justify-content: center;
