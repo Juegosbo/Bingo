@@ -242,16 +242,13 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('playerNames', JSON.stringify(playerNames)); // Guardar los nombres de los jugadores
     }
 
- function filterBoards() {
+function filterBoards() {
     const query = searchBox.value.trim().toLowerCase();
     let found = false;
 
     // Primero, eliminamos la clase blurry de todos los elementos
     document.querySelectorAll('.bingoBoard').forEach(board => {
         board.classList.remove('blurry');
-    });
-    document.querySelectorAll('#masterBoardContainer, .figure-preview').forEach(element => {
-        element.classList.remove('blurry');
     });
 
     for (let page = 1; page <= totalPages; page++) {
@@ -266,15 +263,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     const board = document.querySelector(`.bingoBoard[data-board-number='${i}']`);
                     if (board) {
-                        // Aplicamos la clase blurry a todos los elementos menos el buscado y el tablero maestro
+                        // Aplicamos la clase blurry a todos los elementos menos el buscado
                         document.querySelectorAll('.bingoBoard').forEach(b => {
                             if (b !== board) {
                                 b.classList.add('blurry');
                             }
                         });
-                        document.querySelectorAll('#masterBoardContainer, .figure-preview').forEach(element => {
-                            element.classList.remove('blurry');
-                        });
+                        // Aseguramos que el cartón maestro no tenga la clase blurry
+                        document.getElementById('masterBoardContainer').classList.remove('blurry');
+                        
                         board.classList.remove('blurry');
                         board.scrollIntoView({ behavior: 'smooth' });
                         board.classList.add('highlighted-permanent'); // Add highlighted-permanent class
