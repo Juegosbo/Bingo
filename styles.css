@@ -440,6 +440,36 @@ h1 img {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     width: auto;
 }
+@keyframes spin {
+    0% {
+        transform: rotate(0deg) scale(0.5);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.2);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+.highlighted-permanent {
+    animation: spin 1s ease-in-out forwards;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: auto;
+    z-index: 1000;
+    background-color: white;
+    border: 2px solid red;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.blurry {
+    filter: blur(5px);
+    pointer-events: none; /* Para que no se pueda interactuar con los elementos borrosos */
+}
 
 .closeButton {
     position: absolute;
