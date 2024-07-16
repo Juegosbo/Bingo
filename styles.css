@@ -329,7 +329,7 @@ h1 img {
     justify-content: center;
     align-items: center;
     border: 1px solid #ddd;
-    background-color: #fff;
+    background-color: #000;
     font-size: 15px;
     cursor: pointer;
     color: #000;  /*color negro */
