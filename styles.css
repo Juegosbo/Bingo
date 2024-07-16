@@ -208,20 +208,6 @@ h1 img {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
 
-/*aqui se actualizo */
-/* Color para celdas marcadas en la tabla maestra */
-.masterBoard .bingoCell.marked {
-    background-color: #2AB366; /* Fondo verde para la celda marcada */
-    color: white; /* Texto blanco para la celda marcada */
-}
-
-/* Evita que las celdas de la figura en la tabla maestra se marquen */
-.masterBoard .bingoCell.figure-marked {
-    background-color: #2AB366; /* Mantiene el mismo color que las celdas marcadas normales */
-    color: white; /* Asegura que el texto se vea bien */
-}
-/*hasta aqui*/
-
 #masterBoardContainer .bingoCell {
     width: 50px; /* Ajusta el ancho de los números en la tabla maestra */
 }
