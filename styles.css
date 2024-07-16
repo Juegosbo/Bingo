@@ -213,12 +213,12 @@ h1 img {
 
 .bingoBoard {
     border: 2px solid #5bc0de; /* Borde más grueso y azul claro */
-    padding: 10px; /* Espaciado alrededor */
+    padding: 0; /* Sin espaciado alrededor */
     border-radius: 8px;
     background-color: #f0f8ff; /* Fondo azul claro */
     position: relative;
     display: grid;
-    grid-template-rows: auto auto 1fr; /* Ajustado para incluir el número de cartón y el nombre separados de la palabra "BINGO" */
+    grid-template-rows: auto 1fr; /* Ajustado para incluir el número de cartón y el nombre separados de la palabra "BINGO" */
     gap: 0; /* Sin espacio entre filas */
     text-align: center; /* Asegurar que todo el contenido dentro de la tarjeta esté centrado */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
