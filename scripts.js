@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const figurePreviewContainer = document.getElementById('figurePreviewContainer');
     const figurePreview = document.getElementById('figurePreview');
     const printButton = document.getElementById('printButton');
-    const clientPageButton = document.getElementById('clientPageButton'); // Botón de página de clientes
+    
     
     const boardsPerPage = 9;
     let currentPage = 1;
@@ -29,11 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let selectedFigure = '';
 
-     // Evento para redirigir a la página de clientes
-    clientPageButton.addEventListener('click', () => {
-        window.location.href = 'compras.html';
-    });
-    
+   
     // Calculate total pages
     totalPages = Math.ceil(totalBoards / boardsPerPage);
     totalPagesSpan.textContent = totalPages;
