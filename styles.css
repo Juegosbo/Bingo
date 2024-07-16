@@ -345,7 +345,7 @@ h1 img {
 }
 
 .bingoCell.free {
-    background-image: url('free1.png'); /* Ruta de la imagen */
+    background-image: url('free2.png'); /* Ruta de la imagen */
     background-size: cover;
     background-position: center;
     color: transparent; /* Para ocultar el texto 'FREE' */
