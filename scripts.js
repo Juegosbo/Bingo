@@ -32,6 +32,32 @@ document.addEventListener('DOMContentLoaded', () => {
     totalPages = Math.ceil(totalBoards / boardsPerPage);
     totalPagesSpan.textContent = totalPages;
 
+    winnerButton.addEventListener('click', () => {
+    winnerVideoContainer.style.display = 'block';
+    winnerVideo.play();
+    // Crear el botón de cerrar
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'X';
+    closeButton.classList.add('closeButton');
+    closeButton.style.position = 'absolute';
+    closeButton.style.top = '10px';
+    closeButton.style.right = '10px';
+    closeButton.style.backgroundColor = 'red';
+    closeButton.style.color = 'white';
+    closeButton.style.border = 'none';
+    closeButton.style.borderRadius = '50%';
+    closeButton.style.width = '30px';
+    closeButton.style.height = '30px';
+    closeButton.style.cursor = 'pointer';
+    // Añadir evento para cerrar el video
+    closeButton.addEventListener('click', () => {
+        winnerVideoContainer.style.display = 'none';
+        winnerVideo.pause();
+        winnerVideo.currentTime = 0; // Reinicia el video al inicio
+    });
+    winnerVideoContainer.appendChild(closeButton);
+});
+    
     function createMasterBoard() {
         const board = document.createElement('div');
         board.classList.add('bingoBoard');
