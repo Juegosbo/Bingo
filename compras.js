@@ -1,43 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
     const bingoBoardsContainer = document.getElementById('bingoBoardsContainer');
-    const checkoutButton = document.getElementById('checkoutButton');
-    let cart = [];
+    const completePurchaseButton = document.getElementById('completePurchase');
+    let selectedBoards = [];
 
-    // Crear y mostrar los cartones
-    for (let i = 1; i <= 1000; i++) {
-        const board = document.createElement('div');
-        board.classList.add('bingoBoard');
-        board.dataset.boardNumber = i;
-
-        const boardNumberContainer = document.createElement('div');
-        boardNumberContainer.classList.add('boardNumberContainer');
-        
-        const boardNumber = document.createElement('div');
-        boardNumber.classList.add('bingoBoardNumber');
-        boardNumber.textContent = `Cartón Nº ${i}`;
-
-        const addButton = document.createElement('button');
-        addButton.textContent = 'Añadir al carrito';
-        addButton.addEventListener('click', () => {
-            cart.push(i);
-            alert(`Cartón Nº ${i} añadido al carrito`);
-        });
-
-        boardNumberContainer.appendChild(boardNumber);
-        boardNumberContainer.appendChild(addButton);
-        board.appendChild(boardNumberContainer);
-        bingoBoardsContainer.appendChild(board);
+    // Crear cartones de bingo
+    function createBingoBoards() {
+        for (let i = 1; i <= 100; i++) { // Cambia 100 por el número total de cartones
+            const board = document.createElement('div');
+            board.classList.add('bingoBoard');
+            board.dataset.boardNumber = i;
+            board.innerHTML = `<div class="bingoBoardNumber">Cartón Nº ${i}</div>`;
+            board.addEventListener('click', () => toggleBoardSelection(i));
+            bingoBoardsContainer.appendChild(board);
+        }
     }
 
-    // Realizar compra
-    checkoutButton.addEventListener('click', () => {
-        if (cart.length === 0) {
-            alert('No hay cartones en el carrito.');
-            return;
+    function toggleBoardSelection(boardNumber) {
+        const board = document.querySelector(`.bingoBoard[data-board-number='${boardNumber}']`);
+        if (selectedBoards.includes(boardNumber)) {
+            selectedBoards = selectedBoards.filter(num => num !== boardNumber);
+            board.classList.remove('selected');
+        } else {
+            selectedBoards.push(boardNumber);
+            board.classList.add('selected');
         }
-        
-        const message = `Hola, me gustaría comprar los siguientes cartones de bingo: ${cart.join(', ')}`;
-        const whatsappUrl = `https://wa.me/1234567890?text=${encodeURIComponent(message)}`;
-        window.open(whatsappUrl, '_blank');
+    }
+
+    completePurchaseButton.addEventListener('click', () => {
+        const whatsappMessage = `Compré los siguientes cartones de bingo: ${selectedBoards.join(', ')}`;
+        const whatsappURL = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
+        window.open(whatsappURL, '_blank');
     });
+
+    createBingoBoards();
 });
