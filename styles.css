@@ -206,23 +206,23 @@ h1 img {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #5bc0de; /* Fondo azul claro */
+    padding: 10px;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
 
 .bingoBoardNumber {
     font-size: 18px; /* Ajusta el tamaño de la fuente aquí */
-    color: #000; /* Cambia el color del texto aquí */
+    color: #fff; /* Cambia el color del texto aquí */
     font-family: "Times New Roman", Times, serif;
     font-weight: bold;
-    background-color: #f0ad4e; /* Fondo naranja */
-    padding: 10px; /* Añadir algo de relleno alrededor del texto */
-    border-radius: 8px; /* Bordes redondeados para el fondo */
     margin-bottom: 5px; /* Espacio entre el número y el nombre */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
 
 .playerName {
     font-size: 16px; /* Ajusta el tamaño de la fuente aquí */
-    color: #000; /* Cambia el color del texto aquí */
+    color: #fff; /* Cambia el color del texto aquí */
     font-family: "Arial", sans-serif;
     font-weight: normal;
     margin-top: -5px; /* Ajusta el margen superior si es necesario */
@@ -237,10 +237,10 @@ h1 img {
 }
 
 .bingoBoard {
-    border: 1px solid #ddd;
+    border: 2px solid #5bc0de; /* Borde más grueso y azul claro */
     padding: 10px;
     border-radius: 8px;
-    background-color: #fff; /* Fondo blanco */
+    background-color: #f0f8ff; /* Fondo azul claro */
     position: relative;
     display: grid;
     grid-template-rows: auto auto 1fr;
@@ -353,13 +353,13 @@ h1 img {
 }
 
 .bingoCell.marked {
-    background-color: #28a745;
-    color: white;
+    background-color: #ffd700; /* Fondo amarillo para la celda marcada */
+    color: black; /* Texto negro para la celda marcada */
 }
 
 .bingoCell.figure-marked {
-    background-color: #ffd700; /* Fondo amarillo para la figura marcada */
-    color: black; /* Texto negro para la figura marcada */
+    background-color: #28a745; /* Fondo verde para la figura marcada */
+    color: white; /* Texto blanco para la figura marcada */
 }
 
 .bingoBoard.blurred {
