@@ -94,9 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
         board.appendChild(columns);
         masterBoardContainer.appendChild(board);
 
-        // Mark previously generated numbers
+        //  previously generated numbers
         generatedNumbers.forEach(number => {
-            markNumber(number);
+            Number(number);
         });
     }
 
@@ -222,8 +222,29 @@ document.addEventListener('DOMContentLoaded', () => {
     return column;
 }
 
-   function markNumber(number) {
+   /* function markNumber(number) {
     const cells = document.querySelectorAll(`[data-number="${number}"]`);
+    const isMarked = cells[0].classList.contains('marked');
+
+    cells.forEach(cell => {
+        if (isMarked) {
+            cell.classList.remove('marked');
+        } else {
+            cell.classList.add('marked');
+        }
+    });
+
+    if (isMarked) {
+        generatedNumbers = generatedNumbers.filter(n => n !== number);
+    } else {
+        generatedNumbers.push(number);
+    }
+
+    saveState();
+} */
+
+    function markMasterNumber(number) {
+    const cells = document.querySelectorAll(`#masterBoardContainer [data-number="${number}"]`);
     const isMarked = cells[0].classList.contains('marked');
 
     cells.forEach(cell => {
@@ -490,110 +511,108 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function markFigureNumbers() {
-        if (!selectedFigure) return;
+    if (!selectedFigure) return;
 
-        let cells = Array(25).fill(false); // 5x5 grid
+    let cells = Array(25).fill(false); // 5x5 grid
 
-        switch (selectedFigure) {
-            case 'cross':
-                cells = [
-                    false, false, true,  false, false,
-                    false, false, true,  false, false,
-                    true,  true,  true,  true,  true,
-                    false, false, true,  false, false,
-                    false, false, true,  false, false
-                ];
-                break;
-            case 'bigO':
-                cells = [
-                    true,  true,  true,  true,  true,
-                    true,  false, false, false, true,
-                    true,  false, false, false, true,
-                    true,  false, false, false, true,
-                    true,  true,  true,  true,  true
-                ];
-                break;
-            case 'diamond':
-                cells = [
-                    false, false, true,  false, false,
-                    false, true,  false, true,  false,
-                    true,  false, false, false, true,
-                    false, true,  false, true,  false,
-                    false, false, true,  false, false
-                ];
-                break;
-            case 'fourCorners':
-                cells = [
-                    true,  false, false, false, true,
-                    false, false, false, false, false,
-                    false, false, false, false, false,
-                    false, false, false, false, false,
-                    true,  false, false, false, true
-                ];
-                break;
-             case 'letterH':
-                cells = [
-                    true, true, true, true, true,
-                    false, false, true, false, false,
-                    false, false, true, false, false,
-                    false, false, true, false, false,
-                    true, true, true, true, true
-                ];
-                break;
-            case 'tree':
-                // Corrección para la figura Árbol
-                cells = [
-                    false, false, true,  false, false,
-                    false, true,  true,  false,  false,
-                    true,  true, true,  true, true,
-                    false, true,  true,  false,  false,
-                    false, false, true,  false, false
-                ];
-                break;
-            case 'numberOne':
-                // Corrección para la figura Número 1
-                cells = [
-                    false, false, false,  false, false,
-                    false, true, false,  false, true,
-                    true, true, true,  true, true,
-                    false, false, false,  false, true,
-                    false,  false,  false,  false,  false
-                ];
-                break;
-            case 'chess':
-                cells = [
-                    true,  false, true,  false, true,
-                    false, true,  false, true,  false,
-                    true,  false, true,  false, true,
-                    false, true,  false, true,  false,
-                    true,  false, true,  false, true
-                ];
-                break;
-            case 'diagonals':
-                cells = [
-                    true,  false, false, false, true,
-                    false, true,  false, true,  false,
-                    false, false, true,  false, false,
-                    false, true,  false, true,  false,
-                    true,  false, false, false, true
-                ];
-                break;
-            default:
-                return;
-        }
-
-        document.querySelectorAll('.bingoBoard').forEach(board => {
-            const boardCells = board.querySelectorAll('.bingoCell');
-            boardCells.forEach((cell, index) => {
-                const cellNumber = parseInt(cell.dataset.number);
-                if (cells[index] && generatedNumbers.includes(cellNumber)) {
-                    cell.classList.add('figure-marked');
-                } else {
-                    cell.classList.remove('figure-marked');
-                }
-            });
-        });
+    switch (selectedFigure) {
+        case 'cross':
+            cells = [
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                true,  true,  true,  true,  true,
+                false, false, true,  false, false,
+                false, false, true,  false, false
+            ];
+            break;
+        case 'bigO':
+            cells = [
+                true,  true,  true,  true,  true,
+                true,  false, false, false, true,
+                true,  false, false, false, true,
+                true,  false, false, false, true,
+                true,  true,  true,  true,  true
+            ];
+            break;
+        case 'diamond':
+            cells = [
+                false, false, true,  false, false,
+                false, true,  false, true,  false,
+                true,  false, false, false, true,
+                false, true,  false, true,  false,
+                false, false, true,  false, false
+            ];
+            break;
+        case 'fourCorners':
+            cells = [
+                true,  false, false, false, true,
+                false, false, false, false, false,
+                false, false, false, false, false,
+                false, false, false, false, false,
+                true,  false, false, false, true
+            ];
+            break;
+         case 'letterH':
+            cells = [
+                true, false, false, false, true,
+                true, false, false, false, true,
+                true, true, true, true, true,
+                true, false, false, false, true,
+                true, false, false, false, true
+            ];
+            break;
+        case 'tree':
+            cells = [
+                false, false, true,  false, false,
+                false, true,  true,  true,  false,
+                true,  true, true,  true, true,
+                false, false,  true,  false,  false,
+                false, false, true,  false, false
+            ];
+            break;
+        case 'numberOne':
+            cells = [
+                false, false, true,  false, false,
+                false, true, true,  false, false,
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                false,  true,  true,  true,  false
+            ];
+            break;
+        case 'chess':
+            cells = [
+                true,  false, true,  false, true,
+                false, true,  false, true,  false,
+                true,  false, true,  false, true,
+                false, true,  false, true,  false,
+                true,  false, true,  false, true
+            ];
+            break;
+        case 'diagonals':
+            cells = [
+                true,  false, false, false, true,
+                false, true,  false, true,  false,
+                false, false, true,  false, false,
+                false, true,  false, true,  false,
+                true,  false, false, false, true
+            ];
+            break;
+        default:
+            return;
     }
+
+    document.querySelectorAll('.bingoBoard:not(.masterBoard)').forEach(board => {
+        const boardCells = board.querySelectorAll('.bingoCell');
+        boardCells.forEach((cell, index) => {
+            const cellNumber = parseInt(cell.dataset.number);
+            if (cells[index] && generatedNumbers.includes(cellNumber)) {
+                cell.classList.add('figure-marked');
+            } else {
+                cell.classList.remove('figure-marked');
+            }
+        });
+    });
+}
 
     searchButton.addEventListener('click', filterBoards);
     resetGameBtn.addEventListener('click', resetGame);
