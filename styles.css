@@ -330,7 +330,7 @@ h1 img {
     align-items: center;
     border: 1px solid #ddd;
     background-color: #fff;
-    font-size: 12px;
+    font-size: 20px;
     cursor: pointer;
     color: #000 !important; /* Asegura que el color del texto sea negro */
     font-weight: bold; /* Asegura que el texto esté en negrilla */
