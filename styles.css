@@ -329,18 +329,18 @@ h1 img {
 }
 
 .bingoBoardNumber {
-    font-size: 18px; /* Ajusta el tamaño de la fuente aquí */
+    font-size: 20px; /* Ajusta el tamaño de la fuente aquí */
     color: #000; /* Cambia el color del texto aquí a negro */
-    font-family: "Times New Roman", Times, serif;
+    font-family: "Arial Black", Arial, sans-serif; /* Cambia la fuente aquí */
     font-weight: bold; /* Texto en negrita */
     text-transform: uppercase; /* Texto en mayúsculas */
     margin-bottom: 5px; /* Espacio entre el número y el nombre */
 }
 
 .playerName {
-    font-size: 16px; /* Ajusta el tamaño de la fuente aquí */
+    font-size: 18px; /* Ajusta el tamaño de la fuente aquí */
     color: #000; /* Cambia el color del texto aquí a negro */
-    font-family: "Arial", sans-serif;
+    font-family: "Arial Black", Arial, sans-serif; /* Cambia la fuente aquí */
     font-weight: bold; /* Texto en negrita */
     text-transform: uppercase; /* Texto en mayúsculas */
     margin-top: -5px; /* Ajusta el margen superior si es necesario */
