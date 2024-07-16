@@ -243,7 +243,7 @@ h1 img {
 .bingoColumns {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 0; /* Sin espacio entre las columnas */
+    gap: -10; /* Sin espacio entre las columnas */
 }
 
 .bingoCell {
@@ -260,8 +260,8 @@ h1 img {
     font-weight: bold; /* Asegura que el texto esté en negrilla */
     transition: background-color 0.3s ease; /* Transición suave para cambios de color */
     box-sizing: border-box; /* Asegura que el tamaño incluye los bordes */
-    padding: -10px; /* Elimina el padding para que los números estén juntos */
-    margin: 0px; /* Elimina el margen para que los números estén juntos */
+    padding: 0; /* Elimina el padding para que los números estén juntos */
+    margin: 0; /* Elimina el margen para que los números estén juntos */
 }
 
 .boardNumberContainer {
