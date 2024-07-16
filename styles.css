@@ -14,6 +14,39 @@ body {
     background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
 
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+.bouncing-title img {
+    animation: bounce 2s infinite; /* Aplica la animación al título */
+    max-width: 100%;
+    height: auto;
+    display: block;
+    width: 50%; /* Ajusta este valor según tus necesidades */
+}
+
+.bouncing-title {
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem; /* Aumenta el tamaño de la fuente para que sea más llamativo */
+    font-weight: bold; /* Negrita para que destaque más */
+    color: #2AB366; /* Color del texto */
+    text-transform: uppercase; /* Texto en mayúsculas */
+}
+
 .container {
     background: rgba(255, 255, 255, 0.9); /* Fondo blanco con un poco más de transparencia */
     padding: 20px;
