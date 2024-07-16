@@ -234,7 +234,7 @@ h1 img {
     letter-spacing: 0;
     margin: 0; /* Ajusta el margen para que no haya espacio */
     padding: 0; /* Asegúrate de que no haya espacio alrededor */
-    background-color: #5bc0de; /* Fondo azul claro */
+    background-color: #2AB366; /* Fondo verde */
     color: #000; /* Cambia el color del texto aquí a negro */
     font-family: "Times New Roman", Times, serif;
     border-radius: 8px 8px 0 0; /* Bordes redondeados solo en la parte superior */
@@ -272,6 +272,16 @@ h1 img {
     box-sizing: border-box; /* Asegura que el tamaño incluye los bordes */
     padding: 0; /* Elimina el padding para que los números estén juntos */
     margin: 0; /* Elimina el margen para que los números estén juntos */
+}
+
+.bingoCell.marked {
+    background-color: #2AB366; /* Fondo verde para la celda marcada */
+    color: white;
+}
+
+.bingoCell.figure-marked {
+    background-color: #E8F609; /* Fondo amarillo para la figura marcada */
+    color: black;
 }
 
 .boardNumberContainer {
