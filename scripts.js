@@ -273,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     const board = document.querySelector(`.bingoBoard[data-board-number='${i}']`);
                     if (board) {
-                       // Aplicamos la clase blurry a todos los elementos menos el buscado y el cartón maestro
+                        // Aplicamos la clase blurry a todos los elementos menos el buscado y el cartón maestro
                         document.querySelectorAll('.bingoBoard').forEach(b => {
                             if (b !== board && !b.closest('#masterBoardContainer')) {
                                 b.classList.add('blurry');
