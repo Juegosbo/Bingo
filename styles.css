@@ -219,7 +219,7 @@ h1 img {
     position: relative;
     display: grid;
     grid-template-rows: auto auto 1fr; /* Ajustado para incluir el número de cartón y el nombre separados de la palabra "BINGO" */
-    gap: 10px; /* Espacio entre el número de cartón y el nombre, y la palabra "BINGO" */
+    gap: 0; /* Sin espacio entre filas */
     text-align: center; /* Asegurar que todo el contenido dentro de la tarjeta esté centrado */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
     transition: transform 0.2s ease; /* Transición para hover */
@@ -243,7 +243,9 @@ h1 img {
 .bingoColumns {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: -10; /* Sin espacio entre las columnas */
+    gap: 0; /* Sin espacio entre las columnas */
+    margin: 0; /* Eliminar márgenes */
+    padding: 0; /* Eliminar padding */
 }
 
 .bingoCell {
