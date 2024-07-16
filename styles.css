@@ -268,13 +268,14 @@ h1 img {
     padding: 0; /* Asegúrate de que no haya espacio alrededor */
     background-color: #2AB366; /* Fondo verde */
     color: #000; /* Cambia el color del texto aquí a negro */
-    font-family: "Impact", Times, serif;
+    font-family: "Arial Black", Arial, sans-serif; /* Cambia la fuente aquí */
     border-radius: 8px 8px 0 0; /* Bordes redondeados solo en la parte superior */
     text-transform: uppercase; /* Texto en mayúsculas */
 }
 
 .bingoHeader div {
-    color: #000; /* Cambia el color del texto aquí a negro */
+    color: #000; /* Color del texto negro */
+    font-family: "Arial Black", Arial, sans-serif; /* Cambia la fuente aquí */
 }
 
 .bingoColumns {
