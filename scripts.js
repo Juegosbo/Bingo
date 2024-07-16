@@ -17,7 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const figurePreviewContainer = document.getElementById('figurePreviewContainer');
     const figurePreview = document.getElementById('figurePreview');
     const printButton = document.getElementById('printButton');
-
+    const clientPageButton = document.getElementById('clientPageButton'); // Botón de página de clientes
+    
     const boardsPerPage = 9;
     let currentPage = 1;
     let totalPages;
