@@ -222,26 +222,17 @@ document.addEventListener('DOMContentLoaded', () => {
     return column;
 }
 
-    ffunction markNumber(number) {
-    const cells = document.querySelectorAll(`[data-number="${number}"]`);
-    const isMarked = cells[0].classList.contains('marked');
-
-    cells.forEach(cell => {
-        if (isMarked) {
-            cell.classList.remove('marked');
-        } else {
-            cell.classList.add('marked');
+    function markNumber(number) {
+        if (!generatedNumbers.includes(number)) {
+            generatedNumbers.push(number);
+            saveState();
         }
-    });
-
-    if (isMarked) {
-        generatedNumbers = generatedNumbers.filter(n => n !== number);
-    } else {
-        generatedNumbers.push(number);
+        document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
+            cell.classList.add('marked');
+        });
+        markFigureNumbers(); // Llamar a la función para marcar los números de la figura en color naranja
     }
 
-    saveState();
-}
     function resetGame() {
         generatedNumbers = [];
         bingoBoardsState = {};
