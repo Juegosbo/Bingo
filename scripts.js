@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return column;
 }
 
-    function markNumber(number) {
+   /* function markNumber(number) {
         if (!generatedNumbers.includes(number)) {
             generatedNumbers.push(number);
             saveState();
@@ -231,7 +231,25 @@ document.addEventListener('DOMContentLoaded', () => {
             cell.classList.add('marked');
         });
         markFigureNumbers(); // Llamar a la función para marcar los números de la figura en color naranja
+    } */
+
+    function markNumber(number) {
+    document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
+        if (cell.closest('#masterBoardContainer')) {
+            cell.classList.toggle('marked'); // Alterna la clase 'marked' en la tabla maestra
+        } else {
+            cell.classList.add('marked'); // Marca normalmente en los demás cartones
+        }
+    });
+
+    if (generatedNumbers.includes(number)) {
+        generatedNumbers = generatedNumbers.filter(n => n !== number); // Remueve el número si está marcado
+    } else {
+        generatedNumbers.push(number); // Agrega el número si no está marcado
     }
+
+    saveState(); // Guarda el estado
+}
 
     function resetGame() {
         generatedNumbers = [];
