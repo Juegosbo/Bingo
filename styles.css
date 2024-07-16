@@ -246,6 +246,8 @@ h1 img {
     gap: 0; /* Sin espacio entre las columnas */
     margin: 0; /* Eliminar márgenes */
     padding: 0; /* Eliminar padding */
+    border-collapse: collapse; /* Colapsar bordes de la tabla */
+    border-spacing: 0; /* Eliminar espacio entre celdas */
 }
 
 .bingoCell {
