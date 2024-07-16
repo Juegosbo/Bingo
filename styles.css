@@ -261,7 +261,7 @@ h1 img {
     transition: background-color 0.3s ease; /* Transición suave para cambios de color */
     box-sizing: border-box; /* Asegura que el tamaño incluye los bordes */
     padding: 2px; /* Elimina el padding para que los números estén juntos */
-    margin: 20; /* Elimina el margen para que los números estén juntos */
+    margin: 25px; /* Elimina el margen para que los números estén juntos */
 }
 
 .boardNumberContainer {
