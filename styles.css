@@ -366,16 +366,24 @@ h1 img {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(360deg);
-    width: 80%; /* Ajusta el tamaño del cartón */
+    transform: translate(-50%, -50%) scale(1.2);
+    width: auto; /* Ajusta el tamaño del cartón */
     height: auto;
     z-index: 1000;
     background-color: white;
     border: 2px solid red;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    animation: spin 1s ease-in-out;
+    animation: spin 0.5s ease-in-out;
 }
 
+@keyframes spin {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1.2);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg) scale(1.2);
+    }
+}
 
 .bingoBoard .closeButton {
     position: absolute;
@@ -440,32 +448,6 @@ h1 img {
     border: 2px solid red;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     width: auto;
-}
-@keyframes spin {
-    from {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-    to {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-}
-.highlighted-permanent {
-    animation: spin 1s ease-in-out forwards;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    height: auto;
-    z-index: 1000;
-    background-color: white;
-    border: 2px solid red;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.blurry {
-    filter: blur(5px);
-    pointer-events: none; /* Para que no se pueda interactuar con los elementos borrosos */
 }
 
 .closeButton {
