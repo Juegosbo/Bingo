@@ -366,15 +366,16 @@ h1 img {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%; /* Ajusta este valor para cambiar el tamaño del cartón */
-    height: 50%;
+    transform: translate(-50%, -50%) rotate(360deg);
+    width: 80%; /* Ajusta el tamaño del cartón */
+    height: auto;
     z-index: 1000;
     background-color: white;
     border: 2px solid red;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    padding: 20px; /* Ajusta el relleno si es necesario */
+    animation: spin 1s ease-in-out;
 }
+
 
 .bingoBoard .closeButton {
     position: absolute;
@@ -441,17 +442,13 @@ h1 img {
     width: auto;
 }
 @keyframes spin {
-    0% {
-        transform: rotate(0deg) scale(0.5);
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
     }
-    50% {
-        transform: rotate(180deg) scale(1.2);
-    }
-    100% {
-        transform: rotate(360deg) scale(1);
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
     }
 }
-
 .highlighted-permanent {
     animation: spin 1s ease-in-out forwards;
     position: fixed;
