@@ -252,13 +252,14 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('playerNames', JSON.stringify(playerNames)); // Guardar los nombres de los jugadores
     }
 
-    function filterBoards() {
+   function filterBoards() {
     const query = searchBox.value.trim().toLowerCase();
     let found = false;
 
     // Primero, eliminamos la clase blurry de todos los elementos
     document.querySelectorAll('.bingoBoard').forEach(board => {
         board.classList.remove('blurry');
+        board.classList.remove('highlighted-permanent');
     });
 
     for (let page = 1; page <= totalPages; page++) {
@@ -281,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                         // Aseguramos que el cartón maestro no tenga la clase blurry
                         document.getElementById('masterBoardContainer').classList.remove('blurry');
-                        
+
                         board.classList.remove('blurry');
                         board.scrollIntoView({ behavior: 'smooth' });
                         board.classList.add('highlighted-permanent'); // Add highlighted-permanent class
