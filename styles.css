@@ -215,13 +215,13 @@ h1 img {
     border: 2px solid #5bc0de; /* Borde más grueso y azul claro */
     padding: 0; /* Sin espaciado alrededor */
     border-radius: 8px;
-    background-color: #f0f8ff; /* Fondo azul claro */
+    background-color: #ffeb3b; /* Fondo amarillo brillante */
     position: relative;
     display: grid;
     grid-template-rows: auto 1fr; /* Ajustado para incluir el número de cartón y el nombre separados de la palabra "BINGO" */
     gap: 0; /* Sin espacio entre filas */
     text-align: center; /* Asegurar que todo el contenido dentro de la tarjeta esté centrado */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
     transition: transform 0.2s ease; /* Transición para hover */
 }
 
@@ -235,9 +235,10 @@ h1 img {
     margin: 0; /* Ajusta el margen para que no haya espacio */
     padding: 0; /* Asegúrate de que no haya espacio alrededor */
     background-color: #5bc0de; /* Fondo azul claro */
-    color: #fff; /* Cambia el color del texto aquí */
+    color: #000; /* Cambia el color del texto aquí a negro */
     font-family: "Times New Roman", Times, serif;
     border-radius: 8px 8px 0 0; /* Bordes redondeados solo en la parte superior */
+    text-transform: uppercase; /* Texto en mayúsculas */
 }
 
 .bingoColumns {
@@ -262,6 +263,7 @@ h1 img {
     cursor: pointer;
     color: #000 !important; /* Asegura que el color del texto sea negro */
     font-weight: bold; /* Asegura que el texto esté en negrilla */
+    text-transform: uppercase; /* Texto en mayúsculas */
     transition: background-color 0.3s ease; /* Transición suave para cambios de color */
     box-sizing: border-box; /* Asegura que el tamaño incluye los bordes */
     padding: 0; /* Elimina el padding para que los números estén juntos */
@@ -281,17 +283,19 @@ h1 img {
 
 .bingoBoardNumber {
     font-size: 18px; /* Ajusta el tamaño de la fuente aquí */
-    color: #fff; /* Cambia el color del texto aquí */
+    color: #000; /* Cambia el color del texto aquí a negro */
     font-family: "Times New Roman", Times, serif;
-    font-weight: bold;
+    font-weight: bold; /* Texto en negrita */
+    text-transform: uppercase; /* Texto en mayúsculas */
     margin-bottom: 5px; /* Espacio entre el número y el nombre */
 }
 
 .playerName {
     font-size: 16px; /* Ajusta el tamaño de la fuente aquí */
-    color: #fff; /* Cambia el color del texto aquí */
+    color: #000; /* Cambia el color del texto aquí a negro */
     font-family: "Arial", sans-serif;
-    font-weight: normal;
+    font-weight: bold; /* Texto en negrita */
+    text-transform: uppercase; /* Texto en mayúsculas */
     margin-top: -5px; /* Ajusta el margen superior si es necesario */
 }
 
