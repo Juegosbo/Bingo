@@ -253,7 +253,7 @@ h1 img {
     grid-template-rows: auto 1fr; /* Ajustado para incluir el número de cartón y el nombre separados de la palabra "BINGO" */
     gap: 0; /* Sin espacio entre filas */
     text-align: center; /* Asegurar que todo el contenido dentro de la tarjeta esté centrado */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
     transition: transform 0.2s ease; /* Transición para hover */
 }
 
