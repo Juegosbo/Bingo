@@ -329,11 +329,11 @@ h1 img {
     justify-content: center;
     align-items: center;
     border: 1px solid #ddd;
-    background-color: #B1B1B1;
-    font-size: 18px; /* Aumentado el tamaño del texto */
+    background-color: #fff;
+    font-size: 12px;
     cursor: pointer;
-    color: #000; /* Color del texto cambiado a negro */
-    font-weight: bold; /* Texto en negrilla */
+    color: #000 !important; /* Asegura que el color del texto sea negro */
+    font-weight: bold; /* Asegura que el texto esté en negrilla */
 }
 
 .bingoCell.free {
