@@ -28,6 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let selectedFigure = '';
 
+     // Evento para redirigir a la página de clientes
+    clientPageButton.addEventListener('click', () => {
+        window.location.href = 'compras.html';
+    });
+    
     // Calculate total pages
     totalPages = Math.ceil(totalBoards / boardsPerPage);
     totalPagesSpan.textContent = totalPages;
