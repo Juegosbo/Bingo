@@ -260,8 +260,8 @@ h1 img {
     font-weight: bold; /* Asegura que el texto esté en negrilla */
     transition: background-color 0.3s ease; /* Transición suave para cambios de color */
     box-sizing: border-box; /* Asegura que el tamaño incluye los bordes */
-    padding: 30px; /* Elimina el padding para que los números estén juntos */
-    margin: 0; /* Elimina el margen para que los números estén juntos */
+    padding: 2px; /* Elimina el padding para que los números estén juntos */
+    margin: 20; /* Elimina el margen para que los números estén juntos */
 }
 
 .boardNumberContainer {
