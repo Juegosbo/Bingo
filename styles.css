@@ -262,7 +262,7 @@ h1 img {
     grid-template-columns: repeat(5, 1fr);
     text-align: center;
     font-weight: bold;
-    font-size: 18px; /* Ajusta el tamaño de la fuente aquí */
+    font-size: 26px; /* Ajusta el tamaño de la fuente aquí */
     letter-spacing: 0;
     margin: 0; /* Ajusta el margen para que no haya espacio */
     padding: 0; /* Asegúrate de que no haya espacio alrededor */
