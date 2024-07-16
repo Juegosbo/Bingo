@@ -330,8 +330,10 @@ h1 img {
     align-items: center;
     border: 1px solid #ddd;
     background-color: #fff;
-    font-size: 12px;
+    font-size: 15px;
     cursor: pointer;
+    color: #000;  /*color negro */
+    font-weight: bold; /* Añade esta línea para hacer el texto en negrilla */
 }
 
 .bingoCell.free {
