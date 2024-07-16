@@ -241,6 +241,10 @@ h1 img {
     text-transform: uppercase; /* Texto en mayúsculas */
 }
 
+.bingoHeader div {
+    color: #000; /* Cambia el color del texto aquí a negro */
+}
+
 .bingoColumns {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
