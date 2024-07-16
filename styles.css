@@ -237,14 +237,14 @@ h1 img {
 }
 
 .bingoBoard {
-    border: 2px solid #5bc0de; /* Borde más grueso y azul claro */
-    padding: 10px;
+    border: 2px solid #AC0F05; /* Borde más grueso y rojo vino  */
+    padding: 10px 10px 0 10px; /* Espaciado alrededor, ajustado para la parte inferior */
     border-radius: 8px;
-    background-color: #f0f8ff; /* Fondo azul claro */
+    background-color: #AC0F05; /* Fondo rojo vino  */
     position: relative;
     display: grid;
-    grid-template-rows: auto auto 1fr;
-    gap: 10px;
+    grid-template-rows: auto 1fr; /* Ajustado para eliminar espacio entre el encabezado y los números */
+    gap: 0; /* Sin espacio entre el encabezado y los números */
     text-align: center; /* Asegurar que todo el contenido dentro de la tarjeta esté centrado */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
     transition: transform 0.2s ease; /* Transición para hover */
@@ -301,6 +301,7 @@ h1 img {
     font-size: 8px; /* Ajusta el tamaño de la fuente del cartón pequeño */
 }
 
+
 .bingoHeader {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -308,9 +309,10 @@ h1 img {
     font-weight: bold;
     font-size: 18px; /* Ajusta el tamaño de la fuente aquí */
     letter-spacing: 0;
-    margin-bottom: 5px;
-    background-color: #5bc0de; /* Fondo azul claro */
-    color: #fff; /* Cambia el color del texto aquí */
+    margin: 0; /* Ajusta el margen para que no haya espacio */
+    padding: 0; /* Asegúrate de que no haya espacio alrededor */
+    background-color: #AC0F05; /* Fondo rojo vino  */
+    color: #000; /* Cambia el color del texto aquí */
     font-family: "Times New Roman", Times, serif;
     border-radius: 8px; /* Bordes redondeados */
 }
