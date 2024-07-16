@@ -1,3 +1,4 @@
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -57,12 +58,6 @@ body {
     max-width: 1200px;
     overflow-y: auto;
     position: relative;
-    animation: fadeIn 1s ease-in-out; /* Animación de entrada */
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
 }
 
 header {
@@ -78,9 +73,9 @@ h1 {
     margin: 0;
     flex-grow: 1;
     text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex; /* Añadido */
+    justify-content: center; /* Añadido */
+    align-items: center; /* Añadido */
 }
 
 h1 img {
@@ -118,11 +113,6 @@ h1 img {
     top: 40px; /* Ajuste para mover el botón un poco más arriba */
 }
 
-#resetGame:hover, #clearMarks:hover, #searchButton:hover, #nameCards:hover, #winnerButton:hover {
-    background-color: darken(20%); /* Oscurece el color al pasar el mouse */
-    transform: scale(1.05); /* Efecto de agrandamiento en hover */
-}
-
 #controls {
     display: flex;
     flex-direction: column;
@@ -144,11 +134,6 @@ h1 img {
     width: 200px;
     border: 1px solid #ddd;
     border-radius: 8px; /* Bordes más redondeados */
-    transition: border-color 0.3s ease; /* Transición para el cambio de borde */
-}
-
-#searchBox:focus {
-    border-color: #007bff; /* Cambia el borde al enfocarse */
 }
 
 #searchButton {
@@ -190,6 +175,16 @@ h1 img {
 
 #winnerButton:hover {
     background-color: #c70039;
+    transform: scale(1.05); /* Efecto de agrandamiento en hover */
+}
+
+#resetGame:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); /* Efecto de agrandamiento en hover */
+}
+
+#clearMarks:hover {
+    background-color: #2AB366;
     transform: scale(1.05); /* Efecto de agrandamiento en hover */
 }
 
@@ -260,12 +255,7 @@ h1 img {
     gap: 0; /* Sin espacio entre filas */
     text-align: center; /* Asegurar que todo el contenido dentro de la tarjeta esté centrado */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transiciones para hover */
-}
-
-.bingoBoard:hover {
-    transform: scale(1.02); /* Efecto de agrandamiento en hover */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada en hover */
+    transition: transform 0.2s ease; /* Transición para hover */
 }
 
 .bingoHeader {
@@ -317,10 +307,6 @@ h1 img {
     margin: 0; /* Elimina el margen para que los números estén juntos */
 }
 
-.bingoCell:hover {
-    background-color: rgba(42, 179, 102, 0.5); /* Fondo verde claro en hover */
-}
-
 .bingoCell.marked {
     background-color: #2AB366; /* Fondo verde para la celda marcada */
     color: white;
@@ -358,6 +344,10 @@ h1 img {
     font-weight: bold; /* Texto en negrita */
     text-transform: uppercase; /* Texto en mayúsculas */
     margin-top: -5px; /* Ajusta el margen superior si es necesario */
+}
+
+.bingoBoard:hover {
+    transform: scale(1.02); /* Efecto de agrandamiento en hover */
 }
 
 .bingoBoard.highlighted {
@@ -422,6 +412,16 @@ h1 img {
     text-indent: -9999px; /* Para asegurar que el texto no se vea ni ocupe espacio */
 }
 
+.bingoCell.marked {
+    background-color: #2AB366; /* Fondo verde para la celda marcada */
+    color: white; /* Texto blanco para la celda marcada */
+}
+
+.bingoCell.figure-marked {
+    background-color: #E8F609; /* Fondo amarillo para la figura marcada */
+    color: black; /* Texto negro para la figura marcada */
+}
+
 .bingoBoard.blurred {
     filter: blur(5px);
     pointer-events: none;
@@ -431,6 +431,15 @@ h1 img {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.bingoBoard.highlighted-permanent {
+    position: relative;
+    z-index: 1000;
+    background-color: white;
+    border: 2px solid red;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: auto;
 }
 
 .closeButton {
