@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('playerNames', JSON.stringify(playerNames)); // Guardar los nombres de los jugadores
     }
 
-  function filterBoards() {
+ function filterBoards() {
     const query = searchBox.value.trim().toLowerCase();
     let found = false;
 
