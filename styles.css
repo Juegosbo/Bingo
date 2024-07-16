@@ -202,7 +202,6 @@ h1 img {
     width: calc(100% - 250px);
 }
 
-
 #paginationControls {
     display: flex;
     justify-content: center;
@@ -364,16 +363,12 @@ h1 img {
     font-size: 8px; /* Ajusta el tamaño de la fuente del cartón pequeño */
 }
 
-
-
-
 .bingoHeader div {
-    background-color: #5bc0de; /* Fondo azul claro para cada letra */
-    color: #fff; /* Cambia el color del texto aquí */
+    background-color: #2AB366; /* Fondo verde para cada letra */
+    color: #000; /* Cambia el color del texto aquí a negro */
     font-family: "Times New Roman", Times, serif;
     font-weight: bold;
 }
-
 
 .bingoCell.free {
     background-image: url('free2.png'); /* Ruta de la imagen */
@@ -384,13 +379,13 @@ h1 img {
 }
 
 .bingoCell.marked {
-    background-color: #ffd700; /* Fondo amarillo para la celda marcada */
-    color: black; /* Texto negro para la celda marcada */
+    background-color: #2AB366; /* Fondo verde para la celda marcada */
+    color: white; /* Texto blanco para la celda marcada */
 }
 
 .bingoCell.figure-marked {
-    background-color: #28a745; /* Fondo verde para la figura marcada */
-    color: white; /* Texto blanco para la figura marcada */
+    background-color: #E8F609; /* Fondo amarillo para la figura marcada */
+    color: black; /* Texto negro para la figura marcada */
 }
 
 .bingoBoard.blurred {
