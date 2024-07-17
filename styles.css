@@ -272,12 +272,12 @@ h1 img {
     border-radius: 8px 8px 0 0; /* Bordes redondeados solo en la parte superior */
     text-transform: uppercase; /* Texto en mayúsculas */
 }
-
 .bingoHeader div {
-    color: #FFD700; /* Color del texto */
-    font-family: "Arial Black", Arial, sans-serif; /* Cambia la fuente aquí */
+    background-color: #FFD700; /* Fondo verde para cada letra */
+    color: #000; /* Cambia el color del texto aquí a negro */
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
 }
-
 .bingoColumns {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -406,12 +406,7 @@ h1 img {
     font-size: 8px; /* Ajusta el tamaño de la fuente del cartón pequeño */
 }
 
-.bingoHeader div {
-    background-color: #2AB366; /* Fondo verde para cada letra */
-    color: #000; /* Cambia el color del texto aquí a negro */
-    font-family: "Times New Roman", Times, serif;
-    font-weight: bold;
-}
+
 
 .bingoCell.free {
     background-image: url('free2.png'); /* Ruta de la imagen */
