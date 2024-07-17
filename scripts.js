@@ -610,31 +610,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
    printButton.addEventListener('click', async () => {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
     const boards = document.querySelectorAll('.bingoBoard');
-
-    const margin = 10; // Margen alrededor de los cartones
-    const scaleFactor = 0.8; // Factor de escala para reducir el tamaño del cartón
+    const linkContainer = document.createElement('div');
+    document.body.appendChild(linkContainer); // Añadir un contenedor para los enlaces de descarga
 
     for (let i = 0; i < boards.length; i++) {
         const canvas = await html2canvas(boards[i]);
         const imgData = canvas.toDataURL('image/png');
-        const imgProps = doc.getImageProperties(imgData);
-        const pdfWidth = (doc.internal.pageSize.getWidth() - margin * 2) * scaleFactor;
-        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-        const x = (doc.internal.pageSize.getWidth() - pdfWidth) / 2;
-        const y = margin;
+        const link = document.createElement('a');
+        link.href = imgData;
+        link.download = `bingo_carton_${i + 1}.png`;
+        link.textContent = `Descargar Cartón ${i + 1}`;
+        linkContainer.appendChild(link);
 
-        // Agregar una nueva página para cada cartón, excepto el primero
-        if (i > 0) {
-            doc.addPage();
-        }
-        doc.addImage(imgData, 'PNG', x, y, pdfWidth, pdfHeight);
+        // Añadir un salto de línea después de cada enlace
+        linkContainer.appendChild(document.createElement('br'));
     }
-
-    doc.save('bingo_cartones.pdf');
 });
     createMasterBoard();
     createBingoBoards(currentPage);
