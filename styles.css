@@ -227,7 +227,7 @@ h1 img {
     border-radius: 8px;
     background-color: #f9f9f9;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    width: 150px;
+    width: 180px;
 }
 
 }
@@ -235,7 +235,7 @@ h1 img {
 #figurePreview .bingoBoard.small {
     width: 150%; /* Asegura que el cartón ocupe todo el ancho del contenedor */
     height: auto;
-    font-size: 12px; /* Ajusta el tamaño de la fuente según sea necesario */
+    font-size: 15px; /* Ajusta el tamaño de la fuente según sea necesario */
 }
 
 #bingoBoardsContainer {
