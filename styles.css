@@ -274,8 +274,11 @@ h1 img {
 }
 
 .bingoHeader div {
-    color: #000; /* Color del texto negro */
+    background-color: #2AB366; /* Fondo verde para cada letra */
+    color: #000; /* Cambia el color del texto aquí a negro */
     font-family: "Arial Black", Arial, sans-serif; /* Cambia la fuente aquí */
+    font-weight: bold; /* Negrita */
+    font-size: 24px; /* Ajusta el tamaño de la fuente según sea necesario */
 }
 
 .bingoColumns {
