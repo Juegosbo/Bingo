@@ -57,6 +57,7 @@ body {
     max-width: 1200px;
     overflow-y: auto;
     position: relative;
+     margin-left: 200px; /* Ajusta este valor según sea necesario para mover a la derecha */
 }
 
 header {
