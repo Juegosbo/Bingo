@@ -611,8 +611,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
    printButton.addEventListener('click', async () => {
     const boards = document.querySelectorAll('.bingoBoard');
-    const linkContainer = document.createElement('div');
-    document.body.appendChild(linkContainer); // Añadir un contenedor para los enlaces de descarga
 
     for (let i = 0; i < boards.length; i++) {
         const canvas = await html2canvas(boards[i]);
@@ -621,11 +619,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const link = document.createElement('a');
         link.href = imgData;
         link.download = `bingo_carton_${i + 1}.png`;
-        link.textContent = `Descargar Cartón ${i + 1}`;
-        linkContainer.appendChild(link);
+        link.style.display = 'none'; // Ocultar el enlace
 
-        // Añadir un salto de línea después de cada enlace
-        linkContainer.appendChild(document.createElement('br'));
+        document.body.appendChild(link);
+        link.click(); // Hacer clic en el enlace para descargar la imagen
+        document.body.removeChild(link); // Eliminar el enlace del DOM
     }
 });
     createMasterBoard();
