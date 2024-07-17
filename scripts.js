@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
     let bingoBoardsState = JSON.parse(localStorage.getItem('bingoBoardsState')) || {};
     let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
+    let selectedFigure = localStorage.getItem('selectedFigure') || '';
     const totalBoards = 10000;
-    let selectedFigure = '';
 
     // Calculate total pages
     totalPages = Math.ceil(totalBoards / boardsPerPage);
@@ -276,6 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
         localStorage.setItem('bingoBoardsState', JSON.stringify(bingoBoardsState));
         localStorage.setItem('playerNames', JSON.stringify(playerNames));
+        localStorage.setItem('selectedFigure', selectedFigure);
     }
 
     function filterBoards() {
@@ -387,17 +388,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
             case 'letterH':
                 cells = [
+                    true, false, false, false, true,
+                    true, false, false, false, true,
                     true, true, true, true, true,
-                    false, false, true, false, false,
-                    false, false, true, false, false,
-                    false, false, true, false, false,
-                    true, true, true, true, true
+                    true, false, false, false, true,
+                    true, false, false, false, true
                 ];
                 break;
             case 'tree':
                 cells = [
                     false, false, true,  false, false,
-                    false, true,  true,  false,  false,
+                    false, true,  true,  true,  false,
                     true,  true, true,  true, true,
                     false, false,  true,  false,  false,
                     false, false, true,  false, false
@@ -466,6 +467,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         figurePreviewContainer.classList.remove('hidden');
         selectedFigure = figure;
+        localStorage.setItem('selectedFigure', figure); // Guardar la figura seleccionada
         markFigureNumbers();
     }
 
@@ -523,7 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'tree':
                 cells = [
                     false, false, true,  false, false,
-                    false, true,  true,  false,  false,
+                    false, true,  true,  true,  false,
                     true,  true, true,  true, true,
                     false, false,  true,  false,  false,
                     false, false, true,  false, false
@@ -583,6 +585,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 cell.classList.remove('figure-marked');
             }
         });
+    }
+
+    // Restaurar la figura seleccionada al cargar la página
+    if (selectedFigure) {
+        updateFigurePreview(selectedFigure);
     }
 
     searchButton.addEventListener('click', filterBoards);
