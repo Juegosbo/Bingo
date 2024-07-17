@@ -194,23 +194,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function markNumber(number) {
-    if (generatedNumbers.includes(number)) {
-        // Si el número ya está marcado, desmarcarlo
-        generatedNumbers = generatedNumbers.filter(num => num !== number);
-        saveState();
-        document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
-            cell.classList.remove('marked');
-        });
-    } else {
-        // Si el número no está marcado, marcarlo
-        generatedNumbers.push(number);
-        saveState();
+        if (!generatedNumbers.includes(number)) {
+            generatedNumbers.push(number);
+            saveState();
+        }
         document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
             cell.classList.add('marked');
         });
+        markFigureNumbers();
     }
-    markFigureNumbers(); // Actualiza los números de la figura
-}
 
     function resetGame() {
         generatedNumbers = [];
