@@ -509,29 +509,29 @@ document.addEventListener('DOMContentLoaded', () => {
             break;
         case 'letterH':
             cells = [
-                true, false, false, false, true,
-                true, false, false, false, true,
                 true, true, true, true, true,
-                true, false, false, false, true,
-                true, false, false, false, true
+                false, false, true, false, false,
+                false, false, true, false, false,
+                false, false, true, false, false,
+                true, true, true, true, true
             ];
             break;
         case 'tree':
             cells = [
                 false, false, true,  false, false,
-                false, true,  true,  true,  false,
+                false, true,  true,  false,  false,
                 true,  true, true,  true, true,
-                false, false,  true,  false,  false,
+                false, true,  true,  false,  false,
                 false, false, true,  false, false
             ];
             break;
         case 'numberOne':
             cells = [
-                false, false, true,  false, false,
-                false, true, true,  false, false,
-                false, false, true,  false, false,
-                false, false, true,  false, false,
-                false,  true,  true,  true,  false
+               false, false, false,  false, false,
+               false, true, false,  false, true,
+               true, true, true,  true, true,
+               false, false, false,  false, true,
+               false,  false,  false,  false,  false
             ];
             break;
         case 'chess':
