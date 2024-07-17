@@ -615,15 +615,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const boards = document.querySelectorAll('.bingoBoard');
 
     const margin = 10; // Margen alrededor de los cartones
+    const scaleFactor = 0.8; // Factor de escala para reducir el tamaño del cartón
 
     for (let i = 0; i < boards.length; i++) {
         const canvas = await html2canvas(boards[i]);
         const imgData = canvas.toDataURL('image/png');
         const imgProps = doc.getImageProperties(imgData);
-        const pdfWidth = doc.internal.pageSize.getWidth() - margin * 2;
+        const pdfWidth = (doc.internal.pageSize.getWidth() - margin * 2) * scaleFactor;
         const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-        const x = margin;
+        const x = (doc.internal.pageSize.getWidth() - pdfWidth) / 2;
         const y = margin;
 
         // Agregar una nueva página para cada cartón, excepto el primero
@@ -635,7 +636,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     doc.save('bingo_cartones.pdf');
 });
-
     createMasterBoard();
     createBingoBoards(currentPage);
 });
