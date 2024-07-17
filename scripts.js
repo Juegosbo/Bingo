@@ -550,6 +550,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
     }
 
+    // Marcar las celdas de la figura en los cartones
     document.querySelectorAll('.bingoBoard').forEach(board => {
         const boardCells = board.querySelectorAll('.bingoCell');
         boardCells.forEach((cell, index) => {
