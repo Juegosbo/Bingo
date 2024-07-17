@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     winnerButton.addEventListener('click', () => {
     winnerVideoContainer.style.display = 'block';
     winnerVideo.play();
-    // Crear el botón de cerrars
+    // Crear el botón de cerrar
     const closeButton = document.createElement('button');
     closeButton.textContent = 'X';
     closeButton.classList.add('closeButton');
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const boardNumber = document.createElement('div');
         boardNumber.classList.add('bingoBoardNumber');
-        boardNumber.textContent = `Cartón Nº ${i}`;
+        boardNumber.textContent = Cartón Nº ${i};
 
         const playerName = document.createElement('div');
         playerName.classList.add('playerName');
@@ -191,8 +191,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function createBingoColumn(min, max, boardNumber, hasFreeCell = false) {
     const column = document.createElement('div');
     column.classList.add('bingoColumn');
-    const numbers = bingoBoardsState[boardNumber] && bingoBoardsState[boardNumber][`col${min}-${max}`] ?
-        bingoBoardsState[boardNumber][`col${min}-${max}`] :
+    const numbers = bingoBoardsState[boardNumber] && bingoBoardsState[boardNumber][col${min}-${max}] ?
+        bingoBoardsState[boardNumber][col${min}-${max}] :
         getRandomNumbers(min, max, 5);
 
     const boardState = bingoBoardsState[boardNumber] || {};
@@ -212,8 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         column.appendChild(cell);
 
-        if (!boardState[`col${min}-${max}`]) {
-            boardState[`col${min}-${max}`] = numbers;
+        if (!boardState[col${min}-${max}]) {
+            boardState[col${min}-${max}] = numbers;
         }
     });
 
@@ -222,25 +222,17 @@ document.addEventListener('DOMContentLoaded', () => {
     return column;
 }
 
-  function markNumber(number) {
-    // Check if the number is already generated (marked)
-    if (generatedNumbers.includes(number)) {
-        // If it is, remove it from the generated numbers
-        generatedNumbers = generatedNumbers.filter(n => n !== number);
-    } else {
-        // If it is not, add it to the generated numbers
-        generatedNumbers.push(number);
-    }
-    saveState();
+    function markNumber(number) {
+        if (!generatedNumbers.includes(number)) {
+            generatedNumbers.push(number);
+            saveState();
+        }
+        document.querySelectorAll([data-number="${number}"]).forEach(cell => {
+            cell.classList.add('marked');
+        });
+        markFigureNumbers(); // Llamar a la función para marcar los números de la figura en color naranja
+    } 
 
-    // Toggle the 'marked' class for the cells with the data-number attribute
-    document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
-        cell.classList.toggle('marked');
-    });
-
-    // Call the function to mark figure numbers
-    markFigureNumbers();
-}
     
 
     function resetGame() {
@@ -264,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
             Object.keys(bingoBoardsState[boardNumber]).forEach(colKey => {
                 bingoBoardsState[boardNumber][colKey].forEach((number, index) => {
                     if (number !== 'FREE') {
-                        const cell = document.querySelector(`[data-number="${number}"]`);
+                        const cell = document.querySelector([data-number="${number}"]);
                         if (cell) {
                             cell.classList.remove('marked');
                             cell.classList.remove('figure-marked'); // Remove the figure-marked class
@@ -290,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('playerNames', JSON.stringify(playerNames)); // Guardar los nombres de los jugadores
     }
 
-function filterBoards() {
+ function filterBoards() {
     const query = searchBox.value.trim().toLowerCase();
     let found = false;
 
@@ -332,7 +324,7 @@ function filterBoards() {
                         closeButton.addEventListener('click', () => {
                             board.classList.remove('highlighted-permanent');
                             board.querySelector('.closeButton').remove();
-                            // Eliminar la clase blurry de todos los elementos al cerrararse
+                            // Eliminar la clase blurry de todos los elementos al cerrar
                             document.querySelectorAll('.bingoBoard').forEach(b => {
                                 b.classList.remove('blurry');
                             });
