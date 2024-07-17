@@ -267,17 +267,14 @@ h1 img {
     margin: 0; /* Ajusta el margen para que no haya espacio */
     padding: 0; /* Asegúrate de que no haya espacio alrededor */
     background-color: #2AB366; /* Fondo verde */
+    color: #000; /* Cambia el color del texto aquí a dorado */
     font-family: "Arial Black", Arial, sans-serif; /* Cambia la fuente aquí */
     border-radius: 8px 8px 0 0; /* Bordes redondeados solo en la parte superior */
     text-transform: uppercase; /* Texto en mayúsculas */
 }
 
 .bingoHeader div {
-    background-image: url('fondoletra.png'); /* Ruta de la imagen */
-    background-size: cover;
-    background-clip: text;
-    -webkit-background-clip: text; /* Necesario para compatibilidad con WebKit */
-    color: transparent;
+    color: #000; /* Cambia el color del texto aquí  */
     font-family: "Arial Black", Arial, sans-serif; /* Cambia la fuente aquí */
     font-weight: 3000; /* Hacer la letra más gruesa */
 }
