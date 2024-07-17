@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return column;
     }
 
-    function markNumber(number) {
+   function markNumber(number) {
     const index = generatedNumbers.indexOf(number);
     if (index > -1) {
         // Si el número ya está marcado, desmarcarlo
@@ -220,7 +220,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
         cell.classList.toggle('marked');
     });
-    markFigureNumbers(); // Actualiza los números de la figura en los cartones
+
+    // Verificar si el número forma parte de la figura seleccionada
+    if (selectedFigure) {
+        markFigureNumbers(); // Actualiza los números de la figura en los cartones
+    }
 }
 
     function resetGame() {
