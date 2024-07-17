@@ -1,545 +1,644 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    height: 100vh;
-    background-image: url('fondo3.png'); /* Ruta de la imagen de fondo */
-    background-size: cover; /* Asegura que la imagen cubra toda la página */
-    background-position: center; /* Centra la imagen de fondo */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const masterBoardContainer = document.getElementById('masterBoardContainer');
+    const bingoBoardsContainer = document.getElementById('bingoBoardsContainer');
+    const resetGameBtn = document.getElementById('resetGame');
+    const clearMarksBtn = document.getElementById('clearMarks');
+    const nameCardsBtn = document.getElementById('nameCards');
+    const searchBox = document.getElementById('searchBox');
+    const searchButton = document.getElementById('searchButton');
+    const winnerButton = document.getElementById('winnerButton');
+    const winnerVideoContainer = document.getElementById('winnerVideoContainer');
+    const winnerVideo = document.getElementById('winnerVideo');
+    const prevPageBtn = document.getElementById('prevPage');
+    const nextPageBtn = document.getElementById('nextPage');
+    const currentPageSpan = document.getElementById('currentPage');
+    const totalPagesSpan = document.getElementById('totalPages');
+    const selectFigure = document.getElementById('selectFigure');
+    const figurePreviewContainer = document.getElementById('figurePreviewContainer');
+    const figurePreview = document.getElementById('figurePreview');
+    const printButton = document.getElementById('printButton');
 
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
+    const boardsPerPage = 9;
+    let currentPage = 1;
+    let totalPages;
+    let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
+    let bingoBoardsState = JSON.parse(localStorage.getItem('bingoBoardsState')) || {};
+    let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
+    let selectedFigure = localStorage.getItem('selectedFigure') || '';
+    const totalBoards = 10000;
+
+    // Calculate total pages
+    totalPages = Math.ceil(totalBoards / boardsPerPage);
+    totalPagesSpan.textContent = totalPages;
+
+    function createMasterBoard() {
+        const board = document.createElement('div');
+        board.classList.add('bingoBoard');
+
+        const header = document.createElement('div');
+        header.classList.add('bingoHeader');
+        ['B', 'I', 'N', 'G', 'O'].forEach(letter => {
+            const cell = document.createElement('div');
+            cell.textContent = letter;
+            header.appendChild(cell);
+        });
+        board.appendChild(header);
+
+        const columns = document.createElement('div');
+        columns.classList.add('bingoColumns');
+        columns.style.display = 'grid';
+        columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
+        columns.style.gap = '5px';
+
+        const bColumn = createFixedBingoColumn(1, 15);
+        const iColumn = createFixedBingoColumn(16, 30);
+        const nColumn = createFixedBingoColumn(31, 45);
+        const gColumn = createFixedBingoColumn(46, 60);
+        const oColumn = createFixedBingoColumn(61, 75);
+
+        columns.appendChild(bColumn);
+        columns.appendChild(iColumn);
+        columns.appendChild(nColumn);
+        columns.appendChild(gColumn);
+        columns.appendChild(oColumn);
+
+        board.appendChild(columns);
+        masterBoardContainer.appendChild(board);
+
+        // Mark previously generated numbers
+        generatedNumbers.forEach(number => {
+            markNumber(number);
+        });
     }
-    40% {
-        transform: translateY(-30px);
+
+    function createFixedBingoColumn(min, max) {
+        const column = document.createElement('div');
+        column.classList.add('bingoColumn');
+        for (let i = min; i <= max; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('bingoCell');
+            cell.textContent = i;
+            cell.dataset.number = i;
+            cell.addEventListener('click', () => toggleMarkNumber(i));
+            column.appendChild(cell);
+        }
+        return column;
     }
-    60% {
-        transform: translateY(-15px);
+
+    function toggleMarkNumber(number) {
+        const index = generatedNumbers.indexOf(number);
+        if (index > -1) {
+            generatedNumbers.splice(index, 1);
+        } else {
+            generatedNumbers.push(number);
+        }
+        saveState();
+        document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
+            cell.classList.toggle('marked');
+        });
+
+        if (selectedFigure) {
+            markFigureNumbers(); // Actualiza los números de la figura en los cartones
+        }
     }
-}
 
-.bouncing-title img {
-    animation: bounce 2s infinite; /* Aplica la animación al título */
-    max-width: 100%;
-    height: auto;
-    display: block;
-    width: 70%; /* Ajusta este valor según tus necesidades */
-}
-
-.bouncing-title {
-    margin: 0;
-    flex-grow: 1;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem; /* Aumenta el tamaño de la fuente para que sea más llamativo */
-    font-weight: bold; /* Negrita para que destaque más */
-    color: #2AB366; /* Color del texto */
-    text-transform: uppercase; /* Texto en mayúsculas */
-}
-
-.container {
-    background: rgba(255, 255, 255, 0.9); /* Fondo blanco con un poco más de transparencia */
-    padding: 20px;
-    border-radius: 15px; /* Bordes más redondeados */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
-    text-align: center;
-    width: 90%;
-    max-width: 1200px;
-    overflow-y: auto;
-    position: relative;
-     margin-left: 140px; /* Ajusta este valor según sea necesario para mover a la derecha */
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 20px;
-    position: relative;
-}
-
-h1 {
-    margin: 0;
-    flex-grow: 1;
-    text-align: center;
-    display: flex; /* Añadido */
-    justify-content: center; /* Añadido */
-    align-items: center; /* Añadido */
-}
-
-h1 img {
-    max-width: 100%;
-    height: auto;
-    width: 50%; /* Ajusta este valor según tus necesidades */
-    display: block; /* Asegura que la imagen sea un bloque para que se centre correctamente */
-}
-
-#resetGame, #clearMarks, #searchButton, #nameCards, #winnerButton {
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones para hover */
-}
-
-#resetGame {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px; /* Bordes más redondeados */
-    padding: 10px 20px;
-    cursor: pointer;
-    position: absolute;
-    left: 0;
-    top: 40px; /* Ajuste para mover el botón un poco más arriba */
-}
-
-#clearMarks {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 8px; /* Bordes más redondeados */
-    padding: 10px 20px;
-    cursor: pointer;
-    position: absolute;
-    right: 300px;
-    top: 40px; /* Ajuste para mover el botón un poco más arriba */
-}
-
-#controls {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 20px;
-    position: relative;
-}
-
-.search-container {
-    display: flex;
-    gap: 10px; /* Espaciado entre los elementos */
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-#searchBox {
-    padding: 10px;
-    width: 200px;
-    border: 1px solid #ddd;
-    border-radius: 8px; /* Bordes más redondeados */
-}
-
-#searchButton {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px; /* Bordes más redondeados */
-    cursor: pointer;
-}
-
-#searchButton:hover {
-    background-color: #0056b3;
-    transform: scale(1.05); /* Efecto de agrandamiento en hover */
-}
-
-#nameCards {
-    background-color: #ffc107;
-    color: black;
-    border: none;
-    border-radius: 8px; /* Bordes más redondeados */
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-#nameCards:hover {
-    background-color: #e0a800;
-    transform: scale(1.05); /* Efecto de agrandamiento en hover */
-}
-
-#winnerButton {
-    background-color: #ff5733;
-    color: white;
-    border: none;
-    border-radius: 8px; /* Bordes más redondeados */
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-#winnerButton:hover {
-    background-color: #c70039;
-    transform: scale(1.05); /* Efecto de agrandamiento en hover */
-}
-
-#resetGame:hover {
-    background-color: #0056b3;
-    transform: scale(1.05); /* Efecto de agrandamiento en hover */
-}
-
-#clearMarks:hover {
-    background-color: #2AB366;
-    transform: scale(1.05); /* Efecto de agrandamiento en hover */
-}
-
-#bingo {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-}
-
-#masterBoardContainer {
-    position: fixed;
-    top: 110px; /* Ajusta esta propiedad para mover el tablero más abajo */
-    right: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #ddd;
-    padding: 10px; /* Espacio de relleno */
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-}
-
-#masterBoardContainer .bingoCell {
-    width: 50px; /* Ajusta el ancho de los números en la tabla maestra */
-}
-
-#figurePreviewContainer {
-    position: fixed;
-    top: 550px;
-    left: 7px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #ddd;
-    padding: 10px; /* Espacio de relleno */
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    width: 150px;
-}
-
-#figurePreview .bingoBoard.small {
-    width: 150%; /* Asegura que el cartón ocupe todo el ancho del contenedor */
-    height: auto;
-    font-size: 12px; /* Ajusta el tamaño de la fuente según sea necesario */
-}
-
-#bingoBoardsContainer {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Cuatro columnas por fila */
-    gap: 20px;
-    margin: 20px 0; /* Espaciado arriba y abajo */
-    width: calc(100% - 250px);
-}
-
-#paginationControls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin: 20px 0;
-}
-
-.bingoBoard {
-    border: 2px solid #5bc0de; /* Borde más grueso y azul claro */
-    padding: 0; /* Sin espaciado alrededor */
-    border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.5);
-   /* background-color: rgba(255, 0, 0, 0.5); /* Fondo rojo transparente */
-    position: relative;
-    display: grid;
-    grid-template-rows: auto 1fr; /* Ajustado para incluir el número de cartón y el nombre separados de la palabra "BINGO" */
-    gap: 0; /* Sin espacio entre filas */
-    text-align: center; /* Asegurar que todo el contenido dentro de la tarjeta esté centrado */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
-    transition: transform 0.2s ease; /* Transición para hover */
-}
-
-.bingoHeader {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    text-align: center;
-    font-weight: bold;
-    font-size: 32px; /* Ajusta el tamaño de la fuente aquí */
-    letter-spacing: 0;
-    margin: 0; /* Ajusta el margen para que no haya espacio */
-    padding: 0; /* Asegúrate de que no haya espacio alrededor */
-    background-color: #2AB366; /* Fondo verde */
-    color: #000; /* Cambia el color del texto aquí a negro */
-    font-family: "Arial Black", Arial, sans-serif; /* Cambia la fuente aquí */
-    border-radius: 8px 8px 0 0; /* Bordes redondeados solo en la parte superior */
-    text-transform: uppercase; /* Texto en mayúsculas */
-}
-
-.bingoHeader div {
-    background-color: #2AB366; /* Fondo verde para cada letra */
-    color: #000; /* Cambia el color del texto aquí a negro */
-    font-family: "Arial Black", Arial, sans-serif; /* Cambia la fuente aquí */
-    font-weight: bold; /* Negrita */
-    font-size: 24px; /* Ajusta el tamaño de la fuente según sea necesario */
-}
-
-.bingoColumns {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0; /* Sin espacio entre las columnas */
-    margin: 0; /* Eliminar márgenes */
-    padding: 0; /* Eliminar padding */
-    border-collapse: collapse; /* Colapsar bordes de la tabla */
-    border-spacing: 0; /* Eliminar espacio entre celdas */
-}
-
-.bingoCell {
-    width: 100%;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #000; /* Bordes negros */
-    background-color: #fff;
-    font-size: 20px;
-    cursor: pointer;
-    color: #000 !important; /* Asegura que el color del texto sea negro */
-    font-weight: bold; /* Asegura que el texto esté en negrilla */
-    text-transform: uppercase; /* Texto en mayúsculas */
-    transition: background-color 0.3s ease; /* Transición suave para cambios de color */
-    box-sizing: border-box; /* Asegura que el tamaño incluye los bordes */
-    padding: 0; /* Elimina el padding para que los números estén juntos */
-    margin: 0; /* Elimina el margen para que los números estén juntos */
-}
-
-.bingoCell.marked {
-    background-color: #2AB366; /* Fondo verde para la celda marcada */
-    color: white;
-}
-
-.bingoCell.figure-marked {
-    background-color: #E8F609; /* Fondo amarillo para la figura marcada */
-    color: black;
-}
-
-.boardNumberContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgba(255, 0, 0, 0.7); /* Fondo rojo transparente */
-    padding: 10px;
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra ligera */
-    margin-bottom: 10px; /* Espacio entre el número de cartón y el nombre, y la palabra "BINGO" */
-}
-
-.bingoBoardNumber {
-    font-size: 20px; /* Ajusta el tamaño de la fuente aquí */
-    color: #000; /* Cambia el color del texto aquí a negro */
-    font-family: "Arial Black", Arial, sans-serif; /* Cambia la fuente aquí */
-    font-weight: bold; /* Texto en negrita */
-    text-transform: uppercase; /* Texto en mayúsculas */
-    margin-bottom: 5px; /* Espacio entre el número y el nombre */
-}
-
-.playerName {
-    font-size: 20px; /* Ajusta el tamaño de la fuente aquí */
-    color: #000; /* Cambia el color del texto aquí a negro */
-    font-family: "Arial Black", Arial, sans-serif; /* Cambia la fuente aquí */
-    font-weight: bold; /* Texto en negrita */
-    text-transform: uppercase; /* Texto en mayúsculas */
-    margin-top: -5px; /* Ajusta el margen superior si es necesario */
-}
-
-.bingoBoard:hover {
-    transform: scale(1.02); /* Efecto de agrandamiento en hover */
-}
-
-.bingoBoard.highlighted {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    height: auto;
-    z-index: 1000;
-    background-color: white;
-    border: 2px solid red;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.bingoBoard.highlighted-permanent {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1.5); /* Escala el cartón para hacerlo más grande */
-    z-index: 1000;
-    background-color: rgba(255, 0, 0, 0.5); /* Fondo rojo transparente */
-    border: 2px solid red;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    animation: spin 0.5s ease-in-out; /* Animación para el giro */
-    width: 400px; /* Ajusta la anchura */
-    height: 200px; /* Ajusta la altura */
-}
-
-@keyframes spin {
-    from {
-        transform: translate(-50%, -50%) rotate(0deg) scale(1.5);
+    function getRandomNumbers(min, max, count) {
+        const numbers = [];
+        while (numbers.length < count) {
+            const num = Math.floor(Math.random() * (max - min + 1)) + min;
+            if (!numbers.includes(num)) {
+                numbers.push(num);
+            }
+        }
+        return numbers;
     }
-    to {
-        transform: translate(-50%, -50%) rotate(360deg) scale(1.5);
+
+    function createBingoBoards(page) {
+        bingoBoardsContainer.innerHTML = '';
+        const startBoard = (page - 1) * boardsPerPage + 1;
+        const endBoard = Math.min(startBoard + boardsPerPage - 1, totalBoards);
+
+        for (let i = startBoard; i <= endBoard; i++) {
+            const board = document.createElement('div');
+            board.classList.add('bingoBoard');
+            board.dataset.boardNumber = i;
+
+            const boardNumberContainer = document.createElement('div');
+            boardNumberContainer.classList.add('boardNumberContainer');
+            
+            const boardNumber = document.createElement('div');
+            boardNumber.classList.add('bingoBoardNumber');
+            boardNumber.textContent = `Cartón Nº ${i}`;
+
+            const playerName = document.createElement('div');
+            playerName.classList.add('playerName');
+            playerName.textContent = playerNames[i] || 'Sin nombre';
+            
+            boardNumberContainer.appendChild(boardNumber);
+            boardNumberContainer.appendChild(playerName);
+            board.appendChild(boardNumberContainer);
+
+            const header = document.createElement('div');
+            header.classList.add('bingoHeader');
+            ['B', 'I', 'N', 'G', 'O'].forEach(letter => {
+                const cell = document.createElement('div');
+                cell.textContent = letter;
+                header.appendChild(cell);
+            });
+            board.appendChild(header);
+
+            const columns = document.createElement('div');
+            columns.classList.add('bingoColumns');
+            columns.style.display = 'grid';
+            columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
+            columns.style.gap = '5px';
+
+            const bColumn = createBingoColumn(1, 15, i);
+            const iColumn = createBingoColumn(16, 30, i);
+            const nColumn = createBingoColumn(31, 45, i, true);
+            const gColumn = createBingoColumn(46, 60, i);
+            const oColumn = createBingoColumn(61, 75, i);
+
+            columns.appendChild(bColumn);
+            columns.appendChild(iColumn);
+            columns.appendChild(nColumn);
+            columns.appendChild(gColumn);
+            columns.appendChild(oColumn);
+
+            board.appendChild(columns);
+            bingoBoardsContainer.appendChild(board);
+        }
+
+        // Asegúrate de que los números marcados se restauren correctamente
+        generatedNumbers.forEach(number => {
+            document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
+                cell.classList.add('marked');
+            });
+        });
+
+        // Asegúrate de que los números de la figura se marquen correctamente
+        markFigureNumbers();
+
+        currentPageSpan.textContent = currentPage;
     }
-}
 
-.bingoBoard .closeButton {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    font-size: 20px;
-    cursor: pointer;
-}
+    function createBingoColumn(min, max, boardNumber, hasFreeCell = false) {
+        const column = document.createElement('div');
+        column.classList.add('bingoColumn');
+        const numbers = bingoBoardsState[boardNumber] && bingoBoardsState[boardNumber][`col${min}-${max}`] ?
+            bingoBoardsState[boardNumber][`col${min}-${max}`] :
+            getRandomNumbers(min, max, 5);
 
-.bingoBoard.small {
-    width: 120px; /* Ajusta el tamaño del cartón pequeño */
-    height: 120px; /* Ajusta el tamaño del cartón pequeño */
-    font-size: 8px; /* Ajusta el tamaño de la fuente del cartón pequeño */
-}
+        const boardState = bingoBoardsState[boardNumber] || {};
+        numbers.forEach((num, index) => {
+            const cell = document.createElement('div');
+            cell.classList.add('bingoCell');
+            const cellNumber = hasFreeCell && index === 2 ? 'FREE' : num;
+            cell.textContent = cellNumber;
+            cell.dataset.number = cellNumber;
 
-.bingoCell.free {
-    background-image: url('free2.png'); /* Ruta de la imagen */
-    background-size: cover;
-    background-position: center;
-    color: transparent; /* Para ocultar el texto 'FREE' */
-    text-indent: -9999px; /* Para asegurar que el texto no se vea ni ocupe espacio */
-}
+            if (cellNumber === 'FREE') {
+                cell.classList.add('free');
+            }
 
-.bingoCell.marked {
-    background-color: #2AB366; /* Fondo verde para la celda marcada */
-    color: white; /* Texto blanco para la celda marcada */
-}
+            if (cellNumber === 'FREE' || generatedNumbers.includes(Number(cellNumber))) {
+                cell.classList.add('marked');
+            }
+            column.appendChild(cell);
 
-.bingoCell.figure-marked {
-    background-color: #E8F609; /* Fondo amarillo para la figura marcada */
-    color: black; /* Texto negro para la figura marcada */
-}
+            if (!boardState[`col${min}-${max}`]) {
+                boardState[`col${min}-${max}`] = numbers;
+            }
+        });
 
-.bingoBoard.blurred {
-    filter: blur(5px);
-    pointer-events: none;
-}
+        bingoBoardsState[boardNumber] = boardState;
+        saveState();
+        return column;
+    }
 
-#bingo.portrait-mode {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    function markNumber(number) {
+        const index = generatedNumbers.indexOf(number);
+        if (index > -1) {
+            generatedNumbers.splice(index, 1);
+        } else {
+            generatedNumbers.push(number);
+        }
+        saveState();
+        document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
+            cell.classList.toggle('marked');
+        });
 
+        if (selectedFigure) {
+            markFigureNumbers(); // Actualiza los números de la figura en los cartones
+        }
+    }
 
-.closeButton {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-}
+    function resetGame() {
+        generatedNumbers = [];
+        bingoBoardsState = {};
+        playerNames = {};
+        saveState();
+        document.querySelectorAll('.bingoCell').forEach(cell => {
+            cell.classList.remove('marked');
+            cell.classList.remove('figure-marked');
+        });
+        masterBoardContainer.innerHTML = '';
+        createMasterBoard();
+        currentPage = 1;
+        createBingoBoards(currentPage);
+    }
 
-.blurry {
-    filter: blur(5px);
-    pointer-events: none; /* Para que no se pueda interactuar con los elementos borrosos */
-}
+    function clearMarks() {
+        Object.keys(bingoBoardsState).forEach(boardNumber => {
+            Object.keys(bingoBoardsState[boardNumber]).forEach(colKey => {
+                bingoBoardsState[boardNumber][colKey].forEach((number, index) => {
+                    if (number !== 'FREE') {
+                        const cell = document.querySelector(`[data-number="${number}"]`);
+                        if (cell) {
+                            cell.classList.remove('marked');
+                            cell.classList.remove('figure-marked');
+                        }
+                    }
+                });
+            });
+        });
 
-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px; /* Bordes más redondeados */
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones para hover */
-}
+        document.querySelectorAll('.bingoCell.marked').forEach(cell => {
+            cell.classList.remove('marked');
+            cell.classList.remove('figure-marked');
+        });
 
-button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05); /* Efecto de agrandamiento en hover */
-}
+        generatedNumbers = [];
+        saveState();
+    }
 
-#generatedNumber {
-    margin-top: 10px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #007bff;
-}
+    function saveState() {
+        localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
+        localStorage.setItem('bingoBoardsState', JSON.stringify(bingoBoardsState));
+        localStorage.setItem('playerNames', JSON.stringify(playerNames));
+        localStorage.setItem('selectedFigure', selectedFigure);
+    }
 
-#winnerVideoContainer {
-    display: none; /* Ocultar inicialmente */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    border-radius: 8px;
-    z-index: 1000;
-}
+    function filterBoards() {
+        const query = searchBox.value.trim().toLowerCase();
+        let found = false;
 
-#winnerVideo {
-    width: 100%;
-    max-width: 800px;
-    height: auto;
-}
+        document.querySelectorAll('.bingoBoard').forEach(board => {
+            board.classList.remove('blurry');
+            board.classList.remove('highlighted-permanent');
+        });
 
-#closeVideo {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    font-size: 20px;
-    cursor: pointer;
-}
-/* Nuevos estilos para naming.html */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-}
+        for (let page = 1; page <= totalPages; page++) {
+            const startBoard = (page - 1) * boardsPerPage + 1;
+            const endBoard = Math.min(startBoard + boardsPerPage - 1, totalBoards);
 
-table, th, td {
-    border: 1px solid #ddd;
-}
+            for (let i = startBoard; i <= endBoard; i++) {
+                const playerName = playerNames[i] ? playerNames[i].toLowerCase() : '';
+                if (i.toString().includes(query) || playerName.includes(query)) {
+                    found = true;
+                    changePage(page);
+                    setTimeout(() => {
+                        const board = document.querySelector(`.bingoBoard[data-board-number='${i}']`);
+                        if (board) {
+                            document.querySelectorAll('.bingoBoard').forEach(b => {
+                                if (b !== board && !b.closest('#masterBoardContainer')) {
+                                    b.classList.add('blurry');
+                                }
+                            });
+                            document.getElementById('masterBoardContainer').classList.remove('blurry');
 
-th, td {
-    padding: 8px;
-    text-align: left;
-}
+                            board.classList.remove('blurry');
+                            board.scrollIntoView({ behavior: 'smooth' });
+                            board.classList.add('highlighted-permanent');
 
-th {
-    background-color: #f2f2f2;
-}
+                            const closeButton = document.createElement('button');
+                            closeButton.textContent = 'X';
+                            closeButton.classList.add('closeButton');
+                            closeButton.addEventListener('click', () => {
+                                board.classList.remove('highlighted-permanent');
+                                board.querySelector('.closeButton').remove();
+                                document.querySelectorAll('.bingoBoard').forEach(b => {
+                                    b.classList.remove('blurry');
+                                });
+                            });
 
-input[type="text"] {
-    width: 100%;
-    padding: 5px;
-    box-sizing: border-box;
-}
+                            board.appendChild(closeButton);
+                        }
+                    }, 500);
+                    break;
+                }
+            }
+
+            if (found) {
+                break;
+            }
+        }
+
+        if (!found) {
+            alert('No se encontró el cartón.');
+        }
+    }
+
+    function changePage(newPage) {
+        if (newPage < 1 || newPage > totalPages) return;
+        currentPage = newPage;
+        createBingoBoards(currentPage);
+    }
+
+    function updateFigurePreview(figure) {
+        figurePreview.innerHTML = '';
+        let cells = Array(25).fill(false);
+
+        switch (figure) {
+            case 'cross':
+                cells = [
+                    false, false, true,  false, false,
+                    false, false, true,  false, false,
+                    true,  true,  true,  true,  true,
+                    false, false, true,  false, false,
+                    false, false, true,  false, false
+                ];
+                break;
+            case 'bigO':
+                cells = [
+                    true,  true,  true,  true,  true,
+                    true,  false, false, false, true,
+                    true,  false, false, false, true,
+                    true,  false, false, false, true,
+                    true,  true,  true,  true,  true
+                ];
+                break;
+            case 'diamond':
+                cells = [
+                    false, false, true,  false, false,
+                    false, true,  false, true,  false,
+                    true,  false, false, false, true,
+                    false, true,  false, true,  false,
+                    false, false, true,  false, false
+                ];
+                break;
+            case 'fourCorners':
+                cells = [
+                    true,  false, false, false, true,
+                    false, false, false, false, false,
+                    false, false, false, false, false,
+                    false, false, false, false, false,
+                    true,  false, false, false, true
+                ];
+                break;
+            case 'letterH':
+                cells = [
+                    true, false, false, false, true,
+                    true, false, false, false, true,
+                    true, true, true, true, true,
+                    true, false, false, false, true,
+                    true, false, false, false, true
+                ];
+                break;
+            case 'tree':
+                cells = [
+                    false, false, true,  false, false,
+                    false, true,  true,  true,  false,
+                    true,  true, true,  true, true,
+                    false, false,  true,  false,  false,
+                    false, false, true,  false, false
+                ];
+                break;
+            case 'numberOne':
+                cells = [
+                    false, false, true,  false, false,
+                    false, true, true,  false, false,
+                    false, false, true,  false, false,
+                    false, false, true,  false, false,
+                    false,  true,  true,  true,  false
+                ];
+                break;
+            case 'chess':
+                cells = [
+                    true,  false, true,  false, true,
+                    false, true,  false, true,  false,
+                    true,  false, true,  false, true,
+                    false, true,  false, true,  false,
+                    true,  false, true,  false, true
+                ];
+                break;
+            case 'diagonals':
+                cells = [
+                    true,  false, false, false, true,
+                    false, true,  false, true,  false,
+                    false, false, true,  false, false,
+                    false, true,  false, true,  false,
+                    true,  false, false, false, true
+                ];
+                break;
+            default:
+                return;
+        }
+
+        const board = document.createElement('div');
+        board.classList.add('bingoBoard', 'small');
+        
+        const header = document.createElement('div');
+        header.classList.add('bingoHeader');
+        ['B', 'I', 'N', 'G', 'O'].forEach(letter => {
+            const cell = document.createElement('div');
+            cell.textContent = letter;
+            header.appendChild(cell);
+        });
+        board.appendChild(header);
+
+        const columns = document.createElement('div');
+        columns.classList.add('bingoColumns');
+        columns.style.display = 'grid';
+        columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
+        columns.style.gap = '2px';
+
+        cells.forEach((marked, index) => {
+            const cell = document.createElement('div');
+            cell.classList.add('bingoCell');
+            if (marked) {
+                cell.classList.add('marked');
+            }
+            columns.appendChild(cell);
+        });
+
+        board.appendChild(columns);
+        figurePreview.appendChild(board);
+
+        figurePreviewContainer.classList.remove('hidden');
+        selectedFigure = figure;
+        localStorage.setItem('selectedFigure', figure); // Guardar la figura seleccionada
+        markFigureNumbers();
+    }
+
+    function markFigureNumbers() {
+        if (!selectedFigure) return;
+
+        let cells = Array(25).fill(false); // 5x5 grid
+
+        switch (selectedFigure) {
+            case 'cross':
+                cells = [
+                    false, false, true,  false, false,
+                    false, false, true,  false, false,
+                    true,  true,  true,  true,  true,
+                    false, false, true,  false, false,
+                    false, false, true,  false, false
+                ];
+                break;
+            case 'bigO':
+                cells = [
+                    true,  true,  true,  true,  true,
+                    true,  false, false, false, true,
+                    true,  false, false, false, true,
+                    true,  false, false, false, true,
+                    true,  true,  true,  true,  true
+                ];
+                break;
+            case 'diamond':
+                cells = [
+                    false, false, true,  false, false,
+                    false, true,  false, true,  false,
+                    true,  false, false, false, true,
+                    false, true,  false, true,  false,
+                    false, false, true,  false, false
+                ];
+                break;
+            case 'fourCorners':
+                cells = [
+                    true,  false, false, false, true,
+                    false, false, false, false, false,
+                    false, false, false, false, false,
+                    false, false, false, false, false,
+                    true,  false, false, false, true
+                ];
+                break;
+            case 'letterH':
+                cells = [
+                    true, true, true, true, true,
+                    false, false, true, false, false,
+                    false, false, true, false, false,
+                    false, false, true, false, false,
+                    true, true, true, true, true
+                ];
+                break;
+            case 'tree':
+                cells = [
+                    false, false, true,  false, false,
+                    false, true,  true,  true,  false,
+                    true,  true, true,  true, true,
+                    false, false,  true,  false,  false,
+                    false, false, true,  false, false
+                ];
+                break;
+            case 'numberOne':
+                cells = [
+                   false, false, false,  false, false,
+                   false, true, false,  false, true,
+                   true, true, true,  true, true,
+                   false, false, false,  false, true,
+                   false,  false,  false,  false,  false
+                ];
+                break;
+            case 'chess':
+                cells = [
+                    true,  false, true,  false, true,
+                    false, true,  false, true,  false,
+                    true,  false, true,  false, true,
+                    false, true,  false, true,  false,
+                    true,  false, true,  false, true
+                ];
+                break;
+            case 'diagonals':
+                cells = [
+                    true,  false, false, false, true,
+                    false, true,  false, true,  false,
+                    false, false, true,  false, false,
+                    false, true,  false, true,  false,
+                    true,  false, false, false, true
+                ];
+                break;
+            default:
+                return;
+        }
+
+        // Marcar las celdas de la figura en los cartones
+        document.querySelectorAll('.bingoBoard').forEach(board => {
+            const boardCells = board.querySelectorAll('.bingoCell');
+            boardCells.forEach((cell, index) => {
+                const cellNumber = parseInt(cell.dataset.number);
+                if (cells[index] && generatedNumbers.includes(cellNumber)) {
+                    cell.classList.add('figure-marked');
+                } else {
+                    cell.classList.remove('figure-marked');
+                }
+            });
+        });
+
+        // Marcar las celdas de la figura en la tabla maestra
+        const masterBoardCells = document.querySelectorAll('#masterBoardContainer .bingoCell');
+        masterBoardCells.forEach((cell, index) => {
+            const cellNumber = parseInt(cell.dataset.number);
+            if (cells[index] && generatedNumbers.includes(cellNumber)) {
+                cell.classList.add('figure-marked');
+            } else {
+                cell.classList.remove('figure-marked');
+            }
+        });
+    }
+
+    // Restaurar la figura seleccionada al cargar la página
+    if (selectedFigure) {
+        updateFigurePreview(selectedFigure);
+    }
+
+    searchButton.addEventListener('click', filterBoards);
+    resetGameBtn.addEventListener('click', resetGame);
+    clearMarksBtn.addEventListener('click', clearMarks);
+    nameCardsBtn.addEventListener('click', () => {
+        window.location.href = 'naming.html';
+    });
+    winnerButton.addEventListener('click', () => {
+        winnerVideoContainer.style.display = 'block';
+        winnerVideo.play();
+    });
+    prevPageBtn.addEventListener('click', () => changePage(currentPage - 1));
+    nextPageBtn.addEventListener('click', () => changePage(currentPage + 1));
+    selectFigure.addEventListener('change', (e) => {
+        const figure = e.target.value;
+        updateFigurePreview(figure);
+    });
+
+    printButton.addEventListener('click', async () => {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        const boards = document.querySelectorAll('.bingoBoard');
+
+        const scaleFactor = 0.25;
+        const cartonesPorPagina = 9;
+        const filas = 4;
+        const columnas = 3;
+        const margin = 10;
+
+        for (let i = 0; i < boards.length; i++) {
+            const canvas = await html2canvas(boards[i]);
+            const imgData = canvas.toDataURL('image/png');
+            const imgProps = doc.getImageProperties(imgData);
+            const pdfWidth = (doc.internal.pageSize.getWidth() - margin * (columnas + 1)) / columnas;
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+            const x = margin + (i % columnas) * (pdfWidth + margin);
+            const y = margin + Math.floor(i % cartonesPorPagina / columnas) * (pdfHeight + margin);
+
+            if (i % cartonesPorPagina === 0 && i > 0) {
+                doc.addPage();
+            }
+            doc.addImage(imgData, 'PNG', x, y, pdfWidth, pdfHeight);
+        }
+
+        doc.save('bingo_cartones.pdf');
+    });
+
+    createMasterBoard();
+    createBingoBoards(currentPage);
+});
