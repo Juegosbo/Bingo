@@ -341,7 +341,7 @@ h1 img {
 }
 
 .playerName {
-    font-size: 18px; /* Ajusta el tamaño de la fuente aquí */
+    font-size: 20px; /* Ajusta el tamaño de la fuente aquí */
     color: #000; /* Cambia el color del texto aquí a negro */
     font-family: "Arial Black", Arial, sans-serif; /* Cambia la fuente aquí */
     font-weight: bold; /* Texto en negrita */
@@ -407,13 +407,6 @@ h1 img {
     width: 120px; /* Ajusta el tamaño del cartón pequeño */
     height: 120px; /* Ajusta el tamaño del cartón pequeño */
     font-size: 8px; /* Ajusta el tamaño de la fuente del cartón pequeño */
-}
-
-.bingoHeader div {
-    background-color: #2AB366; /* Fondo verde para cada letra */
-    color: #000; /* Cambia el color del texto aquí a negro */
-    font-family: "Times New Roman", Times, serif;
-    font-weight: bold;
 }
 
 .bingoCell.free {
