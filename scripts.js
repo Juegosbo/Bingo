@@ -340,9 +340,6 @@ function filterBoards() {
 
                         board.appendChild(closeButton);
 
-                        // Marcar los números de la figura en el cartón encontrado
-                        markFigureNumbers();
-
                         // Marcar los números generados en el cartón encontrado
                         generatedNumbers.forEach(number => {
                             const cell = board.querySelector(`[data-number="${number}"]`);
@@ -351,13 +348,8 @@ function filterBoards() {
                             }
                         });
 
-                        // Marcar la figura en el cartón encontrado
-                        const cells = board.querySelectorAll('.bingoCell');
-                        cells.forEach((cell, index) => {
-                            if (selectedFigureCells[index]) {
-                                cell.classList.add('figure-marked');
-                            }
-                        });
+                        // Marcar los números de la figura en el cartón encontrado
+                        markFigureNumbers();
                     }
                 }, 500);
                 break;
