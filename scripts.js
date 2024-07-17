@@ -222,17 +222,25 @@ document.addEventListener('DOMContentLoaded', () => {
     return column;
 }
 
-    function markNumber(number) {
-        if (!generatedNumbers.includes(number)) {
-            generatedNumbers.push(number);
-            saveState();
-        }
-        document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
-            cell.classList.add('marked');
-        });
-        markFigureNumbers(); // Llamar a la función para marcar los números de la figura en color naranja
-    } 
+  function markNumber(number) {
+    // Check if the number is already generated (marked)
+    if (generatedNumbers.includes(number)) {
+        // If it is, remove it from the generated numbers
+        generatedNumbers = generatedNumbers.filter(n => n !== number);
+    } else {
+        // If it is not, add it to the generated numbers
+        generatedNumbers.push(number);
+    }
+    saveState();
 
+    // Toggle the 'marked' class for the cells with the data-number attribute
+    document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
+        cell.classList.toggle('marked');
+    });
+
+    // Call the function to mark figure numbers
+    markFigureNumbers();
+}
     
 
     function resetGame() {
