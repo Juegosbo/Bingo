@@ -87,16 +87,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function toggleMarkNumber(number) {
     const index = generatedNumbers.indexOf(number);
     if (index > -1) {
-        // Si el número está en la lista, eliminarlo (desmarcar)
         generatedNumbers.splice(index, 1);
     } else {
-        // Si el número no está en la lista, agregarlo (marcar)
         generatedNumbers.push(number);
     }
     saveState();
     document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
         cell.classList.toggle('marked');
     });
+
+    if (selectedFigure) {
+        markFigureNumbers(); // Actualiza los números de la figura en los cartones
+    }
 }
 
     function getRandomNumbers(min, max, count) {
@@ -555,7 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Marcar las celdas de la figura en los cartones
-    document.querySelectorAll('.bingoBoard').forEach(board => {
+     document.querySelectorAll('.bingoBoard').forEach(board => {
         const boardCells = board.querySelectorAll('.bingoCell');
         boardCells.forEach((cell, index) => {
             const cellNumber = parseInt(cell.dataset.number);
@@ -566,8 +568,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-}
 
+    const masterBoardCells = document.querySelectorAll('#masterBoardContainer .bingoCell');
+    masterBoardCells.forEach((cell, index) => {
+        const cellNumber = parseInt(cell.dataset.number);
+        if (cells[index] && generatedNumbers.includes(cellNumber)) {
+            cell.classList.add('figure-marked');
+        } else {
+            cell.classList.remove('figure-marked');
+        }
+    });
+}
     searchButton.addEventListener('click', filterBoards);
     resetGameBtn.addEventListener('click', resetGame);
     clearMarksBtn.addEventListener('click', clearMarks);
