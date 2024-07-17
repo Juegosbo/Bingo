@@ -72,18 +72,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function createFixedBingoColumn(min, max) {
-        const column = document.createElement('div');
-        column.classList.add('bingoColumn');
-        for (let i = min; i <= max; i++) {
-            const cell = document.createElement('div');
-            cell.classList.add('bingoCell');
-            cell.textContent = i;
-            cell.dataset.number = i;
-            cell.addEventListener('click', () => markNumber(i));
-            column.appendChild(cell);
-        }
-        return column;
+    const column = document.createElement('div');
+    column.classList.add('bingoColumn');
+    for (let i = min; i <= max; i++) {
+        const cell = document.createElement('div');
+        cell.classList.add('bingoCell');
+        cell.textContent = i;
+        cell.dataset.number = i;
+        cell.addEventListener('click', () => toggleMarkNumber(i));
+        column.appendChild(cell);
     }
+    return column;
+}
+    function toggleMarkNumber(number) {
+    const index = generatedNumbers.indexOf(number);
+    if (index > -1) {
+        // Si el número está en la lista, eliminarlo (desmarcar)
+        generatedNumbers.splice(index, 1);
+    } else {
+        // Si el número no está en la lista, agregarlo (marcar)
+        generatedNumbers.push(number);
+    }
+    saveState();
+    document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
+        cell.classList.toggle('marked');
+    });
+}
 
     function getRandomNumbers(min, max, count) {
         const numbers = [];
