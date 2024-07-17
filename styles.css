@@ -254,7 +254,7 @@ h1 img {
     border: 2px solid #5bc0de; /* Borde más grueso y azul claro */
     padding: 0; /* Sin espaciado alrededor */
     border-radius: 8px;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.5);
    /* background-color: rgba(255, 0, 0, 0.5); /* Fondo rojo transparente */
     position: relative;
     display: grid;
