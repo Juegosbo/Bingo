@@ -233,7 +233,7 @@ h1 img {
 }
 
 #figurePreview .bingoBoard.small {
-    width: 150%; /* Asegura que el cartón ocupe todo el ancho del contenedor */
+    width: 190px; /* Asegura que el cartón ocupe todo el ancho del contenedor */
     height: auto;
     font-size: 15px; /* Ajusta el tamaño de la fuente según sea necesario */
 }
