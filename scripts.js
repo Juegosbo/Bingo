@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     winnerButton.addEventListener('click', () => {
     winnerVideoContainer.style.display = 'block';
     winnerVideo.play();
-    // Crear el botón de cerrar
+    // Crear el botón de cerrars
     const closeButton = document.createElement('button');
     closeButton.textContent = 'X';
     closeButton.classList.add('closeButton');
