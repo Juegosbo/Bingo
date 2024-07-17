@@ -332,7 +332,7 @@ function filterBoards() {
                         closeButton.addEventListener('click', () => {
                             board.classList.remove('highlighted-permanent');
                             board.querySelector('.closeButton').remove();
-                            // Eliminar la clase blurry de todos los elementos al cerrar
+                            // Eliminar la clase blurry de todos los elementos al cerrararse
                             document.querySelectorAll('.bingoBoard').forEach(b => {
                                 b.classList.remove('blurry');
                             });
