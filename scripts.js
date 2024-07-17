@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('playerNames', JSON.stringify(playerNames)); // Guardar los nombres de los jugadores
     }
 
- function filterBoards() {
+function filterBoards() {
     const query = searchBox.value.trim().toLowerCase();
     let found = false;
 
@@ -340,8 +340,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         board.appendChild(closeButton);
 
-                        // Llama a markFigureNumbers para marcar las figuras en el cartón encontrado
+                        // Marcar los números de la figura en el cartón encontrado
                         markFigureNumbers();
+
+                        // Marcar los números generados en el cartón encontrado
+                        generatedNumbers.forEach(number => {
+                            const cell = board.querySelector(`[data-number="${number}"]`);
+                            if (cell) {
+                                cell.classList.add('marked');
+                            }
+                        });
+
+                        // Marcar la figura en el cartón encontrado
+                        const cells = board.querySelectorAll('.bingoCell');
+                        cells.forEach((cell, index) => {
+                            if (selectedFigureCells[index]) {
+                                cell.classList.add('figure-marked');
+                            }
+                        });
                     }
                 }, 500);
                 break;
