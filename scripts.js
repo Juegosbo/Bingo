@@ -310,7 +310,7 @@ function filterBoards() {
                 found = true;
                 changePage(page);
                 setTimeout(() => {
-                    const board = document.querySelector(`.bingoBoard[data-board-number='${i}']`);
+                    const board = document.querySelector(.bingoBoard[data-board-number='${i}']);
                     if (board) {
                         // Aplicamos la clase blurry a todos los elementos menos el buscado y el cartón maestro
                         document.querySelectorAll('.bingoBoard').forEach(b => {
