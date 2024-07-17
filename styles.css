@@ -57,7 +57,7 @@ body {
     max-width: 1200px;
     overflow-y: auto;
     position: relative;
-    margin-left: 350px; /* Ajusta este valor según sea necesario para mover a la derecha */
+    margin-left: 270px; /* Ajusta este valor según sea necesario para mover a la derecha */
 }
 
 header {
@@ -213,6 +213,8 @@ h1 img {
     width: 50px; /* Ajusta el ancho de los números en la tabla maestra */
 }
 
+
+/* cambiar el carton de la figura*/
 #figurePreviewContainer {
     position: fixed;
     top: 350px;
