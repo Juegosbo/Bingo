@@ -279,6 +279,7 @@ h1 img {
     -webkit-background-clip: text; /* Necesario para compatibilidad con WebKit */
     color: transparent;
     font-family: "Arial Black", Arial, sans-serif; /* Cambia la fuente aquí */
+    font-weight: 900; /* Hacer la letra más gruesa */
 }
 }
 .bingoColumns {
