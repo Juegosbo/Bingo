@@ -339,6 +339,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
 
                         board.appendChild(closeButton);
+
+                        // Llama a markFigureNumbers para marcar las figuras en el cartón encontrado
+                        markFigureNumbers();
                     }
                 }, 500);
                 break;
