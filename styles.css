@@ -273,8 +273,8 @@ h1 img {
     text-transform: uppercase; /* Texto en mayúsculas */
 }
 .bingoHeader div {
-    background-color: #FFD700; /* Fondo verde para cada letra */
-    color: #000; /* Cambia el color del texto aquí a negro */
+    background-color: #2AB366; /* Fondo verde para cada letra */
+    color: #FFD700; /* Cambia el color del texto aquí a negro */
     font-family: "Times New Roman", Times, serif;
     font-weight: bold;
 }
