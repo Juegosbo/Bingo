@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
     totalPages = Math.ceil(totalBoards / boardsPerPage);
     totalPagesSpan.textContent = totalPages;
 
-    // Crear tablero maestro
     function createMasterBoard() {
         const board = document.createElement('div');
         board.classList.add('bingoBoard');
@@ -66,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         board.appendChild(columns);
         masterBoardContainer.appendChild(board);
 
-        // Marcar números generados previamente
+        // Mark previously generated numbers
         generatedNumbers.forEach(number => {
             markNumber(number);
         });
@@ -86,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return column;
     }
 
-    // Guardar o eliminar un número marcado
     function toggleMarkNumber(number) {
         const index = generatedNumbers.indexOf(number);
         if (index > -1) {
@@ -94,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             generatedNumbers.push(number);
         }
-        saveState(); // Guardar estado en localStorage
+        saveState();
         document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
             cell.classList.toggle('marked');
         });
@@ -225,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             generatedNumbers.push(number);
         }
-        saveState(); // Guardar estado en localStorage
+        saveState();
         document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
             cell.classList.toggle('marked');
         });
@@ -239,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
         generatedNumbers = [];
         bingoBoardsState = {};
         playerNames = {};
-        saveState(); // Guardar estado en localStorage
+        saveState();
         document.querySelectorAll('.bingoCell').forEach(cell => {
             cell.classList.remove('marked');
             cell.classList.remove('figure-marked');
@@ -271,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         generatedNumbers = [];
-        saveState(); // Guardar estado en localStorage
+        saveState();
     }
 
     function saveState() {
@@ -389,17 +387,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
             case 'letterH':
                 cells = [
-                    true, false, false, false, true,
-                    true, false, false, false, true,
                     true, true, true, true, true,
-                    true, false, false, false, true,
-                    true, false, false, false, true
+                    false, false, true, false, false,
+                    false, false, true, false, false,
+                    false, false, true, false, false,
+                    true, true, true, true, true
                 ];
                 break;
             case 'tree':
                 cells = [
                     false, false, true,  false, false,
-                    false, true,  true,  true,  false,
+                    false, true,  true,  false,  false,
                     true,  true, true,  true, true,
                     false, false,  true,  false,  false,
                     false, false, true,  false, false
@@ -474,7 +472,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function markFigureNumbers() {
         if (!selectedFigure) return;
 
-        let cells = Array(25).fill(false);
+        let cells = Array(25).fill(false); // 5x5 grid
 
         switch (selectedFigure) {
             case 'cross':
@@ -527,7 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     false, false, true,  false, false,
                     false, true,  true,  false,  false,
                     true,  true, true,  true, true,
-                    false, true,  true,  false,  false,
+                    false, false,  true,  false,  false,
                     false, false, true,  false, false
                 ];
                 break;
@@ -562,7 +560,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
         }
 
-       // Marcar las celdas de la figura en los cartones
+        // Marcar las celdas de la figura en los cartones
         document.querySelectorAll('.bingoBoard').forEach(board => {
             const boardCells = board.querySelectorAll('.bingoCell');
             boardCells.forEach((cell, index) => {
