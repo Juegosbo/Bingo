@@ -612,6 +612,12 @@ document.addEventListener('DOMContentLoaded', () => {
    printButton.addEventListener('click', async () => {
     const boards = document.querySelectorAll('.bingoBoard');
 
+    // Agregar estilo de borde temporalmente
+    boards.forEach(board => {
+        board.style.border = '2px solid black';
+        board.style.padding = '10px'; // Añadir padding para espacio entre el contenido y el borde
+    });
+
     for (let i = 0; i < boards.length; i++) {
         const canvas = await html2canvas(boards[i]);
         const imgData = canvas.toDataURL('image/png');
@@ -625,6 +631,12 @@ document.addEventListener('DOMContentLoaded', () => {
         link.click(); // Hacer clic en el enlace para descargar la imagen
         document.body.removeChild(link); // Eliminar el enlace del DOM
     }
+
+    // Eliminar estilo de borde después de la captura
+    boards.forEach(board => {
+        board.style.border = '';
+        board.style.padding = ''; // Eliminar el padding agregado
+    });
 });
     createMasterBoard();
     createBingoBoards(currentPage);
