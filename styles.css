@@ -228,6 +228,12 @@ h1 img {
     width: 150px;
 }
 
+#figurePreview .bingoBoard.small {
+    width: 100%; /* Asegura que el cartón ocupe todo el ancho del contenedor */
+    height: auto;
+    font-size: 12px; /* Ajusta el tamaño de la fuente según sea necesario */
+}
+
 #bingoBoardsContainer {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* Cuatro columnas por fila */
