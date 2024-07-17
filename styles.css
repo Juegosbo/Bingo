@@ -48,15 +48,16 @@ body {
 }
 
 .container {
-    background: rgba(255, 255, 255, 0.9); /* Fondo blanco con un poco más de transparencia */
+    background: rgba(255, 255, 255, 0.9);
     padding: 20px;
-    border-radius: 15px; /* Bordes más redondeados */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     text-align: center;
     width: 90%;
     max-width: 1200px;
     overflow-y: auto;
     position: relative;
+    margin-left: 350px; /* Ajusta este valor según sea necesario para mover a la derecha */
 }
 
 header {
@@ -214,8 +215,8 @@ h1 img {
 
 #figurePreviewContainer {
     position: fixed;
-    top: 50px;
-    left: -10px;
+    top: 350px;
+    left: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -224,7 +225,7 @@ h1 img {
     border-radius: 8px;
     background-color: #f9f9f9;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    width: auto;
+    width: 200px;
 }
 
 #bingoBoardsContainer {
