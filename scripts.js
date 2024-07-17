@@ -609,35 +609,32 @@ document.addEventListener('DOMContentLoaded', () => {
         updateFigurePreview(figure);
     });
 
-    printButton.addEventListener('click', async () => {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        const boards = document.querySelectorAll('.bingoBoard');
+   printButton.addEventListener('click', async () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    const boards = document.querySelectorAll('.bingoBoard');
 
-        const scaleFactor = 0.25;
-        const cartonesPorPagina = 9;
-        const filas = 4;
-        const columnas = 3;
-        const margin = 10;
+    const margin = 10; // Margen alrededor de los cartones
 
-        for (let i = 0; i < boards.length; i++) {
-            const canvas = await html2canvas(boards[i]);
-            const imgData = canvas.toDataURL('image/png');
-            const imgProps = doc.getImageProperties(imgData);
-            const pdfWidth = (doc.internal.pageSize.getWidth() - margin * (columnas + 1)) / columnas;
-            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    for (let i = 0; i < boards.length; i++) {
+        const canvas = await html2canvas(boards[i]);
+        const imgData = canvas.toDataURL('image/png');
+        const imgProps = doc.getImageProperties(imgData);
+        const pdfWidth = doc.internal.pageSize.getWidth() - margin * 2;
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-            const x = margin + (i % columnas) * (pdfWidth + margin);
-            const y = margin + Math.floor(i % cartonesPorPagina / columnas) * (pdfHeight + margin);
+        const x = margin;
+        const y = margin;
 
-            if (i % cartonesPorPagina === 0 && i > 0) {
-                doc.addPage();
-            }
-            doc.addImage(imgData, 'PNG', x, y, pdfWidth, pdfHeight);
+        // Agregar una nueva página para cada cartón, excepto el primero
+        if (i > 0) {
+            doc.addPage();
         }
+        doc.addImage(imgData, 'PNG', x, y, pdfWidth, pdfHeight);
+    }
 
-        doc.save('bingo_cartones.pdf');
-    });
+    doc.save('bingo_cartones.pdf');
+});
 
     createMasterBoard();
     createBingoBoards(currentPage);
