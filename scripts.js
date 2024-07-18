@@ -324,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function clearMarks() {
-    // Eliminar marcas en todos los tableros excepto el maestro
+    // Eliminar marcas en todos los tableros
     document.querySelectorAll('.bingoCell.marked').forEach(cell => {
         cell.classList.remove('marked');
     });
@@ -338,6 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
     generatedNumbers = [];
     saveState();
 }
+    
     function saveState() {
         localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
         localStorage.setItem('bingoBoardsState', JSON.stringify(bingoBoardsState));
