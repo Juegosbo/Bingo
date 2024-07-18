@@ -323,15 +323,10 @@ document.addEventListener('DOMContentLoaded', () => {
         createBingoBoards(currentPage);
     }
 
-    function clearMarks() {
-    // Eliminar marcas en todos los tableros
-    document.querySelectorAll('.bingoCell.marked').forEach(cell => {
-        cell.classList.remove('marked');
-    });
-
-    // Eliminar marcas en el tablero maestro
-    document.querySelectorAll('.bingoCell.master-marked').forEach(cell => {
-        cell.classList.remove('master-marked');
+   function clearMarks() {
+    // Eliminar marcas en todos los tableros y en el tablero maestro
+    document.querySelectorAll('.bingoCell.marked, .bingoCell.master-marked, .bingoCell.figure-marked').forEach(cell => {
+        cell.classList.remove('marked', 'master-marked', 'figure-marked');
     });
 
     // Limpiar los números generados
