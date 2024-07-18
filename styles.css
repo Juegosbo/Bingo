@@ -420,12 +420,12 @@ h1 img {
 }
 
 .bingoCell.marked {
-    background-color: #FBFF00; /* Fondo verde para la celda marcada */
+    background-color: #E2C913; /* Fondo  para la celda marcada */
     color: white; /* Texto blanco para la celda marcada */
 }
 
 .bingoCell.figure-marked {
-    background-color: #02661A; /* Fondo amarillo para la figura marcada */
+    background-color: #6CBB4F; /* Fondo  para la figura marcada */
     color: black; /* Texto negro para la figura marcada */
 }
 
