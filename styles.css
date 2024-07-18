@@ -437,7 +437,7 @@ h1 img {
 
 /* Estilo específico para el cartón de figura */
 .figure-board .bingoCell.figure-marked {
-    background-color: #2F8135; /* Color específico para las celdas de la figura en el cartón de figura */
+    background-color: #2D6717; /* Color específico para las celdas de la figura en el cartón de figura */
     color: white; /* Cambia el color del texto si es necesario */
 }
 
