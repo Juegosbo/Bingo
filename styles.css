@@ -323,7 +323,8 @@ h1 img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(255, 0, 0, 0.7); /* Fondo rojo transparente */
+     background-color: #FFB56B; /* Fondo rojo transparente */
+    /* background-color: rgba(255, 0, 0, 0.7); /* Fondo rojo transparente */
     padding: 10px;
     border-radius: 8px; /* Bordes redondeados */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra ligera */
