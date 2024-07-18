@@ -37,8 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
     createMasterBoard();
     createBingoBoards(currentPage);
     
-    if (selectedFigure) {
+     if (selectedFigure) {
         updateFigurePreview(selectedFigure);
+        markFigureNumbers();
     }
 
     searchButton.addEventListener('click', filterBoards);
@@ -125,7 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Marcar números previamente generados
         generatedNumbers.forEach(number => {
-            markNumber(number);
+            const cell = board.querySelector(`[data-number="${number}"]`);
+            if (cell) {
+                cell.classList.add('marked');
+            }
         });
     }
 
@@ -239,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
             markFigureNumbers();
         }
 
-        currentPageSpan.textContent = currentPage;
+     /*   currentPageSpan.textContent = currentPage; */
     }
 
     function createBingoColumn(min, max, boardNumber, hasFreeCell = false) {
