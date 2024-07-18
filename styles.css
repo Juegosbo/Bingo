@@ -428,6 +428,12 @@ h1 img {
     color: black; /* Texto negro para la figura marcada */
 }
 
+/* Estilo específico para el cartón de figura */
+.figure-board .bingoCell.figure-marked {
+    background-color: #2F8135; /* Color específico para las celdas de la figura en el cartón de figura */
+    color: white; /* Cambia el color del texto si es necesario */
+}
+
 .bingoBoard.blurred {
     filter: blur(5px);
     pointer-events: none;
