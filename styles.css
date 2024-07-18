@@ -215,7 +215,7 @@ h1 img {
 
 #masterBoardContainer .bingoCell.master-marked {
     background-color: #2D6717; /* Elige el color que prefieras */
-
+}
 
 /* cambiar el carton de la figura*/
 #figurePreviewContainer {
@@ -233,7 +233,6 @@ h1 img {
     width: 180px;
 }
 
-}
 
 #figurePreview .bingoBoard.small {
     width: 190px; /* Asegura que el cartón ocupe todo el ancho del contenedor */
