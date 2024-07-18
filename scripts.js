@@ -160,12 +160,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
         if (parseInt(cell.dataset.number) === number) {
             cell.classList.toggle('master-marked');
+            // Eliminar cualquier otra clase de marcado en la tabla maestra
+            cell.classList.remove('marked', 'figure-marked');
         }
     });
 
     // Marcar o desmarcar en el resto de los tableros
-    document.querySelectorAll(`.bingoBoard .bingoCell`).forEach(cell => {
-        if (!cell.closest('#masterBoardContainer') && parseInt(cell.dataset.number) === number) {
+    document.querySelectorAll(`.bingoBoard:not(#masterBoardContainer) .bingoCell`).forEach(cell => {
+        if (parseInt(cell.dataset.number) === number) {
             cell.classList.toggle('marked');
         }
     });
@@ -660,7 +662,7 @@ function markFigureNumbers() {
             return;
     }
 
-    document.querySelectorAll('.bingoBoard').forEach(board => {
+    document.querySelectorAll('.bingoBoard:not(#masterBoardContainer)').forEach(board => {
         const boardCells = board.querySelectorAll('.bingoCell');
         boardCells.forEach((cell, index) => {
             const cellNumber = parseInt(cell.dataset.number);
@@ -671,7 +673,7 @@ function markFigureNumbers() {
             }
         });
     });
-
+    
     const masterBoardCells = document.querySelectorAll('#masterBoardContainer .bingoCell');
     masterBoardCells.forEach((cell, index) => {
         const cellNumber = parseInt(cell.dataset.number);
