@@ -233,6 +233,10 @@ h1 img {
     width: 180px;
 }
 
+#figurePreviewContainer .bingoCell.figure-marked {
+    background-color: #0B8D17; /* Cambia el color de fondo a tu preferencia */
+    color: black; /* Cambia el color del texto si es necesario */
+}
 
 #figurePreview .bingoBoard.small {
     width: 190px; /* Asegura que el cartón ocupe todo el ancho del contenedor */
