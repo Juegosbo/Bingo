@@ -534,7 +534,7 @@ function updateFigurePreview(figure) {
     }
 
     const board = document.createElement('div');
-    board.classList.add('bingoBoard', 'small');
+    board.classList.add('bingoBoard', 'small', 'figure-board'); 
     
     const header = document.createElement('div');
     header.classList.add('bingoHeader');
