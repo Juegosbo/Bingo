@@ -665,18 +665,17 @@ function markFigureNumbers() {
             return;
     }
 
-     document.querySelectorAll('.bingoBoard:not(#masterBoardContainer)').forEach(board => {
-        const boardCells = board.querySelectorAll('.bingoCell');
-        boardCells.forEach((cell, index) => {
-            const cellNumber = parseInt(cell.dataset.number);
-            if (cells[index] && generatedNumbers.includes(cellNumber)) {
-                cell.classList.add('figure-marked');
-            } else {
-                cell.classList.remove('figure-marked');
-            }
-        });
+     // Marcar las celdas en los cartones de figura
+    document.querySelectorAll('#figurePreviewContainer .bingoCell').forEach((cell, index) => {
+        const cellNumber = parseInt(cell.dataset.number);
+        if (cells[index]) {
+            cell.classList.add('figure-marked');
+        } else {
+            cell.classList.remove('figure-marked');
+        }
     });
-    
+
+    // Marcar las celdas en el tablero maestro
     const masterBoardCells = document.querySelectorAll('#masterBoardContainer .bingoCell');
     masterBoardCells.forEach((cell, index) => {
         const cellNumber = parseInt(cell.dataset.number);
