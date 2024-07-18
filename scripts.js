@@ -492,9 +492,9 @@ function updateFigurePreview(figure) {
         case 'letterH':
             cells = [
                 true, true, true, true, true,
-                false, false, true, false, false,
-                false, true, true, true, false,
-                false, false, true, false, false,
+                true, false, true, false, false,
+                true, true, true, true, false,
+                true, false, true, false, false,
                 true, true, true, true, true
             ];
             break;
