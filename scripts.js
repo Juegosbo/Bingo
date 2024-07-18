@@ -125,13 +125,13 @@ document.addEventListener('DOMContentLoaded', () => {
     masterBoardContainer.appendChild(board);
 
         // Marcar números previamente generados
-        generatedNumbers.forEach(number => {
-            const cell = board.querySelector(`[data-number="${number}"]`);
-            if (cell) {
-                cell.classList.add('marked');
-            }
-        });
-    }
+    generatedNumbers.forEach(number => {
+        const cell = board.querySelector(`[data-number="${number}"]`);
+        if (cell) {
+            cell.classList.add('master-marked');
+        }
+    });
+}
 
     function createFixedBingoColumn(min, max) {
         const column = document.createElement('div');
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return column;
     }
 
-    function toggleMarkNumber(number) {
+   function toggleMarkNumber(number) {
     const index = generatedNumbers.indexOf(number);
     if (index > -1) {
         generatedNumbers.splice(index, 1);
@@ -156,17 +156,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     saveState();
 
-    // Marcar o desmarcar solo en el tablero maestro
+    // Marcar o desmarcar solo en el tablero maestro con un único color
     document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
         if (parseInt(cell.dataset.number) === number) {
             cell.classList.toggle('master-marked');
-            // Eliminar cualquier otra clase de marcado en la tabla maestra
-            cell.classList.remove('marked', 'figure-marked');
         }
     });
 
-    // Marcar o desmarcar en el resto de los tableros
-    document.querySelectorAll(`.bingoBoard:not(#masterBoardContainer) .bingoCell`).forEach(cell => {
+        // Marcar o desmarcar en el resto de los tableros (mantiene la lógica existente)
+    document.querySelectorAll('.bingoBoard:not(#masterBoardContainer) .bingoCell').forEach(cell => {
         if (parseInt(cell.dataset.number) === number) {
             cell.classList.toggle('marked');
         }
@@ -325,10 +323,15 @@ document.addEventListener('DOMContentLoaded', () => {
         createBingoBoards(currentPage);
     }
 
-   function clearMarks() {
-    // Eliminar marcas en todos los tableros y en el tablero maestro
-    document.querySelectorAll('.bingoCell.marked, .bingoCell.master-marked, .bingoCell.figure-marked').forEach(cell => {
-        cell.classList.remove('marked', 'master-marked', 'figure-marked');
+  function clearMarks() {
+    // Eliminar marcas en todos los tableros excepto el maestro
+    document.querySelectorAll('.bingoBoard:not(#masterBoardContainer) .bingoCell').forEach(cell => {
+        cell.classList.remove('marked', 'figure-marked');
+    });
+
+    // Limpiar las marcas en el tablero maestro
+    document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
+        cell.classList.remove('master-marked');
     });
 
     // Limpiar los números generados
@@ -662,7 +665,7 @@ function markFigureNumbers() {
             return;
     }
 
-    document.querySelectorAll('.bingoBoard:not(#masterBoardContainer)').forEach(board => {
+     document.querySelectorAll('.bingoBoard:not(#masterBoardContainer)').forEach(board => {
         const boardCells = board.querySelectorAll('.bingoCell');
         boardCells.forEach((cell, index) => {
             const cellNumber = parseInt(cell.dataset.number);
