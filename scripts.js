@@ -147,33 +147,34 @@ document.addEventListener('DOMContentLoaded', () => {
         return column;
     }
 
-    function toggleMarkNumber(number) {
-        const index = generatedNumbers.indexOf(number);
-        if (index > -1) {
-            generatedNumbers.splice(index, 1);
-        } else {
-            generatedNumbers.push(number);
+  function toggleMarkNumber(number) {
+    const index = generatedNumbers.indexOf(number);
+    if (index > -1) {
+        generatedNumbers.splice(index, 1);
+    } else {
+        generatedNumbers.push(number);
+    }
+    saveState();
+
+    // Marcar o desmarcar solo en el tablero maestro, ignorando figuras
+    document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
+        if (parseInt(cell.dataset.number) === number) {
+            cell.classList.toggle('master-marked');
         }
-        saveState();
+    });
 
-        // Marcar o desmarcar solo en el tablero maestro, ignorando figuras
-        document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
-            if (parseInt(cell.dataset.number) === number) {
-                cell.classList.toggle('master-marked');
-            }
-        });
+    // Marcar o desmarcar en el resto de los tableros
+    document.querySelectorAll(`.bingoBoard .bingoCell`).forEach(cell => {
+        if (!cell.closest('#masterBoardContainer') && parseInt(cell.dataset.number) === number) {
+            cell.classList.toggle('marked');
+        }
+    });
+}
 
-        // Marcar o desmarcar en el resto de los tableros
-        document.querySelectorAll(`.bingoBoard .bingoCell`).forEach(cell => {
-            if (!cell.closest('#masterBoardContainer') && parseInt(cell.dataset.number) === number) {
-                cell.classList.toggle('marked');
-            }
-        });
-
-        if (selectedFigure) {
+/*        if (selectedFigure) {
             markFigureNumbers();
         }
-    }
+    } */
 
     function getRandomNumbers(min, max, count) {
         const numbers = [];
