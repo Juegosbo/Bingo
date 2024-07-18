@@ -19,57 +19,69 @@ document.addEventListener('DOMContentLoaded', () => {
     const printButton = document.getElementById('printButton');
 
     const boardsPerPage = 9;
-    let currentPage = 1;
-    let totalPages;
-    let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
-    let bingoBoardsState = JSON.parse(localStorage.getItem('bingoBoardsState')) || {};
-    let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
-    let selectedFigure = localStorage.getItem('selectedFigure') || '';
     const totalBoards = 10000;
 
-    // Calculate total pages
-    totalPages = Math.ceil(totalBoards / boardsPerPage);
+    // Cargar el estado guardado
+    loadState();
+
+    // Calcular páginas totales
+    let totalPages = Math.ceil(totalBoards / boardsPerPage);
     totalPagesSpan.textContent = totalPages;
 
-    function createMasterBoard() {
-        const board = document.createElement('div');
-        board.classList.add('bingoBoard');
-
-        const header = document.createElement('div');
-        header.classList.add('bingoHeader');
-        ['B', 'I', 'N', 'G', 'O'].forEach(letter => {
-            const cell = document.createElement('div');
-            cell.textContent = letter;
-            header.appendChild(cell);
-        });
-        board.appendChild(header);
-
-        const columns = document.createElement('div');
-        columns.classList.add('bingoColumns');
-        columns.style.display = 'grid';
-        columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
-        columns.style.gap = '5px';
-
-        const bColumn = createFixedBingoColumn(1, 15);
-        const iColumn = createFixedBingoColumn(16, 30);
-        const nColumn = createFixedBingoColumn(31, 45);
-        const gColumn = createFixedBingoColumn(46, 60);
-        const oColumn = createFixedBingoColumn(61, 75);
-
-        columns.appendChild(bColumn);
-        columns.appendChild(iColumn);
-        columns.appendChild(nColumn);
-        columns.appendChild(gColumn);
-        columns.appendChild(oColumn);
-
-        board.appendChild(columns);
-        masterBoardContainer.appendChild(board);
-
-        // Mark previously generated numbers
-        generatedNumbers.forEach(number => {
-            markNumber(number);
-        });
+    createMasterBoard();
+    createBingoBoards(currentPage);
+    
+    if (selectedFigure) {
+        updateFigurePreview(selectedFigure);
     }
+
+    searchButton.addEventListener('click', filterBoards);
+    resetGameBtn.addEventListener('click', resetGame);
+    clearMarksBtn.addEventListener('click', clearMarks);
+    nameCardsBtn.addEventListener('click', () => {
+        window.location.href = 'naming.html';
+    });
+    winnerButton.addEventListener('click', () => {
+        winnerVideoContainer.style.display = 'block';
+        winnerVideo.play();
+    });
+    prevPageBtn.addEventListener('click', () => changePage(currentPage - 1));
+    nextPageBtn.addEventListener('click', () => changePage(currentPage + 1));
+    selectFigure.addEventListener('change', (e) => {
+        const figure = e.target.value;
+        updateFigurePreview(figure);
+    });
+
+    printButton.addEventListener('click', async () => {
+        const boards = document.querySelectorAll('.bingoBoard');
+
+        // Agregar estilo de borde temporalmente
+        boards.forEach(board => {
+            board.style.border = '2px solid black';
+            board.style.padding = '10px'; // Añadir padding para espacio entre el contenido y el borde
+        });
+
+        for (let i = 0; i < boards.length; i++) {
+            const canvas = await html2canvas(boards[i]);
+            const imgData = canvas.toDataURL('image/png');
+
+            const link = document.createElement('a');
+            link.href = imgData;
+            link.download = `bingo_carton_${i + 1}.png`;
+            link.style.display = 'none'; // Ocultar el enlace
+
+            document.body.appendChild(link);
+            link.click(); // Hacer clic en el enlace para descargar la imagen
+            document.body.removeChild(link); // Eliminar el enlace del DOM
+        }
+
+        // Eliminar estilo de borde después de la captura
+        boards.forEach(board => {
+            board.style.border = '';
+            board.style.padding = ''; // Eliminar el padding agregado
+        });
+    });
+});
 
     function createFixedBingoColumn(min, max) {
         const column = document.createElement('div');
@@ -93,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
             generatedNumbers.push(number);
         }
         saveState();
-        document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
+        document.querySelectorAll([data-number="${number}"]).forEach(cell => {
             cell.classList.toggle('marked');
         });
 
@@ -114,45 +126,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function createBingoBoards(page) {
-        bingoBoardsContainer.innerHTML = '';
-        const startBoard = (page - 1) * boardsPerPage + 1;
-        const endBoard = Math.min(startBoard + boardsPerPage - 1, totalBoards);
+    bingoBoardsContainer.innerHTML = '';
+    const startBoard = (page - 1) * boardsPerPage + 1;
+    const endBoard = Math.min(startBoard + boardsPerPage - 1, totalBoards);
 
-        for (let i = startBoard; i <= endBoard; i++) {
-            const board = document.createElement('div');
-            board.classList.add('bingoBoard');
-            board.dataset.boardNumber = i;
+    for (let i = startBoard; i <= endBoard; i++) {
+        const board = document.createElement('div');
+        board.classList.add('bingoBoard');
+        board.dataset.boardNumber = i;
 
-            const boardNumberContainer = document.createElement('div');
-            boardNumberContainer.classList.add('boardNumberContainer');
-            
-            const boardNumber = document.createElement('div');
-            boardNumber.classList.add('bingoBoardNumber');
-            boardNumber.textContent = `Cartón Nº ${i}`;
+        const boardNumberContainer = document.createElement('div');
+        boardNumberContainer.classList.add('boardNumberContainer');
+        
+        const boardNumber = document.createElement('div');
+        boardNumber.classList.add('bingoBoardNumber');
+        boardNumber.textContent = `Cartón Nº ${i}`;
 
-            const playerName = document.createElement('div');
-            playerName.classList.add('playerName');
-            playerName.textContent = playerNames[i] || 'Sin nombre';
-            
-            boardNumberContainer.appendChild(boardNumber);
-            boardNumberContainer.appendChild(playerName);
-            board.appendChild(boardNumberContainer);
+        const playerName = document.createElement('div');
+        playerName.classList.add('playerName');
+        playerName.textContent = playerNames[i] || 'Sin nombre';
+        
+        boardNumberContainer.appendChild(boardNumber);
+        boardNumberContainer.appendChild(playerName);
+        board.appendChild(boardNumberContainer);
 
-            const header = document.createElement('div');
-            header.classList.add('bingoHeader');
-            ['B', 'I', 'N', 'G', 'O'].forEach(letter => {
-                const cell = document.createElement('div');
-                cell.textContent = letter;
-                header.appendChild(cell);
+        const header = document.createElement('div');
+        header.classList.add('bingoHeader');
+        ['B', 'I', 'N', 'G', 'O'].forEach(letter => {
+            const cell = document.createElement('div');
+            cell.textContent = letter;
+            header.appendChild(cell);
+        });
+        board.appendChild(header);
+
+        const columns = document.createElement('div');
+        columns.classList.add('bingoColumns');
+        columns.style.display = 'grid';
+        columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
+        columns.style.gap = '5px';
+
+        // Restaurar el estado de los cartones o crear nuevos si no existen
+        if (bingoBoardsState[i]) {
+            ['B', 'I', 'N', 'G', 'O'].forEach((letter, index) => {
+                const min = index * 15 + 1;
+                const max = (index + 1) * 15;
+                const column = createBingoColumn(min, max, i, letter === 'N');
+                columns.appendChild(column);
             });
-            board.appendChild(header);
-
-            const columns = document.createElement('div');
-            columns.classList.add('bingoColumns');
-            columns.style.display = 'grid';
-            columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
-            columns.style.gap = '5px';
-
+        } else {
             const bColumn = createBingoColumn(1, 15, i);
             const iColumn = createBingoColumn(16, 30, i);
             const nColumn = createBingoColumn(31, 45, i, true);
@@ -164,29 +185,32 @@ document.addEventListener('DOMContentLoaded', () => {
             columns.appendChild(nColumn);
             columns.appendChild(gColumn);
             columns.appendChild(oColumn);
-
-            board.appendChild(columns);
-            bingoBoardsContainer.appendChild(board);
         }
 
-        // Asegúrate de que los números marcados se restauren correctamente
-        generatedNumbers.forEach(number => {
-            document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
-                cell.classList.add('marked');
-            });
-        });
-
-        // Asegúrate de que los números de la figura se marquen correctamente
-        markFigureNumbers();
-
-        currentPageSpan.textContent = currentPage;
+        board.appendChild(columns);
+        bingoBoardsContainer.appendChild(board);
     }
+
+    // Marcar los números generados
+    generatedNumbers.forEach(number => {
+        document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
+            cell.classList.add('marked');
+        });
+    });
+
+    // Marcar los números de la figura si hay una seleccionada
+    if (selectedFigure) {
+        markFigureNumbers();
+    }
+
+    currentPageSpan.textContent = currentPage;
+}
 
     function createBingoColumn(min, max, boardNumber, hasFreeCell = false) {
         const column = document.createElement('div');
         column.classList.add('bingoColumn');
-        const numbers = bingoBoardsState[boardNumber] && bingoBoardsState[boardNumber][`col${min}-${max}`] ?
-            bingoBoardsState[boardNumber][`col${min}-${max}`] :
+        const numbers = bingoBoardsState[boardNumber] && bingoBoardsState[boardNumber][col${min}-${max}] ?
+            bingoBoardsState[boardNumber][col${min}-${max}] :
             getRandomNumbers(min, max, 5);
 
         const boardState = bingoBoardsState[boardNumber] || {};
@@ -206,8 +230,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             column.appendChild(cell);
 
-            if (!boardState[`col${min}-${max}`]) {
-                boardState[`col${min}-${max}`] = numbers;
+            if (!boardState[col${min}-${max}]) {
+                boardState[col${min}-${max}] = numbers;
             }
         });
 
@@ -224,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
             generatedNumbers.push(number);
         }
         saveState();
-        document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
+        document.querySelectorAll([data-number="${number}"]).forEach(cell => {
             cell.classList.toggle('marked');
         });
 
@@ -253,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
             Object.keys(bingoBoardsState[boardNumber]).forEach(colKey => {
                 bingoBoardsState[boardNumber][colKey].forEach((number, index) => {
                     if (number !== 'FREE') {
-                        const cell = document.querySelector(`[data-number="${number}"]`);
+                        const cell = document.querySelector([data-number="${number}"]);
                         if (cell) {
                             cell.classList.remove('marked');
                             cell.classList.remove('figure-marked');
@@ -273,11 +297,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function saveState() {
-        localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
-        localStorage.setItem('bingoBoardsState', JSON.stringify(bingoBoardsState));
-        localStorage.setItem('playerNames', JSON.stringify(playerNames));
-        localStorage.setItem('selectedFigure', selectedFigure);
-    }
+    localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
+    localStorage.setItem('bingoBoardsState', JSON.stringify(bingoBoardsState));
+    localStorage.setItem('playerNames', JSON.stringify(playerNames));
+    localStorage.setItem('selectedFigure', selectedFigure);
+    localStorage.setItem('currentPage', currentPage.toString());
+}
+
+function loadState() {
+    generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
+    bingoBoardsState = JSON.parse(localStorage.getItem('bingoBoardsState')) || {};
+    playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
+    selectedFigure = localStorage.getItem('selectedFigure') || '';
+    currentPage = parseInt(localStorage.getItem('currentPage')) || 1;
+}
 
     function filterBoards() {
         const query = searchBox.value.trim().toLowerCase();
@@ -298,7 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     found = true;
                     changePage(page);
                     setTimeout(() => {
-                        const board = document.querySelector(`.bingoBoard[data-board-number='${i}']`);
+                        const board = document.querySelector(.bingoBoard[data-board-number='${i}']);
                         if (board) {
                             document.querySelectorAll('.bingoBoard').forEach(b => {
                                 if (b !== board && !b.closest('#masterBoardContainer')) {
@@ -343,6 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (newPage < 1 || newPage > totalPages) return;
         currentPage = newPage;
         createBingoBoards(currentPage);
+         saveState();
     }
 
     function updateFigurePreview(figure) {
@@ -609,36 +643,35 @@ document.addEventListener('DOMContentLoaded', () => {
         updateFigurePreview(figure);
     });
 
-    printButton.addEventListener('click', async () => {
-        const boards = document.querySelectorAll('.bingoBoard');
+   printButton.addEventListener('click', async () => {
+    const boards = document.querySelectorAll('.bingoBoard');
 
-        // Agregar estilo de borde temporalmente
-        boards.forEach(board => {
-            board.style.border = '2px solid black';
-            board.style.padding = '10px'; // Añadir padding para espacio entre el contenido y el borde
-        });
-
-        for (let i = 0; i < boards.length; i++) {
-            const canvas = await html2canvas(boards[i]);
-            const imgData = canvas.toDataURL('image/png');
-
-            const link = document.createElement('a');
-            link.href = imgData;
-            link.download = `bingo_carton_${i + 1}.png`;
-            link.style.display = 'none'; // Ocultar el enlace
-
-            document.body.appendChild(link);
-            link.click(); // Hacer clic en el enlace para descargar la imagen
-            document.body.removeChild(link); // Eliminar el enlace del DOM
-        }
-
-        // Eliminar estilo de borde después de la captura
-        boards.forEach(board => {
-            board.style.border = '';
-            board.style.padding = ''; // Eliminar el padding agregado
-        });
+    // Agregar estilo de borde temporalmente
+    boards.forEach(board => {
+        board.style.border = '2px solid black';
+        board.style.padding = '10px'; // Añadir padding para espacio entre el contenido y el borde
     });
 
+    for (let i = 0; i < boards.length; i++) {
+        const canvas = await html2canvas(boards[i]);
+        const imgData = canvas.toDataURL('image/png');
+
+        const link = document.createElement('a');
+        link.href = imgData;
+        link.download = bingo_carton_${i + 1}.png;
+        link.style.display = 'none'; // Ocultar el enlace
+
+        document.body.appendChild(link);
+        link.click(); // Hacer clic en el enlace para descargar la imagen
+        document.body.removeChild(link); // Eliminar el enlace del DOM
+    }
+
+    // Eliminar estilo de borde después de la captura
+    boards.forEach(board => {
+        board.style.border = '';
+        board.style.padding = ''; // Eliminar el padding agregado
+    });
+});
     createMasterBoard();
     createBingoBoards(currentPage);
 });
