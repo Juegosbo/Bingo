@@ -319,16 +319,6 @@ h1 img {
     margin: 0; /* Elimina el margen para que los números estén juntos */
 }
 
-.bingoCell.marked {
-    background-color: #ECEA8A; /* Fondo verde para la celda marcada */
-    color: white;
-}
-
-.bingoCell.figure-marked {
-    background-color: #198C53; /* Fondo  para la figura marcada */
-    color: black;
-}
-
 .boardNumberContainer {
     display: flex;
     flex-direction: column;
@@ -429,12 +419,12 @@ h1 img {
 }
 
 .bingoCell.marked {
-    background-color: #2AB366; /* Fondo verde para la celda marcada */
+    background-color: #ECEA8A; /* Fondo verde para la celda marcada */
     color: white; /* Texto blanco para la celda marcada */
 }
 
 .bingoCell.figure-marked {
-    background-color: #E8F609; /* Fondo amarillo para la figura marcada */
+    background-color: #2F8135; /* Fondo amarillo para la figura marcada */
     color: black; /* Texto negro para la figura marcada */
 }
 
