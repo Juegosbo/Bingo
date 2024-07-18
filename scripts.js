@@ -157,13 +157,15 @@ document.addEventListener('DOMContentLoaded', () => {
     saveState();
 
     // Marcar o desmarcar solo en el tablero maestro
-    document.querySelectorAll('#masterBoardContainer [data-number="${number}"]').forEach(cell => {
-        cell.classList.toggle('master-marked');
+    document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
+        if (parseInt(cell.dataset.number) === number) {
+            cell.classList.toggle('master-marked');
+        }
     });
 
     // Marcar o desmarcar en el resto de los tableros
-    document.querySelectorAll(`.bingoBoard [data-number="${number}"]`).forEach(cell => {
-        if (!cell.closest('#masterBoardContainer')) {
+    document.querySelectorAll(`.bingoBoard .bingoCell`).forEach(cell => {
+        if (!cell.closest('#masterBoardContainer') && parseInt(cell.dataset.number) === number) {
             cell.classList.toggle('marked');
         }
     });
