@@ -90,39 +90,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function createMasterBoard() {
-        masterBoardContainer.innerHTML = '';
-        const board = document.createElement('div');
-        board.classList.add('bingoBoard');
+    masterBoardContainer.innerHTML = '';
+    const board = document.createElement('div');
+    board.classList.add('bingoBoard');
 
-        const header = document.createElement('div');
-        header.classList.add('bingoHeader');
-        ['B', 'I', 'N', 'G', 'O'].forEach(letter => {
-            const cell = document.createElement('div');
-            cell.textContent = letter;
-            header.appendChild(cell);
-        });
-        board.appendChild(header);
+    const header = document.createElement('div');
+    header.classList.add('bingoHeader');
+    ['B', 'I', 'N', 'G', 'O'].forEach(letter => {
+        const cell = document.createElement('div');
+        cell.textContent = letter;
+        header.appendChild(cell);
+    });
+    board.appendChild(header);
 
-        const columns = document.createElement('div');
-        columns.classList.add('bingoColumns');
-        columns.style.display = 'grid';
-        columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
-        columns.style.gap = '5px';
+    const columns = document.createElement('div');
+    columns.classList.add('bingoColumns');
+    columns.style.display = 'grid';
+    columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
+    columns.style.gap = '5px';
 
-        const bColumn = createFixedBingoColumn(1, 15);
-        const iColumn = createFixedBingoColumn(16, 30);
-        const nColumn = createFixedBingoColumn(31, 45);
-        const gColumn = createFixedBingoColumn(46, 60);
-        const oColumn = createFixedBingoColumn(61, 75);
+    const bColumn = createFixedBingoColumn(1, 15);
+    const iColumn = createFixedBingoColumn(16, 30);
+    const nColumn = createFixedBingoColumn(31, 45);
+    const gColumn = createFixedBingoColumn(46, 60);
+    const oColumn = createFixedBingoColumn(61, 75);
 
-        columns.appendChild(bColumn);
-        columns.appendChild(iColumn);
-        columns.appendChild(nColumn);
-        columns.appendChild(gColumn);
-        columns.appendChild(oColumn);
+    columns.appendChild(bColumn);
+    columns.appendChild(iColumn);
+    columns.appendChild(nColumn);
+    columns.appendChild(gColumn);
+    columns.appendChild(oColumn);
 
-        board.appendChild(columns);
-        masterBoardContainer.appendChild(board);
+    board.appendChild(columns);
+    masterBoardContainer.appendChild(board);
 
         // Marcar números previamente generados
         generatedNumbers.forEach(number => {
@@ -342,18 +342,39 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('currentPage', currentPage.toString());
     }
 
-    function loadState() {
-        generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
-        bingoBoardsState = JSON.parse(localStorage.getItem('bingoBoardsState')) || {};
-        playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
-        selectedFigure = localStorage.getItem('selectedFigure') || '';
-        currentPage = parseInt(localStorage.getItem('currentPage')) || 1;
+    function saveState() {
+    localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
+    localStorage.setItem('bingoBoardsState', JSON.stringify(bingoBoardsState));
+    localStorage.setItem('playerNames', JSON.stringify(playerNames));
+    localStorage.setItem('selectedFigure', selectedFigure);
+    localStorage.setItem('currentPage', currentPage.toString());
 
-        // Actualizar el selector de figura
-        if (selectedFigure) {
-            selectFigure.value = selectedFigure;
+    // Guardar las marcas en la tabla maestra
+    const masterBoardMarks = Array.from(document.querySelectorAll('#masterBoardContainer .bingoCell.master-marked')).map(cell => parseInt(cell.dataset.number));
+    localStorage.setItem('masterBoardMarks', JSON.stringify(masterBoardMarks));
+}
+
+function loadState() {
+    generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
+    bingoBoardsState = JSON.parse(localStorage.getItem('bingoBoardsState')) || {};
+    playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
+    selectedFigure = localStorage.getItem('selectedFigure') || '';
+    currentPage = parseInt(localStorage.getItem('currentPage')) || 1;
+
+    // Cargar las marcas en la tabla maestra
+    const masterBoardMarks = JSON.parse(localStorage.getItem('masterBoardMarks')) || [];
+    masterBoardMarks.forEach(number => {
+        const cell = document.querySelector(`#masterBoardContainer .bingoCell[data-number="${number}"]`);
+        if (cell) {
+            cell.classList.add('master-marked');
         }
+    });
+
+    // Actualizar el selector de figura
+    if (selectedFigure) {
+        selectFigure.value = selectedFigure;
     }
+}
     
     function filterBoards() {
     const query = searchBox.value.trim().toLowerCase();
