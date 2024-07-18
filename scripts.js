@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return column;
     }
 
-    function toggleMarkNumber(number) {
+   function toggleMarkNumber(number) {
     const index = generatedNumbers.indexOf(number);
     if (index > -1) {
         generatedNumbers.splice(index, 1);
@@ -164,8 +164,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Marcar o desmarcar en el resto de los tableros
-    document.querySelectorAll(`.bingoBoard .bingoCell`).forEach(cell => {
-        if (!cell.closest('#masterBoardContainer') && parseInt(cell.dataset.number) === number) {
+    document.querySelectorAll(`.bingoBoard:not(.figure-board) .bingoCell`).forEach(cell => {
+        if (parseInt(cell.dataset.number) === number) {
             cell.classList.toggle('marked');
         }
     });
