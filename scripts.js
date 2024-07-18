@@ -415,9 +415,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 }
 
-function changePage(newPage) {
+function changePage(newPage, updateMasterBoard = true) {
     if (newPage < 1 || newPage > totalPages) return;
     currentPage = newPage;
+
+    if (updateMasterBoard) {
+        createMasterBoard();
+    }
     createBingoBoards(currentPage);
     saveState();
 }
