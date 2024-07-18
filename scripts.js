@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         board.appendChild(columns);
         masterBoardContainer.appendChild(board);
 
-        // Mark previously generated numbers
+        // Marcar números previamente generados
         generatedNumbers.forEach(number => {
             markNumber(number);
         });
@@ -211,7 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
             columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
             columns.style.gap = '5px';
 
-            // Restaurar el estado de los cartones o crear nuevos si no existen
             const bColumn = createBingoColumn(1, 15, i);
             const iColumn = createBingoColumn(16, 30, i);
             const nColumn = createBingoColumn(31, 45, i, true);
@@ -657,7 +656,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-});
 
     // Restaurar la figura seleccionada al cargar la página
     if (selectedFigure) {
@@ -681,35 +679,36 @@ document.addEventListener('DOMContentLoaded', () => {
         updateFigurePreview(figure);
     });
 
-   printButton.addEventListener('click', async () => {
-    const boards = document.querySelectorAll('.bingoBoard');
+    printButton.addEventListener('click', async () => {
+        const boards = document.querySelectorAll('.bingoBoard');
 
-    // Agregar estilo de borde temporalmente
-    boards.forEach(board => {
-        board.style.border = '2px solid black';
-        board.style.padding = '10px'; // Añadir padding para espacio entre el contenido y el borde
+        // Agregar estilo de borde temporalmente
+        boards.forEach(board => {
+            board.style.border = '2px solid black';
+            board.style.padding = '10px'; // Añadir padding para espacio entre el contenido y el borde
+        });
+
+        for (let i = 0; i < boards.length; i++) {
+            const canvas = await html2canvas(boards[i]);
+            const imgData = canvas.toDataURL('image/png');
+
+            const link = document.createElement('a');
+            link.href = imgData;
+            link.download = `bingo_carton_${i + 1}.png`;
+            link.style.display = 'none'; // Ocultar el enlace
+
+            document.body.appendChild(link);
+            link.click(); // Hacer clic en el enlace para descargar la imagen
+            document.body.removeChild(link); // Eliminar el enlace del DOM
+        }
+
+        // Eliminar estilo de borde después de la captura
+        boards.forEach(board => {
+            board.style.border = '';
+            board.style.padding = ''; // Eliminar el padding agregado
+        });
     });
 
-    for (let i = 0; i < boards.length; i++) {
-        const canvas = await html2canvas(boards[i]);
-        const imgData = canvas.toDataURL('image/png');
-
-        const link = document.createElement('a');
-        link.href = imgData;
-        link.download = bingo_carton_${i + 1}.png;
-        link.style.display = 'none'; // Ocultar el enlace
-
-        document.body.appendChild(link);
-        link.click(); // Hacer clic en el enlace para descargar la imagen
-        document.body.removeChild(link); // Eliminar el enlace del DOM
-    }
-
-    // Eliminar estilo de borde después de la captura
-    boards.forEach(board => {
-        board.style.border = '';
-        board.style.padding = ''; // Eliminar el padding agregado
-    });
-});
     createMasterBoard();
     createBingoBoards(currentPage);
 });
