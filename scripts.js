@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return column;
     }
 
-   function toggleMarkNumber(number) {
+ function toggleMarkNumber(number) {
     const index = generatedNumbers.indexOf(number);
     if (index > -1) {
         generatedNumbers.splice(index, 1);
@@ -156,9 +156,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     saveState();
 
-    // Marcar o desmarcar en el tablero maestro solo si no pertenece a la figura
+    // Marcar o desmarcar solo en el tablero maestro, ignorando figuras
     document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
-        if (parseInt(cell.dataset.number) === number && !cell.classList.contains('figure-marked')) {
+        if (parseInt(cell.dataset.number) === number) {
             cell.classList.toggle('master-marked');
         }
     });
@@ -671,6 +671,7 @@ function markFigureNumbers() {
             }
         });
     });
+}
 
     const masterBoardCells = document.querySelectorAll('#masterBoardContainer .bingoCell');
     masterBoardCells.forEach((cell, index) => {
