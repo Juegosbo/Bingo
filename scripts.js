@@ -324,29 +324,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function clearMarks() {
-        Object.keys(bingoBoardsState).forEach(boardNumber => {
-            Object.keys(bingoBoardsState[boardNumber]).forEach(colKey => {
-                bingoBoardsState[boardNumber][colKey].forEach((number, index) => {
-                    if (number !== 'FREE') {
-                        const cell = document.querySelector(`[data-number="${number}"]`);
-                        if (cell) {
-                            cell.classList.remove('marked');
-                            cell.classList.remove('figure-marked');
-                        }
-                    }
-                });
-            });
-        });
+    // Eliminar marcas en todos los tableros excepto el maestro
+    document.querySelectorAll('.bingoCell.marked').forEach(cell => {
+        cell.classList.remove('marked');
+    });
 
-        document.querySelectorAll('.bingoCell.marked').forEach(cell => {
-            cell.classList.remove('marked');
-            cell.classList.remove('figure-marked');
-        });
+    // Eliminar marcas en el tablero maestro
+    document.querySelectorAll('.bingoCell.master-marked').forEach(cell => {
+        cell.classList.remove('master-marked');
+    });
 
-        generatedNumbers = [];
-        saveState();
-    }
-
+    // Limpiar los números generados
+    generatedNumbers = [];
+    saveState();
+}
     function saveState() {
         localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
         localStorage.setItem('bingoBoardsState', JSON.stringify(bingoBoardsState));
