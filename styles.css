@@ -435,9 +435,10 @@ h1 img {
     color: black; /* Asegura que el texto sea visible */
 }
 
+
 /* Estilo específico para el cartón de figura */
 .figure-board .bingoCell.figure-marked {
-    background-color: #2D6717; /* Color específico para las celdas de la figura en el cartón de figura */
+    background-color: #2D6717; /* Cambia el color de fondo a tu preferencia */
     color: white; /* Cambia el color del texto si es necesario */
 }
 
