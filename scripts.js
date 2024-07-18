@@ -148,21 +148,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function toggleMarkNumber(number) {
-        const index = generatedNumbers.indexOf(number);
-        if (index > -1) {
-            generatedNumbers.splice(index, 1);
-        } else {
-            generatedNumbers.push(number);
-        }
-        saveState();
-        document.querySelectorAll(`[data-number="${number}"]`).forEach(cell => {
-            cell.classList.toggle('marked');
-        });
-
-        if (selectedFigure) {
-            markFigureNumbers();
-        }
+    const index = generatedNumbers.indexOf(number);
+    if (index > -1) {
+        generatedNumbers.splice(index, 1);
+    } else {
+        generatedNumbers.push(number);
     }
+    saveState();
+
+    // Marcar o desmarcar solo en el tablero maestro
+    document.querySelectorAll('#masterBoardContainer [data-number="${number}"]').forEach(cell => {
+        cell.classList.toggle('master-marked');
+    });
+
+    // Marcar o desmarcar en el resto de los tableros
+    document.querySelectorAll(`.bingoBoard [data-number="${number}"]`).forEach(cell => {
+        if (!cell.closest('#masterBoardContainer')) {
+            cell.classList.toggle('marked');
+        }
+    });
+
+    if (selectedFigure) {
+        markFigureNumbers();
+    }
+}
 
     function getRandomNumbers(min, max, count) {
         const numbers = [];
