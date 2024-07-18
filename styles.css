@@ -429,6 +429,12 @@ h1 img {
     color: black; /* Texto negro para la figura marcada */
 }
 
+/* Color del carton maestro al marcar */ 
+.master-marked {
+    background-color: #02661A; /* Elige el color que prefieras */
+    color: black; /* Asegura que el texto sea visible */
+}
+
 /* Estilo específico para el cartón de figura */
 .figure-board .bingoCell.figure-marked {
     background-color: #2F8135; /* Color específico para las celdas de la figura en el cartón de figura */
