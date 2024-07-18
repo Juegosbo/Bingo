@@ -221,7 +221,7 @@ h1 img {
 #figurePreviewContainer {
     position: fixed;
     top: 450px;
-    left: 5px;
+    left: 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
