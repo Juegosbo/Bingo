@@ -213,6 +213,9 @@ h1 img {
     width: 50px; /* Ajusta el ancho de los números en la tabla maestra */
 }
 
+#masterBoardContainer .bingoCell.master-marked {
+    background-color: #2D6717; /* Elige el color que prefieras */
+
 
 /* cambiar el carton de la figura*/
 #figurePreviewContainer {
