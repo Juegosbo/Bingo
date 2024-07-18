@@ -613,11 +613,11 @@ function markFigureNumbers() {
             break;
         case 'letterH':
             cells = [
+                true, false, false, false, true,
+                true, false, false, false, true,
                 true, true, true, true, true,
-                false, false, true, false, false,
-                false, false, true, false, false,
-                false, false, true, false, false,
-                true, true, true, true, true
+                true, false, false, false, true,
+                true, false, false, false, true
             ];
             break;
         case 'tree':
@@ -631,11 +631,11 @@ function markFigureNumbers() {
             break;
         case 'numberOne':
             cells = [
-               false, false, false,  false, false,
-               false, true, false,  false, true,
-               true, true, true,  true, true,
-               false, false, false,  false, true,
-               false,  false,  false,  false,  false
+                false, false, false,  false, false,
+                false, true, false,  false, true,
+                true, true, true,  true, true,
+                false, false, false,  false, true,
+                false,  false,  false,  false,  false
             ];
             break;
         case 'chess':
@@ -661,16 +661,19 @@ function markFigureNumbers() {
     }
 
     document.querySelectorAll('.bingoBoard').forEach(board => {
-        const boardCells = board.querySelectorAll('.bingoCell');
-        boardCells.forEach((cell, index) => {
-            const cellNumber = parseInt(cell.dataset.number);
-            if (cells[index] && generatedNumbers.includes(cellNumber)) {
-                cell.classList.add('figure-marked');
-            } else {
-                cell.classList.remove('figure-marked');
-            }
-        });
+        if (!board.classList.contains('figure-board')) {
+            const boardCells = board.querySelectorAll('.bingoCell');
+            boardCells.forEach((cell, index) => {
+                const cellNumber = parseInt(cell.dataset.number);
+                if (cells[index] && generatedNumbers.includes(cellNumber)) {
+                    cell.classList.add('figure-marked');
+                } else {
+                    cell.classList.remove('figure-marked');
+                }
+            });
+        }
     });
+}
 
     const masterBoardCells = document.querySelectorAll('#masterBoardContainer .bingoCell');
     masterBoardCells.forEach((cell, index) => {
