@@ -453,16 +453,6 @@ function updateFigurePreview(figure) {
     let cells = Array(25).fill(false);
 
     switch (figure) {
-
-        case 'una':
-            cells = [
-               false, false, true,  false, false,
-               false, true, true,  true, false,
-               false, true, true,  true, false,
-               false, false, true,  false, false,
-               false,  false,  true,  false,  false
-            ];
-            break;
         case 'cross':
             cells = [
                 false, false, true,  false, false,
@@ -492,11 +482,11 @@ function updateFigurePreview(figure) {
             break;
         case 'fourCorners':
             cells = [
-                false,  false, true, false, false,
-                false, true, true, false, false,
-                true, true, true, true, true,
-                false, false, true, false, false,
-                true,  true, true, true, true
+                true,  false, false, false, true,
+                false, false, false, false, false,
+                false, false, false, false, false,
+                false, false, false, false, false,
+                true,  false, false, false, true
             ];
             break;
         case 'letterH':
@@ -593,17 +583,6 @@ function markFigureNumbers() {
     let cells = Array(25).fill(false);
 
     switch (selectedFigure) {
-
-        case 'una':
-            cells = [
-               false, false, true,  false, false,
-               false, false, true,  true, false,
-               false, false, true,  false, false,
-               false, false, true,  false, false,
-               false,  false,  true,  false,  false
-            ];
-            break;
-            
         case 'cross':
             cells = [
                 false, false, true,  false, false,
@@ -633,11 +612,11 @@ function markFigureNumbers() {
             break;
         case 'fourCorners':
             cells = [
-                false,  false, true, false, false,
-                false, true, true, false, false,
-                false, false, true, false, false,
-                false, false, true, false, false,
-                true,  true, true, true, true
+                true,  false, false, false, true,
+                false, false, false, false, false,
+                false, false, false, false, false,
+                false, false, false, false, false,
+                true,  false, false, false, true
             ];
             break;
         case 'letterH':
@@ -703,7 +682,7 @@ function markFigureNumbers() {
     });
 
     // Marcar las celdas en el cartón de figura
-   document.querySelectorAll('#figurePreviewContainer .bingoCell').forEach((cell, index) => {
+    document.querySelectorAll('#figurePreviewContainer .bingoCell').forEach((cell, index) => {
         if (cells[index]) {
             cell.classList.add('figure-marked');
         } else {
