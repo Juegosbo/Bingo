@@ -17,14 +17,17 @@ body {
 #figureImageContainer {
     margin-top: 10px;
     text-align: center;
+    position: relative;
 }
 
 #figureImage {
-    max-width: 100%;
-    height: auto;
-    width: 180px; /* Ajusta el ancho según tus necesidades */
-    height: 180px; /* Ajusta la altura según tus necesidades */
+    width: 100px; /* Ajusta el ancho según tus necesidades */
+    height: 100px; /* Ajusta la altura según tus necesidades */
     display: none; /* Ocultar inicialmente */
+    position: absolute; /* Posiciona absolutamente la imagen dentro del contenedor */
+    top: 0; /* Ajusta la posición superior */
+    left: 50%; /* Centra horizontalmente */
+    transform: translateX(-50%); /* Ajusta la posición horizontal */
 }
 
 @keyframes bounce {
