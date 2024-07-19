@@ -427,7 +427,7 @@ h1 img {
     border: 2px solid red;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     width: 400px; /* Ajusta la anchura según sea necesario */
-    height: 180px; /* Ajusta la altura según sea necesario */
+    height: 140px; /* Ajusta la altura según sea necesario */
     display: grid;
     grid-template-rows: auto 1fr; /* Mantén la estructura de filas */
     gap: 0; /* Sin espacio entre filas */
@@ -456,7 +456,7 @@ h1 img {
     align-items: center;
     border: 1px solid #000; /* Bordes negros */
     background-color: #fff;
-    font-size: 30px; /* Ajusta el tamaño de la fuente */
+    font-size: 35px; /* Ajusta el tamaño de la fuente */
     cursor: pointer;
     color: #000 !important; /* Asegura que el color del texto sea negro */
     font-weight: bold; /* Asegura que el texto esté en negrilla */
