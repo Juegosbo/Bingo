@@ -537,7 +537,7 @@ function updateFigurePreview(figure) {
         case 'medio':
             cells = [
                 false, false, true,  false, false,
-                false, false, true,  false, false,
+                false, true, true,  false, false,
                 false,  false,  true,  false,  false,
                 false, false, true,  false, false,
                 false, false, true,  false, false
@@ -675,11 +675,11 @@ function markFigureNumbers() {
             break;
             case 'medio':
             cells = [
-                false, false, true,  false, false,
-                false, false, true,  false, false,
-                false,  false,  true,  false,  false,
-                false, false, true,  false, false,
-                false, false, true,  false, false
+                false, false, false,  false, false,
+                false, false, false,  false, false,
+                true,  true,  true,  true,  true,
+                false, true, false,  false, false,
+                false, false, false,  false, false
             ];
             break;
         case 'diagonals':
