@@ -457,8 +457,8 @@ function updateFigurePreview(figure) {
         case 'una':
             cells = [
                false, false, true,  false, false,
-               false, false, true,  true, false,
-               false, false, true,  false, false,
+               false, true, true,  true, false,
+               false, true, true,  true, false,
                false, false, true,  false, false,
                false,  false,  true,  false,  false
             ];
