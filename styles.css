@@ -271,7 +271,7 @@ h1 img {
     gap: 20px;
     margin: 20px 0; /* Espaciado arriba y abajo */
     width: calc(100% - 250px);
-    top: -80px; /* Ajusta este valor para mover los cartones más arriba */
+    top: -150px; /* Ajusta este valor para mover los cartones más arriba */
 }
 
 #paginationControls {
