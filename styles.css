@@ -383,7 +383,7 @@ h1 img {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     animation: spin 0.5s ease-in-out; /* Animación para el giro */
     width: 400px; /* Ajusta la anchura */
-    height: 200px; /* Ajusta la altura */
+    height: 350px; /* Ajusta la altura */
 }
 
 @keyframes spin {
