@@ -534,6 +534,16 @@ function updateFigurePreview(figure) {
                 true,  false, false, false, true
             ];
             break;
+        case 'medio':
+            cells = [
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                false,  false,  true,  false,  false,
+                false, false, true,  false, false,
+                false, false, true,  false, false
+            ];
+            break;
+                    
         default:
             return;
     }
@@ -662,6 +672,15 @@ function markFigureNumbers() {
                 false, false, true,  false, false,
                 false, true,  false, true,  false,
                 true,  false, false, false, true
+            ];
+            break;
+             case 'medio':
+            cells = [
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                false,  false,  true,  false,  false,
+                false, false, true,  false, false,
+                false, false, true,  false, false
             ];
             break;
         default:
