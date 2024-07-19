@@ -673,6 +673,15 @@ function markFigureNumbers() {
                 true,  false, true,  false, true
             ];
             break;
+            case 'medio':
+            cells = [
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                false,  false,  true,  false,  false,
+                false, false, true,  false, false,
+                false, false, true,  false, false
+            ];
+            break;
         case 'diagonals':
             cells = [
                 true,  false, false, false, true,
@@ -682,15 +691,7 @@ function markFigureNumbers() {
                 true,  false, false, false, true
             ];
             break;
-             case 'medio':
-            cells = [
-                false, false, true,  false, false,
-                false, false, true,  false, false,
-                false,  false,  true,  false,  false,
-                false, false, true,  false, false,
-                false, false, true,  false, false
-            ];
-            break;
+             
         default:
             return;
     }
