@@ -484,9 +484,9 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'letterH':
                 cells = [
                     true, true, true, true, true,
-                    true, false, false, false, true,
-                    true, true, true, true, true,
-                    true, false, false, false, true,
+                    true, false, true, false, false,
+                    true, true, true, true, false,
+                    true, false, true, false, false,
                     true, true, true, true, true
                 ];
                 break;
@@ -622,7 +622,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     false, false, true,  false, false,
                     false, true,  true,  false,  false,
                     true,  true, true,  true, true,
-                    false, true,  true,  false,  false,
+                    false, true, true,  false,  false,
                     false, false, true,  false, false
                 ];
                 break;
@@ -657,21 +657,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
         }
 
-        // Marcar las celdas en los cartones de bingo
-        document.querySelectorAll('.bingoBoard').forEach(board => {
-            const boardCells = board.querySelectorAll('.bingoCell');
-            boardCells.forEach((cell, index) => {
-                const cellNumber = parseInt(cell.dataset.number);
-                if (cells[index] && generatedNumbers.includes(cellNumber)) {
-                    cell.classList.add('figure-marked');
-                } else {
-                    cell.classList.remove('figure-marked');
-                }
-            });
-        });
-
         // Marcar las celdas en el cartón de figura
-        document.querySelectorAll('#figurePreviewContainer .bingoCell').forEach((cell, index) => {
+        const figureCells = figurePreview.querySelectorAll('.bingoCell');
+        figureCells.forEach((cell, index) => {
             if (cells[index]) {
                 cell.classList.add('figure-marked');
             } else {
