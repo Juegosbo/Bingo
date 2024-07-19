@@ -491,29 +491,29 @@ function updateFigurePreview(figure) {
             break;
         case 'letterH':
             cells = [
-                true, true, true, true, true,
-                true, false, true, false, false,
-                true, true, true, true, false,
-                true, false, true, false, false,
-                true, true, true, true, true
+                true,  false, false, false, true,
+                true,  false, false, false, true,
+                true,  true,  true,  true,  true,
+                true,  false, false, false, true,
+                true,  false, false, false, true
             ];
             break;
         case 'tree':
             cells = [
                 false, false, true,  false, false,
-                false, true,  true,  false,  false,
-                true,  true, true,  true, true,
-                false, true, true,  false,  false,
+                false, true,  true,  true,  false,
+                true,  true,  true,  true,  true,
+                false, false, true,  false, false,
                 false, false, true,  false, false
             ];
             break;
         case 'numberOne':
             cells = [
-               false, false, true,  false, false,
-               false, false, true,  true, false,
-               false, false, true,  false, false,
-               false, false, true,  false, false,
-               false,  false,  true,  false,  false
+                false, false, true,  false, false,
+                false, true,  true,  false, false,
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                false, true,  true,  true,  false
             ];
             break;
         case 'chess':
