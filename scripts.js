@@ -489,7 +489,7 @@ function updateFigurePreview(figure) {
                 true,  false, false, false, true
             ];
             break;
-        case 'letterH':
+       /* case 'letterH':
             cells = [
                 true, true, true, true, true,
                 true, false, true, false, false,
@@ -497,7 +497,7 @@ function updateFigurePreview(figure) {
                 true, false, true, false, false,
                 true, true, true, true, true
             ];
-            break;
+            break;*/
         case 'tree':
             cells = [
                 false, false, true,  false, false,
@@ -543,6 +543,14 @@ function updateFigurePreview(figure) {
                 false, false, true,  false, false
             ];
             break;
+            case 'letterH':
+            cells = [
+                true, true, true, true, true,
+                false, false, true, false, false,
+                false, false, true, false, false,
+                false, false, true, false, false,
+                true, true, true, true, true
+            ];
                     
         default:
             return;
