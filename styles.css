@@ -28,7 +28,7 @@ body {
     top: 0; /* Ajusta la posición superior */
     left: 50%; /* Centra horizontalmente */
     transform: translateX(-50%); /* Ajusta la posición horizontal */
-    margin-left: 35px; /* Ajusta este valor para mover la imagen más a la derecha */
+    margin-left: 25px; /* Ajusta este valor para mover la imagen más a la derecha */
 }
 
 @keyframes bounce {
