@@ -536,11 +536,11 @@ function updateFigurePreview(figure) {
             break;
         case 'medio':
             cells = [
-                false, false, false,  false, false,
-                false, true, false,  false, false,
+                true, false, false,  false, false,
+                true, true, false,  false, false,
                 true,  true,  true,  true,  true,
-                false, false, false,  false, false,
-                false, false, false,  false, false
+                true, false, false,  false, false,
+                true, false, false,  false, false
             ];
             break;
             case 'letterH':
