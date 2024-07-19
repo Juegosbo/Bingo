@@ -489,31 +489,31 @@ function updateFigurePreview(figure) {
                 true,  false, false, false, true
             ];
             break;
-         case 'letterH':
+        case 'letterH':
             cells = [
-                true, false, false, false, true,
-                true, false, false, false, true,
                 true, true, true, true, true,
-                true, false, false, false, true,
-                true, false, false, false, true
+                true, false, true, false, false,
+                true, true, true, true, false,
+                true, false, true, false, false,
+                true, true, true, true, true
             ];
             break;
         case 'tree':
             cells = [
-                false, false, true, false, false,
-                false, true, true, true, false,
-                true, true, true, true, true,
-                false, false, true, false, false,
-                false, false, true, false, false
+                false, false, true,  false, false,
+                false, true,  true,  false,  false,
+                true,  true, true,  true, true,
+                false, true, true,  false,  false,
+                false, false, true,  false, false
             ];
             break;
         case 'numberOne':
             cells = [
-                false, false, true, false, false,
-                false, true, true, false, false,
-                false, false, true, false, false,
-                false, false, true, false, false,
-                false, true, true, true, false
+               true, true, true,  true, true,
+               true, true, true,  true, true,
+               true, true, true,  true, true,
+               true, true, true,  true, true,
+               true,  true,  true,  true,  true
             ];
             break;
         case 'chess':
@@ -539,18 +539,6 @@ function updateFigurePreview(figure) {
     }
 
     const board = document.createElement('div');
-    board.classList.add('bingoBoard', 'small', 'figure-board');
-
-    const header = document.createElement('div');
-    header.classList.add('bingoHeader');
-    ['B', 'I', 'N', 'G', 'O'].forEach(letter => {
-        const cell = document.createElement('div');
-        cell.textContent = letter;
-        header.appendChild(cell);
-    });
-    board.appendChild(header);
-
-     const board = document.createElement('div');
     board.classList.add('bingoBoard', 'small', 'figure-board');
 
     const header = document.createElement('div');
@@ -633,29 +621,29 @@ function markFigureNumbers() {
             break;
         case 'letterH':
             cells = [
-                true, false, false, false, true,
-                true, false, false, false, true,
                 true, true, true, true, true,
-                true, false, false, false, true,
-                true, false, false, false, true
+                false, false, true, false, false,
+                false, false, true, false, false,
+                false, false, true, false, false,
+                true, true, true, true, true
             ];
             break;
         case 'tree':
             cells = [
-                false, false, true, false, false,
-                false, true, true, true, false,
-                true, true, true, true, true,
-                false, false, true, false, false,
-                false, false, true, false, false
+                false, false, true,  false, false,
+                false, true,  true,  false,  false,
+                true,  true, true,  true, true,
+                false, true,  true,  false,  false,
+                false, false, true,  false, false
             ];
             break;
         case 'numberOne':
             cells = [
-                false, false, true, false, false,
-                false, true, true, false, false,
-                false, false, true, false, false,
-                false, false, true, false, false,
-                false, true, true, true, false
+               false, false, false,  false, false,
+               false, true, false,  false, true,
+               true, true, true,  true, true,
+               false, false, false,  false, true,
+               false,  false,  false,  false,  false
             ];
             break;
         case 'chess':
