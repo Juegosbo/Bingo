@@ -376,14 +376,50 @@ h1 img {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1.5); /* Escala el cartón para hacerlo más grande */
+    transform: translate(-50%, -50%);
     z-index: 1000;
     background-color: rgba(255, 0, 0, 0.5); /* Fondo rojo transparente */
     border: 2px solid red;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    animation: spin 0.5s ease-in-out; /* Animación para el giro */
-    width: 400px; /* Ajusta la anchura */
-    height: 350px; /* Ajusta la altura */
+    width: 400px; /* Ajusta la anchura según sea necesario */
+    height: 350px; /* Ajusta la altura según sea necesario */
+    display: grid;
+    grid-template-rows: auto 1fr; /* Mantén la estructura de filas */
+    gap: 0; /* Sin espacio entre filas */
+}
+
+.bingoBoard.highlighted-permanent .bingoHeader {
+    font-size: 48px; /* Ajusta el tamaño de la fuente del encabezado "BINGO" */
+}
+
+.bingoBoard.highlighted-permanent .bingoColumns {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0; /* Sin espacio entre las columnas */
+    margin: 0; /* Eliminar márgenes */
+    padding: 0; /* Eliminar padding */
+    border-collapse: collapse; /* Colapsar bordes de la tabla */
+    border-spacing: 0; /* Eliminar espacio entre celdas */
+    height: 100%; /* Asegura que las celdas llenen todo el espacio disponible */
+}
+
+.bingoBoard.highlighted-permanent .bingoCell {
+    width: 100%;
+    height: 100px; /* Ajusta la altura de las celdas */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #000; /* Bordes negros */
+    background-color: #fff;
+    font-size: 24px; /* Ajusta el tamaño de la fuente */
+    cursor: pointer;
+    color: #000 !important; /* Asegura que el color del texto sea negro */
+    font-weight: bold; /* Asegura que el texto esté en negrilla */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    transition: background-color 0.3s ease; /* Transición suave para cambios de color */
+    box-sizing: border-box; /* Asegura que el tamaño incluye los bordes */
+    padding: 0; /* Elimina el padding para que los números estén juntos */
+    margin: 0; /* Elimina el margen para que los números estén juntos */
 }
 
 @keyframes spin {
