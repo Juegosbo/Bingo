@@ -21,8 +21,8 @@ body {
 }
 
 #figureImage {
-    width: 100px; /* Ajusta el ancho según tus necesidades */
-    height: 100px; /* Ajusta la altura según tus necesidades */
+    width: 200px; /* Ajusta el ancho según tus necesidades */
+    height: 200px; /* Ajusta la altura según tus necesidades */
     display: none; /* Ocultar inicialmente */
     position: absolute; /* Posiciona absolutamente la imagen dentro del contenedor */
     top: 0; /* Ajusta la posición superior */
