@@ -210,7 +210,7 @@ h1 img {
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    top: -50px; /* Ajusta este valor para mover el contenedor más arriba */
+    top: -20px; /* Ajusta este valor para mover el contenedor más arriba */
 }
 
 #masterBoardContainer {
