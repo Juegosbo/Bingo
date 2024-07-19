@@ -14,7 +14,7 @@
             <button id="resetGame">Nuevo</button>
             <h1 class="bouncing-title"><img src="fondo4.png" alt="Juego de Bingo"></h1>
             <button id="clearMarks">Limpiar</button>
-              <div class="figure-selection">
+            <div class="figure-selection">
                 <label for="selectFigure">Seleccionar Figura:</label>
                 <select id="selectFigure">
                     <option value="">Seleccione una figura</option>
@@ -47,6 +47,9 @@
             </div>
             <div id="figurePreviewContainer" class="figure-preview">
                 <div id="figurePreview" class="bingoBoard small"></div>
+                <div id="figureImageContainer">
+                    <img id="figureImage" src="" alt="Figura" style="display: none; width: 100px; height: 100px;">
+                </div>
             </div>
             <div id="masterBoardContainer"></div>
         </section>
