@@ -447,9 +447,37 @@ function changePage(newPage) {
     createBingoBoards(currentPage);
     saveState();
 }
+function createFigureBoard() {
+    const board = document.createElement('div');
+    board.classList.add('bingoBoard', 'small', 'figure-board');
 
-function updateFigurePreview(figure) {
+    const header = document.createElement('div');
+    header.classList.add('bingoHeader');
+    ['B', 'I', 'N', 'G', 'O'].forEach(letter => {
+        const cell = document.createElement('div');
+        cell.textContent = letter;
+        header.appendChild(cell);
+    });
+    board.appendChild(header);
+
+    const columns = document.createElement('div');
+    columns.classList.add('bingoColumns');
+    columns.style.display = 'grid';
+    columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
+    columns.style.gap = '2px';
+
+    for (let i = 0; i < 25; i++) {
+        const cell = document.createElement('div');
+        cell.classList.add('bingoCell');
+        columns.appendChild(cell);
+    }
+
+    board.appendChild(columns);
     figurePreview.innerHTML = '';
+    figurePreview.appendChild(board);
+}
+    
+function updateFigureBoard(figure) {
     let cells = Array(25).fill(false);
 
     switch (figure) {
@@ -491,11 +519,11 @@ function updateFigurePreview(figure) {
             break;
         case 'letterH':
             cells = [
-                false, false, false, false, false,
-                false, false, true, false, false,
-                true, true, true, true, false,
+                true, false, true, false, true,
+                true, false, true, false, true,
                 true, true, true, true, true,
-                false, false, false, false, false
+                true, false, true, false, true,
+                true, false, true, false, true
             ];
             break;
         case 'tree':
@@ -538,40 +566,17 @@ function updateFigurePreview(figure) {
             return;
     }
 
-    const board = document.createElement('div');
-    board.classList.add('bingoBoard', 'small', 'figure-board');
-
-    const header = document.createElement('div');
-    header.classList.add('bingoHeader');
-    ['B', 'I', 'N', 'G', 'O'].forEach(letter => {
-        const cell = document.createElement('div');
-        cell.textContent = letter;
-        header.appendChild(cell);
-    });
-    board.appendChild(header);
-
-    const columns = document.createElement('div');
-    columns.classList.add('bingoColumns');
-    columns.style.display = 'grid';
-    columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
-    columns.style.gap = '2px';
-
-    cells.forEach((marked, index) => {
-        const cell = document.createElement('div');
-        cell.classList.add('bingoCell');
-        if (marked) {
+    const boardCells = figurePreview.querySelectorAll('.bingoCell');
+    boardCells.forEach((cell, index) => {
+        if (cells[index]) {
             cell.classList.add('figure-marked');
+        } else {
+            cell.classList.remove('figure-marked');
         }
-        columns.appendChild(cell);
     });
 
-    board.appendChild(columns);
-    figurePreview.appendChild(board);
-
-    figurePreviewContainer.classList.remove('hidden');
     selectedFigure = figure;
     localStorage.setItem('selectedFigure', figure);
-    markFigureNumbers();
 }
 
 function markFigureNumbers() {
