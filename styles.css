@@ -240,7 +240,7 @@ h1 img {
     left: 50%;
     transform: translateX(-50%);
     width: 120px; /* Ajusta el ancho de la imagen */
-    height: 180px; /* Ajusta la altura de la imagen */
+    height: 70px; /* Ajusta la altura de la imagen */
     background-image: url('logo.png'); /* Ruta de tu imagen */
     background-size: cover;
     background-position: center;
