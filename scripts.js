@@ -451,6 +451,7 @@ function changePage(newPage) {
 function updateFigurePreview(figure) {
     figurePreview.innerHTML = '';
     let cells = Array(25).fill(false);
+    let figureImageSrc = ''; // Variable para almacenar la ruta de la imagen
 
     switch (figure) {
         case 'cross':
@@ -461,6 +462,7 @@ function updateFigurePreview(figure) {
                 false, false, true,  false, false,
                 false, false, true,  false, false
             ];
+            figureImageSrc = 'cross.png'; // Cambia a la ruta de tu imagen
             break;
         case 'bigO':
             cells = [
@@ -470,6 +472,7 @@ function updateFigurePreview(figure) {
                 true,  false, false, false, true,
                 true,  true,  true,  true,  true
             ];
+            figureImageSrc = 'bigO.png'; // Cambia a la ruta de tu imagen
             break;
         case 'diamond':
             cells = [
@@ -479,6 +482,7 @@ function updateFigurePreview(figure) {
                 false, true,  false, true,  false,
                 false, false, true,  false, false
             ];
+            figureImageSrc = 'diamond.png'; // Cambia a la ruta de tu imagen
             break;
         case 'fourCorners':
             cells = [
@@ -488,33 +492,37 @@ function updateFigurePreview(figure) {
                 false, false, false, false, false,
                 true,  false, false, false, true
             ];
+            figureImageSrc = 'fourCorners.png'; // Cambia a la ruta de tu imagen
             break;
         case 'letterH':
             cells = [
                 true, true, true, true, true,
-                true, false, true, false, false,
-                true, true, true, true, false,
-                true, false, true, false, false,
+                false, false, true, false, false,
+                false, false, true, false, false,
+                false, false, true, false, false,
                 true, true, true, true, true
             ];
+            figureImageSrc = 'letterH.png'; // Cambia a la ruta de tu imagen
             break;
         case 'tree':
             cells = [
                 false, false, true,  false, false,
                 false, true,  true,  false,  false,
                 true,  true, true,  true, true,
-                false, true, true,  false,  false,
+                false, true,  true,  false,  false,
                 false, false, true,  false, false
             ];
+            figureImageSrc = 'tree.png'; // Cambia a la ruta de tu imagen
             break;
         case 'numberOne':
             cells = [
                false, false, true,  false, false,
-               false, false, true,  true, false,
+               false, false, true,  false, false,
                false, false, true,  false, false,
                false, false, true,  false, false,
                false,  false,  true,  false,  false
             ];
+            figureImageSrc = 'numberOne.png'; // Cambia a la ruta de tu imagen
             break;
         case 'chess':
             cells = [
@@ -524,6 +532,7 @@ function updateFigurePreview(figure) {
                 false, true,  false, true,  false,
                 true,  false, true,  false, true
             ];
+            figureImageSrc = 'chess.png'; // Cambia a la ruta de tu imagen
             break;
         case 'diagonals':
             cells = [
@@ -533,6 +542,7 @@ function updateFigurePreview(figure) {
                 false, true,  false, true,  false,
                 true,  false, false, false, true
             ];
+            figureImageSrc = 'diagonals.png'; // Cambia a la ruta de tu imagen
             break;
         default:
             return;
@@ -575,8 +585,16 @@ function updateFigurePreview(figure) {
     selectedFigure = figure;
     localStorage.setItem('selectedFigure', figure);
     markFigureNumbers();
-}
 
+    // Mostrar la imagen de la figura seleccionada
+    const figureImage = document.getElementById('figureImage');
+    if (figureImageSrc) {
+        figureImage.src = figureImageSrc;
+        figureImage.style.display = 'block';
+    } else {
+        figureImage.style.display = 'none';
+    }
+}
 function markFigureNumbers() {
     if (!selectedFigure) return;
 
