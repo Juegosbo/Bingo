@@ -374,7 +374,7 @@ h1 img {
 
 .bingoBoard.highlighted-permanent {
     position: fixed;
-    top: 50%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
@@ -420,6 +420,16 @@ h1 img {
     box-sizing: border-box; /* Asegura que el tamaño incluye los bordes */
     padding: 0; /* Elimina el padding para que los números estén juntos */
     margin: 0; /* Elimina el margen para que los números estén juntos */
+}
+
+.bingoBoard.highlighted-permanent .bingoCell.marked {
+    background-color: #E2C913; /* Fondo para la celda marcada */
+    color: white; /* Texto blanco para la celda marcada */
+}
+
+.bingoBoard.highlighted-permanent .bingoCell.figure-marked {
+    background-color: #2D6717; /* Fondo para la figura marcada */
+    color: black; /* Texto negro para la figura marcada */
 }
 
 @keyframes spin {
