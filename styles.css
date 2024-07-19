@@ -22,6 +22,9 @@ body {
 #figureImage {
     max-width: 100%;
     height: auto;
+    width: 100px; /* Ajusta el ancho según tus necesidades */
+    height: 100px; /* Ajusta la altura según tus necesidades */
+    display: none; /* Ocultar inicialmente */
 }
 
 @keyframes bounce {
