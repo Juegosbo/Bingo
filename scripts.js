@@ -472,7 +472,7 @@ function updateFigurePreview(figure) {
                 true,  false, false, false, true,
                 true,  true,  true,  true,  true
             ];
-            figureImageSrc = 'bigO.png'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'bigO.PNG'; // Cambia a la ruta de tu imagen
             break;
         case 'diamond':
             cells = [
@@ -482,7 +482,7 @@ function updateFigurePreview(figure) {
                 false, true,  false, true,  false,
                 false, false, true,  false, false
             ];
-            figureImageSrc = 'diamond.png'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'diamond.PNG'; // Cambia a la ruta de tu imagen
             break;
         case 'fourCorners':
             cells = [
@@ -492,7 +492,7 @@ function updateFigurePreview(figure) {
                 false, false, false, false, false,
                 true,  false, false, false, true
             ];
-            figureImageSrc = 'fourCorners.png'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'fourCorners.PNG'; // Cambia a la ruta de tu imagen
             break;
         case 'letterH':
             cells = [
@@ -502,7 +502,7 @@ function updateFigurePreview(figure) {
                 false, false, true, false, false,
                 true, true, true, true, true
             ];
-            figureImageSrc = 'letterH.png'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'letterH.PNG'; // Cambia a la ruta de tu imagen
             break;
         case 'tree':
             cells = [
@@ -512,7 +512,7 @@ function updateFigurePreview(figure) {
                 false, true,  true,  false,  false,
                 false, false, true,  false, false
             ];
-            figureImageSrc = 'tree.png'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'tree.PNG'; // Cambia a la ruta de tu imagen
             break;
         case 'numberOne':
             cells = [
@@ -522,7 +522,7 @@ function updateFigurePreview(figure) {
                false, false, true,  false, false,
                false,  false,  true,  false,  false
             ];
-            figureImageSrc = 'numberOne.png'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'numberOne.PNG'; // Cambia a la ruta de tu imagen
             break;
         case 'chess':
             cells = [
@@ -532,7 +532,7 @@ function updateFigurePreview(figure) {
                 false, true,  false, true,  false,
                 true,  false, true,  false, true
             ];
-            figureImageSrc = 'chess.png'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'chess.PNG'; // Cambia a la ruta de tu imagen
             break;
         case 'diagonals':
             cells = [
@@ -542,7 +542,7 @@ function updateFigurePreview(figure) {
                 false, true,  false, true,  false,
                 true,  false, false, false, true
             ];
-            figureImageSrc = 'diagonals.png'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'diagonals.PNG'; // Cambia a la ruta de tu imagen
             break;
         default:
             return;
