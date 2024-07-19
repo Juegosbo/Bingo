@@ -397,7 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             document.querySelectorAll('.bingoBoard').forEach(b => {
                                 if (b !== board && !b.closest('#masterBoardContainer')) {
                                     b.classList.add('blurry');
-                                }
+                                });
                             });
                             document.getElementById('masterBoardContainer').classList.remove('blurry');
 
@@ -551,10 +551,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cells.forEach((marked, index) => {
             const cell = document.createElement('div');
             cell.classList.add('bingoCell');
-            if (index === 12) {
-                cell.classList.add('free');
-                cell.textContent = 'FREE';
-            } else if (marked) {
+            if (marked) {
                 cell.classList.add('figure-marked');
             }
             columns.appendChild(cell);
@@ -613,7 +610,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
             case 'letterH':
                 cells = [
-                    true, true, true, true, true,
+                    true, false, false, false, true,
                     true, false, false, false, true,
                     true, true,  true, true, true,
                     true, false, false, false, true,
