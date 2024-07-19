@@ -489,7 +489,7 @@ function updateFigurePreview(figure) {
                 true,  false, false, false, true
             ];
             break;
-       /* case 'letterH':
+        case 'letterH':
             cells = [
                 true, true, true, true, true,
                 true, false, true, false, false,
@@ -497,7 +497,7 @@ function updateFigurePreview(figure) {
                 true, false, true, false, false,
                 true, true, true, true, true
             ];
-            break;*/
+            break;
         case 'tree':
             cells = [
                 false, false, true,  false, false,
@@ -534,24 +534,6 @@ function updateFigurePreview(figure) {
                 true,  false, false, false, true
             ];
             break;
-        case 'medio':
-            cells = [
-                true, false, false,  false, false,
-                true, true, false,  false, false,
-                true,  true,  true,  true,  true,
-                true, false, false,  false, false,
-                true, false, false,  false, false
-            ];
-            break;
-            case 'letterH':
-            cells = [
-                true, true, true, true, true,
-                true, false, true, false, false,
-                true, false, true, false, false,
-                true, false, true, false, false,
-                true, true, true, true, true
-            ];
-         break;           
         default:
             return;
     }
@@ -673,15 +655,6 @@ function markFigureNumbers() {
                 true,  false, true,  false, true
             ];
             break;
-            case 'medio':
-            cells = [
-                false, false, false,  false, false,
-                false, true, false,  false, false,
-                true,  true,  true,  true,  true,
-                false, false, false,  false, false,
-                false, false, false,  false, false
-            ];
-            break;
         case 'diagonals':
             cells = [
                 true,  false, false, false, true,
@@ -691,7 +664,6 @@ function markFigureNumbers() {
                 true,  false, false, false, true
             ];
             break;
-             
         default:
             return;
     }
