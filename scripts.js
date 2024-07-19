@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         columns.appendChild(bColumn);
         columns.appendChild(iColumn);
-        columns.appendChild(nColumn);
+        columns.append.appendChild(nColumn);
         columns.appendChild(gColumn);
         columns.appendChild(oColumn);
 
@@ -483,11 +483,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
             case 'letterH':
                 cells = [
-                    true, true, true, true, true,
-                    false, false, true, false, false,
-                    false, true,  true, true, false,
-                    false, false, true, false, false,
-                    true, true, true, true, true
+                    true, false, false, false, true,
+                    true, false, false, false, true,
+                    true, true,  true, true, true,
+                    true, false, false, false, true,
+                    true, false, false, false, true
                 ];
                 break;
             case 'tree':
@@ -502,7 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'numberOne':
                 cells = [
                     false, false, true,  false, false,
-                    false, false, true,  true, false,
+                    false, true,  true,  false, false,
                     false, false, true,  false, false,
                     false, false, true,  false, false,
                     false,  false,  true,  false,  false
@@ -614,9 +614,9 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'letterH':
                 cells = [
                     true, false, false, false, true,
-                    true, false, true, false, true,
+                    true, false, false, false, true,
                     true, true,  true, true, true,
-                    true, false, true, false, true,
+                    true, false, false, false, true,
                     true, false, false, false, true
                 ];
                 break;
@@ -632,7 +632,7 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'numberOne':
                 cells = [
                     false, false, true,  false, false,
-                    false, false, true,  true, false,
+                    false, true,  true,  false, false,
                     false, false, true,  false, false,
                     false, false, true,  false, false,
                     false,  false,  true,  false,  false
