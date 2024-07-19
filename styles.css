@@ -220,7 +220,7 @@ h1 img {
 /* cambiar el carton de la figura*/
 #figurePreviewContainer {
     position: fixed;
-    top: 450px;
+    top: 390px;
     left: -25px;
     display: flex;
     flex-direction: column;
