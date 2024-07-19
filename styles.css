@@ -233,6 +233,26 @@ h1 img {
     width: 180px;
 }
 
+#figurePreviewContainer::before {
+    content: "";
+    position: absolute;
+    top: -50px; /* Ajusta esta propiedad para posicionar la imagen */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px; /* Ajusta el ancho de la imagen */
+    height: 100px; /* Ajusta la altura de la imagen */
+    background-image: url('logo.png'); /* Ruta de tu imagen */
+    background-size: cover;
+    background-position: center;
+    z-index: 1; /* Asegúrate de que esté encima de otros elementos */
+}
+
+#figurePreview {
+    position: relative;
+    z-index: 2; /* Asegúrate de que la tabla esté encima del fondo pero debajo de la imagen */
+}
+
+
 #figurePreviewContainer .bingoCell.figure-marked {
     background-color: #2D6717; /* Cambia el color de fondo a tu preferencia */
     color: black; /* Cambia el color del texto si es necesario */
