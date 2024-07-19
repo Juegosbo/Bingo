@@ -491,29 +491,29 @@ function updateFigurePreview(figure) {
             break;
         case 'letterH':
             cells = [
+                true, false, true, false, true,
+                true, false, true, false, true,
                 true, true, true, true, true,
-                true, false, true, false, false,
-                true, true, true, true, false,
-                true, false, true, false, false,
-                true, true, true, true, true
+                true, false, true, false, true,
+                true, false, true, false, true
             ];
             break;
         case 'tree':
             cells = [
                 false, false, true,  false, false,
-                false, true,  true,  false,  false,
+                false, true,  true,  false, false,
                 true,  true, true,  true, true,
-                false, true, true,  false,  false,
+                false, true,  true,  false, false,
                 false, false, true,  false, false
             ];
             break;
         case 'numberOne':
             cells = [
                false, false, true,  false, false,
-               false, false, true,  true, false,
                false, false, true,  false, false,
                false, false, true,  false, false,
-               false,  false,  true,  false,  false
+               false, false, true,  false, false,
+               false, false, true,  false, false
             ];
             break;
         case 'chess':
@@ -559,10 +559,7 @@ function updateFigurePreview(figure) {
     cells.forEach((marked, index) => {
         const cell = document.createElement('div');
         cell.classList.add('bingoCell');
-        if (index === 12) {
-            cell.classList.add('free');
-            cell.textContent = 'FREE';
-        } else if (marked) {
+        if (marked) {
             cell.classList.add('figure-marked');
         }
         columns.appendChild(cell);
