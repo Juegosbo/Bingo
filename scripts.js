@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
         numbers.forEach((num, index) => {
             const cell = document.createElement('div');
             cell.classList.add('bingoCell');
-            const cellNumber = hasFreeCell && index === 2 ? 'FREE' : num;
+            const cellNumber =  num;
             cell.textContent = cellNumber;
             cell.dataset.number = cellNumber;
 
@@ -559,12 +559,9 @@ function updateFigurePreview(figure) {
     cells.forEach((marked, index) => {
         const cell = document.createElement('div');
         cell.classList.add('bingoCell');
-        if (index === 12) {
-            cell.classList.add('free');
-            cell.textContent = 'FREE';
-        } else if (marked) {
-            cell.classList.add('figure-marked');
-        }
+        if (marked) {
+                        cell.classList.add('figure-marked');
+                    }
         columns.appendChild(cell);
     });
 
