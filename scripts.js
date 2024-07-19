@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const winnerButton = document.getElementById('winnerButton');
     const winnerVideoContainer = document.getElementById('winnerVideoContainer');
     const winnerVideo = document.getElementById('winnerVideo');
+    const closeVideoButton = document.getElementById('closeVideo'); // Referencia del botón de cierre
     const prevPageBtn = document.getElementById('prevPage');
     const nextPageBtn = document.getElementById('nextPage');
     const currentPageSpan = document.getElementById('currentPage');
@@ -17,6 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const figurePreviewContainer = document.getElementById('figurePreviewContainer');
     const figurePreview = document.getElementById('figurePreview');
     const printButton = document.getElementById('printButton');
+
+    // Evento de clic para cerrar el video
+    closeVideoButton.addEventListener('click', () => {
+        winnerVideoContainer.style.display = 'none';
+        winnerVideo.pause(); // Pausar el video
+    });
 
     const boardsPerPage = 9;
     const totalBoards = 10000;
