@@ -491,29 +491,29 @@ function updateFigurePreview(figure) {
             break;
         case 'letterH':
             cells = [
-                true, false, false, false, true,
-                true, false, false, false, true,
                 true, true, true, true, true,
-                true, false, false, false, true,
-                true, false, false, false, true
+                true, false, true, false, false,
+                true, true, true, true, false,
+                true, false, true, false, false,
+                true, true, true, true, true
             ];
             break;
         case 'tree':
             cells = [
                 false, false, true,  false, false,
-                false, true,  true,  true,  false,
+                false, true,  true,  false,  false,
                 true,  true, true,  true, true,
-                false, false, true,  false, false,
+                false, true, true,  false,  false,
                 false, false, true,  false, false
             ];
             break;
         case 'numberOne':
             cells = [
-                false, true, false, false, false,
-                true, true, false, false, false,
-                false, true, false, false, false,
-                false, true, false, false, false,
-                true, true, true, true, true
+               false, false, true,  false, false,
+               false, false, true,  true, false,
+               false, false, true,  false, false,
+               false, false, true,  false, false,
+               false,  false,  true,  false,  false
             ];
             break;
         case 'chess':
@@ -621,29 +621,29 @@ function markFigureNumbers() {
             break;
         case 'letterH':
             cells = [
-                true, false, false, false, true,
-                true, false, false, false, true,
                 true, true, true, true, true,
-                true, false, false, false, true,
-                true, false, false, false, true
+                false, false, true, false, false,
+                false, false, true, false, false,
+                false, false, true, false, false,
+                true, true, true, true, true
             ];
             break;
         case 'tree':
             cells = [
                 false, false, true,  false, false,
-                false, true,  true,  true,  false,
+                false, true,  true,  false,  false,
                 true,  true, true,  true, true,
-                false, false, true,  false, false,
+                false, true,  true,  false,  false,
                 false, false, true,  false, false
             ];
             break;
         case 'numberOne':
             cells = [
-                false, true, false, false, false,
-                true, true, false, false, false,
-                false, true, false, false, false,
-                false, true, false, false, false,
-                true, true, true, true, true
+               false, false, false,  false, false,
+               false, true, false,  false, true,
+               true, true, true,  true, true,
+               false, false, false,  false, true,
+               false,  false,  false,  false,  false
             ];
             break;
         case 'chess':
@@ -668,10 +668,22 @@ function markFigureNumbers() {
             return;
     }
 
+        // Marcar las celdas en los cartones de bingo
+    document.querySelectorAll('.bingoBoard').forEach(board => {
+        const boardCells = board.querySelectorAll('.bingoCell');
+        boardCells.forEach((cell, index) => {
+            const cellNumber = parseInt(cell.dataset.number);
+            if (cells[index] && generatedNumbers.includes(cellNumber)) {
+                cell.classList.add('figure-marked');
+            } else {
+                cell.classList.remove('figure-marked');
+            }
+        });
+    });
+
     // Marcar las celdas en el cartón de figura
     document.querySelectorAll('#figurePreviewContainer .bingoCell').forEach((cell, index) => {
-        const cellNumber = parseInt(cell.dataset.number);
-        if (cells[index] && generatedNumbers.includes(cellNumber)) {
+        if (cells[index]) {
             cell.classList.add('figure-marked');
         } else {
             cell.classList.remove('figure-marked');
