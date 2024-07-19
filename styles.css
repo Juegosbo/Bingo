@@ -211,7 +211,7 @@ h1 img {
     align-items: flex-start;
     width: 100%;
     position: relative; /* Asegura que el contenedor principal permita el movimiento */
-    top: -50px; /* Ajusta este valor para mover el contenedor más arriba */
+    top: -70px; /* Ajusta este valor para mover el contenedor más arriba */
 }
 
 #masterBoardContainer {
@@ -296,7 +296,7 @@ h1 img {
     margin: 20px 0; /* Espaciado arriba y abajo */
     width: calc(100% - 250px);
     position: relative; /* Asegúrate de que el contenedor permita el movimiento */
-    top: -50px; /* Ajusta este valor para mover los cartones más arriba */
+    top: -70px; /* Ajusta este valor para mover los cartones más arriba */
 }
 
 #paginationControls {
