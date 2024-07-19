@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
         numbers.forEach((num, index) => {
             const cell = document.createElement('div');
             cell.classList.add('bingoCell');
-            const cellNumber =  num;
+            const cellNumber = hasFreeCell && index === 2 ? 'FREE' : num;
             cell.textContent = cellNumber;
             cell.dataset.number = cellNumber;
 
@@ -501,9 +501,9 @@ function updateFigurePreview(figure) {
         case 'tree':
             cells = [
                 false, false, true,  false, false,
-                false, true,  true,  true,  false,
+                false, true,  true,  false,  false,
                 true,  true, true,  true, true,
-                false, false, true,  false,  false,
+                false, true, true,  false,  false,
                 false, false, true,  false, false
             ];
             break;
@@ -559,9 +559,12 @@ function updateFigurePreview(figure) {
     cells.forEach((marked, index) => {
         const cell = document.createElement('div');
         cell.classList.add('bingoCell');
-        if (marked) {
-                        cell.classList.add('figure-marked');
-                    }
+        if (index === 12) {
+            cell.classList.add('free');
+            cell.textContent = 'FREE';
+        } else if (marked) {
+            cell.classList.add('figure-marked');
+        }
         columns.appendChild(cell);
     });
 
