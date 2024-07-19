@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     createMasterBoard();
     createBingoBoards(currentPage);
     
-     if (selectedFigure) {
+    if (selectedFigure) {
         updateFigurePreview(selectedFigure);
         markFigureNumbers();
     }
@@ -483,11 +483,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
             case 'letterH':
                 cells = [
-                    true, true, true, true, true,
-                    true, false, true, false, false,
-                    true, false, true, false, false,
-                    true, false, true, false, false,
-                    true, true, true, true, true
+                    true, false, true, false, true,
+                    true, false, true, false, true,
+                    true, true,  true, true, true,
+                    true, false, true, false, true,
+                    true, false, true, false, true
                 ];
                 break;
             case 'tree':
@@ -613,11 +613,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
             case 'letterH':
                 cells = [
-                    true, true, true, true, true,
-                    false, false, true, false, false,
-                    false, false, true, false, false,
-                    false, false, true, false, false,
-                    true, true, true, true, true
+                    true, false, true, false, true,
+                    true, false, true, false, true,
+                    true, true,  true, true, true,
+                    true, false, true, false, true,
+                    true, false, true, false, true
                 ];
                 break;
             case 'tree':
@@ -661,10 +661,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Marcar las celdas en los cartones de bingo
-        document.querySelectorAll('.bingoBoard .bingoColumns').forEach(board => {
+        document.querySelectorAll('.bingoBoard').forEach(board => {
             const boardCells = board.querySelectorAll('.bingoCell');
             boardCells.forEach((cell, index) => {
-                const cellNumber = parseInt(cell.dataset.number);
+                const cellNumber = cell.dataset.number === 'FREE' ? 'FREE' : parseInt(cell.dataset.number);
                 if (cells[index] && (cellNumber === 'FREE' || generatedNumbers.includes(cellNumber))) {
                     cell.classList.add('figure-marked');
                 } else {
