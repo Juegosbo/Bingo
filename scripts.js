@@ -462,7 +462,7 @@ function updateFigurePreview(figure) {
                 false, false, true,  false, false,
                 false, false, true,  false, false
             ];
-            figureImageSrc = 'cross.png'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'cross.PNG'; // Cambia a la ruta de tu imagen
             break;
         case 'bigO':
             cells = [
