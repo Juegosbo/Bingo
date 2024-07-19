@@ -492,11 +492,11 @@ function updateFigurePreview(figure) {
             break;
         case 'fourCorners':
             cells = [
-                true,  false, false, false, true,
-                false, false, false, false, false,
-                false, false, false, false, false,
-                false, false, false, false, false,
-                true,  false, false, false, true
+                false,  false, true, false, false,
+                false, true, true, false, false,
+                false, false, true, false, false,
+                false, false, true, false, false,
+                true,  true, true, true, true
             ];
             break;
         case 'letterH':
@@ -633,11 +633,11 @@ function markFigureNumbers() {
             break;
         case 'fourCorners':
             cells = [
-                true,  false, false, false, true,
-                false, false, false, false, false,
-                false, false, false, false, false,
-                false, false, false, false, false,
-                true,  false, false, false, true
+                false,  false, true, false, false,
+                false, true, true, false, false,
+                false, false, true, false, false,
+                false, false, true, false, false,
+                true,  true, true, true, true
             ];
             break;
         case 'letterH':
