@@ -261,6 +261,11 @@ h1 img {
 #figurePreview {
     position: relative;
     z-index: 2; /* Asegúrate de que la tabla esté encima del fondo pero debajo de la imagen */
+    display: none;
+}
+
+.hidden {
+    display: none;
 }
 
 
