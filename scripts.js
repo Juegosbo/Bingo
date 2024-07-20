@@ -945,27 +945,32 @@ printButton.addEventListener('click', async () => {
         board.style.padding = '10px';
     });
 
-    for (let i = 0; i < boards.length; i++) {
-        const board = boards[i];
+    const downloadCanvasImage = async (board, boardNumber) => {
+        const canvas = await html2canvas(board);
+        const imgData = canvas.toDataURL('image/png');
+
+        const link = document.createElement('a');
+        link.href = imgData;
+        link.download = `bingo_carton_${boardNumber}.png`; // Nombre del archivo con el número del cartón
+        link.style.display = 'none';
+
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    const uniqueBoards = [];
+    boards.forEach(board => {
         const boardNumberElement = board.querySelector('.bingoBoardNumber');
 
-        // Verificar si el cartón es un cartón de jugador y no el cartón maestro o de figura
         if (boardNumberElement && !board.closest('#masterBoardContainer') && !board.closest('#figurePreviewContainer')) {
             const boardNumber = boardNumberElement.textContent.replace(/\D/g, ''); // Extraer el número del cartón
-
-            const canvas = await html2canvas(board);
-            const imgData = canvas.toDataURL('image/png');
-
-            const link = document.createElement('a');
-            link.href = imgData;
-            link.download = `bingo_carton_${boardNumber}.png`; // Nombre del archivo con el número del cartón
-            link.style.display = 'none';
-
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            if (!uniqueBoards.includes(boardNumber)) {
+                uniqueBoards.push(boardNumber);
+                downloadCanvasImage(board, boardNumber);
+            }
         }
-    }
+    });
 
     // Eliminar estilo de borde después de la captura
     boards.forEach(board => {
@@ -973,6 +978,7 @@ printButton.addEventListener('click', async () => {
         board.style.padding = '';
     });
 });
+
 
 createMasterBoard();
 createBingoBoards(currentPage);
