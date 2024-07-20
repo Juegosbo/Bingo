@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     processNamesBtn.addEventListener('click', () => {
         const names = namesBlock.value.split('\n').map(name => name.trim()).filter(name => name);
         names.forEach((name, index) => {
-            if (index < 1000) {
+            if (index < 10000) {
                 playerNames[index + 1] = name;
             }
         });
