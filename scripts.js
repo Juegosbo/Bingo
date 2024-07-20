@@ -469,7 +469,7 @@ function updateFigurePreview(figure) {
                 false, false, true,  false, false,
                 false, false, true,  false, false
             ];
-            figureImageSrc = 'letraT.PNG'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'LetraT.PNG'; // Cambia a la ruta de tu imagen
             break;
             case 'letraL':
             cells = [
@@ -479,7 +479,7 @@ function updateFigurePreview(figure) {
                 false, false, true,  false, false,
                 false, false, true,  false, false
             ];
-            figureImageSrc = 'letraL.PNG'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'LetraL.PNG'; // Cambia a la ruta de tu imagen
             break;
 
             case 'letraI':
@@ -490,7 +490,7 @@ function updateFigurePreview(figure) {
                 false, false, true,  false, false,
                 false, false, true,  false, false
             ];
-            figureImageSrc = 'letraI.PNG'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'LetraI.PNG'; // Cambia a la ruta de tu imagen
             break;
 
             case 'letraS':
@@ -501,7 +501,7 @@ function updateFigurePreview(figure) {
                 false, false, true,  false, false,
                 false, false, true,  false, false
             ];
-            figureImageSrc = 'letraS.PNG'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'LetraS.PNG'; // Cambia a la ruta de tu imagen
             break;
 
             case 'letraZ':
@@ -512,7 +512,7 @@ function updateFigurePreview(figure) {
                 false, false, true,  false, false,
                 false, false, true,  false, false
             ];
-            figureImageSrc = 'letraZ.PNG'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'LetraZ.PNG'; // Cambia a la ruta de tu imagen
             break;
             
             case 'corazon':
