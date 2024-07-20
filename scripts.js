@@ -742,11 +742,11 @@ function markFigureNumbers() {
 
              case 'letraS':
             cells = [
-                true, false, true,  true, true,
+                true, true, true,  false, true,
                 true, false, true,  false, true,
                 true,  false,  true,  false,  true,
                 true, false, true,  false, true,
-                true, true, true,  false, true
+                true, false, true,  true, true
             ];
             break;
 
@@ -769,6 +769,41 @@ function markFigureNumbers() {
                 false, true, true,  false, false
             ];
             break;
+
+            /*NUEVAS FIGURAS */
+             case 'Explosion':
+            cells = [
+                true, false, false,  false, true,
+                false, false, true,  false, false,
+                false,  true,  true,  true,  false,
+                false, false, true,  false, false,
+                true, false, false,  false, true
+            ];
+           
+            break;
+
+            case 'Ahorcado':
+            cells = [
+                false, false, true,  false, true,
+                true, true, true,  true, false,
+                true,  false,  true,  false,  true,
+                true, false, false,  false, false,
+                true, true, true,  true, true
+            ];
+            break;
+
+            case 'Paraguas':
+            cells = [
+                false, true, false,  false, false,
+                true, true, false,  false, false,
+                true,  true,  true,  true,  false,
+                true, true, false,  false, true,
+                false, true, false,  true, false
+            ];
+           
+            break;
+
+            /*HASTA AQUI NUEVAS FIGURAS */
             
         case 'cross':
             cells = [
