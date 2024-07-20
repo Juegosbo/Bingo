@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Crear filas para cada cartón
     function createTable() {
         namingTableBody.innerHTML = ''; // Clear the table body
-        for (let i = 1; i <= 1000; i++) {
+        for (let i = 1; i <= 10000; i++) {
             const row = document.createElement('tr');
             const cellNumber = document.createElement('td');
             cellNumber.textContent = `Cartón Nº ${i}`;
