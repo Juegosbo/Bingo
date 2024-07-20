@@ -481,6 +481,40 @@ function updateFigurePreview(figure) {
             ];
             figureImageSrc = 'letraL.PNG'; // Cambia a la ruta de tu imagen
             break;
+
+            case 'letraI':
+            cells = [
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                true,  true,  true,  true,  true,
+                false, false, true,  false, false,
+                false, false, true,  false, false
+            ];
+            figureImageSrc = 'letraI.PNG'; // Cambia a la ruta de tu imagen
+            break;
+
+            case 'letraS':
+            cells = [
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                true,  true,  true,  true,  true,
+                false, false, true,  false, false,
+                false, false, true,  false, false
+            ];
+            figureImageSrc = 'letraS.PNG'; // Cambia a la ruta de tu imagen
+            break;
+
+            case 'letraZ':
+            cells = [
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                true,  true,  true,  true,  true,
+                false, false, true,  false, false,
+                false, false, true,  false, false
+            ];
+            figureImageSrc = 'letraZ.PNG'; // Cambia a la ruta de tu imagen
+            break;
+            
             case 'corazon':
             cells = [
                 false, false, true,  false, false,
@@ -657,6 +691,37 @@ function markFigureNumbers() {
                 false, false, false,  false, true
             ];
             break;
+
+             case 'letraI':
+            cells = [
+                true, false, false,  false, true,
+                true, false, false,  false, true,
+                true,  true,  true,  true,  true,
+                true, false, false,  false, true,
+                true, false, false,  false, true
+            ];
+            break;
+
+             case 'letraS':
+            cells = [
+                true, false, true,  true, true,
+                true, false, true,  false, true,
+                true,  false,  true,  false,  true,
+                true, false, true,  false, true,
+                true, true, true,  false, true
+            ];
+            break;
+
+             case 'letraZ':
+            cells = [
+                true, false, false,  false, true,
+                true, false, false,  true, true,
+                true,  false,  true,  false,  true,
+                true, true, false,  false, true,
+                true, false, false,  false, true
+            ];
+            break;
+            
             case 'corazon':
             cells = [
                 false, true, true,  false, false,
