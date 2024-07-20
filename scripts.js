@@ -938,7 +938,7 @@ selectFigure.addEventListener('change', (e) => {
 
 printButton.addEventListener('click', async () => {
     const boards = document.querySelectorAll('.bingoBoard');
-
+    
     // Agregar estilo de borde temporalmente
     boards.forEach(board => {
         board.style.border = '2px solid black';
@@ -948,9 +948,9 @@ printButton.addEventListener('click', async () => {
     for (let i = 0; i < boards.length; i++) {
         const board = boards[i];
         const boardNumberElement = board.querySelector('.bingoBoardNumber');
-        
-        // Verificar si existe el elemento con el número del cartón
-        if (boardNumberElement) {
+
+        // Verificar si el cartón es un cartón de jugador y no el cartón maestro o de figura
+        if (boardNumberElement && !board.closest('#masterBoardContainer') && !board.closest('#figurePreviewContainer')) {
             const boardNumber = boardNumberElement.textContent.replace(/\D/g, ''); // Extraer el número del cartón
 
             const canvas = await html2canvas(board);
