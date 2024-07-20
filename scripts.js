@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
             markFigureNumbers();
         }
 
-     /*   currentPageSpan.textContent = currentPage; */
+       currentPageSpan.textContent = currentPage; 
     }
 
     function createBingoColumn(min, max, boardNumber, hasFreeCell = false) {
