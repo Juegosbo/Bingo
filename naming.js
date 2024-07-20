@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Crear filas para cada cartón
     function createTable() {
-        namingTableBody.innerHTML = ''; // Clear the table body
+        namingTableBody.innerHTML = ''; // Limpiar el cuerpo de la tabla
         for (let i = 1; i <= 10000; i++) {
             const row = document.createElement('tr');
             const cellNumber = document.createElement('td');
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         localStorage.setItem('playerNames', JSON.stringify(playerNames));
-        createTable(); // Refresh the table with new names
+        createTable(); // Refrescar la tabla con los nuevos nombres
     });
 
     // Regresar al juego
