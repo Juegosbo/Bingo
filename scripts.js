@@ -939,18 +939,22 @@ selectFigure.addEventListener('change', (e) => {
 printButton.addEventListener('click', async () => {
     const boards = document.querySelectorAll('.bingoBoard');
 
+    // Agregar estilo de borde temporalmente
     boards.forEach(board => {
         board.style.border = '2px solid black';
         board.style.padding = '10px';
     });
 
     for (let i = 0; i < boards.length; i++) {
-        const canvas = await html2canvas(boards[i]);
+        const board = boards[i];
+        const boardNumber = board.querySelector('.bingoBoardNumber').textContent.replace(/\D/g, ''); // Extraer el número del cartón
+
+        const canvas = await html2canvas(board);
         const imgData = canvas.toDataURL('image/png');
 
         const link = document.createElement('a');
         link.href = imgData;
-        link.download = `bingo_carton_${i + 1}.png`;
+        link.download = `bingo_carton_${boardNumber}.png`; // Nombre del archivo con el número del cartón
         link.style.display = 'none';
 
         document.body.appendChild(link);
@@ -958,6 +962,7 @@ printButton.addEventListener('click', async () => {
         document.body.removeChild(link);
     }
 
+    // Eliminar estilo de borde después de la captura
     boards.forEach(board => {
         board.style.border = '';
         board.style.padding = '';
