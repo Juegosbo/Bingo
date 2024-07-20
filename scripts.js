@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let bingoBoardsState = {};
     let playerNames = {};
     let selectedFigure = '';
-    let currentPage = 1;
+    let currentPage = parseInt(localStorage.getItem('currentPage')) || 1;
 
     // Cargar el estado guardado
     loadState();
@@ -449,6 +449,7 @@ function loadState() {
 }
 
 function changePage(newPage) {
+    console.log("Changing to page:", newPage);
     if (newPage < 1 || newPage > totalPages) return;
     currentPage = newPage;
     createBingoBoards(currentPage);
