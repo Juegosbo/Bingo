@@ -947,19 +947,24 @@ printButton.addEventListener('click', async () => {
 
     for (let i = 0; i < boards.length; i++) {
         const board = boards[i];
-        const boardNumber = board.querySelector('.bingoBoardNumber').textContent.replace(/\D/g, ''); // Extraer el número del cartón
+        const boardNumberElement = board.querySelector('.bingoBoardNumber');
+        
+        // Verificar si existe el elemento con el número del cartón
+        if (boardNumberElement) {
+            const boardNumber = boardNumberElement.textContent.replace(/\D/g, ''); // Extraer el número del cartón
 
-        const canvas = await html2canvas(board);
-        const imgData = canvas.toDataURL('image/png');
+            const canvas = await html2canvas(board);
+            const imgData = canvas.toDataURL('image/png');
 
-        const link = document.createElement('a');
-        link.href = imgData;
-        link.download = `bingo_carton_${boardNumber}.png`; // Nombre del archivo con el número del cartón
-        link.style.display = 'none';
+            const link = document.createElement('a');
+            link.href = imgData;
+            link.download = `bingo_carton_${boardNumber}.png`; // Nombre del archivo con el número del cartón
+            link.style.display = 'none';
 
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
     }
 
     // Eliminar estilo de borde después de la captura
