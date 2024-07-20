@@ -453,6 +453,7 @@ function changePage(newPage) {
     currentPage = newPage;
     createBingoBoards(currentPage);
     saveState();
+    currentPageSpan.textContent = currentPage;
 }
 
 function updateFigurePreview(figure) {
