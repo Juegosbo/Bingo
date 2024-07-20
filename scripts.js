@@ -562,11 +562,11 @@ function updateFigurePreview(figure) {
 
             case 'Paraguas':
             cells = [
-                false, true, false,  false, false,
-                true, true, false,  false, false,
-                true,  true,  true,  true,  false,
+                false, true, false,  true, false,
                 true, true, false,  false, true,
-                false, true, false,  true, false
+                true,  true,  true,  true,  false,
+                true, true, false,  false, false,
+                false, true, false,  false, false
             ];
             figureImageSrc = 'Paraguas.PNG'; // Cambia a la ruta de tu imagen
             break;
