@@ -519,7 +519,7 @@ h1 img {
 }
 
 .bingoCell.marked {
-    background-color: #E2C913; /* Fondo  para la celda marcada */
+    background-color: #ffc000; /* Fondo  para la celda marcada */
     color: white; /* Texto blanco para la celda marcada */
 }
 
@@ -530,7 +530,7 @@ h1 img {
 
 /* Color del carton maestro al marcar */ 
 .master-marked {
-    background-color: #E2C913; /* Elige el color que prefieras */
+    background-color: #ffc000; /* Elige el color que prefieras */
     color: black; /* Asegura que el texto sea visible */
 }
 
