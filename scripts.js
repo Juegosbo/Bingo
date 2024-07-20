@@ -535,6 +535,44 @@ function updateFigurePreview(figure) {
             ];
             figureImageSrc = 'cross.PNG'; // Cambia a la ruta de tu imagen
             break;
+
+            /* NUEVAS FIGURAS */
+
+            case 'Explosion':
+            cells = [
+                true, false, false,  false, true,
+                false, false, true,  false, false,
+                false,  true,  true,  true,  false,
+                false, false, true,  false, false,
+                true, false, false,  false, true
+            ];
+            figureImageSrc = 'Explosion.PNG'; // Cambia a la ruta de tu imagen
+            break;
+
+            case 'Ahorcado':
+            cells = [
+                false, false, true,  false, true,
+                true, true, true,  true, false,
+                true,  false,  true,  false,  true,
+                true, false, false,  false, false,
+                true, true, true,  true, true
+            ];
+            figureImageSrc = 'Ahorcado.PNG'; // Cambia a la ruta de tu imagen
+            break;
+
+            case 'Paraguas':
+            cells = [
+                false, true, false,  false, false,
+                true, true, false,  false, false,
+                true,  true,  true,  true,  false,
+                true, true, false,  false, true,
+                false, true, false,  true, false
+            ];
+            figureImageSrc = 'Paraguas.PNG'; // Cambia a la ruta de tu imagen
+            break;
+
+/*FIN DE NUEVAS FIGURAS */
+            
         case 'bigO':
             cells = [
                 true,  true,  true,  true,  true,
