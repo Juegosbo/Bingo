@@ -523,7 +523,7 @@ function updateFigurePreview(figure) {
                 false, false, true,  false, false,
                 false, false, true,  false, false
             ];
-            figureImageSrc = 'corazon.PNG'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'Corazon.PNG'; // Cambia a la ruta de tu imagen
             break;
         case 'cross':
             cells = [
@@ -568,7 +568,7 @@ function updateFigurePreview(figure) {
                 true, true, false,  false, false,
                 false, true, false,  false, false
             ];
-            figureImageSrc = 'Paraguas.PNG'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'paraguas.PNG'; // Cambia a la ruta de tu imagen
             break;
 
 /*FIN DE NUEVAS FIGURAS */
