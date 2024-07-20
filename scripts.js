@@ -461,6 +461,36 @@ function updateFigurePreview(figure) {
     let figureImageSrc = ''; // Variable para almacenar la ruta de la imagen
 
     switch (figure) {
+            case 'letraT':
+            cells = [
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                true,  true,  true,  true,  true,
+                false, false, true,  false, false,
+                false, false, true,  false, false
+            ];
+            figureImageSrc = 'letraT.PNG'; // Cambia a la ruta de tu imagen
+            break;
+            case 'letraL':
+            cells = [
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                true,  true,  true,  true,  true,
+                false, false, true,  false, false,
+                false, false, true,  false, false
+            ];
+            figureImageSrc = 'letraL.PNG'; // Cambia a la ruta de tu imagen
+            break;
+            case 'corazon':
+            cells = [
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                true,  true,  true,  true,  true,
+                false, false, true,  false, false,
+                false, false, true,  false, false
+            ];
+            figureImageSrc = 'corazon.PNG'; // Cambia a la ruta de tu imagen
+            break;
         case 'cross':
             cells = [
                 false, false, true,  false, false,
@@ -608,6 +638,35 @@ function markFigureNumbers() {
     let cells = Array(25).fill(false);
 
     switch (selectedFigure) {
+
+        case 'letraT':
+            cells = [
+                true, true, true,  true, true,
+                false, false, true,  false, false,
+                false,  false,  true,  false,  false,
+                false, false, true,  false, false,
+                false, false, true,  false, false
+            ];
+            break;
+            case 'letraL':
+            cells = [
+                true, false, false,  false, false,
+                true, false, false,  false, false,
+                true,  false,  false,  false,  false,
+                true, false, false,  false, false,
+                true, true, true,  true, true
+            ];
+            break;
+            case 'corazon':
+            cells = [
+                false, true, false,  true, false,
+                true, false, true,  false, true,
+                true,  false,  false,  false,  true,
+                false, true, false,  true, false,
+                false, false, true,  false, false
+            ];
+            break;
+            
         case 'cross':
             cells = [
                 false, false, true,  false, false,
