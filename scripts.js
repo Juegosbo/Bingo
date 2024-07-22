@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const figurePreview = document.getElementById('figurePreview');
     const printButton = document.getElementById('printButton');
 
-    // Evento de clic para cerrar el videoS
+    // Evento de clic para cerrar el video
     closeVideoButton.addEventListener('click', () => {
         winnerVideoContainer.style.display = 'none';
         winnerVideo.pause(); // Pausar el video
