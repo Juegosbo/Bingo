@@ -66,9 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
         updateFigurePreview(figure);
     });
 
- printButton.addEventListener('click', async () => {
+printButton.addEventListener('click', async () => {
     const boards = document.querySelectorAll('.bingoBoard');
-
+    
     // Evitar descargas duplicadas
     const uniqueBoards = new Set();
     let downloadCount = 0;
