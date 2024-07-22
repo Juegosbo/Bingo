@@ -230,6 +230,14 @@ h1 img {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
 
+#smallImage {
+    position: fixed;
+    top: 400px; /* Ajusta esta propiedad para posicionar la imagen más abajo */
+    right: 50px; /* Alinea la imagen con el cartón maestro */
+    width: 100px; /* Ajusta el tamaño de la imagen según tus necesidades */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
 #masterBoardContainer .bingoCell {
     width: 50px; /* Ajusta el ancho de los números en la tabla maestra */
 }
