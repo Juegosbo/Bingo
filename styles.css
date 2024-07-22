@@ -66,8 +66,8 @@ body {
 }
 
 .container {
-    /* background: rgba(255, 255, 255, 0.9);   blanco */
-    background: #ff7b00;    /*color de fondo del contenedor del medio */
+    background: url('fondomedio.jpg') no-repeat center center; /* Añade la imagen de fondo */
+    background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
