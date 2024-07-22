@@ -347,31 +347,30 @@ h1 img {
 .bingoColumns {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 0; /* Sin espacio entre las columnas */
-    margin: 0; /* Eliminar márgenes */
-    padding: 0; /* Eliminar padding */
-    border-collapse: collapse; /* Colapsar bordes de la tabla */
-    border-spacing: 0; /* Eliminar espacio entre celdas */
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 .bingoCell {
     width: 100%;
-    height: 30px; /* Puedes ajustar la altura según sea necesario */
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #000; /* Bordes negros */
+    border: 1px solid #000;
     background-color: #fff;
     font-size: 20px;
     cursor: pointer;
-    color: #000 !important; /* Asegura que el color del texto sea negro */
-    font-weight: bold; /* Asegura que el texto esté en negrilla */
-    text-transform: uppercase; /* Texto en mayúsculas */
-    transition: background-color 0.3s ease; /* Transición suave para cambios de color */
-    box-sizing: border-box; /* Asegura que el tamaño incluye los bordes */
-    padding: 0; /* Elimina el padding para que los números estén juntos */
-    margin: 0; /* Elimina el margen para que los números estén juntos */
-    line-height: normal; /* Alinea verticalmente el texto en el centro */
+    color: #000 !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 .boardNumberContainer {
