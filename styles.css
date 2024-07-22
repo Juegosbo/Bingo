@@ -348,7 +348,7 @@ h1 img {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 0;
-    margin: 0 10px; /* Ajuste este valor si es necesario */
+    margin: 0; /* Ajuste este valor si es necesario */
     padding: 0;
     border-collapse: collapse;
     border-spacing: 0;
@@ -370,7 +370,7 @@ h1 img {
     transition: background-color 0.3s ease;
     box-sizing: border-box;
     padding: 0;
-    margin: 0;
+    margin: 0 5px;
 }
 
 .boardNumberContainer {
