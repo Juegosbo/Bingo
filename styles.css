@@ -360,7 +360,7 @@ h1 img {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #000; /* Bordes negros */
+    border: 5px solid #000; /* Bordes negros */
     background-color: #fff;
     font-size: 20px;
     cursor: pointer;
