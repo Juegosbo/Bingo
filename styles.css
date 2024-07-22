@@ -66,7 +66,7 @@ body {
 }
 
 .container {
-    background: url('fondomedio.jpg') no-repeat center center; /* Añade la imagen de fondo */
+    background: url('fondomedio.jfif') no-repeat center center; /* Añade la imagen de fondo */
     background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
     padding: 20px;
     border-radius: 15px;
