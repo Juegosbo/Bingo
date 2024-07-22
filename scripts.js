@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cargar el estado guardados
     loadState();
 
-    // Calcular páginas totales
+    // Calcular páginas totale
     let totalPages = Math.ceil(totalBoards / boardsPerPage);
     totalPagesSpan.textContent = totalPages;
 
@@ -59,12 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
         winnerVideoContainer.style.display = 'block';
         winnerVideo.play();
     });
-  /*  prevPageBtn.addEventListener('click', () => changePage(currentPage - 1));
+   prevPageBtn.addEventListener('click', () => changePage(currentPage - 1));
     nextPageBtn.addEventListener('click', () => changePage(currentPage + 1));
     selectFigure.addEventListener('change', (e) => {
         const figure = e.target.value;
         updateFigurePreview(figure);
-    }); */
+    }); 
 
     printButton.addEventListener('click', async () => {
     const boards = document.querySelectorAll('.bingoBoard');
@@ -970,12 +970,12 @@ winnerButton.addEventListener('click', () => {
     winnerVideoContainer.style.display = 'block';
     winnerVideo.play();
 });
-prevPageBtn.addEventListener('click', () => changePage(currentPage - 1));
+    /* prevPageBtn.addEventListener('click', () => changePage(currentPage - 1));
 nextPageBtn.addEventListener('click', () => changePage(currentPage + 1));
 selectFigure.addEventListener('change', (e) => {
     const figure = e.target.value;
     updateFigurePreview(figure);
-});
+}); */
 
 printButton.addEventListener('click', async () => {
     const boards = document.querySelectorAll('.bingoBoard');
