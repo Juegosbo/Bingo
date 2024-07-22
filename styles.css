@@ -235,7 +235,7 @@ h1 img {
     top: 650px; /* Ajusta esta propiedad para posicionar la imagen más abajo */
     left: 1200px; /* Ajusta esta propiedad para mover la imagen más a la izquierda */
     right: 50px; /* Alinea la imagen con el cartón maestro */
-    width: 220px; /* Ajusta el tamaño de la imagen según tus necesidades */
+    width: 240px; /* Ajusta el tamaño de la imagen según tus necesidades */
     height: auto; /* Mantiene la proporción de la imagen */
 }
 
