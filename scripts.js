@@ -280,15 +280,15 @@ document.addEventListener('DOMContentLoaded', () => {
         numbers.forEach((num, index) => {
             const cell = document.createElement('div');
             cell.classList.add('bingoCell');
-            const cellNumber = hasFreeCell && index === 2 ? 'FREE' : num;
+            const cellNumber = hasFreeCell && index === 2 ? '' : num;
             cell.textContent = cellNumber;
             cell.dataset.number = cellNumber;
 
-            if (cellNumber === 'FREE') {
+            if (cellNumber === '') {
                 cell.classList.add('free');
             }
 
-            if (cellNumber === 'FREE' || generatedNumbers.includes(Number(cellNumber))) {
+            if (cellNumber === '' || generatedNumbers.includes(Number(cellNumber))) {
                 cell.classList.add('marked');
             }
             column.appendChild(cell);
