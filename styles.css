@@ -309,20 +309,6 @@ h1 img {
     margin: 20px 0;
 }
 
-.bingoBoard {
-    border: 4px solid #D80602; /* Borde más grueso y azul claro */
-    padding: 0; /* Sin espaciado alrededor */
-    border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.3); /* Fondo rojo transparente */
-    position: relative;
-    display: grid;
-    grid-template-rows: auto 1fr; /* Ajustado para incluir el número de cartón y el nombre separados de la palabra "BINGO" */
-    gap: 0; /* Sin espacio entre filas */
-    text-align: center; /* Asegurar que todo el contenido dentro de la tarjeta esté centrado */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
-    transition: transform 0.2s ease; /* Transición para hover */
-}
-
 .bingoHeader {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -344,6 +330,20 @@ h1 img {
     font-family: "Arial Black", Arial, sans-serif; /* Cambia la fuente aquí */
     font-weight: 3000; /* Hacer la letra más gruesa */
 }
+.bingoBoard {
+    border: 4px solid #D80602; /* Cambia este color al que prefieras */
+    padding: 0; /* Sin espaciado alrededor */
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.3); /* Fondo transparente */
+    position: relative;
+    display: grid;
+    grid-template-rows: auto 1fr; /* Incluye el número de cartón y el nombre separados de la palabra "BINGO" */
+    gap: 0; /* Sin espacio entre filas */
+    text-align: center; /* Asegura que todo el contenido dentro de la tarjeta esté centrado */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
+    transition: transform 0.2s ease; /* Transición para hover */
+}
+
 .bingoColumns {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -356,7 +356,7 @@ h1 img {
 
 .bingoCell {
     width: 100%;
-    height: 30px;
+    height: 30px; /* Puedes ajustar la altura según sea necesario */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -371,6 +371,7 @@ h1 img {
     box-sizing: border-box; /* Asegura que el tamaño incluye los bordes */
     padding: 0; /* Elimina el padding para que los números estén juntos */
     margin: 0; /* Elimina el margen para que los números estén juntos */
+    line-height: normal; /* Alinea verticalmente el texto en el centro */
 }
 
 .boardNumberContainer {
