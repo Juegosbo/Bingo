@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para descargar una imagen del cartón
     const downloadCanvasImage = async (board, boardNumber) => {
-        const canvas = await html2canvas(board, {backgroundColor: null});
+        const canvas = await html2canvas(board, { backgroundColor: null });
         const imgData = canvas.toDataURL('image/png');
 
         const link = document.createElement('a');
