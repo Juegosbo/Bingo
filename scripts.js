@@ -484,6 +484,17 @@ function updateFigurePreview(figure) {
             figureImageSrc = 'LetraL.PNG'; // Cambia a la ruta de tu imagen
             break;
 
+            case 'letraP':
+            cells = [
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                true,  true,  true,  true,  true,
+                false, false, true,  false, false,
+                false, false, true,  false, false
+            ];
+            figureImageSrc = 'LetraP.png'; // Cambia a la ruta de tu imagen
+            break;
+
             case 'letraI':
             cells = [
                 false, false, true,  false, false,
@@ -729,6 +740,16 @@ function markFigureNumbers() {
                 false,  false,  false,  false,  true,
                 false, false, false,  false, true,
                 false, false, false,  false, true
+            ];
+            break;
+
+            case 'letraP':
+            cells = [
+                true, true, true,  false, false,
+                true, false, true,  false, false,
+                true,  false,  true,  false,  false,
+                true, false, true,  false, false,
+                true, true, true,  true, true
             ];
             break;
 
