@@ -66,17 +66,13 @@ document.addEventListener('DOMContentLoaded', () => {
         updateFigurePreview(figure);
     });
 
-    printButton.addEventListener('click', async () => {
+  printButton.addEventListener('click', async () => {
     const boards = document.querySelectorAll('.bingoBoard');
 
     const uniqueBoards = new Set();
 
     // Función para descargar una imagen del cartón
     const downloadCanvasImage = async (board, boardNumber) => {
-        // Agregar estilo de borde temporalmente
-        board.style.border = '2px solid black';
-        board.style.padding = '10px';
-
         const canvas = await html2canvas(board);
         const imgData = canvas.toDataURL('image/png');
 
@@ -88,10 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-
-        // Eliminar estilo de borde después de la captura
-        board.style.border = '';
-        board.style.padding = '';
     };
 
     for (let i = 0; i < boards.length; i++) {
