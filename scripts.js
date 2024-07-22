@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedFigure = '';
     let currentPage = parseInt(localStorage.getItem('currentPage')) || 1;
 
-    // Cargar el estado guardado
+    // Cargar el estado guardados
     loadState();
 
     // Calcular páginas totales
