@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
             columns.classList.add('bingoColumns');
             columns.style.display = 'grid';
             columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
-            columns.style.gap = '5px';
+            columns.style.gap = '0px';
 
             const bColumn = createBingoColumn(1, 15, i);
             const iColumn = createBingoColumn(16, 30, i);
