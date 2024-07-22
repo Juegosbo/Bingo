@@ -232,7 +232,7 @@ h1 img {
 
 #smallImage {
     position: fixed;
-    top: 1000px; /* Ajusta esta propiedad para posicionar la imagen más abajo */
+    top: 600px; /* Ajusta esta propiedad para posicionar la imagen más abajo */
     right: 50px; /* Alinea la imagen con el cartón maestro */
     width: 100px; /* Ajusta el tamaño de la imagen según tus necesidades */
     height: auto; /* Mantiene la proporción de la imagen */
