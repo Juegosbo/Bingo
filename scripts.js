@@ -745,11 +745,11 @@ function markFigureNumbers() {
 
             case 'letraP':
             cells = [
-                true, true, true,  false, false,
+                true, true, true,  true, true,
                 true, false, true,  false, false,
                 true,  false,  true,  false,  false,
                 true, false, true,  false, false,
-                true, true, true,  true, true
+                true, true, true,  false, false
             ];
             break;
 
