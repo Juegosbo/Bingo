@@ -310,7 +310,7 @@ h1 img {
 }
 
 .bingoBoard {
-    border: 2px solid #5bc0de; /* Borde más grueso y azul claro */
+    border: 2px solid #D80602; /* Borde más grueso y azul claro */
     padding: 0; /* Sin espaciado alrededor */
     border-radius: 8px;
     background-color: rgba(0, 0, 0, 0.3); /* Fondo rojo transparente */
