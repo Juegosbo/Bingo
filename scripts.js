@@ -68,15 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
  printButton.addEventListener('click', async () => {
     const boards = document.querySelectorAll('.bingoBoard');
-    
-    // Agregar estilo de borde temporalmente
-    boards.forEach(board => {
-        board.style.border = '2px solid black';
-        board.style.padding = '10px';
-    });
 
+    // Función para descargar una imagen del cartón
     const downloadCanvasImage = async (board, boardNumber) => {
-        const canvas = await html2canvas(board);
+        const canvas = await html2canvas(board, { backgroundColor: null });
         const imgData = canvas.toDataURL('image/png');
 
         const link = document.createElement('a');
@@ -89,25 +84,21 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.removeChild(link);
     };
 
-    const uniqueBoards = new Set(); // Usar un Set para evitar duplicados
+    // Evitar descargas duplicadas
+    const uniqueBoards = new Set();
 
-    for (const board of boards) {
+    for (let i = 0; i < boards.length; i++) {
+        const board = boards[i];
         const boardNumberElement = board.querySelector('.bingoBoardNumber');
 
         if (boardNumberElement && !board.closest('#masterBoardContainer') && !board.closest('#figurePreviewContainer')) {
-            const boardNumber = boardNumberElement.textContent.replace(/\D/g, '');
+            const boardNumber = boardNumberElement.textContent.replace(/\D/g, ''); // Extraer el número del cartón
             if (!uniqueBoards.has(boardNumber)) {
                 uniqueBoards.add(boardNumber);
                 await downloadCanvasImage(board, boardNumber);
             }
         }
     }
-
-    // Eliminar estilo de borde después de la captura
-    boards.forEach(board => {
-        board.style.border = '';
-        board.style.padding = '';
-    });
 });
 
     function createMasterBoard() {
