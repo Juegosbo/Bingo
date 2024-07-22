@@ -348,7 +348,7 @@ h1 img {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 0;
-    margin: 0 -1px; /* Ajuste este valor si es necesario */
+    margin: 0 -5px; /* Ajuste este valor si es necesario */
     padding: 0;
     border-collapse: collapse;
     border-spacing: 0;
