@@ -232,8 +232,8 @@ h1 img {
 
 #smallImage {
     position: fixed;
-    top: 670px; /* Ajusta esta propiedad para posicionar la imagen más abajo */
-    left: 180px; /* Ajusta esta propiedad para mover la imagen más a la izquierda */
+    top: 650px; /* Ajusta esta propiedad para posicionar la imagen más abajo */
+    left: 500px; /* Ajusta esta propiedad para mover la imagen más a la izquierda */
     right: 50px; /* Alinea la imagen con el cartón maestro */
     width: 180px; /* Ajusta el tamaño de la imagen según tus necesidades */
     height: auto; /* Mantiene la proporción de la imagen */
