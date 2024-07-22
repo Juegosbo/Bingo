@@ -69,25 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
  printButton.addEventListener('click', async () => {
     const boards = document.querySelectorAll('.bingoBoard');
 
-    // Función para descargar una imagen del cartón
-    const downloadCanvasImage = async (board, boardNumber) => {
-        const canvas = await html2canvas(board, { backgroundColor: null });
-        const imgData = canvas.toDataURL('image/png');
-
-        const link = document.createElement('a');
-        link.href = imgData;
-        link.download = `bingo_carton_${boardNumber}.png`;
-        link.style.display = 'none';
-
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
-
     // Evitar descargas duplicadas
     const uniqueBoards = new Set();
+    let downloadCount = 0;
 
-    for (let i = 0; i < boards.length; i++) {
+    for (let i = 0; i < boards.length && downloadCount < 9; i++) {
         const board = boards[i];
         const boardNumberElement = board.querySelector('.bingoBoardNumber');
 
@@ -95,11 +81,28 @@ document.addEventListener('DOMContentLoaded', () => {
             const boardNumber = boardNumberElement.textContent.replace(/\D/g, ''); // Extraer el número del cartón
             if (!uniqueBoards.has(boardNumber)) {
                 uniqueBoards.add(boardNumber);
+                downloadCount++;
+
+                // Esperar a que la imagen se descargue antes de pasar al siguiente
                 await downloadCanvasImage(board, boardNumber);
             }
         }
     }
 });
+
+const downloadCanvasImage = async (board, boardNumber) => {
+    const canvas = await html2canvas(board, { backgroundColor: null });
+    const imgData = canvas.toDataURL('image/png');
+
+    const link = document.createElement('a');
+    link.href = imgData;
+    link.download = `bingo_carton_${boardNumber}.png`;
+    link.style.display = 'none';
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+};
 
     function createMasterBoard() {
     masterBoardContainer.innerHTML = '';
