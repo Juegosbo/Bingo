@@ -371,6 +371,7 @@ h1 img {
     box-sizing: border-box; /* Asegura que el tamaño incluye los bordes */
     padding: 0; /* Elimina el padding para que los números estén juntos */
     margin: 0; /* Elimina el margen para que los números estén juntos */
+    line-height: 30px; /* Alinea verticalmente el texto en el centro */
 }
 
 .boardNumberContainer {
