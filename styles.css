@@ -214,8 +214,6 @@ h1 img {
     width: 100%;
     position: relative; /* Asegura que el contenedor principal permita el movimiento */
     top: -25px; /* Ajusta este valor para mover el contenedor más arriba */
-    margin: 0;
-    padding: 0;
 }
 
 #masterBoardContainer {
@@ -297,11 +295,10 @@ h1 img {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* Cuatro columnas por fila */
     gap: 20px;
-    margin: 0; /* Espaciado arriba y abajo */
+    margin: 20px 0; /* Espaciado arriba y abajo */
     width: calc(100% - 250px);
     position: relative; /* Asegúrate de que el contenedor permita el movimiento */
     top: -25px; /* Ajusta este valor para mover los cartones más arriba */
-    padding: 0;
 }
 
 #paginationControls {
@@ -310,6 +307,20 @@ h1 img {
     align-items: center;
     gap: 10px;
     margin: 20px 0;
+}
+
+.bingoBoard {
+    border: 4px solid #D80602; /* Borde más grueso y azul claro */
+    padding: 0; /* Sin espaciado alrededor */
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.3); /* Fondo rojo transparente */
+    position: relative;
+    display: grid;
+    grid-template-rows: auto 1fr; /* Ajustado para incluir el número de cartón y el nombre separados de la palabra "BINGO" */
+    gap: 0; /* Sin espacio entre filas */
+    text-align: center; /* Asegurar que todo el contenido dentro de la tarjeta esté centrado */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
+    transition: transform 0.2s ease; /* Transición para hover */
 }
 
 .bingoHeader {
@@ -333,32 +344,14 @@ h1 img {
     font-family: "Arial Black", Arial, sans-serif; /* Cambia la fuente aquí */
     font-weight: 3000; /* Hacer la letra más gruesa */
 }
-.bingoBoard {
-    border: 4px solid #D80602;
-    padding: 0;
-    margin: 0;
-    border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.3);
-    position: relative;
-    display: grid;
-    grid-template-rows: auto auto 1fr;
-    gap: 0;
-    text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    transition: transform 0.2s ease;
-    overflow: hidden; /* Añadido para evitar desbordamientos */
-    
-}
-
 .bingoColumns {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 0;
-    margin: 0;
-    padding: 0;
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%; /* Asegura que ocupe todo el ancho */
+    gap: 0; /* Sin espacio entre las columnas */
+    margin: 0; /* Eliminar márgenes */
+    padding: 0; /* Eliminar padding */
+    border-collapse: collapse; /* Colapsar bordes de la tabla */
+    border-spacing: 0; /* Eliminar espacio entre celdas */
 }
 
 .bingoCell {
@@ -367,22 +360,17 @@ h1 img {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #000;
+    border: 1px solid #000; /* Bordes negros */
     background-color: #fff;
     font-size: 20px;
     cursor: pointer;
-    color: #000 !important;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease;
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    overflow: hidden; /* Previene desbordamiento de contenido */
-}
-
-.bingoCell:not(:last-child) {
-    border-right: none;
+    color: #000 !important; /* Asegura que el color del texto sea negro */
+    font-weight: bold; /* Asegura que el texto esté en negrilla */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    transition: background-color 0.3s ease; /* Transición suave para cambios de color */
+    box-sizing: border-box; /* Asegura que el tamaño incluye los bordes */
+    padding: 0; /* Elimina el padding para que los números estén juntos */
+    margin: 0; /* Elimina el margen para que los números estén juntos */
 }
 
 .boardNumberContainer {
@@ -390,8 +378,8 @@ h1 img {
     flex-direction: column;
     align-items: center;
     background-color: #ffc000; /* Fondo rojo transparente */
-    padding: 8px;
-    border-radius: px; /* Bordes redondeados */
+    padding: 10px;
+    border-radius: 8px; /* Bordes redondeados */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra ligera */
     margin-bottom: 10px; /* Espacio entre el número de cartón y el nombre, y la palabra "BINGO" */
 }
