@@ -319,8 +319,7 @@ h1 img {
 }
 
 .bingoBoard {
-    /* border: 4px solid #D80602; /* Borde más grueso y azul claro */
-    border: none; /* Elimina cualquier borde */
+    border: 4px solid #D80602; /* Borde más grueso y azul claro */
     padding: 0; /* Sin espaciado alrededor */
     border-radius: 8px;
     background-color: rgba(0, 0, 0, 0.3); /* Fondo rojo transparente */
@@ -370,17 +369,17 @@ h1 img {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #000; /* Bordes negros solo dentro de la celda */
+    border: 1px solid #000; /* Bordes negros */
     background-color: #fff;
     font-size: 20px;
     cursor: pointer;
-    color: #000 !important;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease;
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+    color: #000 !important; /* Asegura que el color del texto sea negro */
+    font-weight: bold; /* Asegura que el texto esté en negrilla */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    transition: background-color 0.3s ease; /* Transición suave para cambios de color */
+    box-sizing: border-box; /* Asegura que el tamaño incluye los bordes */
+    padding: 0; /* Elimina el padding para que los números estén juntos */
+    margin: 0; /* Elimina el margen para que los números estén juntos */
 }
 
 .boardNumberContainer {
