@@ -66,44 +66,35 @@ document.addEventListener('DOMContentLoaded', () => {
         updateFigurePreview(figure);
     });
 
-printButton.addEventListener('click', async () => {
-    const boards = document.querySelectorAll('.bingoBoard');
+    printButton.addEventListener('click', async () => {
+        const boards = document.querySelectorAll('.bingoBoard');
 
-    // Función para descargar una imagen del cartón
-    const downloadCanvasImage = async (board, boardNumber) => {
-        const canvas = await html2canvas(board, { backgroundColor: null });
-        const imgData = canvas.toDataURL('image/png');
+        // Agregar estilo de borde temporalmente
+        boards.forEach(board => {
+            board.style.border = '2px solid black';
+            board.style.padding = '10px';
+        });
 
-        const link = document.createElement('a');
-        link.href = imgData;
-        link.download = `bingo_carton_${boardNumber}.png`;
-        link.style.display = 'none';
+        for (let i = 0; i < boards.length; i++) {
+            const canvas = await html2canvas(boards[i]);
+            const imgData = canvas.toDataURL('image/png');
 
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
+            const link = document.createElement('a');
+            link.href = imgData;
+            link.download = `bingo_carton_${i + 1}.png`;
+            link.style.display = 'none';
 
-    // Evitar descargas duplicadas
-    const uniqueBoards = new Set();
-
-    // Limitar a 9 descargas
-    let downloadCount = 0;
-    for (let i = 0; i < boards.length; i++) {
-        if (downloadCount >= 9) break; // Detenerse después de 9 descargas
-        const board = boards[i];
-        const boardNumberElement = board.querySelector('.bingoBoardNumber');
-
-        if (boardNumberElement && !board.closest('#masterBoardContainer') && !board.closest('#figurePreviewContainer')) {
-            const boardNumber = boardNumberElement.textContent.replace(/\D/g, ''); // Extraer el número del cartón
-            if (!uniqueBoards.has(boardNumber)) {
-                uniqueBoards.add(boardNumber);
-                await downloadCanvasImage(board, boardNumber);
-                downloadCount++; // Incrementar el contador de descargas
-            }
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
-    }
-});
+
+        // Eliminar estilo de borde después de la captura
+        boards.forEach(board => {
+            board.style.border = '';
+            board.style.padding = '';
+        });
+    });
 
     function createMasterBoard() {
     masterBoardContainer.innerHTML = '';
