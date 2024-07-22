@@ -258,7 +258,7 @@ h1 img {
 #figurePreviewContainer::before {
     content: "";
     position: absolute;
-    top: -15px; /* Ajusta esta propiedad para posicionar la imagen */
+    top: -35px; /* Ajusta esta propiedad para posicionar la imagen */
     left: 50%;
     transform: translateX(-50%);
     width: 120px; /* Ajusta el ancho de la imagen */
