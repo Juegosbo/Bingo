@@ -471,7 +471,7 @@ function updateFigurePreview(figure) {
                 false, false, true,  false, false,
                 false, false, true,  false, false
             ];
-            figureImageSrc = 'LetraT.PNG'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'LetraT.png'; // Cambia a la ruta de tu imagen
             break;
             case 'letraL':
             cells = [
@@ -514,7 +514,7 @@ function updateFigurePreview(figure) {
                 false, false, true,  false, false,
                 false, false, true,  false, false
             ];
-            figureImageSrc = 'LetraZ.PNG'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'LetraZ.png'; // Cambia a la ruta de tu imagen
             break;
             
             case 'corazon':
@@ -583,7 +583,7 @@ function updateFigurePreview(figure) {
                 true,  false, false, false, true,
                 true,  true,  true,  true,  true
             ];
-            figureImageSrc = 'bigO.PNG'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'bigO.png'; // Cambia a la ruta de tu imagen
             break;
         case 'diamond':
             cells = [
@@ -643,7 +643,7 @@ function updateFigurePreview(figure) {
                 false, true,  false, true,  false,
                 true,  false, true,  false, true
             ];
-            figureImageSrc = 'chess.PNG'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'chess.png'; // Cambia a la ruta de tu imagen
             break;
         case 'diagonals':
             cells = [
@@ -653,7 +653,7 @@ function updateFigurePreview(figure) {
                 false, true,  false, true,  false,
                 true,  false, false, false, true
             ];
-            figureImageSrc = 'diagonals.PNG'; // Cambia a la ruta de tu imagen
+            figureImageSrc = 'diagonals.png'; // Cambia a la ruta de tu imagen
             break;
         default:
             return;
