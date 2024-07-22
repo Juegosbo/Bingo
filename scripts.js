@@ -69,11 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
   printButton.addEventListener('click', async () => {
     const boards = document.querySelectorAll('.bingoBoard');
 
-    const uniqueBoards = new Set();
-
     // Función para descargar una imagen del cartón
     const downloadCanvasImage = async (board, boardNumber) => {
-        const canvas = await html2canvas(board);
+        const canvas = await html2canvas(board, {backgroundColor: null});
         const imgData = canvas.toDataURL('image/png');
 
         const link = document.createElement('a');
@@ -85,6 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
         link.click();
         document.body.removeChild(link);
     };
+
+    // Evitar descargas duplicadas
+    const uniqueBoards = new Set();
 
     for (let i = 0; i < boards.length; i++) {
         const board = boards[i];
