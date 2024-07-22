@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     printButton.addEventListener('click', async () => {
-    const boards = document.querySelectorAll('.bingoBoard');
+    const boards = document.querySelectorAll('.bingoBoard:not(#masterBoardContainer .bingoBoard):not(#figurePreviewContainer .bingoBoard)');
 
     // Agregar estilo de borde temporalmente
     boards.forEach(board => {
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     for (let i = 0; i < boards.length; i++) {
         const boardNumberElement = boards[i].querySelector('.bingoBoardNumber');
-        if (boardNumberElement && !boardNumberElement.closest('#masterBoardContainer') && !boardNumberElement.closest('#figurePreviewContainer')) {
+        if (boardNumberElement) {
             const boardNumber = boardNumberElement.textContent.replace(/\D/g, ''); // Extraer el número del cartón
             if (!uniqueBoards.has(boardNumber)) {
                 uniqueBoards.add(boardNumber);
