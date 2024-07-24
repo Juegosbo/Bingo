@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let totalPages = Math.ceil(totalBoards / boardsPerPage);
     totalPagesSpan.textContent = totalPages;
 
+    loadState();  // Cargar el estado guardado
+
     createMasterBoard();
     createBingoBoards(currentPage);
     
@@ -302,18 +304,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function saveState() {
-        localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
-        localStorage.setItem('playerNames', JSON.stringify(playerNames));
-        localStorage.setItem('selectedFigure', selectedFigure);
-        localStorage.setItem('currentPage', currentPage.toString());
-    }
+    localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
+    localStorage.setItem('bingoBoardsState', JSON.stringify(bingoBoardsState));
+    localStorage.setItem('playerNames', JSON.stringify(playerNames));
+    localStorage.setItem('selectedFigure', selectedFigure);
+    localStorage.setItem('currentPage', currentPage.toString());
+
+    // Guardar las marcas en la tabla maestra
+    const masterBoardMarks = Array.from(document.querySelectorAll('#masterBoardContainer .bingoCell.master-marked')).map(cell => parseInt(cell.dataset.number));
+    localStorage.setItem('masterBoardMarks', JSON.stringify(masterBoardMarks));
+}
 
     function loadState() {
-        generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
-        playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
-        selectedFigure = localStorage.getItem('selectedFigure') || '';
-        currentPage = parseInt(localStorage.getItem('currentPage')) || 1;
+    generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
+    bingoBoardsState = JSON.parse(localStorage.getItem('bingoBoardsState')) || {};
+    playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
+    selectedFigure = localStorage.getItem('selectedFigure') || '';
+    currentPage = parseInt(localStorage.getItem('currentPage')) || 1;
+
+    // Cargar las marcas en la tabla maestra
+    const masterBoardMarks = JSON.parse(localStorage.getItem('masterBoardMarks')) || [];
+    masterBoardMarks.forEach(number => {
+        const cell = document.querySelector(`#masterBoardContainer .bingoCell[data-number="${number}"]`);
+        if (cell) {
+            cell.classList.add('master-marked');
+        }
+    });
+
+    // Actualizar el selector de figura
+    if (selectedFigure) {
+        selectFigure.value = selectedFigure;
     }
+}
 
     function filterBoards() {
         const query = searchBox.value.trim().toLowerCase();
