@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalBoards = 10000;
 
     let generatedNumbers = [];
-    let bingoBoardsState = JSON.parse(localStorage.getItem('bingoBoardsState')) || {};
     let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
     let selectedFigure = localStorage.getItem('selectedFigure') || '';
     let currentPage = parseInt(localStorage.getItem('currentPage')) || 1;
@@ -162,10 +161,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function getRandomNumbers(min, max, count) {
+    function seedRandom(seed) {
+        var x = Math.sin(seed) * 10000;
+        return x - Math.floor(x);
+    }
+
+    function getSeededRandomNumbers(min, max, count, seed) {
         const numbers = [];
         while (numbers.length < count) {
-            const num = Math.floor(Math.random() * (max - min + 1)) + min;
+            const num = Math.floor(seedRandom(seed++) * (max - min + 1)) + min;
             if (!numbers.includes(num)) {
                 numbers.push(num);
             }
@@ -179,16 +183,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const endBoard = Math.min(startBoard + boardsPerPage - 1, totalBoards);
 
         for (let i = startBoard; i <= endBoard; i++) {
-            if (!bingoBoardsState[i]) {
-                bingoBoardsState[i] = {
-                    'col1-15': getRandomNumbers(1, 15, 5),
-                    'col16-30': getRandomNumbers(16, 30, 5),
-                    'col31-45': getRandomNumbers(31, 45, 5),
-                    'col46-60': getRandomNumbers(46, 60, 5),
-                    'col61-75': getRandomNumbers(61, 75, 5)
-                };
-            }
-
             const board = document.createElement('div');
             board.classList.add('bingoBoard');
             board.dataset.boardNumber = i;
@@ -223,11 +217,11 @@ document.addEventListener('DOMContentLoaded', () => {
             columns.style.gridTemplateColumns = 'repeat(5, 1fr)';
             columns.style.gap = '0px';
 
-            const bColumn = createBingoColumn(1, 15, i);
-            const iColumn = createBingoColumn(16, 30, i);
-            const nColumn = createBingoColumn(31, 45, i, true);
-            const gColumn = createBingoColumn(46, 60, i);
-            const oColumn = createBingoColumn(61, 75, i);
+            const bColumn = createBingoColumn(1, 15, i, 0);
+            const iColumn = createBingoColumn(16, 30, i, 1);
+            const nColumn = createBingoColumn(31, 45, i, 2, true);
+            const gColumn = createBingoColumn(46, 60, i, 3);
+            const oColumn = createBingoColumn(61, 75, i, 4);
 
             columns.appendChild(bColumn);
             columns.appendChild(iColumn);
@@ -252,10 +246,10 @@ document.addEventListener('DOMContentLoaded', () => {
         currentPageSpan.textContent = currentPage; 
     }
 
-    function createBingoColumn(min, max, boardNumber, hasFreeCell = false) {
-        const column = document.createElement('div');
-        column.classList.add('bingoColumn');
-        const numbers = bingoBoardsState[boardNumber][`col${min}-${max}`];
+    function createBingoColumn(min, max, boardNumber, column, hasFreeCell = false) {
+        const columnDiv = document.createElement('div');
+        columnDiv.classList.add('bingoColumn');
+        const numbers = getSeededRandomNumbers(min, max, 5, boardNumber * 10 + column);
 
         numbers.forEach((num, index) => {
             const cell = document.createElement('div');
@@ -271,14 +265,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (cellNumber === '' || generatedNumbers.includes(Number(cellNumber))) {
                 cell.classList.add('marked');
             }
-            column.appendChild(cell);
+            columnDiv.appendChild(cell);
         });
 
-        return column;
-    }
-
-    function resetGame() {
-        // No se hace nada para evitar el cambio de los cartones
+        return columnDiv;
     }
 
     function clearMarks() {
@@ -296,7 +286,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function saveState() {
         localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
-        localStorage.setItem('bingoBoardsState', JSON.stringify(bingoBoardsState));
         localStorage.setItem('playerNames', JSON.stringify(playerNames));
         localStorage.setItem('selectedFigure', selectedFigure);
         localStorage.setItem('currentPage', currentPage.toString());
@@ -304,7 +293,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loadState() {
         generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
-        bingoBoardsState = JSON.parse(localStorage.getItem('bingoBoardsState')) || {};
         playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
         selectedFigure = localStorage.getItem('selectedFigure') || '';
         currentPage = parseInt(localStorage.getItem('currentPage')) || 1;
