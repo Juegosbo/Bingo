@@ -468,24 +468,190 @@ document.addEventListener('DOMContentLoaded', () => {
 
         switch (selectedFigure) {
             case 'letraT':
-                cells = [
-                    true, true, true, true, true,
-                    false, false, true, false, false,
-                    false, false, true, false, false,
-                    false, false, true, false, false,
-                    false, false, true, false, false
-                ];
-                break;
+            cells = [
+                true, false, false,  false, false,
+                true, false, false,  false, false,
+                true,  true,  true,  true,  true,
+                true, false, false,  false, false,
+                true, false, false,  false, false
+            ];
+            break;
             case 'letraL':
-                cells = [
-                    true, false, false, false, false,
-                    true, false, false, false, false,
-                    true, false, false, false, false,
-                    true, false, false, false, false,
-                    true, true, true, true, true
-                ];
-                break;
-            // Agrega los otros casos de figuras aquí
+            cells = [
+                true, true, true,  true, true,
+                false, false, false,  false, true,
+                false,  false,  false,  false,  true,
+                false, false, false,  false, true,
+                false, false, false,  false, true
+            ];
+            break;
+
+            case 'letraP':
+            cells = [
+                true, true, true,  true, true,
+                true, false, true,  false, false,
+                true,  false,  true,  false,  false,
+                true, false, true,  false, false,
+                true, true, true,  false, false
+            ];
+            break;
+
+             case 'letraI':
+            cells = [
+                true, false, false,  false, true,
+                true, false, false,  false, true,
+                true,  true,  true,  true,  true,
+                true, false, false,  false, true,
+                true, false, false,  false, true
+            ];
+            break;
+
+             case 'letraS':
+            cells = [
+                true, true, true,  false, true,
+                true, false, true,  false, true,
+                true,  false,  true,  false,  true,
+                true, false, true,  false, true,
+                true, false, true,  true, true
+            ];
+            break;
+
+             case 'letraZ':
+            cells = [
+                true, false, false,  false, true,
+                true, false, false,  true, true,
+                true,  false,  true,  false,  true,
+                true, true, false,  false, true,
+                true, false, false,  false, true
+            ];
+            break;
+            
+            case 'corazon':
+            cells = [
+                false, true, true,  false, false,
+                true, false, false,  true, false,
+                false,  true,  false,  false,  true,
+                true, false, false,  true, false,
+                false, true, true,  false, false
+            ];
+            break;
+
+            /*NUEVAS FIGURAS */
+             case 'Explosion':
+            cells = [
+                true, false, false,  false, true,
+                false, false, true,  false, false,
+                false,  true,  true,  true,  false,
+                false, false, true,  false, false,
+                true, false, false,  false, true
+            ];
+           
+            break;
+
+            case 'Ahorcado':
+            cells = [
+                true, true, true,  true, true,
+                true, false, false,  false, false,
+                true,  false,  true,  false,  true,
+                true, true, true,  true, false,
+                false, false, true,  false, true
+            ];
+            break;
+
+            case 'Paraguas':
+            cells = [
+                false, true, false,  true, false,
+                true, true, false,  false, true,
+                true,  true,  true,  true,  false,
+                true, true, false,  false, false,
+                false, true, false,  false, false
+            ];
+           
+            break;
+
+            /*HASTA AQUI NUEVAS FIGURAS */
+            
+        case 'cross':
+            cells = [
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                true,  true,  true,  true,  true,
+                false, false, true,  false, false,
+                false, false, true,  false, false
+            ];
+            break;
+        case 'bigO':
+            cells = [
+                true,  true,  true,  true,  true,
+                true,  false, false, false, true,
+                true,  false, false, false, true,
+                true,  false, false, false, true,
+                true,  true,  true,  true,  true
+            ];
+            break;
+        case 'diamond':
+            cells = [
+                false, false, true,  false, false,
+                false, true,  false, true,  false,
+                true,  false, false, false, true,
+                false, true,  false, true,  false,
+                false, false, true,  false, false
+            ];
+            break;
+        case 'fourCorners':
+            cells = [
+                true,  false, false, false, true,
+                false, false, false, false, false,
+                false, false, false, false, false,
+                false, false, false, false, false,
+                true,  false, false, false, true
+            ];
+            break;
+        case 'letterH':
+            cells = [
+                true, true, true, true, true,
+                false, false, true, false, false,
+                false, false, true, false, false,
+                false, false, true, false, false,
+                true, true, true, true, true
+            ];
+            break;
+        case 'tree':
+            cells = [
+                false, false, true,  false, false,
+                false, true,  true,  false,  false,
+                true,  true, true,  true, true,
+                false, true,  true,  false,  false,
+                false, false, true,  false, false
+            ];
+            break;
+        case 'numberOne':
+            cells = [
+               false, false, false,  false, false,
+               false, true, false,  false, true,
+               true, true, true,  true, true,
+               false, false, false,  false, true,
+               false,  false,  false,  false,  false
+            ];
+            break;
+        case 'chess':
+            cells = [
+                true,  false, true,  false, true,
+                false, true,  false, true,  false,
+                true,  false, true,  false, true,
+                false, true,  false, true,  false,
+                true,  false, true,  false, true
+            ];
+            break;
+        case 'diagonals':
+            cells = [
+                true,  false, false, false, true,
+                false, true,  false, true,  false,
+                false, false, true,  false, false,
+                false, true,  false, true,  false,
+                true,  false, false, false, true
+            ];
+            break;
             default:
                 return;
         }
