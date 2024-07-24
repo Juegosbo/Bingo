@@ -60,22 +60,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     printButton.addEventListener('click', async () => {
-        const boards = document.querySelectorAll('.bingoBoard');
-        const uniqueBoards = new Set();
+    const boards = document.querySelectorAll('.bingoBoard');
 
-        for (let i = 0; i < boards.length; i++) {
-            const board = boards[i];
-            const boardNumberElement = board.querySelector('.bingoBoardNumber');
+    // Función para descargar una imagen del cartón
+    const downloadCanvasImage = async (board, boardNumber) => {
+        const canvas = await html2canvas(board, { backgroundColor: null });
+        const imgData = canvas.toDataURL('image/png');
 
-            if (boardNumberElement && !board.closest('#masterBoardContainer') && !board.closest('#figurePreviewContainer')) {
-                const boardNumber = boardNumberElement.textContent.replace(/\D/g, ''); 
-                if (!uniqueBoards.has(boardNumber)) {
-                    uniqueBoards.add(boardNumber);
-                    await downloadCanvasImage(board, boardNumber);
-                }
+        const link = document.createElement('a');
+        link.href = imgData;
+        link.download = `bingo_carton_${boardNumber}.png`;
+        link.style.display = 'none';
+
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    // Evitar descargas duplicadas
+    const uniqueBoards = new Set();
+
+    for (let i = 0; i < boards.length; i++) {
+        const board = boards[i];
+        const boardNumberElement = board.querySelector('.bingoBoardNumber');
+
+        if (boardNumberElement && !board.closest('#masterBoardContainer') && !board.closest('#figurePreviewContainer')) {
+            const boardNumber = boardNumberElement.textContent.replace(/\D/g, ''); // Extraer el número del cartón
+            if (!uniqueBoards.has(boardNumber)) {
+                uniqueBoards.add(boardNumber);
+                await downloadCanvasImage(board, boardNumber);
             }
         }
-    });
+    }
+});
 
     function createMasterBoard() {
         masterBoardContainer.innerHTML = '';
