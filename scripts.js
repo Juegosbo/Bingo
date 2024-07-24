@@ -390,26 +390,208 @@ document.addEventListener('DOMContentLoaded', () => {
 
         switch (figure) {
             case 'letraT':
-                cells = [
-                    true, true, true, true, true,
-                    false, false, true, false, false,
-                    false, false, true, false, false,
-                    false, false, true, false, false,
-                    false, false, true, false, false
-                ];
-                figureImageSrc = 'LetraT.png';
-                break;
+            cells = [
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                true,  true,  true,  true,  true,
+                false, false, true,  false, false,
+                false, false, true,  false, false
+            ];
+            figureImageSrc = 'LetraT.png'; // Cambia a la ruta de tu imagen
+            break;
             case 'letraL':
-                cells = [
-                    true, false, false, false, false,
-                    true, false, false, false, false,
-                    true, false, false, false, false,
-                    true, false, false, false, false,
-                    true, true, true, true, true
-                ];
-                figureImageSrc = 'LetraL.PNG';
-                break;
-            // Agrega los otros casos de figuras aquí
+            cells = [
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                true,  true,  true,  true,  true,
+                false, false, true,  false, false,
+                false, false, true,  false, false
+            ];
+            figureImageSrc = 'LetraL.PNG'; // Cambia a la ruta de tu imagen
+            break;
+
+            case 'letraP':
+            cells = [
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                true,  true,  true,  true,  true,
+                false, false, true,  false, false,
+                false, false, true,  false, false
+            ];
+            figureImageSrc = 'LetraP.png'; // Cambia a la ruta de tu imagen
+            break;
+
+            case 'letraI':
+            cells = [
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                true,  true,  true,  true,  true,
+                false, false, true,  false, false,
+                false, false, true,  false, false
+            ];
+            figureImageSrc = 'LetraI.PNG'; // Cambia a la ruta de tu imagen
+            break;
+
+            case 'letraS':
+            cells = [
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                true,  true,  true,  true,  true,
+                false, false, true,  false, false,
+                false, false, true,  false, false
+            ];
+            figureImageSrc = 'LetraS.PNG'; // Cambia a la ruta de tu imagen
+            break;
+
+            case 'letraZ':
+            cells = [
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                true,  true,  true,  true,  true,
+                false, false, true,  false, false,
+                false, false, true,  false, false
+            ];
+            figureImageSrc = 'LetraZ.png'; // Cambia a la ruta de tu imagen
+            break;
+            
+            case 'corazon':
+            cells = [
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                true,  true,  true,  true,  true,
+                false, false, true,  false, false,
+                false, false, true,  false, false
+            ];
+            figureImageSrc = 'Corazon.PNG'; // Cambia a la ruta de tu imagen
+            break;
+        case 'cross':
+            cells = [
+                false, false, true,  false, false,
+                false, false, true,  false, false,
+                true,  true,  true,  true,  true,
+                false, false, true,  false, false,
+                false, false, true,  false, false
+            ];
+            figureImageSrc = 'cross.PNG'; // Cambia a la ruta de tu imagen
+            break;
+
+            /* NUEVAS FIGURAS */
+
+            case 'Explosion':
+            cells = [
+                true, false, false,  false, true,
+                false, false, true,  false, false,
+                false,  true,  true,  true,  false,
+                false, false, true,  false, false,
+                true, false, false,  false, true
+            ];
+            figureImageSrc = 'Explosion.PNG'; // Cambia a la ruta de tu imagen
+            break;
+
+            case 'Ahorcado':
+            cells = [
+                false, false, true,  false, true,
+                true, true, true,  true, false,
+                true,  false,  true,  false,  true,
+                true, false, false,  false, false,
+                true, true, true,  true, true
+            ];
+            figureImageSrc = 'Ahorcado.PNG'; // Cambia a la ruta de tu imagen
+            break;
+
+            case 'Paraguas':
+            cells = [
+                false, true, false,  true, false,
+                true, true, false,  false, true,
+                true,  true,  true,  true,  false,
+                true, true, false,  false, false,
+                false, true, false,  false, false
+            ];
+            figureImageSrc = 'paraguas.PNG'; // Cambia a la ruta de tu imagen
+            break;
+
+/*FIN DE NUEVAS FIGURAS */
+            
+        case 'bigO':
+            cells = [
+                true,  true,  true,  true,  true,
+                true,  false, false, false, true,
+                true,  false, false, false, true,
+                true,  false, false, false, true,
+                true,  true,  true,  true,  true
+            ];
+            figureImageSrc = 'bigO.png'; // Cambia a la ruta de tu imagen
+            break;
+        case 'diamond':
+            cells = [
+                false, false, true,  false, false,
+                false, true,  false, true,  false,
+                true,  false, false, false, true,
+                false, true,  false, true,  false,
+                false, false, true,  false, false
+            ];
+            figureImageSrc = 'diamond.PNG'; // Cambia a la ruta de tu imagen
+            break;
+        case 'fourCorners':
+            cells = [
+                true,  false, false, false, true,
+                false, false, false, false, false,
+                false, false, false, false, false,
+                false, false, false, false, false,
+                true,  false, false, false, true
+            ];
+            figureImageSrc = 'fourCorners.PNG'; // Cambia a la ruta de tu imagen
+            break;
+        case 'letterH':
+            cells = [
+                true, true, true, true, true,
+                false, false, true, false, false,
+                false, false, true, false, false,
+                false, false, true, false, false,
+                true, true, true, true, true
+            ];
+            figureImageSrc = 'letterH.PNG'; // Cambia a la ruta de tu imagen
+            break;
+        case 'tree':
+            cells = [
+                false, false, true,  false, false,
+                false, true,  true,  false,  false,
+                true,  true, true,  true, true,
+                false, true,  true,  false,  false,
+                false, false, true,  false, false
+            ];
+            figureImageSrc = 'tree.PNG'; // Cambia a la ruta de tu imagen
+            break;
+        case 'numberOne':
+            cells = [
+               false, false, true,  false, false,
+               false, false, true,  false, false,
+               false, false, true,  false, false,
+               false, false, true,  false, false,
+               false,  false,  true,  false,  false
+            ];
+            figureImageSrc = 'numberOne.PNG'; // Cambia a la ruta de tu imagen
+            break;
+        case 'chess':
+            cells = [
+                true,  false, true,  false, true,
+                false, true,  false, true,  false,
+                true,  false, true,  false, true,
+                false, true,  false, true,  false,
+                true,  false, true,  false, true
+            ];
+            figureImageSrc = 'chess.png'; // Cambia a la ruta de tu imagen
+            break;
+        case 'diagonals':
+            cells = [
+                true,  false, false, false, true,
+                false, true,  false, true,  false,
+                false, false, true,  false, false,
+                false, true,  false, true,  false,
+                true,  false, false, false, true
+            ];
+            figureImageSrc = 'diagonals.png'; // Cambia a la ruta de tu imagen
+            break;
             default:
                 return;
         }
