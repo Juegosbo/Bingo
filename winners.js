@@ -9,11 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
             false, false, true,  false, false
         ],
         L: [
-            true,  false, false, false, false,
-            true,  false, false, false, false,
-            true,  false, false, false, false,
-            true,  false, false, false, false,
-            true,  true,  true,  true,  true
+            true,  true, true, true, true,
+            false,  false, false, false, true,
+            false,  false, false, false, true,
+            false,  false, false, false, true,
+            false,  false,  false,  false,  true
         ],
         X: [
             true,  false, false, false, true,
