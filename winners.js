@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Añadir más patrones según sea necesario
     };
 
-    // Función para actualizar la lista de ganadores
+   // Función para actualizar la lista de ganadores
     function updateWinnersList() {
         const winnersList = document.getElementById('listagana');
         if (!winnersList) {
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Ganadores encontrados:', winners); // Mensaje de depuración
 
         winners.forEach(winner => {
-            const listItem = document.createElement('li');
+            const listItem = document.createElement('div');
             listItem.textContent = `Cartón Nº ${winner.boardNumber} - ${winner.playerName}`;
             winnersList.appendChild(listItem);
         });
