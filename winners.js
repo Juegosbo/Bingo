@@ -47,12 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para encontrar los ganadores
     function findWinners() {
         const winners = [];
-        document.querySelectorAll('.bingoBoard').forEach(board => {
-            const boardNumber = board.dataset.boardNumber;
-            const playerNameElement = board.querySelector('.playerName');
-            const playerName = playerNameElement ? playerNameElement.textContent : 'Sin nombre';
+        const allBoards = JSON.parse(localStorage.getItem('bingoBoardsState')) || {};
+        Object.keys(allBoards).forEach(boardNumber => {
+            const board = allBoards[boardNumber];
             if (checkIfBoardWins(board)) {
-                winners.push({ boardNumber, playerName });
+                winners.push({ boardNumber, playerName: board.playerName });
             }
         });
         return winners;
@@ -60,9 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para verificar si un cartón ha ganado
     function checkIfBoardWins(board) {
-        const cells = Array.from(board.querySelectorAll('.bingoCell'));
         return Object.values(patterns).some(pattern => {
-            return pattern.every((required, index) => !required || cells[index].classList.contains('marked'));
+            return pattern.every((required, index) => !required || board.cells[index].marked);
         });
     }
 
