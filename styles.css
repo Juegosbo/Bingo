@@ -14,6 +14,21 @@ body {
     background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
 
+
+#showWinners {
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#showWinners:hover {
+    background-color: #c70039;
+    transform: scale(1.05);
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -33,6 +48,7 @@ body {
     position: relative;
     padding: 20px;
 }
+
 .close {
     position: absolute;
     top: 10px;
@@ -45,7 +61,6 @@ body {
     height: 30px;
     cursor: pointer;
 }
-
 
 #figureImageContainer {
     margin-top: 10px;
