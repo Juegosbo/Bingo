@@ -178,7 +178,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (selectedFigure) {
             markFigureNumbers();
         }
-         updateWinnersList();  // Añade esta línea para actualizar la lista de ganadores
+        
+        console.log('Número marcado:', number); // Mensaje de depuración
+        updateWinnersList();  // Añade esta línea para actualizar la lista de ganadoresupdateWinnersList();  // Añade esta línea para actualizar la lista de ganadores
     }
 
     function seedRandom(seed) {
