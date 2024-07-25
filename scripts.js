@@ -183,6 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const boardNumber = board.dataset.boardNumber;
         const cells = board.querySelectorAll('.bingoCell');
         allBoards[boardNumber] = {
+            boardNumber: boardNumber,
             playerName: board.querySelector('.playerName').textContent,
             cells: Array.from(cells).map(cell => ({
                 marked: cell.classList.contains('marked') // Guardar si la celda está marcada
