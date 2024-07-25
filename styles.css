@@ -16,49 +16,28 @@ body {
 
 #winnerListSection {
     margin-top: 20px;
-    text-align: center;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 #winnerListSection h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #007bff;
-}
-
-.winners-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 10px;
-    justify-items: center;
-}
-
-.winners-grid div {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 5px 10px;
-    font-size: 0.9rem;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     text-align: center;
+    color: #ff5733;
 }
 
 #winnerListSection ul {
     list-style-type: none;
     padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
 }
 
 #winnerListSection ul li {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 5px 10px;
-    font-size: 0.9rem;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    width: 150px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
     text-align: center;
 }
 
