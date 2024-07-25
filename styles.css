@@ -14,38 +14,35 @@ body {
     background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
 
-#bingogano {
-    background-color: #ff5733;
-    color: white;
-    border: none;
+#winnerListSection {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
     border-radius: 8px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-#bingogano:hover {
-    background-color: #c70039;
-    transform: scale(1.05);
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
     max-width: 600px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border-radius: 8px;
+    margin: 0 auto;
 }
 
-.modal-content {
-    position: relative;
-    padding: 20px;
+#winnerListSection h2 {
+    text-align: center;
+    color: #ff5733;
+}
+
+#winnerListSection ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#winnerListSection ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+#winnerListSection ul li:last-child {
+    border-bottom: none;
 }
 
 .close {
