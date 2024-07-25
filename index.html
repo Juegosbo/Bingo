@@ -42,7 +42,6 @@
         </header>
         <section id="controls">
             <div class="search-container">
-                <button id="bingogano">BINGO</button>
                 <input type="text" id="searchBox" placeholder="Buscar cartón por número">
                 <button id="searchButton">Buscar Cartón</button>
                 <button id="nameCards">Nombrar Cartón</button>
@@ -65,6 +64,10 @@
             <div id="masterBoardContainer"></div>
             <img id="smallImage" src="dolar.png" alt="Descripción de la imagen">
         </section>
+        <section id="winnerListSection">
+            <h2>Lista de Ganadores</h2>
+            <ul id="listagana"></ul>
+        </section>
        <div id="winnerVideoContainer">
            <video id="winnerVideo" controls>
                <source src="ganador.mp4" type="video/mp4">
@@ -73,15 +76,6 @@
            <button id="closeVideo">X</button>
        </div>
        <button id="printButton">Imprimir</button>
-
-       <!-- Modal para la lista de ganadores -->
-       <div id="winnersList" class="modal hidden">
-           <div class="modal-content">
-               <span id="closeWinners" class="close">&times;</span>
-               <h2>Lista de Ganadores</h2>
-               <ul id="listagana"></ul> <!-- Cambiado el ID a listagana -->
-           </div>
-       </div>
     </div>
     <script src="scripts.js"></script>
     <script src="winners.js"></script>
