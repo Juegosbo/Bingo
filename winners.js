@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Añadir más patrones según sea necesario
     };
 
-      const maxBoardNumber = 2000; // Número máximo de cartones a considerar
+        const maxBoardNumber = 2000; // Número máximo de cartones a considerar
 
     // Función para actualizar la lista de ganadores
     function updateWinnersList() {
@@ -58,9 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const winners = [];
         for (let i = 1; i <= maxBoardNumber; i++) {
             const board = getBoardData(i);
-            const playerName = board.playerName || 'Sin nombre';
-            if (checkIfBoardWins(board)) {
-                winners.push({ boardNumber: i, playerName });
+            if (board && checkIfBoardWins(board)) {
+                winners.push({ boardNumber: i, playerName: board.playerName || 'Sin nombre' });
             }
         }
         return winners;
