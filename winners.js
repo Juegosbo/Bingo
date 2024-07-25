@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
         // Añadir más patrones según sea necesario
     };
-     // Función para actualizar la lista de ganadores
+   // Función para actualizar la lista de ganadores
     function updateWinnersList() {
         const winnersList = document.getElementById('listagana');
         if (!winnersList) {
@@ -84,5 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
     updateWinnersList();
 
     // Añadir un event listener al campo maxBoardNumber para actualizar la lista de ganadores cuando cambie el valor
-    document.getElementById('maxBoardNumber').addEventListener('input', updateWinnersList);
+    const maxBoardNumberInput = document.getElementById('maxBoardNumber');
+    if (maxBoardNumberInput) {
+        maxBoardNumberInput.addEventListener('input', updateWinnersList);
+    }
 });
