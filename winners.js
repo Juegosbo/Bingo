@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const showWinnersButton = document.getElementById('showWinners');
+    const showWinnersButton = document.getElementById('bingogano');
     const winnersListModal = document.getElementById('winnersList');
     const closeWinnersButton = document.getElementById('closeWinners');
-    const winnersList = document.getElementById('winners');
+    const winnersList = document.getElementById('listagana'); // Cambiado el ID a listagana
 
     showWinnersButton.addEventListener('click', () => {
         updateWinnersList();
