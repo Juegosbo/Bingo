@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             false, true,  false, true,  false,
             true,  false, false, false, true
         ]
+        // Añadir más patrones según sea necesario
     };
 
     // Función para actualizar la lista de ganadores
