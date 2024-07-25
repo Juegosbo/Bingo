@@ -25,24 +25,21 @@ document.addEventListener('DOMContentLoaded', () => {
         // Añadir más patrones según sea necesario
     };
 
-   // Función para actualizar la lista de ganadores
+     // Función para actualizar la lista de ganadores
     function updateWinnersList() {
         const winnersList = document.getElementById('listagana');
         if (!winnersList) {
             console.error('Elemento listagana no encontrado');
             return;
         }
-
+        winnersList.innerHTML = ''; // Limpiar la lista antes de actualizarla
         const winners = findWinners();
         console.log('Ganadores encontrados:', winners); // Mensaje de depuración
-
         winners.forEach(winner => {
-            if (!document.querySelector(`#listagana li[data-board-number="${winner.boardNumber}"]`)) {
-                const listItem = document.createElement('li');
-                listItem.textContent = `Cartón Nº ${winner.boardNumber} - ${winner.playerName}`;
-                listItem.dataset.boardNumber = winner.boardNumber;
-                winnersList.appendChild(listItem);
-            }
+            const listItem = document.createElement('li');
+            listItem.textContent = `Cartón Nº ${winner.boardNumber} - ${winner.playerName}`;
+            listItem.dataset.boardNumber = winner.boardNumber;
+            winnersList.appendChild(listItem);
         });
     }
 
@@ -50,8 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function findWinners() {
         const winners = [];
         const allBoards = JSON.parse(localStorage.getItem('bingoBoardsState')) || {};
-        Object.keys(allBoards).forEach(boardNumber => {
-            const board = allBoards[boardNumber];
+        Object.entries(allBoards).forEach(([boardNumber, board]) => {
             if (checkIfBoardWins(board)) {
                 winners.push({ boardNumber, playerName: board.playerName });
             }
@@ -68,4 +64,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Exponer la función updateWinnersList globalmente
     window.updateWinnersList = updateWinnersList;
+
+    // Llamar a updateWinnersList inmediatamente después de cargar la página
+    updateWinnersList();
+
+    // Agregar un listener para el evento 'storage' para actualizar la lista cuando cambie el localStorage
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'bingoBoardsState') {
+            updateWinnersList();
+        }
+    });
 });
