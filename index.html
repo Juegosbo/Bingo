@@ -41,13 +41,13 @@
             </div>
         </header>
         <section id="controls">
-            <div class="search-container">
-                <button id="showWinners">Ver Ganador</button>
+           <div class="search-container">
+                <button id="bingogano">BINGO</button>
                 <input type="text" id="searchBox" placeholder="Buscar cartón por número">
                 <button id="searchButton">Buscar Cartón</button>
                 <button id="nameCards">Nombrar Cartón</button>
                 <button id="winnerButton">GANADOR</button>
-            </div>
+        </div>
         </section>
         <section id="bingo">
             <div id="bingoBoardsContainer"></div>
@@ -74,13 +74,14 @@
        </div>
        <button id="printButton">Imprimir</button>
 
-       <div id="winnersList" class="modal hidden">
-           <div class="modal-content">
-               <span id="closeWinners" class="close">&times;</span>
-               <h2>Lista de Ganadores</h2>
-               <ul id="winners"></ul>
-           </div>
-       </div>
+       <!-- Modal para la lista de ganadores -->
+        <div id="winnersList" class="modal hidden">
+        <div class="modal-content">
+        <span id="closeWinners" class="close">&times;</span>
+        <h2>Lista de Ganadores</h2>
+        <ul id="listagana"></ul> <!-- Cambiado el ID a listagana -->
+            </div>
+        </div>
     </div>
     <script src="scripts.js"></script>
     <script src="winners.js"></script>
