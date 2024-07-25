@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Añadir más patrones según sea necesario
     };
 
-    // Función para actualizar la lista de ganadores
-      function updateWinnersList() {
+     // Función para actualizar la lista de ganadores
+    function updateWinnersList() {
         const winnersList = document.getElementById('listagana');
         if (!winnersList) {
             console.error('Elemento listagana no encontrado');
@@ -38,29 +38,34 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Ganadores encontrados:', winners); // Mensaje de depuración
 
         winners.forEach(winner => {
-            const listItem = document.createElement('div');
+            const listItem = document.createElement('li');
             listItem.textContent = `Cartón Nº ${winner.boardNumber} - ${winner.playerName}`;
             winnersList.appendChild(listItem);
         });
     }
 
+    // Función para encontrar los ganadores
     function findWinners() {
         const winners = [];
-        const allBoards = JSON.parse(localStorage.getItem('bingoBoardsState')) || {};
-        Object.keys(allBoards).forEach(boardNumber => {
-            const board = allBoards[boardNumber];
+        document.querySelectorAll('.bingoBoard').forEach(board => {
+            const boardNumber = board.dataset.boardNumber;
+            const playerNameElement = board.querySelector('.playerName');
+            const playerName = playerNameElement ? playerNameElement.textContent : 'Sin nombre';
             if (checkIfBoardWins(board)) {
-                winners.push({ boardNumber, playerName: board.playerName });
+                winners.push({ boardNumber, playerName });
             }
         });
         return winners;
     }
 
+    // Función para verificar si un cartón ha ganado
     function checkIfBoardWins(board) {
+        const cells = Array.from(board.querySelectorAll('.bingoCell'));
         return Object.values(patterns).some(pattern => {
-            return pattern.every((required, index) => !required || board.cells[index].marked);
+            return pattern.every((required, index) => !required || cells[index].classList.contains('marked'));
         });
     }
 
+    // Exponer la función updateWinnersList globalmente
     window.updateWinnersList = updateWinnersList;
 });
