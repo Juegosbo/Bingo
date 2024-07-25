@@ -59,8 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para verificar si un cartón ha ganado
     function checkIfBoardWins(board) {
+        const cells = board.cells || [];
         return Object.values(patterns).some(pattern => {
-            return pattern.every((required, index) => !required || board.cells[index].marked);
+            return pattern.every((required, index) => !required || cells[index].marked);
         });
     }
 
