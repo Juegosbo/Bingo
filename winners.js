@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         winners.forEach(winner => {
             const listItem = document.createElement('li');
-            listItem.textContent = Cartón Nº ${winner.boardNumber} - ${winner.playerName};
+            listItem.textContent = `Cartón Nº ${winner.boardNumber} - ${winner.playerName}`;
             winnersList.appendChild(listItem);
         });
     }
