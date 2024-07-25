@@ -25,8 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Añadir más patrones según sea necesario
     };
 
-    
-    const maxBoardNumber = 2000; // Número máximo de cartones a considerar
+      const maxBoardNumber = 2000; // Número máximo de cartones a considerar
 
     // Función para actualizar la lista de ganadores
     function updateWinnersList() {
@@ -57,24 +56,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para encontrar los ganadores
     function findWinners() {
         const winners = [];
-        document.querySelectorAll('.bingoBoard').forEach(board => {
-            const boardNumber = parseInt(board.dataset.boardNumber);
-            if (boardNumber <= maxBoardNumber) {
-                const playerNameElement = board.querySelector('.playerName');
-                const playerName = playerNameElement ? playerNameElement.textContent : 'Sin nombre';
-                if (checkIfBoardWins(board)) {
-                    winners.push({ boardNumber, playerName });
-                }
+        for (let i = 1; i <= maxBoardNumber; i++) {
+            const board = getBoardData(i);
+            const playerName = board.playerName || 'Sin nombre';
+            if (checkIfBoardWins(board)) {
+                winners.push({ boardNumber: i, playerName });
             }
-        });
+        }
         return winners;
+    }
+
+    // Función para obtener datos de un cartón específico
+    function getBoardData(boardNumber) {
+        const boardState = JSON.parse(localStorage.getItem(`bingoBoard-${boardNumber}`)) || { cells: Array(25).fill(false) };
+        const playerName = localStorage.getItem(`playerName-${boardNumber}`);
+        return { ...boardState, playerName };
     }
 
     // Función para verificar si un cartón ha ganado
     function checkIfBoardWins(board) {
-        const cells = Array.from(board.querySelectorAll('.bingoCell'));
+        const cells = board.cells;
         return Object.values(patterns).some(pattern => {
-            return pattern.every((required, index) => !required || cells[index].classList.contains('marked'));
+            return pattern.every((required, index) => !required || cells[index]);
         });
     }
 
