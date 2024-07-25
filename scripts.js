@@ -46,7 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     searchButton.addEventListener('click', filterBoards);
-    clearMarksBtn.addEventListener('click', clearMarks);
+    clearMarksBtn.addEventListener('click', () => {
+    clearMarks();
+    document.getElementById('listagana').innerHTML = ''; // Limpiar la lista de ganadores
+});
     nameCardsBtn.addEventListener('click', () => {
         window.location.href = 'naming.html';
     });
