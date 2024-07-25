@@ -155,49 +155,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function toggleMarkNumber(number) {
-    const index = generatedNumbers.indexOf(number);
-    if (index > -1) {
-        generatedNumbers.splice(index, 1); // Eliminar el número de la lista de números generados
-    } else {
-        generatedNumbers.push(number); // Añadir el número a la lista de números generados
-    }
-
-    // Guardar el estado actual en localStorage
-    saveState();
-
-    // Actualizar las marcas en el tablero maestro
-    document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
-        if (parseInt(cell.dataset.number) === number) {
-            cell.classList.toggle('master-marked'); // Alternar la clase de marcado en el tablero maestro
+        const index = generatedNumbers.indexOf(number);
+        if (index > -1) {
+            generatedNumbers.splice(index, 1);
+        } else {
+            generatedNumbers.push(number);
         }
-    });
+        saveState();
 
-    // Actualizar las marcas en todos los cartones de bingo
-    document.querySelectorAll('.bingoBoard:not(#masterBoardContainer) .bingoCell').forEach(cell => {
-        if (parseInt(cell.dataset.number) === number) {
-            cell.classList.toggle('marked'); // Alternar la clase de marcado en los cartones
+        document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
+            if (parseInt(cell.dataset.number) === number) {
+                cell.classList.toggle('master-marked');
+            }
+        });
+
+        document.querySelectorAll('.bingoBoard:not(#masterBoardContainer) .bingoCell').forEach(cell => {
+            if (parseInt(cell.dataset.number) === number) {
+                cell.classList.toggle('marked');
+            }
+        });
+
+        if (selectedFigure) {
+            markFigureNumbers();
         }
-    });
-
-    // Guardar el estado de los cartones en localStorage
-    document.querySelectorAll('.bingoBoard:not(#masterBoardContainer)').forEach(board => {
-        const boardNumber = board.dataset.boardNumber;
-        const cells = board.querySelectorAll('.bingoCell');
-        bingoBoardsState[boardNumber] = {
-            playerName: board.querySelector('.playerName').textContent,
-            cells: Array.from(cells).map(cell => ({
-                marked: cell.classList.contains('marked') // Guardar si la celda está marcada
-            }))
-        };
-    });
-
-    if (selectedFigure) {
-        markFigureNumbers(); // Si hay una figura seleccionada, actualizar las marcas de la figura
+        
+        console.log('Número marcado:', number); // Mensaje de depuración
+        updateWinnersList();  // Añade esta línea para actualizar la lista de ganadoresupdateWinnersList();  // Añade esta línea para actualizar la lista de ganadores
     }
-
-    console.log('Número marcado:', number); // Mensaje de depuración
-    updateWinnersList(); // Añade esta línea para actualizar la lista de ganadores
-}
 
     function seedRandom(seed) {
         var x = Math.sin(seed) * 10000;
