@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
         // Añadir más patrones según sea necesario
     };
-    // Función para actualizar la lista de ganadores
+     // Función para actualizar la lista de ganadores
     function updateWinnersList() {
         const winnersList = document.getElementById('listagana');
         if (!winnersList) {
@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 listItem.textContent = `Cartón Nº ${winner.boardNumber} - ${winner.playerName}`;
                 listItem.dataset.boardNumber = winner.boardNumber;
                 winnersList.appendChild(listItem);
+                existingWinners.add(winner.boardNumber);  // Añadir al Set de ganadores existentes
             }
         });
     }
@@ -54,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function findWinners() {
         const winners = [];
         const maxBoardNumber = parseInt(document.getElementById('maxBoardNumber').value, 10) || 10000;
-        
+
         document.querySelectorAll('.bingoBoard').forEach(board => {
             const boardNumber = parseInt(board.dataset.boardNumber, 10);
             if (boardNumber <= maxBoardNumber) {
