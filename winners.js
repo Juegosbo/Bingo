@@ -24,23 +24,29 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
         // Añadir más patrones según sea necesario
     };
-
-     // Función para actualizar la lista de ganadores
+ // Función para actualizar la lista de ganadores
     function updateWinnersList() {
         const winnersList = document.getElementById('listagana');
         if (!winnersList) {
             console.error('Elemento listagana no encontrado');
             return;
         }
-        winnersList.innerHTML = ''; // Limpiar la lista de ganadores
+
+        const existingWinners = new Set();
+        winnersList.querySelectorAll('li').forEach(item => {
+            existingWinners.add(item.dataset.boardNumber);
+        });
 
         const winners = findWinners();
         console.log('Ganadores encontrados:', winners); // Mensaje de depuración
 
         winners.forEach(winner => {
-            const listItem = document.createElement('li');
-            listItem.textContent = `Cartón Nº ${winner.boardNumber} - ${winner.playerName}`;
-            winnersList.appendChild(listItem);
+            if (!existingWinners.has(winner.boardNumber)) {
+                const listItem = document.createElement('li');
+                listItem.textContent = `Cartón Nº ${winner.boardNumber} - ${winner.playerName}`;
+                listItem.dataset.boardNumber = winner.boardNumber;
+                winnersList.appendChild(listItem);
+            }
         });
     }
 
@@ -68,4 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Exponer la función updateWinnersList globalmente
     window.updateWinnersList = updateWinnersList;
+
+    // Llamar a updateWinnersList inmediatamente después de cargar la página
+    updateWinnersList();
 });
