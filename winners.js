@@ -1,13 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const winnersList = document.getElementById('listagana'); // Cambiado el ID a listagana
 
-    // Llamar a updateWinnersList cada vez que se marque un número
-    document.querySelectorAll('.bingoCell').forEach(cell => {
-        cell.addEventListener('click', () => {
-            updateWinnersList();
-        });
-    });
-
     function updateWinnersList() {
         winnersList.innerHTML = '';
         const winners = findWinners();
@@ -49,4 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const xPattern = [0, 4, 6, 8, 12, 16, 18, 20, 24];
         return xPattern.every(index => cells[index].classList.contains('marked'));
     }
+
+    // Exponer la función updateWinnersList globalmente si es necesario
+    window.updateWinnersList = updateWinnersList;
 });
