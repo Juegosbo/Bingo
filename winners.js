@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const winnersList = document.getElementById('listagana'); // Cambiado el ID a listagana
-
     function updateWinnersList() {
-        winnersList.innerHTML = '';
+        const winnersList = document.getElementById('listagana');
+        winnersList.innerHTML = ''; // Limpiar la lista de ganadores
+
         const winners = findWinners();
         winners.forEach(winner => {
             const listItem = document.createElement('li');
@@ -43,6 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return xPattern.every(index => cells[index].classList.contains('marked'));
     }
 
-    // Exponer la función updateWinnersList globalmente si es necesario
+    // Exponer la función updateWinnersList globalmente
     window.updateWinnersList = updateWinnersList;
 });
