@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Definición de los patrones de las figuras (sin cambios)
+    // Definición de los patrones de las figuras utilizando matrices de true/false
     const patterns = {
         T: [
             true,  true,  true,  true,  true,
@@ -9,11 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
             false, false, true,  false, false
         ],
         L: [
-            true,  false, false, false, false,
-            true,  false, false, false, false,
-            true,  false, false, false, false,
-            true,  false, false, false, false,
-            true,  true,  true,  true,  true
+            true,  true, true, true, true,
+            false,  false, false, false, true,
+            false,  false, false, false, true,
+            false,  false, false, false, true,
+            false,  false,  false,  false,  true
         ],
         X: [
             true,  false, false, false, true,
@@ -25,21 +25,21 @@ document.addEventListener('DOMContentLoaded', () => {
         // Añadir más patrones según sea necesario
     };
 
-    // Función para actualizar la lista de ganadores
+     // Función para actualizar la lista de ganadores
     function updateWinnersList() {
         const winnersList = document.getElementById('listagana');
         if (!winnersList) {
             console.error('Elemento listagana no encontrado');
             return;
         }
+        winnersList.innerHTML = ''; // Limpiar la lista de ganadores
 
         const winners = findWinners();
         console.log('Ganadores encontrados:', winners); // Mensaje de depuración
 
         winners.forEach(winner => {
             const listItem = document.createElement('li');
-            listItem.textContent = `Cartón Nº ${winner.boardNumber} - ${winner.playerName}`;
-            listItem.dataset.boardNumber = winner.boardNumber;
+            listItem.textContent = Cartón Nº ${winner.boardNumber} - ${winner.playerName};
             winnersList.appendChild(listItem);
         });
     }
@@ -47,10 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para encontrar los ganadores
     function findWinners() {
         const winners = [];
-        const allBoards = JSON.parse(localStorage.getItem('bingoBoardsState')) || {};
-        Object.entries(allBoards).forEach(([boardNumber, board]) => {
+        document.querySelectorAll('.bingoBoard').forEach(board => {
+            const boardNumber = board.dataset.boardNumber;
+            const playerNameElement = board.querySelector('.playerName');
+            const playerName = playerNameElement ? playerNameElement.textContent : 'Sin nombre';
             if (checkIfBoardWins(board)) {
-                winners.push({ boardNumber, playerName: board.playerName });
+                winners.push({ boardNumber, playerName });
             }
         });
         return winners;
@@ -58,26 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para verificar si un cartón ha ganado
     function checkIfBoardWins(board) {
-        if (!board.cells || !Array.isArray(board.cells)) {
-            console.error(`Cartón Nº ${board.boardNumber} no tiene una estructura de celdas válida.`);
-            return false;
-        }
-
+        const cells = Array.from(board.querySelectorAll('.bingoCell'));
         return Object.values(patterns).some(pattern => {
-            return pattern.every((required, index) => !required || (board.cells[index] && board.cells[index].marked));
+            return pattern.every((required, index) => !required || cells[index].classList.contains('marked'));
         });
     }
 
     // Exponer la función updateWinnersList globalmente
     window.updateWinnersList = updateWinnersList;
-
-    // Llamar a updateWinnersList inmediatamente después de cargar la página
-    updateWinnersList();
-
-    // Agregar un listener para el evento 'storage' para actualizar la lista cuando cambie el localStorage
-    window.addEventListener('storage', (event) => {
-        if (event.key === 'bingoBoardsState') {
-            updateWinnersList();
-        }
-    });
 });
