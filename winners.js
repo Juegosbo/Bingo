@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Definición de los patrones de las figuras utilizando matrices de true/false
+    // Definición de los patrones de las figuras (sin cambios)
     const patterns = {
         T: [
             true,  true,  true,  true,  true,
@@ -9,11 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
             false, false, true,  false, false
         ],
         L: [
-            true,  true, true, true, true,
-            false,  false, false, false, true,
-            false,  false, false, false, true,
-            false,  false, false, false, true,
-            false,  false,  false,  false,  true
+            true,  false, false, false, false,
+            true,  false, false, false, false,
+            true,  false, false, false, false,
+            true,  false, false, false, false,
+            true,  true,  true,  true,  true
         ],
         X: [
             true,  false, false, false, true,
@@ -22,18 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
             false, true,  false, true,  false,
             true,  false, false, false, true
         ]
-        // Añadir más patrones según sea necesario
     };
 
-    
-      // Función para actualizar la lista de ganadores
+    // Función para actualizar la lista de ganadores
     function updateWinnersList() {
         const winnersList = document.getElementById('listagana');
         if (!winnersList) {
             console.error('Elemento listagana no encontrado');
             return;
         }
-        
+
         const winners = findWinners();
         console.log('Ganadores encontrados:', winners); // Mensaje de depuración
 
@@ -59,8 +57,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para verificar si un cartón ha ganado
     function checkIfBoardWins(board) {
+        if (!board.cells || !Array.isArray(board.cells)) {
+            console.error(`Cartón Nº ${board.boardNumber} no tiene una estructura de celdas válida.`);
+            return false;
+        }
+
         return Object.values(patterns).some(pattern => {
-            return pattern.every((required, index) => !required || board.cells[index].marked);
+            return pattern.every((required, index) => !required || (board.cells[index] && board.cells[index].marked));
         });
     }
 
