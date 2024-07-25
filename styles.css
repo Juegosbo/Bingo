@@ -28,20 +28,6 @@ body {
     transform: scale(1.05);
 }
 
-#showWinners {
-    background-color: #ff5733;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-#showWinners:hover {
-    background-color: #c70039;
-    transform: scale(1.05);
-}
-
 .modal {
     display: none;
     position: fixed;
@@ -73,6 +59,9 @@ body {
     width: 30px;
     height: 30px;
     cursor: pointer;
+}
+.hidden {
+    display: none;
 }
 
 #figureImageContainer {
@@ -345,9 +334,7 @@ h1 img {
     display: none;
 }
 
-.hidden {
-    display: none;
-}
+
 
 
 #figurePreviewContainer .bingoCell.figure-marked {
