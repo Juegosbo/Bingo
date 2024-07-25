@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+/* document.addEventListener('DOMContentLoaded', () => { 
     // Definición de los patrones de las figuras utilizando matrices de true/false
     const patterns = {
         T: [
@@ -78,5 +78,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Llamar a updateWinnersList inmediatamente después de cargar la página
     updateWinnersList();
-});
+});  */
 
