@@ -24,57 +24,53 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
         // Añadir más patrones según sea necesario
     };
- // Función para actualizar la lista de ganadores
-    function updateWinnersList() {
+ function updateWinnersList() {
         const winnersList = document.getElementById('listagana');
         if (!winnersList) {
             console.error('Elemento listagana no encontrado');
             return;
         }
 
-        const existingWinners = new Set();
-        winnersList.querySelectorAll('li').forEach(item => {
-            existingWinners.add(item.dataset.boardNumber);
-        });
-
         const winners = findWinners();
-        console.log('Ganadores encontrados:', winners); // Mensaje de depuración
+        console.log('Ganadores encontrados:', winners);
 
         winners.forEach(winner => {
-            if (!existingWinners.has(winner.boardNumber)) {
-                const listItem = document.createElement('li');
-                listItem.textContent = `Cartón Nº ${winner.boardNumber} - ${winner.playerName}`;
-                listItem.dataset.boardNumber = winner.boardNumber;
+            const listItem = document.createElement('li');
+            listItem.textContent = `Cartón Nº ${winner.boardNumber} - ${winner.playerName}`;
+            listItem.dataset.boardNumber = winner.boardNumber;
+            if (!winnersList.querySelector(`[data-board-number="${winner.boardNumber}"]`)) {
                 winnersList.appendChild(listItem);
             }
         });
     }
 
-    // Función para encontrar los ganadores
     function findWinners() {
         const winners = [];
-        document.querySelectorAll('.bingoBoard').forEach(board => {
-            const boardNumber = board.dataset.boardNumber;
-            const playerNameElement = board.querySelector('.playerName');
-            const playerName = playerNameElement ? playerNameElement.textContent : 'Sin nombre';
-            if (checkIfBoardWins(board)) {
+        const allBoards = JSON.parse(localStorage.getItem('bingoBoardsState')) || {};
+        const maxBoardNumber = parseInt(document.getElementById('maxBoardNumber').value, 10) || 10000;
+
+        Object.entries(allBoards).forEach(([boardNumber, boardData]) => {
+            const playerName = boardData.playerName || 'Sin nombre';
+            if (parseInt(boardNumber, 10) <= maxBoardNumber && checkIfBoardWins(boardData)) {
                 winners.push({ boardNumber, playerName });
             }
         });
         return winners;
     }
 
-    // Función para verificar si un cartón ha ganado
-    function checkIfBoardWins(board) {
-        const cells = Array.from(board.querySelectorAll('.bingoCell'));
+    function checkIfBoardWins(boardData) {
+        const cells = boardData.cells;
+        if (!cells || cells.length !== 25) {
+            console.error(`Cartón Nº ${boardData.boardNumber} no tiene una estructura de celdas válida.`);
+            return false;
+        }
         return Object.values(patterns).some(pattern => {
-            return pattern.every((required, index) => !required || cells[index].classList.contains('marked'));
+            return pattern.every((required, index) => !required || cells[index].marked);
         });
     }
 
-    // Exponer la función updateWinnersList globalmente
     window.updateWinnersList = updateWinnersList;
-
-    // Llamar a updateWinnersList inmediatamente después de cargar la página
     updateWinnersList();
+
+    document.getElementById('maxBoardNumber').addEventListener('input', updateWinnersList);
 });
