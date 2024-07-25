@@ -25,9 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Añadir más patrones según sea necesario
     };
 
-        const maxBoardNumber = 2000; // Número máximo de cartones a considerar
-
-    // Función para actualizar la lista de ganadores
+     // Función para actualizar la lista de ganadores
     function updateWinnersList() {
         const winnersList = document.getElementById('listagana');
         if (!winnersList) {
@@ -56,27 +54,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para encontrar los ganadores
     function findWinners() {
         const winners = [];
-        for (let i = 1; i <= maxBoardNumber; i++) {
-            const board = getBoardData(i);
-            if (board && checkIfBoardWins(board)) {
-                winners.push({ boardNumber: i, playerName: board.playerName || 'Sin nombre' });
+        document.querySelectorAll('.bingoBoard').forEach(board => {
+            const boardNumber = board.dataset.boardNumber;
+            const playerNameElement = board.querySelector('.playerName');
+            const playerName = playerNameElement ? playerNameElement.textContent : 'Sin nombre';
+            if (checkIfBoardWins(board)) {
+                winners.push({ boardNumber, playerName });
             }
-        }
+        });
         return winners;
-    }
-
-    // Función para obtener datos de un cartón específico
-    function getBoardData(boardNumber) {
-        const boardState = JSON.parse(localStorage.getItem(`bingoBoard-${boardNumber}`)) || { cells: Array(25).fill(false) };
-        const playerName = localStorage.getItem(`playerName-${boardNumber}`);
-        return { ...boardState, playerName };
     }
 
     // Función para verificar si un cartón ha ganado
     function checkIfBoardWins(board) {
-        const cells = board.cells;
+        const cells = Array.from(board.querySelectorAll('.bingoCell'));
         return Object.values(patterns).some(pattern => {
-            return pattern.every((required, index) => !required || cells[index]);
+            return pattern.every((required, index) => !required || cells[index].classList.contains('marked'));
         });
     }
 
@@ -86,3 +79,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Llamar a updateWinnersList inmediatamente después de cargar la página
     updateWinnersList();
 });
+
