@@ -1,4 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Definición de los patrones de las figuras utilizando matrices de true/false
+    const patterns = {
+        T: [
+            true,  true,  true,  true,  true,
+            false, false, true,  false, false,
+            false, false, true,  false, false,
+            false, false, true,  false, false,
+            false, false, true,  false, false
+        ],
+        L: [
+            true,  false, false, false, false,
+            true,  false, false, false, false,
+            true,  false, false, false, false,
+            true,  false, false, false, false,
+            true,  true,  true,  true,  true
+        ],
+        X: [
+            true,  false, false, false, true,
+            false, true,  false, true,  false,
+            false, false, true,  false, false,
+            false, true,  false, true,  false,
+            true,  false, false, false, true
+        ]
+        // Añadir más patrones según sea necesario
+    };
+
+    // Función para actualizar la lista de ganadores
     function updateWinnersList() {
         const winnersList = document.getElementById('listagana');
         if (!winnersList) {
@@ -17,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Función para encontrar los ganadores
     function findWinners() {
         const winners = [];
         document.querySelectorAll('.bingoBoard').forEach(board => {
@@ -30,30 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return winners;
     }
 
+    // Función para verificar si un cartón ha ganado
     function checkIfBoardWins(board) {
-        const cells = board.querySelectorAll('.bingoCell');
-        return checkFigureT(cells) || checkFigureL(cells) || checkFigureX(cells); // Añadir más figuras según sea necesario
-    }
-
-    function checkFigureT(cells) {
-        const tPattern = [0, 1, 2, 3, 4, 7, 12, 17];
-        const result = tPattern.every(index => cells[index].classList.contains('marked'));
-        console.log('Figura T:', result); // Mensaje de depuración
-        return result;
-    }
-
-    function checkFigureL(cells) {
-        const lPattern = [0, 5, 10, 15, 20, 21, 22, 23, 24];
-        const result = lPattern.every(index => cells[index].classList.contains('marked'));
-        console.log('Figura L:', result); // Mensaje de depuración
-        return result;
-    }
-
-    function checkFigureX(cells) {
-        const xPattern = [0, 4, 6, 8, 12, 16, 18, 20, 24];
-        const result = xPattern.every(index => cells[index].classList.contains('marked'));
-        console.log('Figura X:', result); // Mensaje de depuración
-        return result;
+        const cells = Array.from(board.querySelectorAll('.bingoCell'));
+        return Object.values(patterns).some(pattern => {
+            return pattern.every((required, index) => !required || cells[index].classList.contains('marked'));
+        });
     }
 
     // Exponer la función updateWinnersList globalmente
