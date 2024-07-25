@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Función para actualizar la lista de ganadores
-    function updateWinnersList() {
+      function updateWinnersList() {
         const winnersList = document.getElementById('listagana');
         if (!winnersList) {
             console.error('Elemento listagana no encontrado');
@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Función para encontrar los ganadores
     function findWinners() {
         const winners = [];
         const allBoards = JSON.parse(localStorage.getItem('bingoBoardsState')) || {};
@@ -57,14 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return winners;
     }
 
-    // Función para verificar si un cartón ha ganado
     function checkIfBoardWins(board) {
-        const cells = board.cells || [];
         return Object.values(patterns).some(pattern => {
-            return pattern.every((required, index) => !required || cells[index].marked);
+            return pattern.every((required, index) => !required || board.cells[index].marked);
         });
     }
 
-    // Exponer la función updateWinnersList globalmente
     window.updateWinnersList = updateWinnersList;
 });
