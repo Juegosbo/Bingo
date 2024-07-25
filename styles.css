@@ -16,28 +16,32 @@ body {
 
 #winnerListSection {
     margin-top: 20px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
+    text-align: center;
 }
 
 #winnerListSection h2 {
-    text-align: center;
-    color: #ff5733;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #007bff;
 }
 
 #winnerListSection ul {
     list-style-type: none;
     padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
 }
 
 #winnerListSection ul li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    width: 150px;
     text-align: center;
 }
 
