@@ -24,7 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
         // Añadir más patrones según sea necesario
     };
- // Función para actualizar la lista de ganadores
+
+    
+    const maxBoardNumber = 2000; // Número máximo de cartones a considerar
+
+    // Función para actualizar la lista de ganadores
     function updateWinnersList() {
         const winnersList = document.getElementById('listagana');
         if (!winnersList) {
@@ -54,11 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function findWinners() {
         const winners = [];
         document.querySelectorAll('.bingoBoard').forEach(board => {
-            const boardNumber = board.dataset.boardNumber;
-            const playerNameElement = board.querySelector('.playerName');
-            const playerName = playerNameElement ? playerNameElement.textContent : 'Sin nombre';
-            if (checkIfBoardWins(board)) {
-                winners.push({ boardNumber, playerName });
+            const boardNumber = parseInt(board.dataset.boardNumber);
+            if (boardNumber <= maxBoardNumber) {
+                const playerNameElement = board.querySelector('.playerName');
+                const playerName = playerNameElement ? playerNameElement.textContent : 'Sin nombre';
+                if (checkIfBoardWins(board)) {
+                    winners.push({ boardNumber, playerName });
+                }
             }
         });
         return winners;
