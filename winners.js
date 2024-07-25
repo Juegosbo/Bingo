@@ -25,16 +25,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // Añadir más patrones según sea necesario
     };
 
-     // Función para actualizar la lista de ganadores
+    
+      // Función para actualizar la lista de ganadores
     function updateWinnersList() {
         const winnersList = document.getElementById('listagana');
         if (!winnersList) {
             console.error('Elemento listagana no encontrado');
             return;
         }
-        winnersList.innerHTML = ''; // Limpiar la lista antes de actualizarla
+        
         const winners = findWinners();
         console.log('Ganadores encontrados:', winners); // Mensaje de depuración
+
         winners.forEach(winner => {
             const listItem = document.createElement('li');
             listItem.textContent = `Cartón Nº ${winner.boardNumber} - ${winner.playerName}`;
