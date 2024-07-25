@@ -14,6 +14,19 @@ body {
     background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
 
+#bingogano {
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#bingogano:hover {
+    background-color: #c70039;
+    transform: scale(1.05);
+}
 
 #showWinners {
     background-color: #ff5733;
