@@ -5,33 +5,95 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Definimos las figuras posibles
     const figures = {
-        'X': [
-            true, false, false, false, true,
-            false, true, false, true, false,
-            false, false, true, false, false,
-            false, true, false, true, false,
-            true, false, false, false, true
+        'T': [
+            true, false, false,  false, false,
+            true, false, false,  false, false,
+            true,  true,  true,  true,  true,
+            true, false, false,  false, false,
+            true, false, false,  false, false
         ],
         'L': [
-            true, false, false, false, false,
-            true, false, false, false, false,
-            true, false, false, false, false,
-            true, false, false, false, false,
-            true, true, true, true, true
+            true, true, true,  true, true,
+            false, false, false,  false, true,
+            false,  false,  false,  false,  true,
+            false, false, false,  false, true,
+            false, false, false,  false, true
         ],
+
+         'P': [
+            true, true, true,  true, true,
+            true, false, true,  false, false,
+            true,  false,  true,  false,  false,
+            true, false, true,  false, false,
+            true, true, true,  false, false
+        ],
+         'I': [
+            true, false, false,  false, true,
+            true, false, false,  false, true,
+            true,  true,  true,  true,  true,
+            true, false, false,  false, true,
+            true, false, false,  false, true
+        ],
+
+        'S': [
+            true, true, true,  false, true,
+            true, false, true,  false, true,
+            true,  false,  true,  false,  true,
+            true, false, true,  false, true,
+            true, false, true,  true, true
+        ],
+
+        'Z': [
+           true, false, false,  false, true,
+           true, false, false,  true, true,
+           true,  false,  true,  false,  true,
+           true, true, false,  false, true,
+           true, false, false,  false, true
+        ],
+
+        'AJEDREZ': [
+            true,  false, true,  false, true,
+            false, true,  false, true,  false,
+            true,  false, true,  false, true,
+            false, true,  false, true,  false,
+            true,  false, true,  false, true
+        ],
+        'X': [
+            true,  false, false, false, true,
+            false, true,  false, true,  false,
+            false, false, false,  false, false,
+            false, true,  false, true,  false,
+            true,  false, false, false, true
+        ],
+
+        
         '2linea': [
-            true, true, true, true, true,
-            true, true, true, true, true,
-            false, false, false, false, false,
-            false, false, false, false, false,
-            false, false, false, false, false
+            true, true, false, false, false,
+            true, true, false, false, false,
+            true, true, false, false, false,
+            true, true, false, false, false,
+            true, true, false, false, false
         ],
-        '4esquinas': [
+        'LINEA': [
+            true, true, false, false, false,
+            true, true, false, false, false,
+            true, true, false, false, false,
+            true, true, false, false, false,
+            true, true, false, false, false
+        ],
+        '4ESQUINAS': [
             true, false, false, false, true,
             false, false, false, false, false,
             false, false, false, false, false,
             false, false, false, false, false,
             true, false, false, false, true
+        ],
+         'COMODIN': [
+            false, false, false, false, false,
+            false, true, true, true, false,
+            false, true, false, true, false,
+            false, true, true, true, false,
+            false, false, false, false, false
         ],
 
         // Añadir otras figuras aquí
