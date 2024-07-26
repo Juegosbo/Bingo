@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const winnersList = document.getElementById('winnersList');
-    const figuresList = document.getElementById('figuresList');
     const totalBoards = 2000;
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
-    let availableFigures = Object.keys(figures);
 
     // Definimos las figuras posibles
     const figures = {
@@ -102,35 +100,19 @@ document.addEventListener('DOMContentLoaded', () => {
         'bingoloco': new Array(25).fill(true) // Definición de la figura "bingoloco"
     };
 
-    // Cargar nombres de jugadores
+     // Cargar nombres de jugadores
     let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
 
-    // Generar lista de figuras disponibles
-    availableFigures.forEach(figureName => {
-        const listItem = document.createElement('li');
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.checked = true;
-        checkbox.id = `figure-${figureName}`;
-        checkbox.classList.add('figure-checkbox');
-
-        const label = document.createElement('label');
-        label.htmlFor = `figure-${figureName}`;
-        label.textContent = figureName;
-
-        listItem.appendChild(checkbox);
-        listItem.appendChild(label);
-        figuresList.appendChild(listItem);
-    });
+    // Lista de figuras ya ganadas
+    let wonFigures = [];
 
     function checkForWinners() {
-        winnersList.innerHTML = '';
         for (let i = 1; i <= totalBoards; i++) {
             const boardNumbers = generateBoardNumbers(i);
             for (const [figureName, figurePattern] of Object.entries(figures)) {
-                if (isWinningBoard(boardNumbers, figurePattern) && document.getElementById(`figure-${figureName}`).checked) {
+                if (!wonFigures.includes(figureName) && isWinningBoard(boardNumbers, figurePattern)) {
                     addWinnerToList(i, figureName);
-                    document.getElementById(`figure-${figureName}`).checked = false; // Desmarcar figura ganada
+                    wonFigures.push(figureName); // Marcar la figura como ganada
                 }
             }
         }
@@ -204,7 +186,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function saveState() {
         localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
+        localStorage.setItem('wonFigures', JSON.stringify(wonFigures));
     }
+
+    function loadState() {
+        generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
+        wonFigures = JSON.parse(localStorage.getItem('wonFigures')) || [];
+    }
+
+    loadState();
+    updateMasterBoard();
+    checkForWinners();
 
     document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
         cell.addEventListener('click', () => {
@@ -212,7 +204,4 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleMarkNumber(number);
         });
     });
-
-    updateMasterBoard();
-    checkForWinners();
 });
