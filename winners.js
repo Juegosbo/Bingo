@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function generateBoardNumbers(boardNumber) {
-        // Genera los números del cartón según el número del cartón
         const boardNumbers = [];
         for (let col = 0; col < 5; col++) {
             const start = col * 15 + 1;
@@ -76,5 +75,40 @@ document.addEventListener('DOMContentLoaded', () => {
         return x - Math.floor(x);
     }
 
+    function toggleMarkNumber(number) {
+        const index = generatedNumbers.indexOf(number);
+        if (index > -1) {
+            generatedNumbers.splice(index, 1);
+        } else {
+            generatedNumbers.push(number);
+        }
+        saveState();
+        updateMasterBoard();
+        checkForWinners(); // Verificar ganadores después de marcar un número
+    }
+
+    function updateMasterBoard() {
+        document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
+            const number = parseInt(cell.dataset.number);
+            if (generatedNumbers.includes(number)) {
+                cell.classList.add('master-marked');
+            } else {
+                cell.classList.remove('master-marked');
+            }
+        });
+    }
+
+    function saveState() {
+        localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
+    }
+
+    document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
+        cell.addEventListener('click', () => {
+            const number = parseInt(cell.dataset.number);
+            toggleMarkNumber(number);
+        });
+    });
+
+    updateMasterBoard();
     checkForWinners();
 });
