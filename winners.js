@@ -19,6 +19,21 @@ document.addEventListener('DOMContentLoaded', () => {
             true, false, false, false, false,
             true, true, true, true, true
         ],
+        '2linea': [
+            true, true, true, true, true,
+            true, true, true, true, true,
+            false, false, false, false, false,
+            false, false, false, false, false,
+            false, false, false, false, false
+        ],
+        '4esquinas': [
+            true, false, false, false, true,
+            false, false, false, false, false,
+            false, false, false, false, false,
+            false, false, false, false, false,
+            true, false, false, false, true
+        ],
+
         // Añadir otras figuras aquí
     };
 
