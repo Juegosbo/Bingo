@@ -294,27 +294,18 @@ document.addEventListener('DOMContentLoaded', () => {
         return columnDiv;
     }
 
-  function clearMarks() {
-    // Limpiar todas las marcas de los cartones de bingo
-    document.querySelectorAll('.bingoBoard:not(#masterBoardContainer) .bingoCell').forEach(cell => {
-        cell.classList.remove('marked', 'figure-marked');
-    });
+ function clearMarks() {
+        document.querySelectorAll('.bingoBoard:not(#masterBoardContainer) .bingoCell').forEach(cell => {
+            cell.classList.remove('marked', 'figure-marked');
+        });
 
-    // Limpiar todas las marcas del cartón maestro
-    document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
-        cell.classList.remove('master-marked');
-    });
+        document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
+            cell.classList.remove('master-marked');
+        });
 
-    // Limpiar los números generados y las figuras ganadas
-    generatedNumbers = [];
-    wonFigures = [];
-    
-    // Limpiar la lista de ganadores
-    winnersList.innerHTML = '';
-
-    // Guardar el estado actualizado
-    saveState();
-}
+        generatedNumbers = [];
+        saveState();
+    }
 
     function saveState() {
     localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
