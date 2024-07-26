@@ -130,12 +130,16 @@ document.addEventListener('DOMContentLoaded', () => {
         return figurePattern.every((marked, index) => !marked || generatedNumbers.includes(boardNumbers[index]));
     }
 
-    function addWinnerToList(boardNumber, figureName) {
+   function addWinnerToList(boardNumber, figureName) {
     const playerName = playerNames[boardNumber] || 'Sin nombre';
     const listItem = document.createElement('li');
-    listItem.classList.add('winner-item', figureName.toLowerCase()); // Añadir clase específica
+    listItem.classList.add('winner-item', figureName.toLowerCase().replace(/\s+/g, '')); // Añadir clase específica sin espacios
     listItem.textContent = `Cartón Nº ${boardNumber} (${playerName}) - Figura: ${figureName}`;
     winnersList.appendChild(listItem);
+
+    // Añadir animación de entrada
+    listItem.classList.add('animated');
+    setTimeout(() => listItem.classList.remove('animated'), 1000); // Remover la clase de animación después de 1 segundo
 }
     function getSeededRandomNumbers(min, max, count, seed) {
         const numbers = [];
