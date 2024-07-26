@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
 
         // Añadir otras figuras aquí
+        'bingoloco': new Array(25).fill(true) // Definición de la figura "bingoloco"
     };
 
     // Cargar nombres de jugadores
@@ -125,8 +126,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return boardNumbers;
     }
 
-    function isWinningBoard(boardNumbers, figurePattern) {
-        return figurePattern.every((marked, index) => !marked || generatedNumbers.includes(boardNumbers[index]));
+     function isWinningBoard(boardNumbers, figurePattern, figureName) {
+        if (figureName === 'bingoloco') {
+            // Contar cuántos números del cartón están marcados
+            const markedCount = boardNumbers.filter(number => generatedNumbers.includes(number)).length;
+            return markedCount >= 10;
+        } else {
+            return figurePattern.every((marked, index) => !marked || generatedNumbers.includes(boardNumbers[index]));
+        }
     }
 
     function addWinnerToList(boardNumber, figureName) {
