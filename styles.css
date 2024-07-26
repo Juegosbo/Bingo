@@ -13,6 +13,62 @@ body {
     background-position: center; /* Centra la imagen de fondo */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
+.winner-item {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+}
+
+.winner-item.t {
+    background-color: #1f77b4; /* Azul */
+}
+
+.winner-item.l {
+    background-color: #ff7f0e; /* Naranja */
+}
+
+.winner-item.p {
+    background-color: #2ca02c; /* Verde */
+}
+
+.winner-item.i {
+    background-color: #d62728; /* Rojo */
+}
+
+.winner-item.s {
+    background-color: #9467bd; /* Púrpura */
+}
+
+.winner-item.z {
+    background-color: #8c564b; /* Marrón */
+}
+
+.winner-item.ajedrez {
+    background-color: #e377c2; /* Rosa */
+}
+
+.winner-item.x {
+    background-color: #7f7f7f; /* Gris */
+}
+
+.winner-item.2linea {
+    background-color: #bcbd22; /* Amarillo */
+}
+
+.winner-item.linea {
+    background-color: #17becf; /* Cian */
+}
+
+.winner-item.4esquinas {
+    background-color: #1f77b4; /* Azul claro */
+}
+
+.winner-item.comodin {
+    background-color: #ff7f0e; /* Naranja oscuro */
+}
+
 #winnersSection {
     background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad */
     border: 2px solid #2AB366; /* Borde verde */
