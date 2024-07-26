@@ -75,11 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
             true, true, false, false, false
         ],
         'LINEA': [
-            true, true, false, false, false,
-            true, true, false, false, false,
-            true, true, false, false, false,
-            true, true, false, false, false,
-            true, true, false, false, false
+            true, false, false, false, false,
+            true, false, false, false, false,
+            true, false, false, false, false,
+            true, false, false, false, false,
+            true, false, false, false, false
         ],
         '4ESQUINAS': [
             true, false, false, false, true,
