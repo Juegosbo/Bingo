@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return columnDiv;
     }
 
-    function clearMarks() {
+  function clearMarks() {
     // Limpiar todas las marcas de los cartones de bingo
     document.querySelectorAll('.bingoBoard:not(#masterBoardContainer) .bingoCell').forEach(cell => {
         cell.classList.remove('marked', 'figure-marked');
