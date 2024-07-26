@@ -100,22 +100,29 @@ document.addEventListener('DOMContentLoaded', () => {
         'bingoloco': new Array(25).fill(true) // Definición de la figura "bingoloco"
     };
 
-     // Cargar nombres de jugadores
+    
+    // Cargar nombres de jugadores
     let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
 
     // Lista de figuras ya ganadas
     let wonFigures = [];
 
     function checkForWinners() {
+        const newWinners = [];
         for (let i = 1; i <= totalBoards; i++) {
             const boardNumbers = generateBoardNumbers(i);
             for (const [figureName, figurePattern] of Object.entries(figures)) {
                 if (!wonFigures.includes(figureName) && isWinningBoard(boardNumbers, figurePattern)) {
-                    addWinnerToList(i, figureName);
-                    wonFigures.push(figureName); // Marcar la figura como ganada
+                    newWinners.push({ boardNumber: i, figureName });
                 }
             }
         }
+
+        // Añadir los ganadores a la lista y marcar las figuras como ganadas
+        newWinners.forEach(winner => {
+            addWinnerToList(winner.boardNumber, winner.figureName);
+            wonFigures.push(winner.figureName);
+        });
     }
 
     function generateBoardNumbers(boardNumber) {
