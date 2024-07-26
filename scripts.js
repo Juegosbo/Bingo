@@ -295,19 +295,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function clearMarks() {
-        document.querySelectorAll('.bingoBoard:not(#masterBoardContainer) .bingoCell').forEach(cell => {
-            cell.classList.remove('marked', 'figure-marked');
-        });
+    // Limpiar todas las marcas de los cartones de bingo
+    document.querySelectorAll('.bingoBoard:not(#masterBoardContainer) .bingoCell').forEach(cell => {
+        cell.classList.remove('marked', 'figure-marked');
+    });
 
-        document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
-            cell.classList.remove('master-marked');
-        });
+    // Limpiar todas las marcas del cartón maestro
+    document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
+        cell.classList.remove('master-marked');
+    });
 
-         generatedNumbers = [];
-    wonFigures = []; // Añadir esta línea para reiniciar las figuras ganadas
-    winnersList.innerHTML = ''; // Añadir esta línea para limpiar la lista de ganadores
+    // Limpiar los números generados y las figuras ganadas
+    generatedNumbers = [];
+    wonFigures = [];
+    
+    // Limpiar la lista de ganadores
+    winnersList.innerHTML = '';
+
+    // Guardar el estado actualizado
     saveState();
-    }
+}
 
     function saveState() {
     localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
