@@ -182,9 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
             markFigureNumbers();
         }
         
-        console.log('Número marcado:', number); // Mensaje de depuración
-        updateWinnersList();  // Añade esta línea para actualizar la lista de ganadoresupdateWinnersList();  // Añade esta línea para actualizar la lista de ganadores
-    }
+     }
 
     function seedRandom(seed) {
         var x = Math.sin(seed) * 10000;
