@@ -19,12 +19,14 @@ body {
     border-radius: 8px; /* Bordes redondeados */
     padding: 20px; /* Espaciado interno */
     margin-top: 20px; /* Espacio superior */
-    width: 90%; /* Ancho del 90% */
-    max-width: 1200px; /* Ancho máximo */
+    width: 50%; /* Ancho del 50% */
+    max-width: 600px; /* Ancho máximo */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Sombra */
     text-align: left; /* Alineación del texto a la izquierda */
     max-height: 300px; /* Altura máxima del contenedor */
     overflow-y: auto; /* Scroll vertical si hay muchos elementos */
+    margin-left: auto; /* Centrar horizontalmente */
+    margin-right: auto; /* Centrar horizontalmente */
 }
 
 #winnersSection h2 {
