@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const winnersList = document.getElementById('winnersList');
+    const figuresList = document.getElementById('figuresList');
     const totalBoards = 2000;
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
+    let availableFigures = Object.keys(figures);
 
     // Definimos las figuras posibles
     const figures = {
@@ -103,13 +105,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cargar nombres de jugadores
     let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
 
+    // Generar lista de figuras disponibles
+    availableFigures.forEach(figureName => {
+        const listItem = document.createElement('li');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = true;
+        checkbox.id = `figure-${figureName}`;
+        checkbox.classList.add('figure-checkbox');
+
+        const label = document.createElement('label');
+        label.htmlFor = `figure-${figureName}`;
+        label.textContent = figureName;
+
+        listItem.appendChild(checkbox);
+        listItem.appendChild(label);
+        figuresList.appendChild(listItem);
+    });
+
     function checkForWinners() {
         winnersList.innerHTML = '';
         for (let i = 1; i <= totalBoards; i++) {
             const boardNumbers = generateBoardNumbers(i);
             for (const [figureName, figurePattern] of Object.entries(figures)) {
-                if (isWinningBoard(boardNumbers, figurePattern)) {
+                if (isWinningBoard(boardNumbers, figurePattern) && document.getElementById(`figure-${figureName}`).checked) {
                     addWinnerToList(i, figureName);
+                    document.getElementById(`figure-${figureName}`).checked = false; // Desmarcar figura ganada
                 }
             }
         }
@@ -130,17 +151,18 @@ document.addEventListener('DOMContentLoaded', () => {
         return figurePattern.every((marked, index) => !marked || generatedNumbers.includes(boardNumbers[index]));
     }
 
-   function addWinnerToList(boardNumber, figureName) {
-    const playerName = playerNames[boardNumber] || 'Sin nombre';
-    const listItem = document.createElement('li');
-    listItem.classList.add('winner-item', figureName.toLowerCase().replace(/\s+/g, '')); // Añadir clase específica sin espacios
-    listItem.textContent = `Cartón Nº ${boardNumber} (${playerName}) - Figura: ${figureName}`;
-    winnersList.appendChild(listItem);
+    function addWinnerToList(boardNumber, figureName) {
+        const playerName = playerNames[boardNumber] || 'Sin nombre';
+        const listItem = document.createElement('li');
+        listItem.classList.add('winner-item', figureName.toLowerCase().replace(/\s+/g, '')); // Añadir clase específica sin espacios
+        listItem.textContent = `Cartón Nº ${boardNumber} (${playerName}) - Figura: ${figureName}`;
+        winnersList.appendChild(listItem);
 
-    // Añadir animación de entrada
-    listItem.classList.add('animated');
-    setTimeout(() => listItem.classList.remove('animated'), 1000); // Remover la clase de animación después de 1 segundo
-}
+        // Añadir animación de entrada
+        listItem.classList.add('animated');
+        setTimeout(() => listItem.classList.remove('animated'), 1000); // Remover la clase de animación después de 1 segundo
+    }
+
     function getSeededRandomNumbers(min, max, count, seed) {
         const numbers = [];
         while (numbers.length < count) {
