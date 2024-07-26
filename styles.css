@@ -14,37 +14,6 @@ body {
     background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
 
-#winnerListSection {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-#winnerListSection h2 {
-    text-align: center;
-    color: #ff5733;
-}
-
-#winnerListSection ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-#winnerListSection ul li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
-}
-
-#winnerListSection ul li:last-child {
-    border-bottom: none;
-}
-
 .close {
     position: absolute;
     top: 10px;
