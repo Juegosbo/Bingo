@@ -303,8 +303,10 @@ document.addEventListener('DOMContentLoaded', () => {
             cell.classList.remove('master-marked');
         });
 
-        generatedNumbers = [];
-        saveState();
+         generatedNumbers = [];
+    wonFigures = []; // Añadir esta línea para reiniciar las figuras ganadas
+    winnersList.innerHTML = ''; // Añadir esta línea para limpiar la lista de ganadores
+    saveState();
     }
 
     function saveState() {
