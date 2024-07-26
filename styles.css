@@ -17,8 +17,34 @@ body {
     padding: 10px;
     margin: 5px 0;
     border-radius: 4px;
-    color: black;
+    color: white;
     font-weight: bold;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.winner-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+.winner-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.winner-item:hover::before {
+    opacity: 1;
 }
 
 .winner-item.t {
@@ -68,6 +94,19 @@ body {
 .winner-item.comodin {
     background-color: #ff7f0e; /* Naranja oscuro */
 }
+/* Animaciones */
+.animated {
+    animation: slideIn 1s ease-out forwards;
+}
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
 
 #winnersSection {
     background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad */
