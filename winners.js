@@ -131,12 +131,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function addWinnerToList(boardNumber, figureName) {
-        const playerName = playerNames[boardNumber] || 'Sin nombre';
-        const listItem = document.createElement('li');
-        listItem.textContent = `Cartón Nº ${boardNumber} (${playerName}) - Figura: ${figureName}`;
-        winnersList.appendChild(listItem);
-    }
-
+    const playerName = playerNames[boardNumber] || 'Sin nombre';
+    const listItem = document.createElement('li');
+    listItem.classList.add('winner-item', figureName.toLowerCase()); // Añadir clase específica
+    listItem.textContent = `Cartón Nº ${boardNumber} (${playerName}) - Figura: ${figureName}`;
+    winnersList.appendChild(listItem);
+}
     function getSeededRandomNumbers(min, max, count, seed) {
         const numbers = [];
         while (numbers.length < count) {
