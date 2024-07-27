@@ -1,12 +1,9 @@
- document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const winnersList = document.getElementById('winnersList');
-    const confirmedWinnersList = document.getElementById('confirmedWinnersList');
-    const searchBox = document.getElementById('searchBox');
-    const searchButton = document.getElementById('searchButton');
     const totalBoards = 2000;
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
 
-    // Definimos las figuras posibles
+     // Definimos las figuras posibles
     const figures = {
         'T': [
             true, false, false,  false, false,
@@ -102,8 +99,14 @@
       
     };
 
-     let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
-    let wonFigures = JSON.parse(localStorage.getItem('wonFigures')) || [];
+      // Cargar nombres de jugadores
+    let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
+
+    // Lista de figuras ya ganadas
+    let wonFigures = [];
+
+    // Lista de ganadores
+    let winners = [];
 
     function checkForWinners() {
         const newWinners = [];
@@ -116,6 +119,7 @@
             }
         }
 
+        // Añadir los ganadores a la lista y marcar las figuras como ganadas
         newWinners.forEach(winner => {
             addWinnerToList(winner.boardNumber, winner.figureName);
             wonFigures.push(winner.figureName);
@@ -139,42 +143,40 @@
 
     function addWinnerToList(boardNumber, figureName) {
         const playerName = playerNames[boardNumber] || 'Sin nombre';
-        const listItem = document.createElement('li');
-        listItem.classList.add('winner-item', figureName.toLowerCase().replace(/\s+/g, ''));
-        listItem.textContent = `Cartón Nº ${boardNumber} (${playerName}) - Figura: ${figureName}`;
-
-        const confirmButton = document.createElement('button');
-        confirmButton.textContent = 'Bien';
-        confirmButton.classList.add('confirm');
-        confirmButton.addEventListener('click', () => confirmWinner(listItem, figureName));
-
-        const removeButton = document.createElement('button');
-        removeButton.textContent = 'X';
-        removeButton.classList.add('remove');
-        removeButton.addEventListener('click', () => removeWinner(listItem, figureName));
-
-        listItem.appendChild(confirmButton);
-        listItem.appendChild(removeButton);
-        winnersList.appendChild(listItem);
-
-        listItem.classList.add('animated');
-        setTimeout(() => listItem.classList.remove('animated'), 1000);
+        const winner = {
+            boardNumber,
+            figureName,
+            playerName,
+            status: null // Puede ser 'X' o '✔'
+        };
+        winners.push(winner);
+        updateWinnersList();
     }
 
-    function confirmWinner(listItem, figureName) {
-        confirmedWinnersList.appendChild(listItem);
-        listItem.querySelectorAll('button').forEach(button => button.remove());
-        saveState();
+    function updateWinnersList() {
+        winnersList.innerHTML = '';
+        winners.forEach((winner, index) => {
+            const listItem = document.createElement('li');
+            listItem.classList.add('winner-item', winner.figureName.toLowerCase().replace(/\s+/g, ''));
+            listItem.innerHTML = `
+                Cartón Nº ${winner.boardNumber} (${winner.playerName}) - Figura: ${winner.figureName}
+                <button onclick="markWinner(${index}, 'X')">X</button>
+                <button onclick="markWinner(${index}, '✔')">✔</button>
+            `;
+            winnersList.appendChild(listItem);
+        });
     }
 
-    function removeWinner(listItem, figureName) {
-        listItem.remove();
-        const index = wonFigures.indexOf(figureName);
-        if (index > -1) {
-            wonFigures.splice(index, 1);
+    function markWinner(index, mark) {
+        winners[index].status = mark;
+        if (mark === 'X') {
+            // Reiniciar el juego para esta figura
+            const figureToReset = winners[index].figureName;
+            wonFigures = wonFigures.filter(f => f !== figureToReset);
+            winners = winners.filter((_, i) => i !== index);
         }
+        updateWinnersList();
         saveState();
-        checkForWinners();  // Vuelve a verificar los ganadores para la figura eliminada
     }
 
     function getSeededRandomNumbers(min, max, count, seed) {
@@ -202,7 +204,7 @@
         }
         saveState();
         updateMasterBoard();
-        checkForWinners();
+        checkForWinners(); // Verificar ganadores después de marcar un número
     }
 
     function updateMasterBoard() {
@@ -219,78 +221,19 @@
     function saveState() {
         localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
         localStorage.setItem('wonFigures', JSON.stringify(wonFigures));
+        localStorage.setItem('winners', JSON.stringify(winners));
     }
 
     function loadState() {
         generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
         wonFigures = JSON.parse(localStorage.getItem('wonFigures')) || [];
-    }
-
-    function filterBoards() {
-        const query = searchBox.value.trim().toLowerCase();
-        let found = false;
-
-        document.querySelectorAll('.bingoBoard').forEach(board => {
-            board.classList.remove('blurry');
-            board.classList.remove('highlighted-permanent');
-        });
-
-        for (let page = 1; page <= totalPages; page++) {
-            const startBoard = (page - 1) * boardsPerPage + 1;
-            const endBoard = Math.min(startBoard + boardsPerPage - 1, totalBoards);
-
-            for (let i = startBoard; i <= endBoard; i++) {
-                const playerName = playerNames[i] ? playerNames[i].toLowerCase() : '';
-                if (i.toString().includes(query) || playerName.includes(query)) {
-                    found = true;
-                    changePage(page);
-                    setTimeout(() => {
-                        const board = document.querySelector(`.bingoBoard[data-board-number='${i}']`);
-                        if (board) {
-                            document.querySelectorAll('.bingoBoard').forEach(b => {
-                                if (b !== board && !b.closest('#masterBoardContainer')) {
-                                    b.classList.add('blurry');
-                                }
-                            });
-                            document.getElementById('masterBoardContainer').classList.remove('blurry');
-
-                            board.classList.remove('blurry');
-                            board.scrollIntoView({ behavior: 'smooth' });
-                            board.classList.add('highlighted-permanent');
-
-                            const closeButton = document.createElement('button');
-                            closeButton.textContent = 'X';
-                            closeButton.classList.add('closeButton');
-                            closeButton.addEventListener('click', () => {
-                                board.classList.remove('highlighted-permanent');
-                                board.querySelector('.closeButton').remove();
-                                document.querySelectorAll('.bingoBoard').forEach(b => {
-                                    b.classList.remove('blurry');
-                                });
-                            });
-
-                            board.appendChild(closeButton);
-                        }
-                    }, 500);
-                    break;
-                }
-            }
-
-            if (found) {
-                break;
-            }
-        }
-
-        if (!found) {
-            alert('No se encontró el cartón.');
-        }
+        winners = JSON.parse(localStorage.getItem('winners')) || [];
     }
 
     loadState();
     updateMasterBoard();
     checkForWinners();
-
-    searchButton.addEventListener('click', filterBoards);
+    updateWinnersList();
 
     document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
         cell.addEventListener('click', () => {
@@ -298,4 +241,7 @@
             toggleMarkNumber(number);
         });
     });
+
+    // Añadir función markWinner al objeto window para que sea accesible desde los botones
+    window.markWinner = markWinner;
 });
