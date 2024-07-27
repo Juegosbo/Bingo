@@ -102,7 +102,7 @@
     };
 
     
-      let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
+   let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
     let wonFigures = JSON.parse(localStorage.getItem('wonFigures')) || [];
 
     function checkForWinners() {
@@ -145,10 +145,12 @@
 
         const confirmButton = document.createElement('button');
         confirmButton.textContent = 'Bien';
+        confirmButton.classList.add('confirm');
         confirmButton.addEventListener('click', () => confirmWinner(listItem, figureName));
 
         const removeButton = document.createElement('button');
         removeButton.textContent = 'X';
+        removeButton.classList.add('remove');
         removeButton.addEventListener('click', () => removeWinner(listItem, figureName));
 
         listItem.appendChild(confirmButton);
