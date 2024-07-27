@@ -1,4 +1,4 @@
-/* document.addEventListener('DOMContentLoaded', () => {
+ document.addEventListener('DOMContentLoaded', () => {
     const winnersList = document.getElementById('winnersList');
     const totalBoards = 2000;
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
@@ -211,4 +211,4 @@
             toggleMarkNumber(number);
         });
     });
-}); */
+});
