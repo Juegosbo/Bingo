@@ -97,8 +97,7 @@
             false, false, false, false, false
         ],
 
-        // Añadir otras figuras aquí
-        'bingoloco': new Array(25).fill(true) // Definición de la figura "bingoloco"
+      
     };
 
     
@@ -174,6 +173,7 @@
             wonFigures.splice(index, 1);
         }
         saveState();
+        checkForWinners();  // Vuelve a verificar los ganadores para la figura eliminada
     }
 
     function getSeededRandomNumbers(min, max, count, seed) {
