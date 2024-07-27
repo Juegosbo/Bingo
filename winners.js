@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchBox = document.getElementById('searchBox');
     const searchButton = document.getElementById('searchButton');
     const totalBoards = 2000;
-    let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || []
-
+    let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
+    
      // Definimos las figuras posibles
     const figures = {
         'T': [
@@ -101,7 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       
     };
-
  let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
     let wonFigures = JSON.parse(localStorage.getItem('wonFigures')) || [];
 
