@@ -19,9 +19,9 @@ body {
     background-color: green;
     color: white;
     border: none;
-    border-radius: 2px;
+    border-radius: 4px;
     cursor: pointer;
-    margin-left: 5px;
+    margin-left: 10px;
 }
 
 .winner-item button.confirm:hover {
@@ -32,9 +32,9 @@ body {
     background-color: red;
     color: white;
     border: none;
-    border-radius: 2px;
+    border-radius: 4px;
     cursor: pointer;
-    margin-left: 5px;
+    margin-left: 10px;
 }
 
 .winner-item button.remove:hover {
