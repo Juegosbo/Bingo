@@ -1,5 +1,6 @@
  document.addEventListener('DOMContentLoaded', () => {
     const winnersList = document.getElementById('winnersList');
+    const confirmedWinnersList = document.getElementById('confirmedWinnersList');
     const totalBoards = 2000;
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
 
@@ -101,11 +102,8 @@
     };
 
     
-    // Cargar nombres de jugadores
-    let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
-
-    // Lista de figuras ya ganadas
-    let wonFigures = [];
+      let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
+    let wonFigures = JSON.parse(localStorage.getItem('wonFigures')) || [];
 
     function checkForWinners() {
         const newWinners = [];
@@ -118,7 +116,6 @@
             }
         }
 
-        // Añadir los ganadores a la lista y marcar las figuras como ganadas
         newWinners.forEach(winner => {
             addWinnerToList(winner.boardNumber, winner.figureName);
             wonFigures.push(winner.figureName);
@@ -143,13 +140,38 @@
     function addWinnerToList(boardNumber, figureName) {
         const playerName = playerNames[boardNumber] || 'Sin nombre';
         const listItem = document.createElement('li');
-        listItem.classList.add('winner-item', figureName.toLowerCase().replace(/\s+/g, '')); // Añadir clase específica sin espacios
+        listItem.classList.add('winner-item', figureName.toLowerCase().replace(/\s+/g, ''));
         listItem.textContent = `Cartón Nº ${boardNumber} (${playerName}) - Figura: ${figureName}`;
+
+        const confirmButton = document.createElement('button');
+        confirmButton.textContent = 'Bien';
+        confirmButton.addEventListener('click', () => confirmWinner(listItem, figureName));
+
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'X';
+        removeButton.addEventListener('click', () => removeWinner(listItem, figureName));
+
+        listItem.appendChild(confirmButton);
+        listItem.appendChild(removeButton);
         winnersList.appendChild(listItem);
 
-        // Añadir animación de entrada
         listItem.classList.add('animated');
-        setTimeout(() => listItem.classList.remove('animated'), 1000); // Remover la clase de animación después de 1 segundo
+        setTimeout(() => listItem.classList.remove('animated'), 1000);
+    }
+
+    function confirmWinner(listItem, figureName) {
+        confirmedWinnersList.appendChild(listItem);
+        listItem.querySelectorAll('button').forEach(button => button.remove());
+        saveState();
+    }
+
+    function removeWinner(listItem, figureName) {
+        listItem.remove();
+        const index = wonFigures.indexOf(figureName);
+        if (index > -1) {
+            wonFigures.splice(index, 1);
+        }
+        saveState();
     }
 
     function getSeededRandomNumbers(min, max, count, seed) {
@@ -177,7 +199,7 @@
         }
         saveState();
         updateMasterBoard();
-        checkForWinners(); // Verificar ganadores después de marcar un número
+        checkForWinners();
     }
 
     function updateMasterBoard() {
