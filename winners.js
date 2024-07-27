@@ -1,6 +1,8 @@
  document.addEventListener('DOMContentLoaded', () => {
     const winnersList = document.getElementById('winnersList');
     const confirmedWinnersList = document.getElementById('confirmedWinnersList');
+    const searchBox = document.getElementById('searchBox');
+    const searchButton = document.getElementById('searchButton');
     const totalBoards = 2000;
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
 
@@ -100,8 +102,7 @@
       
     };
 
-    
-   let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
+     let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
     let wonFigures = JSON.parse(localStorage.getItem('wonFigures')) || [];
 
     function checkForWinners() {
@@ -225,9 +226,71 @@
         wonFigures = JSON.parse(localStorage.getItem('wonFigures')) || [];
     }
 
+    function filterBoards() {
+        const query = searchBox.value.trim().toLowerCase();
+        let found = false;
+
+        document.querySelectorAll('.bingoBoard').forEach(board => {
+            board.classList.remove('blurry');
+            board.classList.remove('highlighted-permanent');
+        });
+
+        for (let page = 1; page <= totalPages; page++) {
+            const startBoard = (page - 1) * boardsPerPage + 1;
+            const endBoard = Math.min(startBoard + boardsPerPage - 1, totalBoards);
+
+            for (let i = startBoard; i <= endBoard; i++) {
+                const playerName = playerNames[i] ? playerNames[i].toLowerCase() : '';
+                if (i.toString().includes(query) || playerName.includes(query)) {
+                    found = true;
+                    changePage(page);
+                    setTimeout(() => {
+                        const board = document.querySelector(`.bingoBoard[data-board-number='${i}']`);
+                        if (board) {
+                            document.querySelectorAll('.bingoBoard').forEach(b => {
+                                if (b !== board && !b.closest('#masterBoardContainer')) {
+                                    b.classList.add('blurry');
+                                }
+                            });
+                            document.getElementById('masterBoardContainer').classList.remove('blurry');
+
+                            board.classList.remove('blurry');
+                            board.scrollIntoView({ behavior: 'smooth' });
+                            board.classList.add('highlighted-permanent');
+
+                            const closeButton = document.createElement('button');
+                            closeButton.textContent = 'X';
+                            closeButton.classList.add('closeButton');
+                            closeButton.addEventListener('click', () => {
+                                board.classList.remove('highlighted-permanent');
+                                board.querySelector('.closeButton').remove();
+                                document.querySelectorAll('.bingoBoard').forEach(b => {
+                                    b.classList.remove('blurry');
+                                });
+                            });
+
+                            board.appendChild(closeButton);
+                        }
+                    }, 500);
+                    break;
+                }
+            }
+
+            if (found) {
+                break;
+            }
+        }
+
+        if (!found) {
+            alert('No se encontró el cartón.');
+        }
+    }
+
     loadState();
     updateMasterBoard();
     checkForWinners();
+
+    searchButton.addEventListener('click', filterBoards);
 
     document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
         cell.addEventListener('click', () => {
