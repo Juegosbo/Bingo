@@ -1,10 +1,9 @@
-document.addEventListener('DOMContentLoaded', () => {
+/* document.addEventListener('DOMContentLoaded', () => {
     const winnersList = document.getElementById('winnersList');
-    const confirmedWinnersList = document.getElementById('confirmedWinnersList');
-    const searchBox = document.getElementById('searchBox');
-    const searchButton = document.getElementById('searchButton');
     const totalBoards = 2000;
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
+
+    
 
     
      // Definimos las figuras posibles
@@ -102,8 +101,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       
     };
- let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
-    let wonFigures = JSON.parse(localStorage.getItem('wonFigures')) || [];
+ 
+    // Cargar nombres de jugadores
+    let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
+
+    // Lista de figuras ya ganadas
+    let wonFigures = [];
 
     function checkForWinners() {
         const newWinners = [];
@@ -116,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // Añadir los ganadores a la lista y marcar las figuras como ganadas
         newWinners.forEach(winner => {
             addWinnerToList(winner.boardNumber, winner.figureName);
             wonFigures.push(winner.figureName);
@@ -140,41 +144,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function addWinnerToList(boardNumber, figureName) {
         const playerName = playerNames[boardNumber] || 'Sin nombre';
         const listItem = document.createElement('li');
-        listItem.classList.add('winner-item', figureName.toLowerCase().replace(/\s+/g, ''));
+        listItem.classList.add('winner-item', figureName.toLowerCase().replace(/\s+/g, '')); // Añadir clase específica sin espacios
         listItem.textContent = `Cartón Nº ${boardNumber} (${playerName}) - Figura: ${figureName}`;
-
-        const confirmButton = document.createElement('button');
-        confirmButton.textContent = 'Bien';
-        confirmButton.classList.add('confirm');
-        confirmButton.addEventListener('click', () => confirmWinner(listItem, figureName));
-
-        const removeButton = document.createElement('button');
-        removeButton.textContent = 'X';
-        removeButton.classList.add('remove');
-        removeButton.addEventListener('click', () => removeWinner(listItem, figureName));
-
-        listItem.appendChild(confirmButton);
-        listItem.appendChild(removeButton);
         winnersList.appendChild(listItem);
 
+        // Añadir animación de entrada
         listItem.classList.add('animated');
-        setTimeout(() => listItem.classList.remove('animated'), 1000);
-    }
-
-    function confirmWinner(listItem, figureName) {
-        listItem.querySelectorAll('button').forEach(button => button.remove());
-        confirmedWinnersList.appendChild(listItem);
-        saveState();
-    }
-
-    function removeWinner(listItem, figureName) {
-        listItem.remove();
-        const index = wonFigures.indexOf(figureName);
-        if (index > -1) {
-            wonFigures.splice(index, 1);
-        }
-        saveState();
-        checkForWinners();
+        setTimeout(() => listItem.classList.remove('animated'), 1000); // Remover la clase de animación después de 1 segundo
     }
 
     function getSeededRandomNumbers(min, max, count, seed) {
@@ -202,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         saveState();
         updateMasterBoard();
-        checkForWinners();
+        checkForWinners(); // Verificar ganadores después de marcar un número
     }
 
     function updateMasterBoard() {
@@ -226,79 +202,9 @@ document.addEventListener('DOMContentLoaded', () => {
         wonFigures = JSON.parse(localStorage.getItem('wonFigures')) || [];
     }
 
-    function filterBoards() {
-        const query = searchBox.value.trim().toLowerCase();
-        let found = false;
-
-        document.querySelectorAll('.bingoBoard').forEach(board => {
-            board.classList.remove('blurry');
-            board.classList.remove('highlighted-permanent');
-        });
-
-        for (let page = 1; page <= totalPages; page++) {
-            const startBoard = (page - 1) * boardsPerPage + 1;
-            const endBoard = Math.min(startBoard + boardsPerPage - 1, totalBoards);
-
-            for (let i = startBoard; i <= endBoard; i++) {
-                const playerName = playerNames[i] ? playerNames[i].toLowerCase() : '';
-                if (i.toString().includes(query) || playerName.includes(query)) {
-                    found = true;
-                    changePage(page);
-                    setTimeout(() => {
-                        const board = document.querySelector(`.bingoBoard[data-board-number='${i}']`);
-                        if (board) {
-                            document.querySelectorAll('.bingoBoard').forEach(b => {
-                                if (b !== board && !b.closest('#masterBoardContainer')) {
-                                    b.classList.add('blurry');
-                                }
-                            });
-                            document.getElementById('masterBoardContainer').classList.remove('blurry');
-
-                            board.classList.remove('blurry');
-                            board.scrollIntoView({ behavior: 'smooth' });
-                            board.classList.add('highlighted-permanent');
-
-                            const closeButton = document.createElement('button');
-                            closeButton.textContent = 'X';
-                            closeButton.classList.add('closeButton');
-                            closeButton.addEventListener('click', () => {
-                                board.classList.remove('highlighted-permanent');
-                                board.querySelector('.closeButton').remove();
-                                document.querySelectorAll('.bingoBoard').forEach(b => {
-                                    b.classList.remove('blurry');
-                                });
-                            });
-
-                            board.appendChild(closeButton);
-                        }
-                    }, 500);
-                    break;
-                }
-            }
-
-            if (found) {
-                break;
-            }
-        }
-
-        if (!found) {
-            alert('No se encontró el cartón.');
-        }
-    }
-
-    function changePage(newPage) {
-        if (newPage < 1 || newPage > totalPages) return;
-        currentPage = newPage;
-        createBingoBoards(currentPage);
-        saveState();
-        currentPageSpan.textContent = currentPage;
-    }
-
     loadState();
     updateMasterBoard();
     checkForWinners();
-
-    searchButton.addEventListener('click', filterBoards);
 
     document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
         cell.addEventListener('click', () => {
@@ -306,4 +212,4 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleMarkNumber(number);
         });
     });
-});
+}); */
