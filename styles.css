@@ -13,6 +13,64 @@ body {
     background-position: center; /* Centra la imagen de fondo */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
+/* nuevos codigos: */
+
+.winner-item button.confirm {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.winner-item button.confirm:hover {
+    background-color: darkgreen;
+}
+
+.winner-item button.remove {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.winner-item button.remove:hover {
+    background-color: darkred;
+}
+
+#confirmedWinnersSection {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 2px solid #2AB366;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    width: 50%;
+    max-width: 600px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#confirmedWinnersSection h2 {
+    font-size: 24px;
+    color: #2AB366;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#confirmedWinnersList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/*hasta aqui*/
 .winner-item {
     padding: 10px;
     margin: 5px 0;
