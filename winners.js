@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
 
-    let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
+let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
     let wonFigures = JSON.parse(localStorage.getItem('wonFigures')) || [];
 
     function checkForWinners() {
@@ -299,7 +299,4 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleMarkNumber(number);
         });
     });
-});
-    // Añadir función markWinner al objeto window para que sea accesible desde los botones
-    window.markWinner = markWinner;
 });
