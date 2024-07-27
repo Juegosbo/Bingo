@@ -58,7 +58,7 @@ body {
 }
 
 #confirmedWinnersSection h2 {
-    font-size: 24px;
+    font-size: 12px;
     color: #2AB366;
     text-align: center;
     margin-bottom: 15px;
@@ -70,7 +70,7 @@ body {
     margin: 0;
 }
 /*hasta aqui*/
-.winner-item {
+ .winner-item {
     padding: 10px;
     margin: 5px 0;
     border-radius: 4px;
@@ -182,7 +182,7 @@ body {
 }
 
 #winnersSection h2 {
-    font-size: 24px; /* Tamaño de fuente del título */
+    font-size: 10px; /* Tamaño de fuente del título */
     color: #2AB366; /* Color del texto del título */
     text-align: center; /* Alineación del título al centro */
     margin-bottom: 15px; /* Margen inferior del título */
