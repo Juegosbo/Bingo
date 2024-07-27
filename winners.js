@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.getElementById('searchButton');
     const totalBoards = 2000;
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
+
     
      // Definimos las figuras posibles
     const figures = {
@@ -161,8 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function confirmWinner(listItem, figureName) {
-        confirmedWinnersList.appendChild(listItem);
         listItem.querySelectorAll('button').forEach(button => button.remove());
+        confirmedWinnersList.appendChild(listItem);
         saveState();
     }
 
@@ -173,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
             wonFigures.splice(index, 1);
         }
         saveState();
-        checkForWinners();  // Vuelve a verificar los ganadores para la figura eliminada
+        checkForWinners();
     }
 
     function getSeededRandomNumbers(min, max, count, seed) {
@@ -283,6 +284,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!found) {
             alert('No se encontró el cartón.');
         }
+    }
+
+    function changePage(newPage) {
+        if (newPage < 1 || newPage > totalPages) return;
+        currentPage = newPage;
+        createBingoBoards(currentPage);
+        saveState();
+        currentPageSpan.textContent = currentPage;
     }
 
     loadState();
