@@ -47,6 +47,24 @@
                 <button id="nameCards">Nombrar Cartón</button>
                 <button id="winnerButton">GANADOR</button>
             </div>
+            <div id="figureOptionsContainer">
+                <h2>Opciones de Figuras para Buscar Ganadores</h2>
+                <form id="figureOptionsForm">
+                    <label><input type="checkbox" value="T"> Letra T</label><br>
+                    <label><input type="checkbox" value="L"> Letra L</label><br>
+                    <label><input type="checkbox" value="P"> Letra P</label><br>
+                    <label><input type="checkbox" value="I"> Letra I</label><br>
+                    <label><input type="checkbox" value="S"> Letra S</label><br>
+                    <label><input type="checkbox" value="Z"> Letra Z</label><br>
+                    <label><input type="checkbox" value="AJEDREZ"> Ajedrez</label><br>
+                    <label><input type="checkbox" value="X"> Letra X</label><br>
+                    <label><input type="checkbox" value="2linea"> 2 Líneas</label><br>
+                    <label><input type="checkbox" value="LINEA"> Línea</label><br>
+                    <label><input type="checkbox" value="4ESQUINAS"> Cuatro Esquinas</label><br>
+                    <label><input type="checkbox" value="COMODIN"> Comodín</label><br>
+                    <label><input type="checkbox" value="bingoloco"> Bingo Loco</label><br>
+                </form>
+            </div>
         </section>
         <section id="bingo">
             <div id="bingoBoardsContainer"></div>
@@ -64,22 +82,20 @@
             <div id="masterBoardContainer"></div>
             <img id="smallImage" src="dolar.png" alt="Descripción de la imagen">
         </section>
-       <div id="winnerVideoContainer">
-           <video id="winnerVideo" controls>
-               <source src="ganador.mp4" type="video/mp4">
-               Tu navegador no soporta la etiqueta de video.
-           </video>
-           <button id="closeVideo">X</button>
-       </div>
-       <button id="printButton">Imprimir</button>
+        <div id="winnerVideoContainer">
+            <video id="winnerVideo" controls>
+                <source src="ganador.mp4" type="video/mp4">
+                Tu navegador no soporta la etiqueta de video.
+            </video>
+            <button id="closeVideo">X</button>
+        </div>
+        <button id="printButton">Imprimir</button>
     </div>
+    <section id="winnersSection">
+        <h2>Lista de Ganadores</h2>
+        <ul id="winnersList"></ul>
+    </section>
     <script src="scripts.js"></script>
-    
-    <!-- Añadir esto justo antes de cerrar la etiqueta </body> --> 
-  <section id="winnersSection">
-    <h2>Lista de Ganadores</h2>
-    <ul id="winnersList"></ul>
-</section>
-<script src="winners.js"></script> 
+    <script src="winners.js"></script>
 </body>
 </html>
