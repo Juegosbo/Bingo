@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const winnersList = document.getElementById('winnersList');
+    const figureOptionsForm = document.getElementById('figureOptionsForm');
     const totalBoards = 2000;
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
+
 
     // Definimos las figuras posibles
     const figures = {
@@ -102,12 +104,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
 
+    function generateFigureOptions() {
+        for (const figureName in figures) {
+            const label = document.createElement('label');
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.name = 'figures';
+            checkbox.value = figureName;
+            label.appendChild(checkbox);
+            label.appendChild(document.createTextNode(figureName));
+            figureOptionsForm.appendChild(label);
+            figureOptionsForm.appendChild(document.createElement('br'));
+        }
+    }
+
+    generateFigureOptions();
+
+    function getSelectedFigures() {
+        const checkboxes = document.querySelectorAll('#figureOptionsForm input[type="checkbox"]:checked');
+        return Array.from(checkboxes).map(checkbox => checkbox.value);
+    }
+
     function checkForWinners() {
         winnersList.innerHTML = '';
+        const selectedFigures = getSelectedFigures();
         for (let i = 1; i <= totalBoards; i++) {
             const boardNumbers = generateBoardNumbers(i);
-            for (const [figureName, figurePattern] of Object.entries(figures)) {
-                if (isWinningBoard(boardNumbers, figurePattern)) {
+            for (const figureName of selectedFigures) {
+                if (isWinningBoard(boardNumbers, figures[figureName])) {
                     addWinnerToList(i, figureName);
                 }
             }
