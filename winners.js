@@ -99,30 +99,20 @@
         // Añadir otras figuras aquí
         'bingoloco': new Array(25).fill(true) // Definición de la figura "bingoloco"
     };
-
-    
     // Cargar nombres de jugadores
     let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
 
-    // Lista de figuras ya ganadas
-    let wonFigures = [];
-
     function checkForWinners() {
-        const newWinners = [];
+        winnersList.innerHTML = '';
         for (let i = 1; i <= totalBoards; i++) {
             const boardNumbers = generateBoardNumbers(i);
+            console.log(`Cartón ${i}: ${boardNumbers}`);
             for (const [figureName, figurePattern] of Object.entries(figures)) {
-                if (!wonFigures.includes(figureName) && isWinningBoard(boardNumbers, figurePattern)) {
-                    newWinners.push({ boardNumber: i, figureName });
+                if (isWinningBoard(boardNumbers, figurePattern)) {
+                    addWinnerToList(i, figureName);
                 }
             }
         }
-
-        // Añadir los ganadores a la lista y marcar las figuras como ganadas
-        newWinners.forEach(winner => {
-            addWinnerToList(winner.boardNumber, winner.figureName);
-            wonFigures.push(winner.figureName);
-        });
     }
 
     function generateBoardNumbers(boardNumber) {
@@ -133,6 +123,7 @@
             const colNumbers = getSeededRandomNumbers(start, end, 5, boardNumber * 10 + col);
             boardNumbers.push(...colNumbers);
         }
+        console.log(`Números generados para el cartón ${boardNumber}: ${boardNumbers}`);
         return boardNumbers;
     }
 
@@ -143,13 +134,9 @@
     function addWinnerToList(boardNumber, figureName) {
         const playerName = playerNames[boardNumber] || 'Sin nombre';
         const listItem = document.createElement('li');
-        listItem.classList.add('winner-item', figureName.toLowerCase().replace(/\s+/g, '')); // Añadir clase específica sin espacios
-        listItem.textContent = Cartón Nº ${boardNumber} (${playerName}) - Figura: ${figureName};
+        listItem.textContent = `Cartón Nº ${boardNumber} (${playerName}) - Figura: ${figureName}`;
+        console.log(`Añadiendo ganador: ${listItem.textContent}`);
         winnersList.appendChild(listItem);
-
-        // Añadir animación de entrada
-        listItem.classList.add('animated');
-        setTimeout(() => listItem.classList.remove('animated'), 1000); // Remover la clase de animación después de 1 segundo
     }
 
     function getSeededRandomNumbers(min, max, count, seed) {
@@ -168,47 +155,5 @@
         return x - Math.floor(x);
     }
 
-    function toggleMarkNumber(number) {
-        const index = generatedNumbers.indexOf(number);
-        if (index > -1) {
-            generatedNumbers.splice(index, 1);
-        } else {
-            generatedNumbers.push(number);
-        }
-        saveState();
-        updateMasterBoard();
-        checkForWinners(); // Verificar ganadores después de marcar un número
-    }
-
-    function updateMasterBoard() {
-        document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
-            const number = parseInt(cell.dataset.number);
-            if (generatedNumbers.includes(number)) {
-                cell.classList.add('master-marked');
-            } else {
-                cell.classList.remove('master-marked');
-            }
-        });
-    }
-
-    function saveState() {
-        localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
-        localStorage.setItem('wonFigures', JSON.stringify(wonFigures));
-    }
-
-    function loadState() {
-        generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
-        wonFigures = JSON.parse(localStorage.getItem('wonFigures')) || [];
-    }
-
-    loadState();
-    updateMasterBoard();
     checkForWinners();
-
-    document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
-        cell.addEventListener('click', () => {
-            const number = parseInt(cell.dataset.number);
-            toggleMarkNumber(number);
-        });
-    });
 });
