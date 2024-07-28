@@ -1,4 +1,4 @@
- document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const winnersList = document.getElementById('winnersList');
     const totalBoards = 2000;
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
@@ -8,7 +8,7 @@
         'T': [
             true, false, false,  false, false,
             true, false, false,  false, false,
-            true,  true,  false,  true,  true,
+            true,  true,  true,  true,  true,
             true, false, false,  false, false,
             true, false, false,  false, false
         ],
@@ -23,14 +23,14 @@
          'P': [
             true, true, true,  true, true,
             true, false, true,  false, false,
-            true,  false,  false,  false,  false,
+            true,  false,  true,  false,  false,
             true, false, true,  false, false,
             true, true, true,  false, false
         ],
          'I': [
             true, false, false,  false, true,
             true, false, false,  false, true,
-            true,  true,  false,  true,  true,
+            true,  true,  true,  true,  true,
             true, false, false,  false, true,
             true, false, false,  false, true
         ],
@@ -38,7 +38,7 @@
         'S': [
             true, true, true,  false, true,
             true, false, true,  false, true,
-            true,  false,  false,  false,  true,
+            true,  false,  true,  false,  true,
             true, false, true,  false, true,
             true, false, true,  true, true
         ],
@@ -46,7 +46,7 @@
         'Z': [
            true, false, false,  false, true,
            true, false, false,  true, true,
-           true,  false,  false,  false,  true,
+           true,  false,  true,  false,  true,
            true, true, false,  false, true,
            true, false, false,  false, true
         ],
@@ -54,7 +54,7 @@
         'AJEDREZ': [
             true,  false, true,  false, true,
             false, true,  false, true,  false,
-            true,  false, false,  false, true,
+            true,  false, true,  false, true,
             false, true,  false, true,  false,
             true,  false, true,  false, true
         ],
@@ -99,6 +99,7 @@
         // Añadir otras figuras aquí
         'bingoloco': new Array(25).fill(true) // Definición de la figura "bingoloco"
     };
+
     // Cargar nombres de jugadores
     let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
 
@@ -106,7 +107,6 @@
         winnersList.innerHTML = '';
         for (let i = 1; i <= totalBoards; i++) {
             const boardNumbers = generateBoardNumbers(i);
-            console.log(`Cartón ${i}: ${boardNumbers}`);
             for (const [figureName, figurePattern] of Object.entries(figures)) {
                 if (isWinningBoard(boardNumbers, figurePattern)) {
                     addWinnerToList(i, figureName);
@@ -123,7 +123,6 @@
             const colNumbers = getSeededRandomNumbers(start, end, 5, boardNumber * 10 + col);
             boardNumbers.push(...colNumbers);
         }
-        console.log(`Números generados para el cartón ${boardNumber}: ${boardNumbers}`);
         return boardNumbers;
     }
 
@@ -134,8 +133,7 @@
     function addWinnerToList(boardNumber, figureName) {
         const playerName = playerNames[boardNumber] || 'Sin nombre';
         const listItem = document.createElement('li');
-        listItem.textContent = `Cartón Nº ${boardNumber} (${playerName}) - Figura: ${figureName}`;
-        console.log(`Añadiendo ganador: ${listItem.textContent}`);
+        listItem.textContent = Cartón Nº ${boardNumber} (${playerName}) - Figura: ${figureName};
         winnersList.appendChild(listItem);
     }
 
@@ -155,5 +153,40 @@
         return x - Math.floor(x);
     }
 
+    function toggleMarkNumber(number) {
+        const index = generatedNumbers.indexOf(number);
+        if (index > -1) {
+            generatedNumbers.splice(index, 1);
+        } else {
+            generatedNumbers.push(number);
+        }
+        saveState();
+        updateMasterBoard();
+        checkForWinners(); // Verificar ganadores después de marcar un número
+    }
+
+    function updateMasterBoard() {
+        document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
+            const number = parseInt(cell.dataset.number);
+            if (generatedNumbers.includes(number)) {
+                cell.classList.add('master-marked');
+            } else {
+                cell.classList.remove('master-marked');
+            }
+        });
+    }
+
+    function saveState() {
+        localStorage.setItem('generatedNumbers', JSON.stringify(generatedNumbers));
+    }
+
+    document.querySelectorAll('#masterBoardContainer .bingoCell').forEach(cell => {
+        cell.addEventListener('click', () => {
+            const number = parseInt(cell.dataset.number);
+            toggleMarkNumber(number);
+        });
+    });
+
+    updateMasterBoard();
     checkForWinners();
 });
