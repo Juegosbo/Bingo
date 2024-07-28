@@ -100,8 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'bingoloco': new Array(25).fill(true) // Definición de la figura "bingoloco"
     };
 
-    // Cargar nombres de jugadores
-    let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
+  let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
 
     function checkForWinners() {
         winnersList.innerHTML = '';
@@ -133,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function addWinnerToList(boardNumber, figureName) {
         const playerName = playerNames[boardNumber] || 'Sin nombre';
         const listItem = document.createElement('li');
-        listItem.textContent = Cartón Nº ${boardNumber} (${playerName}) - Figura: ${figureName};
+        listItem.textContent = `Cartón Nº ${boardNumber} (${playerName}) - Figura: ${figureName}`;
         winnersList.appendChild(listItem);
     }
 
@@ -162,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         saveState();
         updateMasterBoard();
-        checkForWinners(); // Verificar ganadores después de marcar un número
+        checkForWinners();
     }
 
     function updateMasterBoard() {
