@@ -102,23 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'bingoloco': new Array(25).fill(true) // Definición de la figura "bingoloco"
     };
 
-  let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
-
-    function generateFigureOptions() {
-        for (const figureName in figures) {
-            const label = document.createElement('label');
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.name = 'figures';
-            checkbox.value = figureName;
-            label.appendChild(checkbox);
-            label.appendChild(document.createTextNode(figureName));
-            figureOptionsForm.appendChild(label);
-            figureOptionsForm.appendChild(document.createElement('br'));
-        }
-    }
-
-    generateFigureOptions();
+let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
 
     function getSelectedFigures() {
         const checkboxes = document.querySelectorAll('#figureOptionsForm input[type="checkbox"]:checked');
@@ -213,3 +197,5 @@ document.addEventListener('DOMContentLoaded', () => {
     updateMasterBoard();
     checkForWinners();
 });
+
+                          
