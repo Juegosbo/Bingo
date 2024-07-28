@@ -1,12 +1,9 @@
-document.addEventListener('DOMContentLoaded', () => {
+ document.addEventListener('DOMContentLoaded', () => {
     const winnersList = document.getElementById('winnersList');
     const totalBoards = 2000;
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
 
-    
-
-    
-     // Definimos las figuras posibles
+    // Definimos las figuras posibles
     const figures = {
         'T': [
             true, false, false,  false, false,
@@ -99,9 +96,11 @@ document.addEventListener('DOMContentLoaded', () => {
             false, false, false, false, false
         ],
 
-      
+        // Añadir otras figuras aquí
+        'bingoloco': new Array(25).fill(true) // Definición de la figura "bingoloco"
     };
- 
+
+    
     // Cargar nombres de jugadores
     let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
 
@@ -145,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const playerName = playerNames[boardNumber] || 'Sin nombre';
         const listItem = document.createElement('li');
         listItem.classList.add('winner-item', figureName.toLowerCase().replace(/\s+/g, '')); // Añadir clase específica sin espacios
-        listItem.textContent = `Cartón Nº ${boardNumber} (${playerName}) - Figura: ${figureName}`;
+        listItem.textContent = Cartón Nº ${boardNumber} (${playerName}) - Figura: ${figureName};
         winnersList.appendChild(listItem);
 
         // Añadir animación de entrada
