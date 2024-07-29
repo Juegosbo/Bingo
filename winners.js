@@ -53,18 +53,18 @@ document.addEventListener('DOMContentLoaded', () => {
             true,  false, true, true, true
         ],
         'letraZ': [
-           true, true, true,  true, true,
-            false, true, false,  true, true,
-            true,  false,  true,  true,  true,
-            false, false, true,  false, true,
-            false, false, false,  false, true
+           true,  false, false, false, true,
+            true, true,  false, false,  true,
+            true, false, false,  false, true,
+            true, false,  false, true,  true,
+            true,  false, false, false, true
         ],
         'Ajedrez': [
-            true,  false, true, false, true,
-            false, true,  false, true,  false,
-            true, false, true,  false, true,
-            false, true,  false, true,  false,
-            true,  false, true, false, true
+            true, false, true, false, true,
+            false, true, false, true, false,
+            true, false, true, false, true,
+            false, true, false, true, false,
+            true, false, true, false, true
         ],
         'X': [
             true,  false, false, false, true,
