@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
             false, false, false,  false, true,
             false, false, false,  false, true
         ],
-
          'P': [
             true, true, true,  true, true,
             true, false, true,  false, false,
@@ -37,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
             true, false, false,  false, true,
             true, false, false,  false, true
         ],
-
         'S': [
             true, true, true,  false, true,
             true, false, true,  false, true,
@@ -45,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
             true, false, true,  false, true,
             true, false, true,  true, true
         ],
-
         'Z': [
            true, false, false,  false, true,
            true, false, false,  true, true,
@@ -53,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
            true, true, false,  false, true,
            true, false, false,  false, true
         ],
-
         'AJEDREZ': [
             true,  false, true,  false, true,
             false, true,  false, true,  false,
@@ -68,8 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
             false, true,  false, true,  false,
             true,  false, false, false, true
         ],
-
-        
         '2linea': [
             true, true, false, false, false,
             true, true, false, false, false,
@@ -98,7 +92,13 @@ document.addEventListener('DOMContentLoaded', () => {
             false, true, true, true, false,
             false, false, false, false, false
         ],
-
+         'O': [
+            true, true, true, true, true,
+            true, false, false, false, true,
+            true, false, false, false, true,
+            true, false, false, false, true,
+            true, true, true, true, true
+        ],
         // Añadir otras figuras aquí
         
     };
