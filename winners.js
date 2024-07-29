@@ -92,18 +92,20 @@ document.addEventListener('DOMContentLoaded', () => {
             false, true, true, true, false,
             false, false, false, false, false
         ],
-         'O': [
+
+        'O': [
             true, true, true, true, true,
             true, false, false, false, true,
             true, false, false, false, true,
             true, false, false, false, true,
             true, true, true, true, true
-        ],
+        ]
+
         // Añadir otras figuras aquí
         
     };
 
-    let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
+let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
 
     function getSelectedFigures() {
         const checkboxes = document.querySelectorAll('#figureOptionsForm input[type="checkbox"]:checked');
@@ -113,11 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkForWinners() {
         winnersList.innerHTML = '';
         const selectedFigures = getSelectedFigures();
-        console.log("Selected Figures:", selectedFigures); // Depuración: Imprime las figuras seleccionadas
         for (let i = 1; i <= totalBoards; i++) {
             const boardNumbers = generateBoardNumbers(i);
             for (const figureName of selectedFigures) {
-                console.log(`Checking board ${i} for figure ${figureName}`); // Depuración: Indica qué tablero y figura se está verificando
                 if (isWinningBoard(boardNumbers, figures[figureName])) {
                     addWinnerToList(i, figureName);
                 }
@@ -137,8 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function isWinningBoard(boardNumbers, figurePattern) {
-        console.log("Board Numbers:", boardNumbers); // Depuración: Imprime los números del tablero
-        console.log("Figure Pattern:", figurePattern); // Depuración: Imprime el patrón de la figura
         return figurePattern.every((marked, index) => !marked || generatedNumbers.includes(boardNumbers[index]));
     }
 
@@ -202,4 +200,3 @@ document.addEventListener('DOMContentLoaded', () => {
     updateMasterBoard();
     checkForWinners();
 });
-                          
