@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             false, false, true,  false, true,
             false, false, false,  false, true
         ],
-        'AJEDREZ': [
+        'Ajedrez': [
             true,  false, true, false, true,
             false, true,  false, true,  false,
             true, false, true,  false, true,
