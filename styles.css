@@ -106,6 +106,26 @@ body {
     background-color: #ffdab3; /* Color de fondo al hacer clic */
 }
 
+
+/* Estilos para la barra de desplazamiento */
+#figureOptionsContainer::-webkit-scrollbar {
+    width: 4px; /* Ancho de la barra de desplazamiento reducido */
+}
+
+#figureOptionsContainer::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color de fondo de la pista */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+#figureOptionsContainer::-webkit-scrollbar-thumb {
+    background: #888; /* Color de la barra de desplazamiento */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+#figureOptionsContainer::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color de la barra de desplazamiento al pasar el mouse */
+}
+/*HASTA AQUI DEL DESPLAZAMIENTO */
 .winner-item {
     padding: 10px;
     margin: 5px 0;
