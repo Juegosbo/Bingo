@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
     };
 
-let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
+    let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
 
     function getSelectedFigures() {
         const checkboxes = document.querySelectorAll('#figureOptionsForm input[type="checkbox"]:checked');
@@ -113,9 +113,11 @@ let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
     function checkForWinners() {
         winnersList.innerHTML = '';
         const selectedFigures = getSelectedFigures();
+        console.log("Selected Figures:", selectedFigures); // Depuración: Imprime las figuras seleccionadas
         for (let i = 1; i <= totalBoards; i++) {
             const boardNumbers = generateBoardNumbers(i);
             for (const figureName of selectedFigures) {
+                console.log(`Checking board ${i} for figure ${figureName}`); // Depuración: Indica qué tablero y figura se está verificando
                 if (isWinningBoard(boardNumbers, figures[figureName])) {
                     addWinnerToList(i, figureName);
                 }
@@ -135,6 +137,8 @@ let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
     }
 
     function isWinningBoard(boardNumbers, figurePattern) {
+        console.log("Board Numbers:", boardNumbers); // Depuración: Imprime los números del tablero
+        console.log("Figure Pattern:", figurePattern); // Depuración: Imprime el patrón de la figura
         return figurePattern.every((marked, index) => !marked || generatedNumbers.includes(boardNumbers[index]));
     }
 
