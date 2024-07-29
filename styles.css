@@ -255,7 +255,7 @@ body {
     overflow-y: auto; /* Scroll vertical si hay muchos elementos */
     margin-left: auto; /* Centrar horizontalmente */
     margin-right: auto; /* Centrar horizontalmente */
-    color: #fff; /* Color de texto blanco para mejor legibilidad */
+    color: #000; /* Color de texto blanco para mejor legibilidad */
 }
 
 #winnersSection h2 {
