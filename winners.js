@@ -9,11 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Definimos las figuras posibles
     const figures = {
         'T': [
-            true, false, false,  false, false,
-            true, false, false,  false, false,
-            true,  true,  true,  true,  true,
-            true, false, false,  false, false,
-            true, false, false,  false, false
+            true, false, false, false, false,
+            true, false, false, false, false,
+            true, true, true, true, true,
+            true, false, false, false, false,
+            true, false, false, false, false
         ],
         'L': [
             true, true, true,  true, true,
