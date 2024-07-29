@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Definimos las figuras posibles
     const figures = {
-        'T': [
+        'letraT': [
             true, false, false, false, false,
             true, false, false, false, false,
             true, true, true, true, true,
@@ -31,26 +31,26 @@ document.addEventListener('DOMContentLoaded', () => {
             false, false, false,  false, true,
             false, false, false,  false, true
         ],
-         'P': [
-            true, true, true,  true, true,
-            true, false, true,  false, false,
-            true,  false,  true,  false,  false,
-            true, false, true,  false, false,
-            true, true, true,  false, false
+         'letraP': [
+            true, true, true, true, true,
+            true, false, true, false, false,
+            true, false, true, false, false,
+            true, false, true, false, false,
+            true, true, true, false, false
         ],
-         'I': [
-            true, false, false,  false, true,
-            true, false, false,  false, true,
-            true,  true,  true,  true,  true,
-            true, false, false,  false, true,
-            true, false, false,  false, true
+         'letraI': [
+            true, false, false, false, true,
+            true, false, false, false, true,
+            true, true, true, true, true,
+            true, false, false, false, true,
+            true, false, false, false, true
         ],
-        'S': [
-            true, true, true,  false, true,
-            true, false, true,  false, true,
-            true,  false,  true,  false,  true,
-            true, false, true,  false, true,
-            true, false, true,  true, true
+        'letraS': [
+            true, true, true, false, true,
+            true, false, true, false, true,
+            true, false, true, false, true,
+            true, false, true, false, true,
+            true, false, true, true, true
         ],
         'letraZ': [
            true,  false, false, false, true,
@@ -60,11 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
             true,  false, false, false, true
         ],
         'AJEDREZ': [
-            true,  false, true,  false, true,
-            false, true,  false, true,  false,
-            true,  false, true,  false, true,
-            false, true,  false, true,  false,
-            true,  false, true,  false, true
+            true, false, true, false, true,
+            false, true, false, true, false,
+            true, false, true, false, true,
+            false, true, false, true, false,
+            true, false, true, false, true
         ],
         'X': [
             true,  false, false, false, true,
