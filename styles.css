@@ -221,8 +221,28 @@ body {
 }
 
 
+/* 
 #winnersSection {
     background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad */
+ /*   border: 2px solid #2AB366; /* Borde verde */
+ /*   border-radius: 8px; /* Bordes redondeados */
+ /*   padding: 20px; /* Espaciado interno */
+ /*   margin-top: 20px; /* Espacio superior */
+/*    width: 50%; /* Ancho del 50% */
+/*    max-width: 600px; /* Ancho máximo */
+ /*   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Sombra */
+ /*   text-align: left; /* Alineación del texto a la izquierda */
+/*    max-height: 300px; /* Altura máxima del contenedor */
+/*    overflow-y: auto; /* Scroll vertical si hay muchos elementos */
+/*    margin-left: auto; /* Centrar horizontalmente */
+/*    margin-right: auto; /* Centrar horizontalmente */
+/*}
+*/
+#winnersSection {
+    background-image: url('fondomedio.jfif'); /* Reemplaza con la ruta de tu imagen */
+    background-size: cover; /* Ajusta la imagen para que cubra todo el contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
     border: 2px solid #2AB366; /* Borde verde */
     border-radius: 8px; /* Bordes redondeados */
     padding: 20px; /* Espaciado interno */
@@ -235,6 +255,7 @@ body {
     overflow-y: auto; /* Scroll vertical si hay muchos elementos */
     margin-left: auto; /* Centrar horizontalmente */
     margin-right: auto; /* Centrar horizontalmente */
+    color: #fff; /* Color de texto blanco para mejor legibilidad */
 }
 
 #winnersSection h2 {
