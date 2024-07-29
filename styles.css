@@ -70,12 +70,12 @@ body {
 }
 
 #figureOptionsContainer h2 {
-    font-size: 24px;
-    color: #FF5733;
-    text-align: center;
-    margin-bottom: 15px;
-    text-transform: uppercase; /* Texto en mayúsculas */
-    font-weight: bold; /* Negrita */
+    font-family: Arial, sans-serif;
+    font-weight: bold; /* Aplica negrita */
+    font-size: 24px; /* Ajusta el tamaño de la fuente si es necesario */
+    color: #000; /* Color negro para el texto */
+    text-align: center; /* Alineación del texto al centro */
+    margin-bottom: 15px; /* Margen inferior */
 }
 
 #figureOptionsForm label {
