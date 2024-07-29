@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
 
 
+
     // Definimos las figuras posibles
     const figures = {
         'T': [
@@ -99,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
 
         // Añadir otras figuras aquí
-        'bingoloco': new Array(25).fill(true) // Definición de la figura "bingoloco"
+        
     };
 
 let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
@@ -197,5 +198,4 @@ let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
     updateMasterBoard();
     checkForWinners();
 });
-
                           
