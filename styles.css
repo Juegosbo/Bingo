@@ -47,21 +47,22 @@ body {
 }*/
 
 #figureOptionsContainer {
-    background-color: #ffffff; /* Fondo blanco */
-    border: 2px solid #f9891f; /* Borde naranja */
-    border-radius: 12px; /* Bordes redondeados */
+    background-image: url('fondomedio.jfif'); /* Reemplaza con la ruta de tu imagen */
+    background-size: cover; /* Ajusta la imagen para que cubra todo el contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    border: 2px solid #2AB366;
+    border-radius: 8px;
     padding: 20px;
     margin-top: 20px;
     width: 50%;
     max-width: 600px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Sombra */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     text-align: left;
     max-height: 300px;
     overflow-y: auto;
     margin-left: auto;
     margin-right: auto;
-    background-image: linear-gradient(135deg, #f9891f 10%, #FF3E00 100%); /* Degradado de colores intensos hacia el naranja */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para transformaciones */
 }
 
 #figureOptionsContainer:hover {
