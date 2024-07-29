@@ -4,6 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalBoards = 2000;
     let generatedNumbers = JSON.parse(localStorage.getItem('generatedNumbers')) || [];
 
+    // Verificar si los elementos son seleccionados correctamente
+    if (!winnersList) {
+        console.error('No se encontró el elemento con id winnersList');
+    }
+
+    if (!figureOptionsForm) {
+        console.error('No se encontró el elemento con id figureOptionsForm');
+    }
+
 
 
     // Definimos las figuras posibles
@@ -119,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
     };
 
-  let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
+   let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
 
     function getSelectedFigures() {
         const checkboxes = document.querySelectorAll('#figureOptionsForm input[type="checkbox"]:checked');
