@@ -253,11 +253,11 @@ body {
     max-width: 600px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     text-align: left;
-    max-height: 300px; /* Fija la altura máxima */
+    height: 300px; /* Fija la altura */
     overflow-y: auto; /* Activa la barra de desplazamiento */
     margin-left: auto;
     margin-right: auto;
-    color: #fff;
+    color: #000;
 }
 
 #winnersSection h2 {
