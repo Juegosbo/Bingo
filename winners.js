@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
     };
 
-let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
+  let playerNames = JSON.parse(localStorage.getItem('playerNames')) || {};
 
     function getSelectedFigures() {
         const checkboxes = document.querySelectorAll('#figureOptionsForm input[type="checkbox"]:checked');
