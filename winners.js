@@ -60,11 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
             true,  false, false, false, true
         ],
         'AJEDREZ': [
-            true, false, true, false, true,
-            false, true, false, true, false,
-            true, false, true, false, true,
-            false, true, false, true, false,
-            true, false, true, false, true
+            true,  false, true, false, true,
+            false, true,  false, true,  false,
+            true, false, true,  false, true,
+            false, true,  false, true,  false,
+            true,  false, true, false, true
         ],
         'X': [
             true,  false, false, false, true,
