@@ -47,7 +47,7 @@ body {
 }*/
 
 #figureOptionsContainer {
-    background-image: url('fondomedio.jfif'); /* Reemplaza con la ruta de tu imagen */
+    background-image: url('fondo3.png'); /* Reemplaza con la ruta de tu imagen */
     background-size: cover; /* Ajusta la imagen para que cubra todo el contenedor */
     background-position: center; /* Centra la imagen */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
