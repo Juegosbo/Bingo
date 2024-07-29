@@ -248,12 +248,12 @@ body {
     border: 2px solid #2AB366;
     border-radius: 8px;
     padding: 20px;
-    margin-top: -30px; /* Ajusta según sea necesario */
+    margin-top: 50px; /* Ajusta según sea necesario */
     width: 50%;
     max-width: 600px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     text-align: left;
-    height: 300px; /* Fija la altura */
+    height: 200px; /* Fija la altura */
     overflow-y: auto; /* Activa la barra de desplazamiento */
     margin-left: auto;
     margin-right: auto;
