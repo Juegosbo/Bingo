@@ -32,11 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
             false, false, false,  false, true
         ],
          'letraP': [
-            true, true, true, true, true,
-            true, false, true, false, false,
-            true, false, true, false, false,
-            true, false, true, false, false,
-            true, true, true, false, false
+            true,  true, true, true, true,
+            true, false,  true, false,  false,
+            true, false, false,  false, false,
+            true, false,  true, false,  false,
+            true,  true, true, false, false
         ],
          'letraI': [
             true,  false, false, false, true,
@@ -46,11 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
             true,  false, false, false, true
         ],
         'letraS': [
-            true, true, true, false, true,
-            true, false, true, false, true,
-            true, false, true, false, true,
-            true, false, true, false, true,
-            true, false, true, true, true
+            true,  true, true, false, true,
+            true, false,  true, false,  true,
+            true, false, false,  false, true,
+            true, false,  true, false,  true,
+            true,  false, true, true, true
         ],
         'letraZ': [
            true,  false, false, false, true,
