@@ -52,12 +52,12 @@ document.addEventListener('DOMContentLoaded', () => {
             true, false, true,  false, true,
             true, false, true,  true, true
         ],
-        'Z': [
-           true, false, false,  false, true,
-           true, false, false,  true, true,
-           true,  false,  true,  false,  true,
-           true, true, false,  false, true,
-           true, false, false,  false, true
+        'letraZ': [
+           true,  false, false, false, true,
+            true, true,  false, false,  true,
+            true, false, false,  false, true,
+            true, false,  false, true,  true,
+            true,  false, false, false, true
         ],
         'AJEDREZ': [
             true,  false, true,  false, true,
