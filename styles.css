@@ -246,7 +246,7 @@ body {
     border: 2px solid #2AB366; /* Borde verde */
     border-radius: 8px; /* Bordes redondeados */
     padding: 20px; /* Espaciado interno */
-    margin-top: 20px; /* Espacio superior */
+    margin-top: 40px; /* Espacio superior */
     width: 50%; /* Ancho del 50% */
     max-width: 600px; /* Ancho máximo */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Sombra */
