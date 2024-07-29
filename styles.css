@@ -54,15 +54,18 @@ body {
     border: 2px solid #2AB366;
     border-radius: 8px;
     padding: 20px;
-    margin-top: 20px;
-    width: 50%;
-    max-width: 600px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     text-align: left;
     max-height: 300px;
     overflow-y: auto;
-    margin-left: auto;
-    margin-right: auto;
+
+    /* Ajustes de posición y tamaño */
+    position: fixed;
+    top: 390px; /* Ajusta según sea necesario para colocar en la posición deseada */
+    left: -25px; /* Ajusta según sea necesario para alinear correctamente */
+    width: 180px; /* Igual al ancho del contenedor de la imagen de figura */
+    max-width: 180px; /* Asegura que no supere el ancho deseado */
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
 }
 
 #figureOptionsContainer:hover {
