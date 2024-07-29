@@ -48,7 +48,7 @@ body {
 
 #figureOptionsContainer {
     background-color: #ffffff; /* Fondo blanco */
-    border: 2px solid #FF5733; /* Borde naranja */
+    border: 2px solid #f9891f; /* Borde naranja */
     border-radius: 12px; /* Bordes redondeados */
     padding: 20px;
     margin-top: 20px;
@@ -60,7 +60,7 @@ body {
     overflow-y: auto;
     margin-left: auto;
     margin-right: auto;
-    background-image: linear-gradient(135deg, #FFB566 10%, #FF7E5F 100%); /* Degradado de colores hacia el naranja */
+    background-image: linear-gradient(135deg, #f9891f 10%, #FF3E00 100%); /* Degradado de colores intensos hacia el naranja */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para transformaciones */
 }
 
