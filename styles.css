@@ -204,9 +204,9 @@ body {
     height: 300px; /* Altura fija */
     overflow-y: auto; /* Scroll vertical si hay muchos elementos */
     position: absolute; /* Posiciona el contenedor de forma absoluta */
-    top: 400px; /* Ajusta la posición vertical */
-    left: 50%; /* Centra horizontalmente */
-    transform: translateX(-50%); /* Ajusta la posición horizontal */
+    top: 500px; /* Ajusta la posición vertical para mover más abajo */
+    left: 60%; /* Ajusta la posición horizontal para mover más a la derecha */
+    transform: translateX(-50%); /* Centra horizontalmente */
     color: #000; /* Color de texto para mejor legibilidad */
     z-index: 1000; /* Asegura que esté encima de otros elementos */
 }
