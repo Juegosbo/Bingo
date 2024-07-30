@@ -122,6 +122,41 @@ document.addEventListener('DOMContentLoaded', () => {
             true, true, true,  true, true,
             true, true, true,  true, true
         ],
+        'Numero1': [
+            false, false, false,  false, false,
+            false, true, false,  false, true,
+            true,  true,  false,  true,  true,
+            false, false, false,  false, true,
+            false, false, false,  false, false
+        ],
+        'Numero2': [
+           false,  false, false, false, false,
+            true, true,  false, true,  true,
+            true, false, false,  false, true,
+            true, true,  false, false,  true,
+            false,  false, false, false, false
+        ],
+        'Numero4': [
+           false,  false, true, false, false,
+            true, true,  true, true,  true,
+            false, false, false,  false, false,
+            true, true,  true, false,  false,
+            false,  false, false, false, false
+        ],
+        'letraA': [
+           true,  true, true, true, true,
+            true, false,  true, false,  false,
+            true, false, false,  false, false,
+            true, false,  true, false,  false,
+            true,  true, true, true, true
+        ],
+        'letraE': [
+           true,  false, true, false, true,
+            true, false,  true, false,  true,
+            true, false, false,  false, true,
+            true, false,  true, false,  true,
+            true,  true, true, true, true
+        ],
 
         'O': [
             true, true, true, true, true,
