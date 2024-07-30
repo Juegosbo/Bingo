@@ -860,6 +860,69 @@ document.addEventListener('DOMContentLoaded', () => {
                 true,  false, false, false, true
             ];
             break;
+         case 'Numero2':
+            cells = [
+                false,  false, false, false, false,
+                true, false,  false, true,  true,
+                true, false, false,  false, true,
+                true, true,  false, false,  true,
+                false,  false, false, false, false
+            ];
+            break;
+         case 'Numero3':
+            cells = [
+                false,  false, false, false, false,
+                true, false,  false, false,  true,
+                true, false, false,  false, true,
+                true, true,  false, true,  true,
+                false,  false, false, false, false
+            ];
+            break;
+         case 'Numero4':
+            cells = [
+                false,  false, false, false, false,
+                true, true,  true, true,  true,
+                false, false, false,  false, false,
+                true, true,  true, false,  false,
+                false,  false, false, false, false
+            ];
+            break;
+         case 'letraA':
+            cells = [
+                true,  true, true, true, true,
+                true, false,  true, false,  false,
+                true, false, false,  false, false,
+                true, false,  true, false,  false,
+                true,  true, true, true, true
+            ];
+            break;
+         case 'letraE':
+            cells = [
+                true,  false, true, false, true,
+                true, false,  true, false,  true,
+                true, false, false,  false, true,
+                true, false,  true, false,  true,
+                true,  true, true, true, true
+            ];
+            break;
+         case 'letraU':
+            cells = [
+                true,  true, true, true, true,
+                false, false,  false, false,  true,
+                false, false, false,  false, true,
+                false, false,  false, false,  true,
+                true,  true, true, true, true
+            ];
+            break;
+         case 'cartonllenos':
+            cells = [
+                true,  true, true, true, true,
+                true, true,  true, true,  true,
+                true, true, false,  true, true,
+                true, true,  true, true,  true,
+                true,  true, true, true, true
+            ];
+            break;
             default:
                 return;
         }
