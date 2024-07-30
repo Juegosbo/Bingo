@@ -618,6 +618,88 @@ document.addEventListener('DOMContentLoaded', () => {
             ];
             figureImageSrc = 'diagonals.png'; // Cambia a la ruta de tu imagen
             break;
+
+    /* NUEVAS FIGURAS */
+                case 'Numero2':
+            cells = [
+                false,  false, false, false, false,
+                true, false,  false, true,  true,
+                true, false, false,  false, true,
+                true, true,  false, false,  true,
+                false,  false, false, false, false
+            ];
+            figureImageSrc = 'diagonals.png'; // Cambia a la ruta de tu imagen
+            break;
+         case 'Numero3':
+            cells = [
+                false,  false, false, false, false,
+                true, false,  false, false,  true,
+                true, false, false,  false, true,
+                true, true,  false, true,  true,
+                false,  false, false, false, false
+            ];
+            figureImageSrc = 'diagonals.png'; // Cambia a la ruta de tu imagen
+            break;
+         case 'Numero4':
+            cells = [
+                false,  false, false, false, false,
+                true, true,  true, true,  true,
+                false, false, false,  false, false,
+                true, true,  true, false,  false,
+                false,  false, false, false, false
+            ];
+            figureImageSrc = 'diagonals.png'; // Cambia a la ruta de tu imagen
+            break;
+         case 'letraA':
+            cells = [
+                true,  true, true, true, true,
+                true, false,  true, false,  false,
+                true, false, false,  false, false,
+                true, false,  true, false,  false,
+                true,  true, true, true, true
+            ];
+            figureImageSrc = 'diagonals.png'; // Cambia a la ruta de tu imagen
+            break;
+         case 'letraE':
+            cells = [
+                true,  false, true, false, true,
+                true, false,  true, false,  true,
+                true, false, false,  false, true,
+                true, false,  true, false,  true,
+                true,  true, true, true, true
+            ];
+            figureImageSrc = 'diagonals.png'; // Cambia a la ruta de tu imagen
+            break;
+         case 'letraU':
+            cells = [
+                true,  true, true, true, true,
+                false, false,  false, false,  true,
+                false, false, false,  false, true,
+                false, false,  false, false,  true,
+                true,  true, true, true, true
+            ];
+            figureImageSrc = 'diagonals.png'; // Cambia a la ruta de tu imagen
+            break;
+         case 'cartonllenos':
+            cells = [
+                true,  true, true, true, true,
+                true, true,  true, true,  true,
+                true, true, false,  true, true,
+                true, true,  true, true,  true,
+                true,  true, true, true, true
+            ];
+            figureImageSrc = 'diagonals.png'; // Cambia a la ruta de tu imagen
+            break;
+         case 'comodine':
+            cells = [
+                false,  false, false, false, false,
+                false, true,  true, true,  false,
+                false, true, false,  true, false,
+                false, true,  true, true,  false,
+                false,  false, false, false, false
+            ];
+            figureImageSrc = 'diagonals.png'; // Cambia a la ruta de tu imagen
+            break;
             default:
                 return;
         }
@@ -921,6 +1003,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 true, true, false,  true, true,
                 true, true,  true, true,  true,
                 true,  true, true, true, true
+            ];
+            break;
+         case 'comodine':
+            cells = [
+                false,  false, false, false, false,
+                false, true,  true, true,  false,
+                false, true, false,  true, false,
+                false, true,  true, true,  false,
+                false,  false, false, false, false
             ];
             break;
             default:
