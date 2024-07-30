@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
             true, true, true,  true, true,
             true, false, false,  false, false
         ],
-        'CartonLleno': [
+        'cartonlleno': [
             true, true, true,  true, true,
             true, true, true,  true, true,
             true,  true,  false,  true,  true,
