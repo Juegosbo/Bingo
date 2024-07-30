@@ -220,7 +220,7 @@ body {
 
 #winnersList {
     display: grid; /* Usar grid para el layout */
-    grid-template-columns: repeat(3, 1fr); /* Crear tres columnas */
+    grid-template-columns: repeat(2, 1fr); /* Crear tres columnas */
     gap: 10px; /* Espacio entre elementos */
     list-style-type: none; /* Eliminar viñetas de la lista */
     padding: 0; /* Sin relleno */
