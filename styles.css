@@ -210,6 +210,20 @@ body {
     color: #000; /* Color de texto para mejor legibilidad */
     z-index: 1000; /* Asegura que esté encima de otros elementos */
 }
+/* Estilos para la barra de desplazamiento */
+#winnersSection::-webkit-scrollbar {
+    width: 8px; /* Ancho de la barra de desplazamiento vertical */
+}
+
+#winnersSection::-webkit-scrollbar-thumb {
+    background: #2AB366; /* Color del pulgar de la barra de desplazamiento */
+    border-radius: 10px; /* Bordes redondeados para el pulgar */
+}
+
+#winnersSection::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color de la pista de la barra de desplazamiento */
+    border-radius: 10px; /* Bordes redondeados para la pista */
+}
 
 #winnersSection h2 {
     font-size: 24px; /* Tamaño de fuente del título */
