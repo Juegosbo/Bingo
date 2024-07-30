@@ -197,7 +197,7 @@ body {
     border: 2px solid #2AB366; /* Borde verde */
     border-radius: 8px; /* Bordes redondeados */
     padding: 20px; /* Espaciado interno */
-    margin-top: 10px; /* Espacio superior aumentado para bajar más abajo */
+    margin-top: -40px; /* Espacio superior aumentado para bajar más abajo */
     width: 300px; /* Ancho aumentado */
     max-width: 300px; /* Asegura que no supere el ancho deseado */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Sombra */
