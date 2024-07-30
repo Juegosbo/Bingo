@@ -643,9 +643,9 @@ document.addEventListener('DOMContentLoaded', () => {
          case 'Numero4':
             cells = [
                 false,  false, false, false, false,
-                true, true,  true, true,  true,
-                false, false, false,  false, false,
                 true, true,  true, false,  false,
+                false, false, false,  false, false,
+                true, true,  true, true,  true,
                 false,  false, false, false, false
             ];
             figureImageSrc = 'diagonals.png'; // Cambia a la ruta de tu imagen
@@ -662,11 +662,11 @@ document.addEventListener('DOMContentLoaded', () => {
             break;
          case 'letraE':
             cells = [
-                true,  false, true, false, true,
+                true,  true, true, true, true,
                 true, false,  true, false,  true,
                 true, false, false,  false, true,
                 true, false,  true, false,  true,
-                true,  true, true, true, true
+                true,  false, true, false, true
             ];
             figureImageSrc = 'diagonals.png'; // Cambia a la ruta de tu imagen
             break;
@@ -963,9 +963,9 @@ document.addEventListener('DOMContentLoaded', () => {
          case 'Numero4':
             cells = [
                 false,  false, false, false, false,
-                true, true,  true, true,  true,
-                false, false, false,  false, false,
                 true, true,  true, false,  false,
+                false, false, false,  false, false,
+                true, true,  true, true,  true,
                 false,  false, false, false, false
             ];
             break;
@@ -980,11 +980,11 @@ document.addEventListener('DOMContentLoaded', () => {
             break;
          case 'letraE':
             cells = [
-                true,  false, true, false, true,
+                true,  true, true, true, true,
                 true, false,  true, false,  true,
                 true, false, false,  false, true,
                 true, false,  true, false,  true,
-                true,  true, true, true, true
+                true,  false, true, false, true
             ];
             break;
          case 'letraU':
