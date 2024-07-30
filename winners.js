@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             true, false,  true, false,  false,
             true,  true, true, false, false
         ],
-         'letI': [
+         'letrai': [
             true,  false, false, false, true,
             true, false,  false, false,  true,
             true, true, false,  true, true,
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         false, true,  false, true,  false,
         true,  false, true,  false, true
     ],
-        'X': [
+        'letraX': [
             true,  false, false, false, true,
             false, true,  false, true,  false,
             false, false, false,  false, false,
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
             false, true, true, true, false,
             false, false, false, false, false
         ],
-        'letU': [
+        'letraU': [
             true, true, true, true, true,
             false, false, false, false, true,
             false, false, false, false, true,
@@ -150,14 +150,14 @@ document.addEventListener('DOMContentLoaded', () => {
             true, true,  true, true,  true,
             false,  false, false, false, false
         ],
-        'letA': [
+        'letraA': [
            true,  true, true, true, true,
             true, false,  true, false,  false,
             true, false, false,  false, false,
             true, false,  true, false,  false,
             true,  true, true, true, true
         ],
-        'letE': [
+        'letraE': [
             true,  true, true, true, true,
             true, false,  true, false,  true,
             true, false, false,  false, true,
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
             true,  false, true, false, true
         ],
 
-        'O': [
+        'letraO': [
             true, true, true, true, true,
             true, false, false, false, true,
             true, false, false, false, true,
