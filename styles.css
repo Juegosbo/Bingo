@@ -140,7 +140,7 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-/*
+
 .winner-item:hover {
     transform: scale(1.05);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -207,7 +207,7 @@ body {
 .winner-item.comodin {
     background-color: #ff7f0e; 
 }
-*/
+
 /* Animaciones */
 .animated {
     animation: slideIn 1s ease-out forwards;
@@ -272,20 +272,20 @@ body {
 
 
 @media (max-width: 600px) {
- /*   #winnersSection {
+   #winnersSection {
         width: 100%; /* Ancho del 100% en pantallas pequeñas */
-/*         margin-top: 10px; /* Espacio superior reducido */
-  /*   } */
+         margin-top: 10px; /* Espacio superior reducido */
+    } 
 
-/*     #winnersList {
+     #winnersList {
         grid-template-columns: repeat(1, 1fr); /* Una columna en pantallas pequeñas */
-/*     }
+   }
 
-/*     #winnersList li {
+     #winnersList li {
         font-size: 14px; /* Tamaño de fuente reducido en pantallas pequeñas */
-   /*      padding: 8px; /* Relleno reducido en pantallas pequeñas */
- /*    }
-}  */
+         padding: 8px; /* Relleno reducido en pantallas pequeñas */
+   }
+}  
 
 .close {
     position: absolute;
