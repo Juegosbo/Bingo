@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             true, false,  true, false,  false,
             true,  true, true, false, false
         ],
-         'letraI': [
+         'letI': [
             true,  false, false, false, true,
             true, false,  false, false,  true,
             true, true, false,  true, true,
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
             false, true, true, true, false,
             false, false, false, false, false
         ],
-        'U': [
+        'letU': [
             true, true, true,  true, true,
             false, false, false,  false, true,
             false,  false,  false,  false,  true,
@@ -122,35 +122,42 @@ document.addEventListener('DOMContentLoaded', () => {
             true, true, true,  true, true,
             true, true, true,  true, true
         ],
-        'Numero1': [
+        'Numerouno': [
             false, false, false,  false, false,
             false, true, false,  false, true,
             true,  true,  false,  true,  true,
             false, false, false,  false, true,
             false, false, false,  false, false
         ],
-        'Numero2': [
+        'Numerodos': [
            false,  false, false, false, false,
             true, true,  false, true,  true,
             true, false, false,  false, true,
             true, true,  false, false,  true,
             false,  false, false, false, false
         ],
-        'Numero4': [
-           false,  false, true, false, false,
-            true, true,  true, true,  true,
-            false, false, false,  false, false,
-            true, true,  true, false,  false,
+        'Numerotres': [
+           false,  false, false, false, false,
+            true, true,  false, true,  true,
+            true, false, false,  false, true,
+            true, false,  false, false,  true,
             false,  false, false, false, false
         ],
-        'letraA': [
+        'Numerocuatro': [
+           false,  false, false, false, false,
+            true, true,  true, false,  false,
+            false, false, false,  false, false,
+            true, true,  true, true,  true,
+            false,  false, false, false, false
+        ],
+        'letA': [
            true,  true, true, true, true,
             true, false,  true, false,  false,
             true, false, false,  false, false,
             true, false,  true, false,  false,
             true,  true, true, true, true
         ],
-        'letraE': [
+        'letE': [
            true,  false, true, false, true,
             true, false,  true, false,  true,
             true, false, false,  false, true,
