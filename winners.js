@@ -102,11 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
             false, false, false, false, false
         ],
         'letU': [
-            true, true, true,  true, true,
-            false, false, false,  false, true,
-            false,  false,  false,  false,  true,
-            false, false, false,  false, true,
-            true, true, true,  true, true
+            true, true, true, true, true,
+            false, false, false, false, true,
+            false, false, false, false, true,
+            false, false, false, false, true,
+            true, true, true, true, true
         ],
          'J': [
             false, false, false,  false, false,
@@ -131,9 +131,9 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         'Numerodos': [
            false,  false, false, false, false,
-            true, true,  false, true,  true,
-            true, false, false,  false, true,
             true, true,  false, false,  true,
+            true, false, false,  false, true,
+            true, false,  false, true,  true,
             false,  false, false, false, false
         ],
         'Numerotres': [
@@ -158,11 +158,11 @@ document.addEventListener('DOMContentLoaded', () => {
             true,  true, true, true, true
         ],
         'letE': [
-           true,  false, true, false, true,
+            true,  true, true, true, true,
             true, false,  true, false,  true,
             true, false, false,  false, true,
             true, false,  true, false,  true,
-            true,  true, true, true, true
+            true,  false, true, false, true
         ],
 
         'O': [
