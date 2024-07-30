@@ -140,7 +140,7 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-
+/*
 .winner-item:hover {
     transform: scale(1.05);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -161,52 +161,53 @@ body {
 }
 
 .winner-item.t {
-    background-color: #1f77b4; /* Azul */
+    background-color: #1f77b4; 
 }
 
 .winner-item.l {
-    background-color: #ff7f0e; /* Naranja */
+    background-color: #ff7f0e; 
 }
 
 .winner-item.p {
-    background-color: #2ca02c; /* Verde */
+    background-color: #2ca02c; 
 }
 
 .winner-item.i {
-    background-color: #d62728; /* Rojo */
+    background-color: #d62728; 
 }
 
 .winner-item.s {
-    background-color: #9467bd; /* Púrpura */
+    background-color: #9467bd; 
 }
 
 .winner-item.z {
-    background-color: #8c564b; /* Marrón */
+    background-color: #8c564b; 
 }
 
 .winner-item.ajedrez {
-    background-color: #e377c2; /* Rosa */
+    background-color: #e377c2; 
 }
 
 .winner-item.x {
-    background-color: #7f7f7f; /* Gris */
+    background-color: #7f7f7f; 
 }
 
 .winner-item.2linea {
-    background-color: #bcbd22; /* Amarillo */
+    background-color: #bcbd22; 
 }
 
 .winner-item.linea {
-    background-color: #17becf; /* Cian */
+    background-color: #17becf; 
 }
 
 .winner-item.4esquinas {
-    background-color: #1f77b4; /* Azul claro */
+    background-color: #1f77b4; 
 }
 
 .winner-item.comodin {
-    background-color: #ff7f0e; /* Naranja oscuro */
+    background-color: #ff7f0e; 
 }
+*/
 /* Animaciones */
 .animated {
     animation: slideIn 1s ease-out forwards;
@@ -271,20 +272,20 @@ body {
 
 
 @media (max-width: 600px) {
-    #winnersSection {
+ /*   #winnersSection {
         width: 100%; /* Ancho del 100% en pantallas pequeñas */
-        margin-top: 10px; /* Espacio superior reducido */
-    }
+/*         margin-top: 10px; /* Espacio superior reducido */
+  /*   } */
 
-    #winnersList {
+/*     #winnersList {
         grid-template-columns: repeat(1, 1fr); /* Una columna en pantallas pequeñas */
-    }
+/*     }
 
-    #winnersList li {
+/*     #winnersList li {
         font-size: 14px; /* Tamaño de fuente reducido en pantallas pequeñas */
-        padding: 8px; /* Relleno reducido en pantallas pequeñas */
-    }
-}
+   /*      padding: 8px; /* Relleno reducido en pantallas pequeñas */
+ /*    }
+}  */
 
 .close {
     position: absolute;
